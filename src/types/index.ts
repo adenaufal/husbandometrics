@@ -11,12 +11,25 @@ export enum SourceType {
   MANGA = 'MANGA'
 }
 
+export enum TimePeriod {
+  WEEK = 'WEEK',
+  MONTH = 'MONTH',
+  YEAR = 'YEAR'
+}
+
 export interface ScoreBreakdown {
   pixiv: number;
   ao3: number;
   google_trends: number;
-  booru: number;
+  danbooru: number;
   twitter: number;
+}
+
+export interface HistoricalSnapshot {
+  label: string;
+  period: TimePeriod;
+  scores: ScoreBreakdown;
+  weighted_total: number;
 }
 
 export interface Character {
@@ -24,11 +37,15 @@ export interface Character {
   rank: number;
   name: string;
   name_jp: string;
+  romaji?: string;
+  aliases?: string[];
   source: string;
+  franchise?: string;
   source_type: SourceType;
   image_url: string;
   scores: ScoreBreakdown;
   weighted_total: number;
   trend: Trend;
   description?: string;
+  history?: HistoricalSnapshot[];
 }

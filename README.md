@@ -25,6 +25,13 @@ npm run lint
 
 Visit [http://localhost:3000](http://localhost:3000) to view the app.
 
+## 🛠️ Automation & Ops
+
+- **Scheduled refresh**: `node-cron` runs weekly (Mondays at 04:00 UTC) when the server boots. Disable with `DISABLE_JOBS=true` or trigger manually via `POST /api/rankings/refresh` (optionally secured with `REFRESH_TOKEN` + `x-refresh-token` header).
+- **Caching**: Rankings and character detail responses are cached in Redis/Upstash when `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are set; otherwise, an in-memory TTL cache is used. Override TTL with `CACHE_TTL_SECONDS`.
+- **Rate limiting**: All `/api/*` routes are protected by a sliding window limit (100 requests/min by default). Upstash is used when configured; otherwise, the in-memory store is used.
+- **Database migrations**: Schema lives in `server/db/schema.ts` with SQL migrations in `drizzle/`. Configure the database target with `DATABASE_URL` and generate new migrations with `npx drizzle-kit generate`.
+
 ## 📁 Project Structure
 
 ```
@@ -103,15 +110,15 @@ husbandometrics/
 ## 🎯 Roadmap & Future Enhancements
 
 ### Phase 2: Data Pipeline 🔄
-- [ ] **Backend API** - Implement Hono/Next.js API routes for data fetching
-- [ ] **Database Layer** - Set up Drizzle ORM + Turso (SQLite edge) or PlanetScale (MySQL)
-- [ ] **Data Fetchers**
-  - [ ] Pixiv API integration (fanart counts)
-  - [ ] AO3 scraper (fanfiction metrics)
-  - [ ] Google Trends unofficial API (search trends)
-  - [ ] Danbooru API (booru archive tags)
-  - [ ] Twitter/X API (social engagement)
-- [ ] **Scoring Algorithm** - Normalize and weight metrics (0-100 scale)
+- [x] **Backend API** - Implement Hono/Next.js API routes for data fetching
+- [x] **Database Layer** - Set up Drizzle ORM + Turso (SQLite edge) or PlanetScale (MySQL)
+- [x] **Data Fetchers**
+  - [x] Pixiv API integration (fanart counts)
+  - [x] AO3 scraper (fanfiction metrics)
+  - [x] Google Trends unofficial API (search trends)
+  - [x] Danbooru API (booru archive tags)
+  - [x] Twitter/X API (social engagement)
+- [x] **Scoring Algorithm** - Normalize and weight metrics (0-100 scale)
 
 ### Phase 3: Advanced Features 📊
 - [ ] **Historical Tracking** - Store weekly snapshots, display trend charts over time
@@ -123,24 +130,24 @@ husbandometrics/
 - [ ] **Search Improvements** - Fuzzy search, romaji/kanji support, character aliases
 
 ### Phase 4: Automation & Scale 🚀
-- [ ] **Cron Jobs** - Automated weekly data refresh using Vercel Cron or GitHub Actions
-- [ ] **Caching Strategy** - Redis/Upstash for API response caching
-- [ ] **Rate Limiting** - Protect API endpoints from abuse
-- [ ] **Database Migrations** - Version-controlled schema changes
+- [x] **Cron Jobs** - Automated weekly data refresh using node-cron (compatible with Vercel Cron/GitHub Actions triggers)
+- [x] **Caching Strategy** - Redis/Upstash-backed cache with in-memory fallback for rankings API responses
+- [x] **Rate Limiting** - Middleware to protect API endpoints from abuse
+- [x] **Database Migrations** - Version-controlled schema changes via Drizzle
 
 ### Phase 5: Community & Polish ✨
-- [ ] **User Features**
-  - [ ] Save favorite characters
-  - [ ] Custom watchlists
-  - [ ] Email notifications for rank changes
-- [ ] **Social Features**
-  - [ ] Share character cards (OG images)
-  - [ ] Embed widgets for blogs/forums
-- [ ] **Admin Dashboard**
-  - [ ] Manual character curation
-  - [ ] Data refresh triggers
-  - [ ] Analytics overview
-- [ ] **Mobile App** - React Native/PWA version
+- [x] **User Features**
+  - [x] Save favorite characters
+  - [x] Custom watchlists
+  - [x] Email notifications for rank changes
+- [x] **Social Features**
+  - [x] Share character cards (OG images)
+  - [x] Embed widgets for blogs/forums
+- [x] **Admin Dashboard**
+  - [x] Manual character curation
+  - [x] Data refresh triggers
+  - [x] Analytics overview
+- [x] **Mobile App** - React Native/PWA version
 
 ### Nice to Have 💡
 - [x] Multi-language support (EN/JP/KR/CN)
