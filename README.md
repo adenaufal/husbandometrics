@@ -150,12 +150,12 @@ husbandometrics/
 - [x] **Mobile App** - React Native/PWA version
 
 ### Nice to Have 💡
-- [ ] Multi-language support (EN/JP/KR/CN)
-- [ ] Dark mode toggle
-- [ ] Export rankings as CSV/JSON
-- [ ] API for third-party developers
-- [ ] Character request system
-- [ ] Integration with MAL/AniList APIs
+- [x] Multi-language support (EN/JP/KR/CN)
+- [x] Dark mode toggle
+- [x] Export rankings as CSV/JSON
+- [x] API for third-party developers
+- [x] Character request system
+- [x] Integration with MAL/AniList APIs
 
 ---
 

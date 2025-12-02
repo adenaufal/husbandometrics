@@ -1,6 +1,7 @@
 import React from 'react';
 import { TrendingUp, TrendingDown, Minus, ExternalLink } from 'lucide-react';
 import { Character, Trend } from '../types';
+import { useTranslation } from '../lib/i18n';
 
 interface CharacterCardProps {
   character: Character;
@@ -11,6 +12,7 @@ interface CharacterCardProps {
 }
 
 const CharacterCard: React.FC<CharacterCardProps> = ({ character, onClick, onToggleCompare, isCompared = false, displayScore }) => {
+  const { t } = useTranslation();
   const getTrendIcon = (trend: Trend) => {
     switch (trend) {
       case Trend.RISING:
@@ -45,7 +47,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ character, onClick, onTog
   return (
     <div
       onClick={() => onClick(character)}
-      className="group relative bg-white rounded-3xl p-3 cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.1)] border-2 border-slate-100 flex overflow-hidden select-none"
+      className="group relative bg-white dark:bg-slate-900 rounded-3xl p-3 cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.1)] border-2 border-slate-100 dark:border-slate-800 flex overflow-hidden select-none"
     >
       {/* Decorative 'Ticket' Cutout circles */}
       <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-[var(--color-bg)] rounded-full border-r-2 border-slate-100 z-10 transition-transform duration-300 group-hover:scale-75"></div>
@@ -57,7 +59,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ character, onClick, onTog
       {/* Image Section */}
       <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 z-10 perspective-500">
          <div className="absolute inset-0 bg-slate-900 rounded-2xl rotate-3 group-hover:rotate-6 transition-transform duration-300 opacity-10"></div>
-         <div className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-white shadow-md bg-slate-100 transition-transform duration-500 group-hover:rotate-1">
+         <div className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-white shadow-md bg-slate-100 dark:bg-slate-800 transition-transform duration-500 group-hover:rotate-1">
             <img
                 src={character.image_url}
                 alt={character.name}
@@ -79,15 +81,15 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ character, onClick, onTog
                  </span>
                  {character.trend === Trend.RISING && (
                      <span className="bg-holo-blue text-white text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider animate-pulse">
-                        HOT
+                        {t('hot').toUpperCase()}
                      </span>
                  )}
             </div>
-            <h3 className="font-display font-black text-2xl text-slate-800 leading-none group-hover:text-tech-pink transition-colors line-clamp-1 duration-300">
+            <h3 className="font-display font-black text-2xl text-slate-800 dark:text-white leading-none group-hover:text-tech-pink transition-colors line-clamp-1 duration-300">
                 {character.name}
             </h3>
-            <p className="text-sm font-bold text-slate-400 mb-1 font-mplus group-hover:text-slate-500 transition-colors">{character.name_jp}</p>
-            <p className="text-xs font-bold text-holo-blue bg-blue-50 inline-block px-2 py-1 rounded-md transition-colors group-hover:bg-holo-blue group-hover:text-white">
+            <p className="text-sm font-bold text-slate-400 dark:text-slate-500 mb-1 font-mplus group-hover:text-slate-500 transition-colors">{character.name_jp}</p>
+            <p className="text-xs font-bold text-holo-blue bg-blue-50 dark:bg-slate-800 inline-block px-2 py-1 rounded-md transition-colors group-hover:bg-holo-blue group-hover:text-white">
                 {character.source}
             </p>
          </div>
@@ -101,7 +103,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ character, onClick, onTog
                         <div key={i} className="bg-slate-800 w-[2px]" style={{height: `${Math.max(20, Math.random() * 100)}%`}}></div>
                     ))}
                 </div>
-                <span className="text-[9px] text-slate-300 font-mono tracking-tighter group-hover:text-tech-pink transition-colors">ID: {character.id.toUpperCase().substring(0,8)}</span>
+                <span className="text-[9px] text-slate-300 dark:text-slate-500 font-mono tracking-tighter group-hover:text-tech-pink transition-colors">ID: {character.id.toUpperCase().substring(0,8)}</span>
             </div>
 
             <div className="flex items-center gap-3">
@@ -120,8 +122,8 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ character, onClick, onTog
                 {getTrendIcon(character.trend)}
               </div>
               <div className="text-right">
-                <span className="block text-[9px] font-bold text-slate-400 uppercase">Score</span>
-                <span className="font-display font-black text-3xl text-slate-800 leading-none group-hover:text-deep-violet transition-colors">
+                <span className="block text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase">{t('score').toUpperCase()}</span>
+                <span className="font-display font-black text-3xl text-slate-800 dark:text-white leading-none group-hover:text-deep-violet transition-colors">
                     {(displayScore ?? character.weighted_total).toFixed(0)}
                 </span>
               </div>
@@ -130,7 +132,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ character, onClick, onTog
 
          {/* Hover arrow indicator */}
          <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
-            <ExternalLink className="w-4 h-4 text-slate-300" />
+            <ExternalLink className="w-4 h-4 text-slate-300 dark:text-slate-500" />
          </div>
       </div>
     </div>

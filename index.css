@@ -11,6 +11,11 @@
     --color-purple: #7209b7;
   }
 
+  .dark {
+    --color-bg: #0b1222;
+    --color-text: #e2e8f0;
+  }
+
   body {
     font-family: 'M PLUS Rounded 1c', sans-serif;
     background-color: var(--color-bg);
