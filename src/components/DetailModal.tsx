@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { X, Sparkles, ExternalLink, Activity, Paperclip, FileText } from 'lucide-react';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from 'recharts';
-import { Character } from '../types';
+import { X, Sparkles, ExternalLink, Activity, Paperclip, FileText, LineChart as LineChartIcon } from 'lucide-react';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip, LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { Character, TimePeriod } from '../types';
+import { getSnapshotsForPeriod } from '../lib/history';
 
 interface DetailModalProps {
   character: Character;
   onClose: () => void;
+  timePeriod: TimePeriod;
 }
 
-const DetailModal: React.FC<DetailModalProps> = ({ character, onClose }) => {
+const DetailModal: React.FC<DetailModalProps> = ({ character, onClose, timePeriod }) => {
   const [analyzing, setAnalyzing] = useState(false);
   const [analysis, setAnalysis] = useState<string | null>(character.description || null);
+  const history = getSnapshotsForPeriod(character, timePeriod);
 
   // Close on Escape key
   useEffect(() => {
@@ -139,6 +142,24 @@ const DetailModal: React.FC<DetailModalProps> = ({ character, onClose }) => {
                         </RadarChart>
                     </ResponsiveContainer>
                 </div>
+            </div>
+
+            <div className="bg-white rounded-3xl p-4 shadow-sm border border-slate-100 mb-8 relative hover:shadow-md transition-shadow duration-300">
+              <div className="absolute -top-3 left-6 bg-deep-violet text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider shadow-sm flex items-center gap-1">
+                <LineChartIcon className="w-3 h-3" />
+                TREND HISTORY
+              </div>
+              <div className="h-64 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={history} margin={{ top: 16, right: 24, left: 0, bottom: 8 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                    <XAxis dataKey="label" tick={{ fill: '#94a3b8', fontSize: 11, fontWeight: 800, fontFamily: 'Satoshi' }} />
+                    <YAxis domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11, fontWeight: 800, fontFamily: 'Satoshi' }} />
+                    <Tooltip contentStyle={{ backgroundColor: '#0f172a', border: 'none', color: '#fff', borderRadius: '8px' }} />
+                    <Line type="monotone" dataKey="weighted_total" stroke="#ff5d8f" strokeWidth={3} dot={{ r: 4 }} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
             </div>
 
             <div className="relative group/paper">

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Sparkles } from 'lucide-react';
-import { SourceType, Character } from './types';
+import { SourceType, Character, TimePeriod } from './types';
 import { MOCK_CHARACTERS } from './lib/constants';
 import Header from './components/Header';
 import CharacterCard from './components/CharacterCard';
@@ -9,6 +9,9 @@ import DetailModal from './components/DetailModal';
 import FilterBar from './components/FilterBar';
 import Footer from './components/Footer';
 import AboutModal from './components/AboutModal';
+import ComparisonPanel from './components/ComparisonPanel';
+import { matchesQuery } from './lib/search';
+import { getScoreForPeriod } from './lib/history';
 
 // Create a client for React Query
 const queryClient = new QueryClient({
@@ -26,21 +29,66 @@ const AppContent: React.FC = () => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [filterType, setFilterType] = useState<SourceType>(SourceType.ALL);
   const [searchQuery, setSearchQuery] = useState('');
+  const [timePeriod, setTimePeriod] = useState<TimePeriod>(TimePeriod.WEEK);
+  const [franchise, setFranchise] = useState<string>('ALL');
+  const [minScore, setMinScore] = useState<number>(0);
+  const [maxScore, setMaxScore] = useState<number>(100);
+  const [comparisonIds, setComparisonIds] = useState<string[]>([]);
+
+  const franchises = useMemo(() => {
+    const unique = new Set<string>();
+    MOCK_CHARACTERS.forEach((char) => {
+      if (char.franchise) unique.add(char.franchise);
+      else unique.add(char.source);
+    });
+    return Array.from(unique).sort();
+  }, []);
+
+  const periodScores = useMemo(() => {
+    const scores = new Map<string, number>();
+    MOCK_CHARACTERS.forEach((char) => {
+      scores.set(char.id, getScoreForPeriod(char, timePeriod));
+    });
+    return scores;
+  }, [timePeriod]);
 
   // Filtering Logic
   const filteredCharacters = useMemo(() => {
     return MOCK_CHARACTERS.filter((char) => {
       const matchesType = filterType === SourceType.ALL || char.source_type === filterType;
-      const matchesSearch = char.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            char.source.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesType && matchesSearch;
+      const matchesFranchise = franchise === 'ALL' || (char.franchise || char.source) === franchise;
+      const withinScoreRange = (() => {
+        const score = periodScores.get(char.id) ?? char.weighted_total;
+        return score >= minScore && score <= maxScore;
+      })();
+      const matchesSearch = matchesQuery(char, searchQuery);
+      return matchesType && matchesFranchise && matchesSearch && withinScoreRange;
     }).sort((a, b) => a.rank - b.rank);
-  }, [filterType, searchQuery]);
+  }, [filterType, franchise, searchQuery, minScore, maxScore, periodScores]);
 
   const handleResetFilters = () => {
     setFilterType(SourceType.ALL);
     setSearchQuery('');
+    setFranchise('ALL');
+    setMinScore(0);
+    setMaxScore(100);
+    setTimePeriod(TimePeriod.WEEK);
   };
+
+  const toggleComparison = (character: Character) => {
+    setComparisonIds((prev) => {
+      if (prev.includes(character.id)) {
+        return prev.filter((id) => id !== character.id);
+      }
+      if (prev.length >= 4) return prev; // avoid overcrowding
+      return [...prev, character.id];
+    });
+  };
+
+  const comparisonCharacters = useMemo(
+    () => MOCK_CHARACTERS.filter((char) => comparisonIds.includes(char.id)),
+    [comparisonIds]
+  );
 
   return (
     <div className="min-h-screen relative font-mplus flex flex-col">
@@ -71,8 +119,28 @@ const AppContent: React.FC = () => {
                     </h2>
                     <p className="text-slate-500 font-bold ml-11">Global aggregation from Pixiv, AO3 & Socials</p>
                 </div>
-                <FilterBar currentFilter={filterType} onFilterChange={setFilterType} />
+                <FilterBar
+                  currentFilter={filterType}
+                  onFilterChange={setFilterType}
+                  franchises={franchises}
+                  selectedFranchise={franchise}
+                  onFranchiseChange={setFranchise}
+                  timePeriod={timePeriod}
+                  onTimePeriodChange={setTimePeriod}
+                  minScore={minScore}
+                  maxScore={maxScore}
+                  onScoreRangeChange={(min, max) => {
+                    setMinScore(Math.max(0, Math.min(min, 100)));
+                    setMaxScore(Math.max(min, Math.min(max, 100)));
+                  }}
+                />
             </div>
+
+            <ComparisonPanel
+              characters={comparisonCharacters}
+              timePeriod={timePeriod}
+              onClear={() => setComparisonIds([])}
+            />
 
             {/* Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 pb-12">
@@ -81,7 +149,10 @@ const AppContent: React.FC = () => {
                     <div key={char.id} className="animate-fade-in-up">
                         <CharacterCard
                             character={char}
+                            displayScore={periodScores.get(char.id) ?? char.weighted_total}
                             onClick={setSelectedCharacter}
+                            onToggleCompare={toggleComparison}
+                            isCompared={comparisonIds.includes(char.id)}
                         />
                     </div>
                 ))
@@ -106,6 +177,7 @@ const AppContent: React.FC = () => {
         <DetailModal
           character={selectedCharacter}
           onClose={() => setSelectedCharacter(null)}
+          timePeriod={timePeriod}
         />
       )}
 
