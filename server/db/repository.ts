@@ -1,4 +1,4 @@
-import { inArray } from 'drizzle-orm';
+import { desc, inArray } from 'drizzle-orm';
 import { getConnection, initConnection } from './client';
 import { sqliteCharacters, sqliteMetrics } from './schema/sqlite';
 import { mysqlCharacters, mysqlMetrics } from './schema/mysql';
@@ -67,10 +67,11 @@ export const fetchLatestMetrics = async (ids: string[]): Promise<Record<string, 
         weighted_total: sqliteMetrics.weightedTotal,
       })
       .from(sqliteMetrics)
-      .where(inArray(sqliteMetrics.characterId, ids));
+      .where(inArray(sqliteMetrics.characterId, ids))
+      .orderBy(desc(sqliteMetrics.recordedAt));
 
     return rows.reduce<Record<string, PersistedMetrics>>((acc, row) => {
-      acc[row.character_id] = row;
+      if (!acc[row.character_id]) acc[row.character_id] = row;
       return acc;
     }, {});
   }
@@ -86,10 +87,11 @@ export const fetchLatestMetrics = async (ids: string[]): Promise<Record<string, 
       weighted_total: mysqlMetrics.weightedTotal,
     })
     .from(mysqlMetrics)
-    .where(inArray(mysqlMetrics.characterId, ids));
+    .where(inArray(mysqlMetrics.characterId, ids))
+    .orderBy(desc(mysqlMetrics.recordedAt));
 
   return rows.reduce<Record<string, PersistedMetrics>>((acc, row) => {
-    acc[row.character_id] = row;
+    if (!acc[row.character_id]) acc[row.character_id] = row;
     return acc;
   }, {});
 };
@@ -135,9 +137,18 @@ export const upsertCharacters = async (characters: PersistedCharacter[]) => {
       imageUrl: character.image_url,
     }));
 
-    await connection.db.insert(sqliteCharacters).values(
-      normalizedCharacters,
-    );
+    await connection.db
+      .insert(sqliteCharacters)
+      .values(normalizedCharacters)
+      .onConflictDoUpdate({
+        target: sqliteCharacters.id,
+        set: {
+          name: sqliteCharacters.name,
+          source: sqliteCharacters.source,
+          sourceType: sqliteCharacters.sourceType,
+          imageUrl: sqliteCharacters.imageUrl,
+        },
+      });
     return;
   }
 
@@ -149,5 +160,15 @@ export const upsertCharacters = async (characters: PersistedCharacter[]) => {
     imageUrl: character.image_url,
   }));
 
-  await connection.db.insert(mysqlCharacters).values(normalizedCharacters);
+  await connection.db
+    .insert(mysqlCharacters)
+    .values(normalizedCharacters)
+    .onDuplicateKeyUpdate({
+      set: {
+        name: mysqlCharacters.name,
+        source: mysqlCharacters.source,
+        sourceType: mysqlCharacters.sourceType,
+        imageUrl: mysqlCharacters.imageUrl,
+      },
+    });
 };
