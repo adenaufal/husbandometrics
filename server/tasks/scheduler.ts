@@ -14,7 +14,9 @@ export const startScheduledJobs = () => {
     console.log('[cron] Starting weekly rankings refresh');
     try {
       const payload = await refreshRankings();
-      console.log(`[cron] Refreshed ${payload.characters.length} characters @ ${payload.refreshedAt}`);
+      console.log(
+        `[cron] Refreshed ${payload.characters.length} characters @ ${payload.metadata.updated_at}`
+      );
     } catch (error) {
       console.error('[cron] Failed to refresh rankings', error);
     }
