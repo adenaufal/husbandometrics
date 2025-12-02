@@ -1,0 +1,236 @@
+{
+  "characters": [
+    {
+      "id": "gojo-satoru",
+      "name": "Gojo Satoru",
+      "name_jp": "五条悟",
+      "aliases": ["Gojo", "Gojo-sensei", "The Strongest"],
+      "franchise": "Jujutsu Kaisen",
+      "source_type": "anime",
+      "image_url": "/characters/gojo.jpg",
+      "scores": { "pixiv": 98, "ao3": 95, "google_trends": 82, "danbooru": 94 },
+      "weighted_total": 93.9
+    },
+    {
+      "id": "levi-ackerman",
+      "name": "Levi Ackerman",
+      "name_jp": "リヴァイ・アッカーマン",
+      "aliases": ["Levi", "Captain Levi", "Heichou", "Rivaille"],
+      "franchise": "Attack on Titan",
+      "source_type": "anime",
+      "image_url": "/characters/levi.jpg",
+      "scores": { "pixiv": 92, "ao3": 96, "google_trends": 68, "danbooru": 88 },
+      "weighted_total": 88.7
+    },
+    {
+      "id": "zhongli",
+      "name": "Zhongli",
+      "name_jp": "鍾離",
+      "aliases": ["Rex Lapis", "Morax", "Geo Daddy", "Geo Archon"],
+      "franchise": "Genshin Impact",
+      "source_type": "game",
+      "image_url": "/characters/zhongli.jpg",
+      "scores": { "pixiv": 96, "ao3": 89, "google_trends": 71, "danbooru": 93 },
+      "weighted_total": 89.8
+    },
+    {
+      "id": "nanami-kento",
+      "name": "Nanami Kento",
+      "name_jp": "七海建人",
+      "aliases": ["Nanami", "Nanamin", "Salaryman Sorcerer"],
+      "franchise": "Jujutsu Kaisen",
+      "source_type": "anime",
+      "image_url": "/characters/nanami.jpg",
+      "scores": { "pixiv": 88, "ao3": 82, "google_trends": 65, "danbooru": 85 },
+      "weighted_total": 82.3
+    },
+    {
+      "id": "aventurine",
+      "name": "Aventurine",
+      "name_jp": "アベンチュリン",
+      "aliases": ["Kakavasha", "IPC Aventurine"],
+      "franchise": "Honkai: Star Rail",
+      "source_type": "game",
+      "image_url": "/characters/aventurine.jpg",
+      "scores": { "pixiv": 94, "ao3": 78, "google_trends": 76, "danbooru": 91 },
+      "weighted_total": 86.0
+    },
+    {
+      "id": "wriothesley",
+      "name": "Wriothesley",
+      "name_jp": "リオセスリ",
+      "aliases": ["Wrio", "Duke of Meropide", "Duke"],
+      "franchise": "Genshin Impact",
+      "source_type": "game",
+      "image_url": "/characters/wriothesley.jpg",
+      "scores": { "pixiv": 89, "ao3": 75, "google_trends": 62, "danbooru": 87 },
+      "weighted_total": 81.0
+    },
+    {
+      "id": "toji-fushiguro",
+      "name": "Toji Fushiguro",
+      "name_jp": "伏黒甚爾",
+      "aliases": ["Toji", "Sorcerer Killer", "Zenin Toji"],
+      "franchise": "Jujutsu Kaisen",
+      "source_type": "anime",
+      "image_url": "/characters/toji.jpg",
+      "scores": { "pixiv": 91, "ao3": 84, "google_trends": 70, "danbooru": 88 },
+      "weighted_total": 85.5
+    },
+    {
+      "id": "satoru-gojo",
+      "name": "Dazai Osamu",
+      "name_jp": "太宰治",
+      "aliases": ["Dazai", "Bandage Wasting Disease"],
+      "franchise": "Bungou Stray Dogs",
+      "source_type": "anime",
+      "image_url": "/characters/dazai.jpg",
+      "scores": { "pixiv": 90, "ao3": 93, "google_trends": 58, "danbooru": 86 },
+      "weighted_total": 85.3
+    },
+    {
+      "id": "childe-tartaglia",
+      "name": "Tartaglia",
+      "name_jp": "タルタリヤ",
+      "aliases": ["Childe", "Ajax", "Tartaglia", "Ginger"],
+      "franchise": "Genshin Impact",
+      "source_type": "game",
+      "image_url": "/characters/childe.jpg",
+      "scores": { "pixiv": 93, "ao3": 91, "google_trends": 64, "danbooru": 90 },
+      "weighted_total": 87.6
+    },
+    {
+      "id": "neuvillette",
+      "name": "Neuvillette",
+      "name_jp": "ヌヴィレット",
+      "aliases": ["Chief Justice", "Nevi", "Dragon"],
+      "franchise": "Genshin Impact",
+      "source_type": "game",
+      "image_url": "/characters/neuvillette.jpg",
+      "scores": { "pixiv": 92, "ao3": 80, "google_trends": 68, "danbooru": 89 },
+      "weighted_total": 84.7
+    },
+    {
+      "id": "alhaitham",
+      "name": "Alhaitham",
+      "name_jp": "アルハイゼン",
+      "aliases": ["Al-Haitham", "Scribe"],
+      "franchise": "Genshin Impact",
+      "source_type": "game",
+      "image_url": "/characters/alhaitham.jpg",
+      "scores": { "pixiv": 91, "ao3": 88, "google_trends": 60, "danbooru": 88 },
+      "weighted_total": 84.5
+    },
+    {
+      "id": "sunday-hsr",
+      "name": "Sunday",
+      "name_jp": "サンデー",
+      "aliases": ["Sunday HSR"],
+      "franchise": "Honkai: Star Rail",
+      "source_type": "game",
+      "image_url": "/characters/sunday.jpg",
+      "scores": { "pixiv": 87, "ao3": 70, "google_trends": 72, "danbooru": 84 },
+      "weighted_total": 79.5
+    },
+    {
+      "id": "diluc-ragnvindr",
+      "name": "Diluc",
+      "name_jp": "ディルック",
+      "aliases": ["Diluc Ragnvindr", "Darknight Hero", "Batman of Mondstadt"],
+      "franchise": "Genshin Impact",
+      "source_type": "game",
+      "image_url": "/characters/diluc.jpg",
+      "scores": { "pixiv": 85, "ao3": 86, "google_trends": 52, "danbooru": 84 },
+      "weighted_total": 79.9
+    },
+    {
+      "id": "kaeya-alberich",
+      "name": "Kaeya",
+      "name_jp": "ガイア",
+      "aliases": ["Kaeya Alberich", "Cavalry Captain"],
+      "franchise": "Genshin Impact",
+      "source_type": "game",
+      "image_url": "/characters/kaeya.jpg",
+      "scores": { "pixiv": 86, "ao3": 88, "google_trends": 48, "danbooru": 85 },
+      "weighted_total": 80.2
+    },
+    {
+      "id": "blade-hsr",
+      "name": "Blade",
+      "name_jp": "ブレード",
+      "aliases": ["Yingxing", "Blade HSR"],
+      "franchise": "Honkai: Star Rail",
+      "source_type": "game",
+      "image_url": "/characters/blade.jpg",
+      "scores": { "pixiv": 88, "ao3": 79, "google_trends": 58, "danbooru": 86 },
+      "weighted_total": 80.9
+    },
+    {
+      "id": "jing-yuan",
+      "name": "Jing Yuan",
+      "name_jp": "景元",
+      "aliases": ["General Jing Yuan", "Cloud Knight General"],
+      "franchise": "Honkai: Star Rail",
+      "source_type": "game",
+      "image_url": "/characters/jingyuan.jpg",
+      "scores": { "pixiv": 87, "ao3": 75, "google_trends": 55, "danbooru": 85 },
+      "weighted_total": 78.6
+    },
+    {
+      "id": "dan-heng-imbibitor",
+      "name": "Dan Heng • Imbibitor Lunae",
+      "name_jp": "丹恒・飲月",
+      "aliases": ["DHIL", "Dan Heng IL", "Imbibitor Lunae"],
+      "franchise": "Honkai: Star Rail",
+      "source_type": "game",
+      "image_url": "/characters/dhil.jpg",
+      "scores": { "pixiv": 89, "ao3": 77, "google_trends": 60, "danbooru": 87 },
+      "weighted_total": 81.2
+    },
+    {
+      "id": "xiao-genshin",
+      "name": "Xiao",
+      "name_jp": "魈",
+      "aliases": ["Alatus", "Conqueror of Demons", "Vigilant Yaksha"],
+      "franchise": "Genshin Impact",
+      "source_type": "game",
+      "image_url": "/characters/xiao.jpg",
+      "scores": { "pixiv": 90, "ao3": 85, "google_trends": 56, "danbooru": 88 },
+      "weighted_total": 83.4
+    },
+    {
+      "id": "eren-yeager",
+      "name": "Eren Yeager",
+      "name_jp": "エレン・イェーガー",
+      "aliases": ["Eren", "Eren Jaeger", "Attack Titan"],
+      "franchise": "Attack on Titan",
+      "source_type": "anime",
+      "image_url": "/characters/eren.jpg",
+      "scores": { "pixiv": 82, "ao3": 88, "google_trends": 70, "danbooru": 80 },
+      "weighted_total": 81.5
+    },
+    {
+      "id": "megumi-fushiguro",
+      "name": "Megumi Fushiguro",
+      "name_jp": "伏黒恵",
+      "aliases": ["Megumi", "Fushiguro"],
+      "franchise": "Jujutsu Kaisen",
+      "source_type": "anime",
+      "image_url": "/characters/megumi.jpg",
+      "scores": { "pixiv": 87, "ao3": 86, "google_trends": 62, "danbooru": 84 },
+      "weighted_total": 82.3
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "last_updated": "2024-01-15",
+    "total_characters": 20,
+    "sources": ["pixiv", "ao3", "google_trends", "danbooru"],
+    "weights": {
+      "pixiv": 0.35,
+      "ao3": 0.30,
+      "google_trends": 0.20,
+      "danbooru": 0.15
+    }
+  }
+}
