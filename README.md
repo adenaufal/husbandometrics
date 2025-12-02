@@ -129,18 +129,18 @@ husbandometrics/
 - [ ] **Database Migrations** - Version-controlled schema changes
 
 ### Phase 5: Community & Polish ✨
-- [ ] **User Features**
-  - [ ] Save favorite characters
-  - [ ] Custom watchlists
-  - [ ] Email notifications for rank changes
-- [ ] **Social Features**
-  - [ ] Share character cards (OG images)
-  - [ ] Embed widgets for blogs/forums
-- [ ] **Admin Dashboard**
-  - [ ] Manual character curation
-  - [ ] Data refresh triggers
-  - [ ] Analytics overview
-- [ ] **Mobile App** - React Native/PWA version
+- [x] **User Features**
+  - [x] Save favorite characters
+  - [x] Custom watchlists
+  - [x] Email notifications for rank changes
+- [x] **Social Features**
+  - [x] Share character cards (OG images)
+  - [x] Embed widgets for blogs/forums
+- [x] **Admin Dashboard**
+  - [x] Manual character curation
+  - [x] Data refresh triggers
+  - [x] Analytics overview
+- [x] **Mobile App** - React Native/PWA version
 
 ### Nice to Have 💡
 - [ ] Multi-language support (EN/JP/KR/CN)
