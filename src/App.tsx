@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import { Sparkles } from 'lucide-react';
-import { SourceType, Character, TimePeriod } from './types';
+import { SourceType, Character, TimePeriod, ScoreBreakdown } from './types';
 import { MOCK_CHARACTERS } from './lib/constants';
 import Header from './components/Header';
 import CharacterCard from './components/CharacterCard';
@@ -33,6 +33,15 @@ interface AppContentProps {
   onLanguageChange: (lang: SupportedLanguage) => void;
 }
 
+type RankingsResponse = {
+  metadata: {
+    updated_at: string;
+    weights: ScoreBreakdown;
+    mode: string;
+  };
+  characters: Character[];
+};
+
 const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) => {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
@@ -50,6 +59,20 @@ const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) =
   const [maxScore, setMaxScore] = useState<number>(100);
   const [comparisonIds, setComparisonIds] = useState<string[]>([]);
   const { t } = useTranslation();
+  const apiBase = import.meta.env.VITE_API_BASE_URL ?? '';
+
+  const { data, isLoading, isError } = useQuery<RankingsResponse>({
+    queryKey: ['rankings'],
+    queryFn: async () => {
+      const response = await fetch(`${apiBase}/api/rankings`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch rankings');
+      }
+      return response.json();
+    },
+  });
+
+  const characters = useMemo(() => data?.characters ?? MOCK_CHARACTERS, [data]);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
@@ -69,24 +92,24 @@ const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) =
 
   const franchises = useMemo(() => {
     const unique = new Set<string>();
-    MOCK_CHARACTERS.forEach((char) => {
+    characters.forEach((char) => {
       if (char.franchise) unique.add(char.franchise);
       else unique.add(char.source);
     });
     return Array.from(unique).sort();
-  }, []);
+  }, [characters]);
 
   const periodScores = useMemo(() => {
     const scores = new Map<string, number>();
-    MOCK_CHARACTERS.forEach((char) => {
+    characters.forEach((char) => {
       scores.set(char.id, getScoreForPeriod(char, timePeriod));
     });
     return scores;
-  }, [timePeriod]);
+  }, [characters, timePeriod]);
 
   // Filtering Logic
   const filteredCharacters = useMemo(() => {
-    return MOCK_CHARACTERS.filter((char) => {
+    return characters.filter((char) => {
       const matchesType = filterType === SourceType.ALL || char.source_type === filterType;
       const matchesFranchise = franchise === 'ALL' || (char.franchise || char.source) === franchise;
       const withinScoreRange = (() => {
@@ -96,7 +119,7 @@ const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) =
       const matchesSearch = matchesQuery(char, searchQuery);
       return matchesType && matchesFranchise && matchesSearch && withinScoreRange;
     }).sort((a, b) => a.rank - b.rank);
-  }, [filterType, franchise, searchQuery, minScore, maxScore, periodScores]);
+  }, [characters, filterType, franchise, searchQuery, minScore, maxScore, periodScores]);
 
   const handleResetFilters = () => {
     setFilterType(SourceType.ALL);
@@ -168,8 +191,8 @@ const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) =
   };
 
   const comparisonCharacters = useMemo(
-    () => MOCK_CHARACTERS.filter((char) => comparisonIds.includes(char.id)),
-    [comparisonIds]
+    () => characters.filter((char) => comparisonIds.includes(char.id)),
+    [characters, comparisonIds]
   );
 
   return (
@@ -191,6 +214,16 @@ const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) =
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 flex-grow w-full">
+            {isLoading && !data && (
+              <div className="mb-4 rounded-2xl border border-slate-200 bg-white/60 text-slate-600 px-4 py-3 font-bold dark:bg-slate-800/60 dark:border-slate-700 dark:text-slate-300 animate-pulse">
+                Loading live rankings…
+              </div>
+            )}
+            {isError && (
+              <div className="mb-4 rounded-2xl border border-warning/50 bg-warning/20 text-slate-900 px-4 py-3 font-bold">
+                Live API unreachable; showing sample data instead. Set VITE_API_BASE_URL to your deployed API.
+              </div>
+            )}
 
             {/* Filter Section */}
             <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-6 animate-fade-in-up">
