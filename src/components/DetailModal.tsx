@@ -28,14 +28,14 @@ const DetailModal: React.FC<DetailModalProps> = ({ character, onClose, timePerio
     { subject: 'Pixiv', A: character.scores.pixiv, fullMark: 100 },
     { subject: 'AO3', A: character.scores.ao3, fullMark: 100 },
     { subject: 'Trends', A: character.scores.google_trends, fullMark: 100 },
-    { subject: 'Booru', A: character.scores.booru, fullMark: 100 },
+    { subject: 'Danbooru', A: character.scores.danbooru, fullMark: 100 },
     { subject: 'Twitter', A: character.scores.twitter, fullMark: 100 },
   ];
 
   const handleGenerateAnalysis = async () => {
     setAnalyzing(true);
     setTimeout(() => {
-        setAnalysis(`Analysis for ${character.name}: High engagement on AO3 relative to search trends suggests a dedicated core fanbase rather than mainstream viral appeal. The consistency in Booru tags indicates a steady stream of fan content creation.`);
+        setAnalysis(`Analysis for ${character.name}: High engagement on AO3 relative to search trends suggests a dedicated core fanbase rather than mainstream viral appeal. The consistency in Danbooru tags indicates a steady stream of fan content creation.`);
         setAnalyzing(false);
     }, 1500);
   };

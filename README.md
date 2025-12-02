@@ -103,15 +103,15 @@ husbandometrics/
 ## 🎯 Roadmap & Future Enhancements
 
 ### Phase 2: Data Pipeline 🔄
-- [ ] **Backend API** - Implement Hono/Next.js API routes for data fetching
-- [ ] **Database Layer** - Set up Drizzle ORM + Turso (SQLite edge) or PlanetScale (MySQL)
-- [ ] **Data Fetchers**
-  - [ ] Pixiv API integration (fanart counts)
-  - [ ] AO3 scraper (fanfiction metrics)
-  - [ ] Google Trends unofficial API (search trends)
-  - [ ] Danbooru API (booru archive tags)
-  - [ ] Twitter/X API (social engagement)
-- [ ] **Scoring Algorithm** - Normalize and weight metrics (0-100 scale)
+- [x] **Backend API** - Implement Hono/Next.js API routes for data fetching
+- [x] **Database Layer** - Set up Drizzle ORM + Turso (SQLite edge) or PlanetScale (MySQL)
+- [x] **Data Fetchers**
+  - [x] Pixiv API integration (fanart counts)
+  - [x] AO3 scraper (fanfiction metrics)
+  - [x] Google Trends unofficial API (search trends)
+  - [x] Danbooru API (booru archive tags)
+  - [x] Twitter/X API (social engagement)
+- [x] **Scoring Algorithm** - Normalize and weight metrics (0-100 scale)
 
 ### Phase 3: Advanced Features 📊
 - [ ] **Historical Tracking** - Store weekly snapshots, display trend charts over time
