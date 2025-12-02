@@ -2,7 +2,7 @@
 
 Ever wondered who's actually the most popular husbando based on real data, not just vibes?
 
-HUSBANDOMETRICS aggregates engagement metrics from multiple fan platforms to create objective, data-driven male character popularity rankings.
+HUSBANDOMETRICS aggregates engagement metrics from multiple fan platforms to create objective, data-driven male character popularity rankings. The frontend is built with **Vite + React + TypeScript**, so you get instant hot-module reloading during development and optimized builds without a separate Node.js app wrapper.
 
 ## 🚀 Quick Start
 
@@ -10,20 +10,20 @@ HUSBANDOMETRICS aggregates engagement metrics from multiple fan platforms to cre
 # Install dependencies
 npm install
 
-# Run development server
+# Run the Vite development server (default: http://localhost:5173)
 npm run dev
 
-# Build for production
+# Build for production (generates Vite static assets)
 npm run build
 
-# Preview production build
+# Preview the production build locally
 npm run preview
 
-# Type checking
+# Type checking for both client + server TypeScript
 npm run lint
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) to view the app.
+Vite defaults to [http://localhost:5173](http://localhost:5173) in dev mode.
 
 ## 🛠️ Automation & Ops
 

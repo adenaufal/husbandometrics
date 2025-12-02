@@ -14,7 +14,7 @@ const metricKeys = [
   { key: 'pixiv', label: 'Pixiv' },
   { key: 'ao3', label: 'AO3' },
   { key: 'google_trends', label: 'Trends' },
-  { key: 'booru', label: 'Booru' },
+  { key: 'danbooru', label: 'Danbooru' },
   { key: 'twitter', label: 'Twitter' },
 ];
 
