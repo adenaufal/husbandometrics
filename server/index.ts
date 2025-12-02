@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
 import rankingsRoutes from './routes/rankings';
+import integrationRoutes from './routes/integrations';
 
 const app = new Hono();
 
@@ -11,6 +12,7 @@ app.use('*', cors());
 
 // Routes
 app.route('/api/rankings', rankingsRoutes);
+app.route('/api/integrations', integrationRoutes);
 
 app.get('/health', (c) => {
   return c.json({ status: 'ok', timestamp: new Date().toISOString() });
