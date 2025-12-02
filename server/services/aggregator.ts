@@ -17,6 +17,7 @@ import {
   saveMetricSnapshot,
   upsertCharacters,
 } from '../db/repository';
+import { cacheClient, defaultTtlSeconds } from '../lib/cache';
 
 interface SeedCharacter {
   id: string;
@@ -37,6 +38,20 @@ interface SeedPayload {
     version: string;
   };
 }
+
+interface RankingsResponse {
+  metadata: {
+    updated_at: string;
+    weights: ScoreBreakdown;
+    mode: string;
+  };
+  characters: Character[];
+}
+
+const CACHE_KEYS = {
+  all: 'rankings:all',
+  byId: (id: string) => `rankings:${id}`,
+};
 
 const loadSeedCharacters = async (): Promise<SeedPayload> => {
   const seedPath = path.join(process.cwd(), 'src', 'data', 'seed-characters.json');
@@ -136,7 +151,7 @@ const mapSeedToCharacter = (seed: SeedCharacter, breakdown: ScoreBreakdown, prev
   } as Character;
 };
 
-export const getAllRankings = async () => {
+const fetchRankingsFromSource = async (): Promise<RankingsResponse> => {
   const seed = await loadSeedCharacters();
 
   // Try to hydrate from database if configured
@@ -192,7 +207,45 @@ export const getAllRankings = async () => {
   };
 };
 
-export const getCharacterById = async (id: string) => {
-  const rankings = await getAllRankings();
-  return rankings.characters.find((character) => character.id === id) ?? null;
+export const getAllRankings = async (): Promise<RankingsResponse> => {
+  // Try to get from cache first
+  const cached = await cacheClient.get<RankingsResponse>(CACHE_KEYS.all);
+  if (cached) return cached;
+
+  // Fetch fresh data
+  const payload = await fetchRankingsFromSource();
+  
+  // Cache the result
+  await cacheClient.set(CACHE_KEYS.all, payload, defaultTtlSeconds);
+  
+  return payload;
+};
+
+export const getCharacterById = async (id: string): Promise<Character | null> => {
+  const cacheKey = CACHE_KEYS.byId(id);
+  const cached = await cacheClient.get<Character>(cacheKey);
+  if (cached) return cached;
+
+  const { characters } = await getAllRankings();
+  const match = characters.find((character) => character.id === id) ?? null;
+
+  if (match) {
+    await cacheClient.set(cacheKey, match, defaultTtlSeconds);
+  }
+
+  return match;
+};
+
+export const refreshRankings = async (): Promise<RankingsResponse> => {
+  await cacheClient.delete(CACHE_KEYS.all);
+  const refreshed = await getAllRankings();
+
+  // Refresh individual caches so detail pages stay hot in Redis/Upstash
+  await Promise.all(
+    refreshed.characters.map((character) => 
+      cacheClient.set(CACHE_KEYS.byId(character.id), character, defaultTtlSeconds)
+    )
+  );
+
+  return refreshed;
 };

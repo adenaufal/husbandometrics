@@ -25,6 +25,13 @@ npm run lint
 
 Visit [http://localhost:3000](http://localhost:3000) to view the app.
 
+## 🛠️ Automation & Ops
+
+- **Scheduled refresh**: `node-cron` runs weekly (Mondays at 04:00 UTC) when the server boots. Disable with `DISABLE_JOBS=true` or trigger manually via `POST /api/rankings/refresh` (optionally secured with `REFRESH_TOKEN` + `x-refresh-token` header).
+- **Caching**: Rankings and character detail responses are cached in Redis/Upstash when `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are set; otherwise, an in-memory TTL cache is used. Override TTL with `CACHE_TTL_SECONDS`.
+- **Rate limiting**: All `/api/*` routes are protected by a sliding window limit (100 requests/min by default). Upstash is used when configured; otherwise, the in-memory store is used.
+- **Database migrations**: Schema lives in `server/db/schema.ts` with SQL migrations in `drizzle/`. Configure the database target with `DATABASE_URL` and generate new migrations with `npx drizzle-kit generate`.
+
 ## 📁 Project Structure
 
 ```
@@ -123,10 +130,10 @@ husbandometrics/
 - [ ] **Search Improvements** - Fuzzy search, romaji/kanji support, character aliases
 
 ### Phase 4: Automation & Scale 🚀
-- [ ] **Cron Jobs** - Automated weekly data refresh using Vercel Cron or GitHub Actions
-- [ ] **Caching Strategy** - Redis/Upstash for API response caching
-- [ ] **Rate Limiting** - Protect API endpoints from abuse
-- [ ] **Database Migrations** - Version-controlled schema changes
+- [x] **Cron Jobs** - Automated weekly data refresh using node-cron (compatible with Vercel Cron/GitHub Actions triggers)
+- [x] **Caching Strategy** - Redis/Upstash-backed cache with in-memory fallback for rankings API responses
+- [x] **Rate Limiting** - Middleware to protect API endpoints from abuse
+- [x] **Database Migrations** - Version-controlled schema changes via Drizzle
 
 ### Phase 5: Community & Polish ✨
 - [ ] **User Features**
