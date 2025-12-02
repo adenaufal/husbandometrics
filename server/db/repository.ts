@@ -1,4 +1,4 @@
-import { desc, inArray } from 'drizzle-orm';
+import { desc, inArray, sql } from 'drizzle-orm';
 import { getConnection, initConnection } from './client';
 import { sqliteCharacters, sqliteMetrics } from './schema/sqlite';
 import { mysqlCharacters, mysqlMetrics } from './schema/mysql';
@@ -165,10 +165,10 @@ export const upsertCharacters = async (characters: PersistedCharacter[]) => {
     .values(normalizedCharacters)
     .onDuplicateKeyUpdate({
       set: {
-        name: mysqlCharacters.name,
-        source: mysqlCharacters.source,
-        sourceType: mysqlCharacters.sourceType,
-        imageUrl: mysqlCharacters.imageUrl,
+        name: sql`values(name)`,
+        source: sql`values(source)`,
+        sourceType: sql`values(source_type)`,
+        imageUrl: sql`values(image_url)`,
       },
     });
 };
