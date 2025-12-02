@@ -5,9 +5,12 @@ import { Character, Trend } from '../types';
 interface CharacterCardProps {
   character: Character;
   onClick: (character: Character) => void;
+  onToggleCompare?: (character: Character) => void;
+  isCompared?: boolean;
+  displayScore?: number;
 }
 
-const CharacterCard: React.FC<CharacterCardProps> = ({ character, onClick }) => {
+const CharacterCard: React.FC<CharacterCardProps> = ({ character, onClick, onToggleCompare, isCompared = false, displayScore }) => {
   const getTrendIcon = (trend: Trend) => {
     switch (trend) {
       case Trend.RISING:
@@ -102,15 +105,26 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ character, onClick }) => 
             </div>
 
             <div className="flex items-center gap-3">
-                 <div className={`w-8 h-8 rounded-full flex items-center justify-center shadow-sm transition-transform duration-300 group-hover:scale-110 ${getTrendColor(character.trend)}`}>
-                    {getTrendIcon(character.trend)}
-                 </div>
-                 <div className="text-right">
-                    <span className="block text-[9px] font-bold text-slate-400 uppercase">Score</span>
-                    <span className="font-display font-black text-3xl text-slate-800 leading-none group-hover:text-deep-violet transition-colors">
-                        {character.weighted_total.toFixed(0)}
-                    </span>
-                 </div>
+              <button
+                className={`px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-wide transition-all border ${
+                  isCompared ? 'bg-holo-blue text-white border-holo-blue shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:border-tech-pink hover:text-tech-pink'
+                }`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onToggleCompare?.(character);
+                }}
+              >
+                {isCompared ? 'Compare ✓' : 'Add Compare'}
+              </button>
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center shadow-sm transition-transform duration-300 group-hover:scale-110 ${getTrendColor(character.trend)}`}>
+                {getTrendIcon(character.trend)}
+              </div>
+              <div className="text-right">
+                <span className="block text-[9px] font-bold text-slate-400 uppercase">Score</span>
+                <span className="font-display font-black text-3xl text-slate-800 leading-none group-hover:text-deep-violet transition-colors">
+                    {(displayScore ?? character.weighted_total).toFixed(0)}
+                </span>
+              </div>
             </div>
          </div>
 
