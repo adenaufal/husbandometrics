@@ -13,7 +13,7 @@ export const MOCK_CHARACTERS: Character[] = [
       pixiv: 98,
       ao3: 92,
       google_trends: 95,
-      booru: 88,
+      danbooru: 88,
       twitter: 90
     },
     weighted_total: 93.4,
@@ -32,7 +32,7 @@ export const MOCK_CHARACTERS: Character[] = [
       pixiv: 94,
       ao3: 85,
       google_trends: 88,
-      booru: 75,
+      danbooru: 75,
       twitter: 92
     },
     weighted_total: 87.9,
@@ -50,7 +50,7 @@ export const MOCK_CHARACTERS: Character[] = [
       pixiv: 65,
       ao3: 99,
       google_trends: 80,
-      booru: 60,
+      danbooru: 60,
       twitter: 85
     },
     weighted_total: 81.3,
@@ -68,7 +68,7 @@ export const MOCK_CHARACTERS: Character[] = [
       pixiv: 85,
       ao3: 78,
       google_trends: 82,
-      booru: 90,
+      danbooru: 90,
       twitter: 75
     },
     weighted_total: 81.0,
@@ -86,7 +86,7 @@ export const MOCK_CHARACTERS: Character[] = [
       pixiv: 88,
       ao3: 75,
       google_trends: 65,
-      booru: 80,
+      danbooru: 80,
       twitter: 70
     },
     weighted_total: 77.2,
@@ -104,7 +104,7 @@ export const MOCK_CHARACTERS: Character[] = [
       pixiv: 90,
       ao3: 65,
       google_trends: 60,
-      booru: 85,
+      danbooru: 85,
       twitter: 60
     },
     weighted_total: 74.0,
@@ -122,7 +122,7 @@ export const MOCK_CHARACTERS: Character[] = [
       pixiv: 80,
       ao3: 70,
       google_trends: 55,
-      booru: 75,
+      danbooru: 75,
       twitter: 65
     },
     weighted_total: 70.3,
@@ -140,7 +140,7 @@ export const MOCK_CHARACTERS: Character[] = [
       pixiv: 60,
       ao3: 40,
       google_trends: 85,
-      booru: 70,
+      danbooru: 70,
       twitter: 80
     },
     weighted_total: 64.5,
@@ -158,7 +158,7 @@ export const MOCK_CHARACTERS: Character[] = [
       pixiv: 55,
       ao3: 60,
       google_trends: 75,
-      booru: 65,
+      danbooru: 65,
       twitter: 70
     },
     weighted_total: 63.3,
@@ -176,7 +176,7 @@ export const MOCK_CHARACTERS: Character[] = [
       pixiv: 70,
       ao3: 80,
       google_trends: 50,
-      booru: 60,
+      danbooru: 60,
       twitter: 55
     },
     weighted_total: 65.5,
