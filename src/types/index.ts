@@ -15,7 +15,7 @@ export interface ScoreBreakdown {
   pixiv: number;
   ao3: number;
   google_trends: number;
-  booru: number;
+  danbooru: number;
   twitter: number;
 }
 
