@@ -3,9 +3,10 @@ import { Github, Twitter, Info } from 'lucide-react';
 
 interface FooterProps {
   onOpenAbout: () => void;
+  onOpenChangelog: () => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ onOpenAbout }) => {
+const Footer: React.FC<FooterProps> = ({ onOpenAbout, onOpenChangelog }) => {
   return (
     <footer className="mt-20 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 relative overflow-hidden">
       {/* Decorative Grid Background */}
@@ -38,6 +39,9 @@ const Footer: React.FC<FooterProps> = ({ onOpenAbout }) => {
               <li><button onClick={onOpenAbout} className="hover:text-tech-pink transition-colors flex items-center gap-2"><Info className="w-3 h-3"/> About Project</button></li>
               <li><a href="/api/rankings" className="hover:text-tech-pink transition-colors">API Documentation</a></li>
               <li><a href="#" className="hover:text-tech-pink transition-colors">Methodology</a></li>
+              <li>
+                <button onClick={onOpenChangelog} className="hover:text-tech-pink transition-colors">Changelog</button>
+              </li>
               <li><a href="#" className="hover:text-tech-pink transition-colors">Status Page</a></li>
             </ul>
           </div>

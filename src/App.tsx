@@ -12,6 +12,7 @@ import AboutModal from './components/AboutModal';
 import UtilityBar from './components/UtilityBar';
 import CharacterRequestPanel, { CharacterRequest } from './components/CharacterRequestPanel';
 import IntegrationStatus, { IntegrationStat } from './components/IntegrationStatus';
+import ChangelogModal from './components/ChangelogModal';
 import { TranslationProvider, SupportedLanguage, useTranslation } from './lib/i18n';
 import ComparisonPanel from './components/ComparisonPanel';
 import { matchesQuery } from './lib/search';
@@ -45,6 +46,7 @@ type RankingsResponse = {
 const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) => {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isChangelogOpen, setIsChangelogOpen] = useState(false);
   const [filterType, setFilterType] = useState<SourceType>(SourceType.ALL);
   const [searchQuery, setSearchQuery] = useState('');
   const [theme, setTheme] = useState<'light' | 'dark'>(() => (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
@@ -301,7 +303,10 @@ const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) =
             </div>
       </main>
 
-      <Footer onOpenAbout={() => setIsAboutOpen(true)} />
+      <Footer
+        onOpenAbout={() => setIsAboutOpen(true)}
+        onOpenChangelog={() => setIsChangelogOpen(true)}
+      />
 
       {/* Detail Modal */}
       {selectedCharacter && (
@@ -315,6 +320,10 @@ const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) =
       {/* About Modal */}
       {isAboutOpen && (
         <AboutModal onClose={() => setIsAboutOpen(false)} />
+      )}
+
+      {isChangelogOpen && (
+        <ChangelogModal onClose={() => setIsChangelogOpen(false)} />
       )}
       </div>
   );
