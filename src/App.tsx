@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import { Sparkles } from 'lucide-react';
-import { SourceType, Character, TimePeriod, ScoreBreakdown } from './types';
+import { SourceType, Character, TimePeriod, ScoreBreakdown, FraudLogEntry } from './types';
 import { MOCK_CHARACTERS } from './lib/constants';
 import Header from './components/Header';
 import CharacterCard from './components/CharacterCard';
@@ -12,10 +12,12 @@ import AboutModal from './components/AboutModal';
 import UtilityBar from './components/UtilityBar';
 import CharacterRequestPanel, { CharacterRequest } from './components/CharacterRequestPanel';
 import IntegrationStatus, { IntegrationStat } from './components/IntegrationStatus';
+import FraudLogs from './components/FraudLogs';
 import { TranslationProvider, SupportedLanguage, useTranslation } from './lib/i18n';
 import ComparisonPanel from './components/ComparisonPanel';
 import { matchesQuery } from './lib/search';
 import { getScoreForPeriod } from './lib/history';
+import { MOCK_FRAUD_LOGS } from './data/mock-fraud-logs';
 
 // Create a client for React Query
 const queryClient = new QueryClient({
@@ -40,6 +42,14 @@ type RankingsResponse = {
     mode: string;
   };
   characters: Character[];
+};
+
+type FraudLogsResponse = {
+  metadata: {
+    total: number;
+    generated_at: string;
+  };
+  logs: FraudLogEntry[];
 };
 
 const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) => {
@@ -72,7 +82,24 @@ const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) =
     },
   });
 
+  const {
+    data: fraudLogsData,
+    isLoading: fraudLogsLoading,
+    isError: fraudLogsError,
+    refetch: refetchFraudLogs,
+  } = useQuery<FraudLogsResponse>({
+    queryKey: ['fraud-logs'],
+    queryFn: async () => {
+      const response = await fetch(`${apiBase}/api/fraud-logs`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch fraud logs');
+      }
+      return response.json();
+    },
+  });
+
   const characters = useMemo(() => data?.characters ?? MOCK_CHARACTERS, [data]);
+  const fraudLogs = useMemo(() => fraudLogsData?.logs ?? MOCK_FRAUD_LOGS, [fraudLogsData]);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
@@ -298,6 +325,15 @@ const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) =
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12">
               <CharacterRequestPanel requests={requests} onAddRequest={handleAddRequest} />
               <IntegrationStatus integrations={integrations} onSync={handleSyncIntegrations} />
+            </div>
+
+            <div className="pb-12">
+              <FraudLogs
+                logs={fraudLogs}
+                isLoading={fraudLogsLoading}
+                isError={fraudLogsError}
+                onRefresh={refetchFraudLogs}
+              />
             </div>
       </main>
 
