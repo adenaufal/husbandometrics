@@ -49,15 +49,3 @@ export interface Character {
   description?: string;
   history?: HistoricalSnapshot[];
 }
-
-export type FraudLogSeverity = 'info' | 'warning' | 'critical';
-
-export interface FraudLogEntry {
-  id: string;
-  occurredAt: string;
-  severity: FraudLogSeverity;
-  actor: string;
-  action: string;
-  context: string;
-  status: 'blocked' | 'flagged' | 'allowed';
-}
