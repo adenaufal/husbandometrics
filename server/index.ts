@@ -3,7 +3,6 @@ import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
 import rankingsRoutes from './routes/rankings';
 import integrationRoutes from './routes/integrations';
-import fraudLogRoutes from './routes/fraudLogs';
 import { rateLimit } from './middleware/rateLimit';
 import { startScheduledJobs } from './tasks/scheduler';
 
@@ -17,7 +16,6 @@ app.use('/api/*', rateLimit({ limit: 100, windowMs: 60_000 }));
 // Routes
 app.route('/api/rankings', rankingsRoutes);
 app.route('/api/integrations', integrationRoutes);
-app.route('/api/fraud-logs', fraudLogRoutes);
 
 app.get('/health', (c) => {
   return c.json({ status: 'ok', timestamp: new Date().toISOString() });
