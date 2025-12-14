@@ -1,50 +1,70 @@
 import React from 'react';
-import { Heart, Search, Zap } from 'lucide-react';
-import { SourceType } from '../types';
+import { Heart, Search, Zap, Sun, Moon } from 'lucide-react';
 import { useTranslation } from '../lib/i18n';
 
 interface HeaderProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;
   onResetFilters: () => void;
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ searchQuery, onSearchChange, onResetFilters }) => {
+const Header: React.FC<HeaderProps> = ({ searchQuery, onSearchChange, onResetFilters, theme, onToggleTheme }) => {
   const { t } = useTranslation();
 
   return (
-    <header className="fixed top-6 left-0 right-0 z-40 flex justify-center px-4 animate-fade-in-up">
-      <div className="w-full max-w-5xl bg-white/90 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/60 dark:border-slate-700 rounded-full shadow-lg shadow-slate-200/20 px-3 py-2.5 flex items-center justify-between relative overflow-hidden transition-all hover:shadow-xl hover:shadow-slate-200/30 hover:scale-[1.005]">
-
-        {/* Logo Section */}
-        <div className="flex items-center gap-3 pl-2 group cursor-pointer" onClick={onResetFilters}>
-          <div className="bg-gradient-to-tr from-tech-pink to-soft-pink p-2 rounded-full shadow-md group-hover:rotate-12 transition-transform duration-300">
-              <Heart className="w-5 h-5 text-white fill-current animate-pulse" />
+    <header className="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-b border-slate-200 dark:border-slate-800 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+        <div className="flex items-center gap-2 shrink-0 cursor-pointer" onClick={onResetFilters}>
+          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30">
+            <Heart className="w-5 h-5 fill-white" />
           </div>
-          <div className="flex flex-col">
-              <h1 className="text-xl font-black tracking-tight text-slate-800 dark:text-white leading-none font-display group-hover:text-tech-pink transition-colors">
-                  HUSBANDOMETRICS
-              </h1>
-              <p className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest hidden sm:block">Popularity Tracker v2.0</p>
+          <div>
+            <h1 className="font-extrabold text-lg tracking-tight leading-none uppercase">Husbandometrics</h1>
+            <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium tracking-wide">Popularity Tracker v3.0</p>
           </div>
         </div>
-
-        {/* Search Section */}
-        <div className="flex items-center gap-2 pr-1">
-           <div className="relative group hidden sm:block">
-              <input
-                type="text"
-                placeholder={t('searchPlaceholder')}
-                value={searchQuery}
-                onChange={(e) => onSearchChange(e.target.value)}
-                className="bg-slate-50 dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-full pl-10 pr-4 py-2 text-sm font-bold text-slate-600 dark:text-white focus:outline-none focus:border-tech-pink/50 focus:bg-white/80 focus:ring-0 transition-all w-48 placeholder:text-slate-300 dark:placeholder:text-slate-500 group-hover:w-64"
-              />
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 dark:text-slate-500 group-hover:text-tech-pink transition-colors" />
-           </div>
-
-           <button className="bg-slate-900 text-white p-2.5 rounded-full hover:bg-tech-pink transition-colors hover:scale-110 active:scale-95 shadow-md">
-               <Zap className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-           </button>
+        <div className="flex-1 max-w-lg hidden md:block">
+          <div className="relative group">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">
+              <Search className="w-5 h-5" />
+            </span>
+            <input
+              className="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-400"
+              placeholder={t('searchPlaceholder')}
+              type="text"
+              value={searchQuery}
+              onChange={(e) => onSearchChange(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="flex items-center gap-3 shrink-0">
+          <span className="flex items-center gap-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs font-bold border border-green-200 dark:border-green-800">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+            LIVE
+          </span>
+          <button className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-md hover:bg-pink-600 transition-colors">
+            <Zap className="w-4 h-4 fill-white" />
+          </button>
+          <div className="hidden sm:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1 border border-slate-200 dark:border-slate-700">
+            <button
+                onClick={onToggleTheme}
+                className={`p-1 rounded transition-colors ${theme === 'light' ? 'bg-white shadow-sm text-primary' : 'text-slate-500'}`}
+                aria-label="Switch to light theme"
+                disabled={theme === 'light'}
+            >
+                <Sun className="w-4 h-4" />
+            </button>
+            <button
+                onClick={onToggleTheme}
+                className={`p-1 rounded transition-colors ${theme === 'dark' ? 'bg-slate-700 text-white' : 'text-slate-500'}`}
+                aria-label="Switch to dark theme"
+                disabled={theme === 'dark'}
+            >
+                <Moon className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </div>
     </header>

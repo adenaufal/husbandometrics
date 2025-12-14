@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Inbox, Send } from 'lucide-react';
+import { Mail, Send } from 'lucide-react';
 import { useTranslation } from '../lib/i18n';
 
 export interface CharacterRequest {
@@ -13,7 +13,7 @@ interface CharacterRequestPanelProps {
   onAddRequest: (text: string) => void;
 }
 
-const CharacterRequestPanel: React.FC<CharacterRequestPanelProps> = ({ requests, onAddRequest }) => {
+const CharacterRequestPanel: React.FC<CharacterRequestPanelProps> = ({ onAddRequest }) => {
   const { t } = useTranslation();
   const [text, setText] = useState('');
 
@@ -25,44 +25,29 @@ const CharacterRequestPanel: React.FC<CharacterRequestPanelProps> = ({ requests,
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl p-6 shadow-sm flex flex-col gap-4">
-      <div className="flex items-center gap-3">
-        <Inbox className="w-5 h-5 text-tech-pink" />
+    <div className="col-span-1 md:col-span-2 bg-white dark:bg-surface-dark rounded-xl p-5 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-10 h-10 rounded-full bg-pink-100 dark:bg-pink-900/30 text-primary flex items-center justify-center">
+          <Mail className="w-5 h-5" />
+        </div>
         <div>
-          <h3 className="font-display font-black text-xl text-slate-800 dark:text-white">{t('requestTitle')}</h3>
-          <p className="text-slate-500 dark:text-slate-400 text-sm font-bold">{t('requestHelper')}</p>
+          <h3 className="font-bold text-slate-800 dark:text-white">Character Requests</h3>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Submit names you want tracked next.</p>
         </div>
       </div>
-
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+      <form onSubmit={handleSubmit} className="flex gap-2">
         <input
+          className="flex-1 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm px-4 focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
+          placeholder="Character & franchise (e.g., Jingliu - Honkai SR)"
+          type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder={t('requestPlaceholder')}
-          className="flex-1 px-4 py-3 rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-bold text-slate-700 dark:text-white focus:outline-none focus:border-tech-pink"
         />
-        <button
-          type="submit"
-          className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-tech-pink text-white font-black shadow-lg hover:-translate-y-0.5 transition-all"
-        >
+        <button type="submit" className="bg-primary hover:bg-pink-600 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-1 transition-colors">
           <Send className="w-4 h-4" />
-          {t('addRequest')}
+          Add Request
         </button>
       </form>
-
-      {requests.length > 0 && (
-        <div className="space-y-2 max-h-48 overflow-y-auto pr-2">
-          {requests.map((request) => (
-            <div key={request.id} className="flex items-start gap-3 bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700 rounded-2xl p-3">
-              <div className="text-[10px] font-bold text-slate-400 dark:text-slate-500 mt-1">#{request.id}</div>
-              <div>
-                <p className="text-slate-800 dark:text-slate-100 font-bold">{request.text}</p>
-                <p className="text-[10px] text-slate-400 dark:text-slate-500 font-mono">{new Date(request.createdAt).toLocaleString()}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 };

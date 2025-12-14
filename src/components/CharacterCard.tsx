@@ -1,139 +1,126 @@
 import React from 'react';
-import { TrendingUp, TrendingDown, Minus, ExternalLink } from 'lucide-react';
+import { TrendingUp, TrendingDown, Minus, Plus } from 'lucide-react';
 import { Character, Trend } from '../types';
-import { useTranslation } from '../lib/i18n';
 
 interface CharacterCardProps {
   character: Character;
   onClick: (character: Character) => void;
-  onToggleCompare?: (character: Character) => void;
-  isCompared?: boolean;
-  displayScore?: number;
+  displayScore: number;
+  layout: 'featured' | 'large' | 'standard';
 }
 
-const CharacterCard: React.FC<CharacterCardProps> = ({ character, onClick, onToggleCompare, isCompared = false, displayScore }) => {
-  const { t } = useTranslation();
-  const getTrendIcon = (trend: Trend) => {
+const CharacterCard: React.FC<CharacterCardProps> = ({ character, onClick, displayScore, layout }) => {
+  const { rank, trend, name, name_jp, source_type, source, franchise, image_url } = character;
+  const score = Math.round(displayScore);
+
+  const getTrendIcon = () => {
     switch (trend) {
       case Trend.RISING:
-        return <TrendingUp className="w-4 h-4 text-white" />;
+        return <TrendingUp className="w-5 h-5 text-green-400" />;
       case Trend.FALLING:
-        return <TrendingDown className="w-4 h-4 text-white" />;
+        return <TrendingDown className="w-5 h-5 text-red-400" />;
       default:
-        return <Minus className="w-4 h-4 text-white" />;
+        return <Minus className="w-5 h-5 text-slate-400" />;
     }
   };
 
-  const getRankColor = (rank: number) => {
-    switch (rank) {
-      case 1: return "bg-warning";
-      case 2: return "bg-[#ced4da]";
-      case 3: return "bg-[#d4a373]";
-      default: return "bg-slate-200";
-    }
+  const getRankBadge = (rank: number, size: 'large' | 'medium' | 'small') => {
+    const baseClasses = 'flex items-center justify-center font-black shadow-lg z-10';
+    const sizeClasses = {
+      large: 'w-12 h-12 rounded-xl text-2xl border-2',
+      medium: 'w-10 h-10 rounded-lg text-xl',
+      small: 'w-7 h-7 rounded text-xs',
+    };
+    let colorClasses = 'bg-slate-700 text-white';
+    if (rank === 1) colorClasses = 'bg-amber-400 text-amber-900 border-amber-200';
+    if (rank === 2) colorClasses = 'bg-slate-200 text-slate-800';
+    if (rank === 3) colorClasses = 'bg-orange-200 text-orange-900';
+
+    return <div className={`${baseClasses} ${sizeClasses[size] || sizeClasses.small} ${colorClasses}`}>#{rank}</div>;
   };
 
-  const getTrendColor = (trend: Trend) => {
-    switch (trend) {
-      case Trend.RISING:
-        return 'bg-success';
-      case Trend.FALLING:
-        return 'bg-danger';
-      default:
-        return 'bg-slate-300';
-    }
-  };
+  if (layout === 'featured') {
+    return (
+      <div
+        onClick={() => onClick(character)}
+        className="lg:col-span-2 lg:row-span-2 relative h-96 lg:h-auto group overflow-hidden rounded-2xl shadow-lg shadow-slate-200 dark:shadow-none bg-slate-900 cursor-pointer"
+      >
+        <img alt={name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80" src={image_url} />
+        <div className="absolute inset-0 card-gradient"></div>
+        <div className="absolute top-4 left-4">{getRankBadge(rank, 'large')}</div>
+        {trend === Trend.STABLE && (
+          <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Stable</div>
+        )}
+        <div className="absolute bottom-0 left-0 w-full p-6 md:p-8">
+          <div className="flex items-start justify-between">
+            <div>
+              <span className="inline-block px-2 py-0.5 rounded bg-primary text-white text-[10px] font-bold tracking-wider mb-2">{source_type}</span>
+              <span className="inline-block px-2 py-0.5 rounded bg-blue-500 text-white text-[10px] font-bold tracking-wider mb-2 ml-1">{franchise || source}</span>
+              <h2 className="text-4xl md:text-5xl font-black text-white leading-tight drop-shadow-lg">{name}</h2>
+              <p className="text-slate-300 font-medium text-lg mt-1">{name_jp}</p>
+            </div>
+          </div>
+          <div className="mt-6 flex items-end justify-between">
+            <div className="flex items-center gap-4">
+              <div className="bg-white/20 backdrop-blur-lg rounded-2xl p-3 text-center min-w-[80px] border border-white/10">
+                <span className="block text-xs text-slate-300 uppercase font-semibold">Score</span>
+                <span className="block text-3xl font-bold text-white">{score}</span>
+              </div>
+            </div>
+            <button className="flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur text-white px-4 py-2 rounded-lg font-medium transition-colors border border-white/10">
+              <Plus className="w-4 h-4" />
+              Compare
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (layout === 'large') {
+    return (
+      <div
+        onClick={() => onClick(character)}
+        className="relative h-96 group overflow-hidden rounded-2xl shadow-lg shadow-slate-200 dark:shadow-none bg-slate-900 lg:col-span-1 lg:row-span-2 cursor-pointer"
+      >
+        <img alt={name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70" src={image_url} />
+        <div className="absolute inset-0 card-gradient"></div>
+        <div className="absolute top-4 left-4">{getRankBadge(rank, 'medium')}</div>
+        <div className="absolute bottom-0 left-0 w-full p-5">
+          <span className="inline-block px-2 py-0.5 rounded bg-primary text-white text-[10px] font-bold tracking-wider mb-2">{source_type}</span>
+          <h3 className="text-2xl font-bold text-white leading-tight">{name}</h3>
+          <p className="text-slate-400 text-xs mt-0.5 mb-4">{franchise || source}</p>
+          <div className="flex items-center justify-between border-t border-white/10 pt-3">
+            <div className="flex items-center gap-2">
+              {getTrendIcon()}
+              <span className="text-2xl font-bold text-white">{score}</span>
+            </div>
+            <button className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+              <Plus className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
       onClick={() => onClick(character)}
-      className="group relative bg-white dark:bg-slate-900 rounded-3xl p-3 cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.1)] border-2 border-slate-100 dark:border-slate-800 flex overflow-hidden select-none"
+      className="relative h-48 group overflow-hidden rounded-xl bg-slate-900 shadow-md cursor-pointer"
     >
-      {/* Decorative 'Ticket' Cutout circles */}
-      <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-[var(--color-bg)] rounded-full border-r-2 border-slate-100 z-10 transition-transform duration-300 group-hover:scale-75"></div>
-      <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-[var(--color-bg)] rounded-full border-l-2 border-slate-100 z-10 transition-transform duration-300 group-hover:scale-75"></div>
-
-      {/* Background Decoration */}
-      <div className="absolute right-0 top-0 w-32 h-32 bg-gradient-to-bl from-pink-100/50 to-transparent rounded-bl-full -z-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out group-hover:scale-150"></div>
-
-      {/* Image Section */}
-      <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 z-10 perspective-500">
-         <div className="absolute inset-0 bg-slate-900 rounded-2xl rotate-3 group-hover:rotate-6 transition-transform duration-300 opacity-10"></div>
-         <div className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-white shadow-md bg-slate-100 dark:bg-slate-800 transition-transform duration-500 group-hover:rotate-1">
-            <img
-                src={character.image_url}
-                alt={character.name}
-                className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
-            />
-            {/* Rank Badge Overlay */}
-            <div className={`absolute top-0 left-0 px-3 py-1 rounded-br-xl font-display font-black text-white text-lg ${getRankColor(character.rank)} shadow-sm z-20 group-hover:animate-float`}>
-                #{character.rank}
-            </div>
-         </div>
-      </div>
-
-      {/* Content Section */}
-      <div className="flex-1 pl-5 py-2 flex flex-col justify-between z-10 relative">
-         <div>
-            <div className="flex items-center gap-2 mb-1">
-                 <span className="bg-slate-800 text-white text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider transition-colors group-hover:bg-tech-pink">
-                    {character.source_type}
-                 </span>
-                 {character.trend === Trend.RISING && (
-                     <span className="bg-holo-blue text-white text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider animate-pulse">
-                        {t('hot').toUpperCase()}
-                     </span>
-                 )}
-            </div>
-            <h3 className="font-display font-black text-2xl text-slate-800 dark:text-white leading-none group-hover:text-tech-pink transition-colors line-clamp-1 duration-300">
-                {character.name}
-            </h3>
-            <p className="text-sm font-bold text-slate-400 dark:text-slate-500 mb-1 font-mplus group-hover:text-slate-500 transition-colors">{character.name_jp}</p>
-            <p className="text-xs font-bold text-holo-blue bg-blue-50 dark:bg-slate-800 inline-block px-2 py-1 rounded-md transition-colors group-hover:bg-holo-blue group-hover:text-white">
-                {character.source}
-            </p>
-         </div>
-
-         {/* Stats Bar */}
-         <div className="flex items-end justify-between mt-2">
-            <div className="flex flex-col">
-                {/* Mock Barcode */}
-                <div className="flex items-end gap-[2px] opacity-30 h-6 mb-1 transition-opacity group-hover:opacity-50">
-                    {[...Array(15)].map((_, i) => (
-                        <div key={i} className="bg-slate-800 w-[2px]" style={{height: `${Math.max(20, Math.random() * 100)}%`}}></div>
-                    ))}
-                </div>
-                <span className="text-[9px] text-slate-300 dark:text-slate-500 font-mono tracking-tighter group-hover:text-tech-pink transition-colors">ID: {character.id.toUpperCase().substring(0,8)}</span>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <button
-                className={`px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-wide transition-all border ${
-                  isCompared ? 'bg-holo-blue text-white border-holo-blue shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:border-tech-pink hover:text-tech-pink'
-                }`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onToggleCompare?.(character);
-                }}
-              >
-                {isCompared ? 'Compare ✓' : 'Add Compare'}
-              </button>
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center shadow-sm transition-transform duration-300 group-hover:scale-110 ${getTrendColor(character.trend)}`}>
-                {getTrendIcon(character.trend)}
-              </div>
-              <div className="text-right">
-                <span className="block text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase">{t('score').toUpperCase()}</span>
-                <span className="font-display font-black text-3xl text-slate-800 dark:text-white leading-none group-hover:text-deep-violet transition-colors">
-                    {(displayScore ?? character.weighted_total).toFixed(0)}
-                </span>
-              </div>
-            </div>
-         </div>
-
-         {/* Hover arrow indicator */}
-         <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
-            <ExternalLink className="w-4 h-4 text-slate-300 dark:text-slate-500" />
-         </div>
+      <img alt={name} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-500" src={image_url} />
+      <div className="absolute inset-0 card-gradient"></div>
+      <div className="absolute top-3 left-3">{getRankBadge(rank, 'small')}</div>
+      <div className="absolute bottom-3 left-3 right-3">
+        <span className="text-[9px] bg-primary text-white px-1.5 py-0.5 rounded font-bold">{source_type}</span>
+        <div className="flex justify-between items-end mt-1">
+          <div>
+            <h4 className="text-white font-bold text-sm leading-tight">{name}</h4>
+            <p className="text-slate-400 text-[10px]">{franchise || source}</p>
+          </div>
+          <span className="text-xl font-bold text-white">{score}</span>
+        </div>
       </div>
     </div>
   );

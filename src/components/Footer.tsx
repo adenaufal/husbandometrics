@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Twitter, Info } from 'lucide-react';
+import { Info, Code, Twitter, Heart } from 'lucide-react';
 
 interface FooterProps {
   onOpenAbout: () => void;
@@ -7,64 +7,32 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ onOpenAbout }) => {
   return (
-    <footer className="mt-20 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 relative overflow-hidden">
-      {/* Decorative Grid Background */}
-      <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_14px]"></div>
-
-      <div className="max-w-7xl mx-auto px-6 py-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-
-          {/* Brand Column */}
-          <div className="col-span-1 md:col-span-2">
-            <h2 className="font-display font-black text-2xl text-slate-800 dark:text-white mb-2">HUSBANDOMETRICS<span className="text-tech-pink">.IO</span></h2>
-            <p className="text-slate-500 dark:text-slate-400 text-sm max-w-sm mb-6">
-              The internet's premier objective ranking system for male 2D character popularity.
-              Aggregating data points from across the fandom web.
-            </p>
-            <div className="flex gap-4">
-               <button className="p-2 bg-slate-100 dark:bg-slate-800 rounded-full hover:bg-slate-800 hover:text-white transition-all text-slate-600 dark:text-slate-200">
-                  <Twitter className="w-5 h-5" />
-               </button>
-               <button className="p-2 bg-slate-100 dark:bg-slate-800 rounded-full hover:bg-slate-800 hover:text-white transition-all text-slate-600 dark:text-slate-200">
-                  <Github className="w-5 h-5" />
-               </button>
-            </div>
+    <footer className="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-surface-dark py-6">
+      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded bg-primary flex items-center justify-center text-white">
+            <Heart className="w-4 h-4 fill-white" />
           </div>
-
-          {/* Links Column */}
-          <div>
-            <h3 className="font-display font-bold text-slate-800 dark:text-white mb-4 uppercase tracking-wider text-xs">System</h3>
-            <ul className="space-y-3 text-sm font-medium text-slate-500 dark:text-slate-400">
-              <li><button onClick={onOpenAbout} className="hover:text-tech-pink transition-colors flex items-center gap-2"><Info className="w-3 h-3"/> About Project</button></li>
-              <li><a href="/api/rankings" className="hover:text-tech-pink transition-colors">API Documentation</a></li>
-              <li><a href="#" className="hover:text-tech-pink transition-colors">Methodology</a></li>
-              <li><a href="#" className="hover:text-tech-pink transition-colors">Status Page</a></li>
-            </ul>
-          </div>
-
-          {/* Status Column */}
-          <div>
-            <h3 className="font-display font-bold text-slate-800 dark:text-white mb-4 uppercase tracking-wider text-xs">Live Status</h3>
-            <div className="space-y-3">
-               <div className="flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-200 bg-slate-50 dark:bg-slate-800 p-2 rounded border border-slate-100 dark:border-slate-700">
-                  <span>PIXIV API</span>
-                  <span className="flex items-center gap-1.5 text-green-500"><span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> ONLINE</span>
-               </div>
-               <div className="flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-200 bg-slate-50 dark:bg-slate-800 p-2 rounded border border-slate-100 dark:border-slate-700">
-                  <span>AO3 SCRAPER</span>
-                  <span className="flex items-center gap-1.5 text-green-500"><span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> ONLINE</span>
-               </div>
-               <div className="flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-200 bg-slate-50 dark:bg-slate-800 p-2 rounded border border-slate-100 dark:border-slate-700">
-                  <span>TRENDS</span>
-                  <span className="flex items-center gap-1.5 text-yellow-500"><span className="w-2 h-2 bg-yellow-500 rounded-full"></span> LATENCY</span>
-               </div>
-            </div>
+          <span className="font-bold text-sm tracking-tight">HUSBANDOMETRICS<span className="text-primary">.IO</span></span>
+          <span className="hidden md:inline text-xs text-slate-400 border-l border-slate-300 dark:border-slate-700 pl-2 ml-2">The ultimate 2D character popularity tracker</span>
+        </div>
+        <div className="flex items-center gap-6">
+          <button onClick={onOpenAbout} className="text-slate-500 dark:text-slate-400 hover:text-primary text-sm flex items-center gap-1 transition-colors">
+            <Info className="w-4 h-4" /> About
+          </button>
+          <div className="flex gap-2">
+            <a href="#" className="w-8 h-8 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+              <Twitter className="w-4 h-4" />
+            </a>
+            <a href="#" className="w-8 h-8 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+              <Code className="w-4 h-4" />
+            </a>
           </div>
         </div>
-
-        <div className="mt-12 pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center text-xs font-bold text-slate-400 dark:text-slate-500">
-           <p>© 2024 HUSBANDOMETRICS. All rights reserved.</p>
-           <p>Last Data Update: {new Date().toLocaleDateString()}</p>
+        <div className="text-xs text-slate-400 flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-green-500"></span>
+          All Systems Operational
+          <span className="ml-2">© 2024</span>
         </div>
       </div>
     </footer>
