@@ -1,6 +1,5 @@
 import React from 'react';
-import { RefreshCcw, CheckCircle2, AlertCircle } from 'lucide-react';
-import { useTranslation } from '../lib/i18n';
+import { RefreshCw, Wifi } from 'lucide-react';
 
 export interface IntegrationStat {
   id: string;
@@ -17,43 +16,40 @@ interface IntegrationStatusProps {
 }
 
 const IntegrationStatus: React.FC<IntegrationStatusProps> = ({ integrations, onSync }) => {
-  const { t } = useTranslation();
-
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl p-6 shadow-sm flex flex-col gap-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <h3 className="font-display font-black text-xl text-slate-800 dark:text-white">{t('integrations')}</h3>
-          <p className="text-slate-500 dark:text-slate-400 text-sm font-bold">{t('developerApi')} + {t('apiDocs')}</p>
+    <div className="col-span-1 md:col-span-2 bg-white dark:bg-surface-dark rounded-xl p-5 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+            <Wifi className="w-5 h-5" />
+          </div>
+          <div>
+            <h3 className="font-bold text-slate-800 dark:text-white">MAL/AniList Integrations</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Developer API Status</p>
+          </div>
         </div>
         <button
           onClick={onSync}
-          className="flex items-center gap-2 px-3 py-2 rounded-xl bg-holo-blue text-white font-black shadow-md hover:-translate-y-0.5 transition-all"
+          className="text-cyan-500 bg-cyan-50 dark:bg-cyan-900/20 px-3 py-1.5 rounded-lg text-xs font-bold border border-cyan-100 dark:border-cyan-800 hover:bg-cyan-100 transition-colors flex items-center gap-1"
         >
-          <RefreshCcw className="w-4 h-4" />
-          {t('integrationSync')}
+          <RefreshCw className="w-4 h-4 animate-spin" />
+          Sync Now
         </button>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-4">
         {integrations.map((integration) => (
-          <div
-            key={integration.id}
-            className="border border-slate-100 dark:border-slate-800 rounded-2xl p-4 bg-slate-50/70 dark:bg-slate-800/60"
-          >
+          <div key={integration.id} className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3 border border-slate-100 dark:border-slate-800">
             <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                {integration.status === 'healthy' ? (
-                  <CheckCircle2 className="w-4 h-4 text-green-500" />
-                ) : (
-                  <AlertCircle className="w-4 h-4 text-yellow-500" />
-                )}
-                <span className="text-xs font-black text-slate-600 dark:text-slate-200 uppercase">{integration.service}</span>
-              </div>
-              <span className="text-[11px] font-mono text-slate-400 dark:text-slate-500">{integration.latencyMs}ms</span>
+              <span className="flex items-center gap-1 text-xs font-bold text-slate-700 dark:text-slate-300">
+                <span className={`w-2 h-2 rounded-full ${integration.status === 'healthy' ? 'bg-green-500' : 'bg-amber-500'}`}></span>
+                {integration.service}
+              </span>
+              <span className="text-[10px] bg-slate-200 dark:bg-slate-800 text-slate-500 px-1.5 rounded">{integration.latencyMs}ms</span>
             </div>
-            <p className="text-slate-800 dark:text-slate-100 font-bold">{integration.characters} characters synced</p>
-            <p className="text-[11px] text-slate-400 dark:text-slate-500">{new Date(integration.syncedAt).toLocaleString()}</p>
+            <p className="text-lg font-bold text-slate-900 dark:text-white leading-none">
+              {integration.characters.toLocaleString()} <span className="text-sm font-normal text-slate-500">synced</span>
+            </p>
+            <p className="text-[10px] text-slate-400 mt-1">{new Date(integration.syncedAt).toLocaleString()}</p>
           </div>
         ))}
       </div>
