@@ -1,6 +1,6 @@
 import React from 'react';
-import { Heart, Search, Zap, Sun, Moon } from 'lucide-react';
-import { useTranslation } from '../lib/i18n';
+import { Moon, Search, Sun } from 'lucide-react';
+import { LANGUAGE_LABELS, SupportedLanguage, useTranslation } from '../lib/i18n';
 
 interface HeaderProps {
   searchQuery: string;
@@ -8,63 +8,76 @@ interface HeaderProps {
   onResetFilters: () => void;
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
+  language: SupportedLanguage;
+  onLanguageChange: (language: SupportedLanguage) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ searchQuery, onSearchChange, onResetFilters, theme, onToggleTheme }) => {
+const Header: React.FC<HeaderProps> = ({
+  searchQuery,
+  onSearchChange,
+  onResetFilters,
+  theme,
+  onToggleTheme,
+  language,
+  onLanguageChange,
+}) => {
   const { t } = useTranslation();
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-b border-slate-200 dark:border-slate-800 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2 shrink-0 cursor-pointer" onClick={onResetFilters}>
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30">
-            <Heart className="w-5 h-5 fill-white" />
-          </div>
-          <div>
-            <h1 className="font-extrabold text-lg tracking-tight leading-none uppercase">Husbandometrics</h1>
-            <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium tracking-wide">Popularity Tracker v3.0</p>
-          </div>
+    <header className="sticky top-0 z-30 bg-paper-light/85 dark:bg-paper-dark/85 backdrop-blur border-b border-line-light dark:border-line-dark">
+      {/* Search drops to its own line on phones. Sharing one row left it about
+          40px wide, which is a button, not a search field. */}
+      <div className="mx-auto max-w-[1400px] px-4 py-2 sm:h-16 sm:py-0 flex flex-wrap items-center gap-x-4 gap-y-2">
+        <button
+          type="button"
+          onClick={onResetFilters}
+          className="shrink-0 font-display font-black tracking-tight text-lg"
+        >
+          Husbando<span className="text-accent dark:text-accent-dark">metrics</span>
+        </button>
+
+        <div className="relative order-last sm:order-none w-full sm:w-auto sm:flex-1 sm:max-w-md">
+          <Search
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-light dark:text-muted-dark"
+            aria-hidden
+          />
+          <input
+            type="search"
+            value={searchQuery}
+            onChange={(event) => onSearchChange(event.target.value)}
+            placeholder={t('searchPlaceholder')}
+            aria-label={t('searchPlaceholder')}
+            className="w-full pl-9 pr-3 py-2 rounded-md border border-line-light dark:border-line-dark bg-surface-light dark:bg-surface-dark text-sm placeholder:text-muted-light dark:placeholder:text-muted-dark"
+          />
         </div>
-        <div className="flex-1 max-w-lg hidden md:block">
-          <div className="relative group">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">
-              <Search className="w-5 h-5" />
-            </span>
-            <input
-              className="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-400"
-              placeholder={t('searchPlaceholder')}
-              type="text"
-              value={searchQuery}
-              onChange={(e) => onSearchChange(e.target.value)}
-            />
-          </div>
-        </div>
-        <div className="flex items-center gap-3 shrink-0">
-          <span className="flex items-center gap-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs font-bold border border-green-200 dark:border-green-800">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-            LIVE
-          </span>
-          <button className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-md hover:bg-pink-600 transition-colors">
-            <Zap className="w-4 h-4 fill-white" />
+
+        <div className="ml-auto flex items-center gap-1">
+          {/* A native select: the language list is short, and the platform
+              control is keyboard- and screen-reader-correct for free. */}
+          <label className="sr-only" htmlFor="language">
+            {t('language')}
+          </label>
+          <select
+            id="language"
+            value={language}
+            onChange={(event) => onLanguageChange(event.target.value as SupportedLanguage)}
+            className="px-2 py-1.5 rounded-md bg-transparent text-sm font-bold text-muted-light dark:text-muted-dark hover:text-ink-light dark:hover:text-ink-dark cursor-pointer"
+          >
+            {(Object.keys(LANGUAGE_LABELS) as SupportedLanguage[]).map((code) => (
+              <option key={code} value={code} className="bg-surface-light dark:bg-surface-dark">
+                {LANGUAGE_LABELS[code]}
+              </option>
+            ))}
+          </select>
+
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            aria-label={theme === 'dark' ? t('lightMode') : t('darkMode')}
+            className="p-2 rounded-md text-muted-light dark:text-muted-dark hover:text-ink-light dark:hover:text-ink-dark transition-colors"
+          >
+            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
-          <div className="hidden sm:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1 border border-slate-200 dark:border-slate-700">
-            <button
-                onClick={onToggleTheme}
-                className={`p-1 rounded transition-colors ${theme === 'light' ? 'bg-white shadow-sm text-primary' : 'text-slate-500'}`}
-                aria-label="Switch to light theme"
-                disabled={theme === 'light'}
-            >
-                <Sun className="w-4 h-4" />
-            </button>
-            <button
-                onClick={onToggleTheme}
-                className={`p-1 rounded transition-colors ${theme === 'dark' ? 'bg-slate-700 text-white' : 'text-slate-500'}`}
-                aria-label="Switch to dark theme"
-                disabled={theme === 'dark'}
-            >
-                <Moon className="w-4 h-4" />
-            </button>
-          </div>
         </div>
       </div>
     </header>

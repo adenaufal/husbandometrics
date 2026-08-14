@@ -1,10 +1,11 @@
 import { defineConfig } from 'drizzle-kit';
 
 export default defineConfig({
-  dialect: 'sqlite',
-  schema: './server/db/schema.ts',
+  dialect: 'turso',
+  schema: './server/db/schema/sqlite.ts',
   out: './drizzle',
   dbCredentials: {
-    url: process.env.DATABASE_URL ?? 'file:./.data/husbandometrics.db',
+    url: process.env.TURSO_DATABASE_URL ?? 'file:./.data/husbandometrics.db',
+    authToken: process.env.TURSO_AUTH_TOKEN,
   },
 });

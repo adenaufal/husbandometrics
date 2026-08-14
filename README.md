@@ -1,162 +1,133 @@
-# 📊 HUSBANDOMETRICS - Objective Popularity Tracker for Male 2D Characters
+# Husbandometrics
 
-Ever wondered who's actually the most popular husbando based on real data, not just vibes?
+Popularity rankings for male 2D characters, measured from public sources.
 
-HUSBANDOMETRICS aggregates engagement metrics from multiple fan platforms to create objective, data-driven male character popularity rankings. The frontend is built with **Vite + React + TypeScript**, so you get instant hot-module reloading during development and optimized builds without a separate Node.js app wrapper.
+Forty characters, ranked by a weighted mean of four live readings. Nothing on the
+board is estimated, sampled, or filled in: when a source cannot be read it is
+marked "Not measured" and left out of the total rather than counted as zero.
 
-## 🚀 Quick Start
+## Quick start
 
 ```bash
-# Install dependencies
 npm install
+cp .env.example .env.local   # every value is optional
 
-# Run the Vite development server (default: http://localhost:5173)
-npm run dev
-
-# Build for production (generates Vite static assets)
-npm run build
-
-# Preview the production build locally
-npm run preview
-
-# Type checking for both client + server TypeScript
-npm run lint
+npm run server               # Hono API on :3001
+npm run dev                  # Vite on :3000, proxies /api to :3001
 ```
 
-Vite defaults to [http://localhost:5173](http://localhost:5173) in dev mode.
+Two terminals. The first read of `/api/rankings` queries four sources for every
+character and takes about four minutes; it is then cached for six hours.
 
-## 🛠️ Automation & Ops
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Vite dev server on :3000 |
+| `npm run server` | Hono API on :3001 (`server:dev` for watch mode) |
+| `npm run build` | `tsc && vite build` |
+| `npm run lint` | `tsc --noEmit` over client and server |
+| `npm run check` | Scoring self-check |
 
-- **Scheduled refresh**: `node-cron` runs weekly (Mondays at 04:00 UTC) when the server boots. Disable with `DISABLE_JOBS=true` or trigger manually via `POST /api/rankings/refresh` (optionally secured with `REFRESH_TOKEN` + `x-refresh-token` header).
-- **Caching**: Rankings and character detail responses are cached in Redis/Upstash when `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are set; otherwise, an in-memory TTL cache is used. Override TTL with `CACHE_TTL_SECONDS`.
-- **Rate limiting**: All `/api/*` routes are protected by a sliding window limit (100 requests/min by default). Upstash is used when configured; otherwise, the in-memory store is used.
-- **Database migrations**: Schema lives in `server/db/schema.ts` with SQL migrations in `drizzle/`. Configure the database target with `DATABASE_URL` and generate new migrations with `npx drizzle-kit generate`.
+## Data sources
 
-## 📁 Project Structure
+All four are read live and none needs an API key.
+
+| Source | Counts | Applies to |
+| --- | --- | --- |
+| AniList | character favourites | anime, manga |
+| MyAnimeList (via Jikan) | character favourites | anime, manga |
+| AO3 | works under the canonical character tag | all |
+| Danbooru | posts under the character tag | all |
+
+AniList and MyAnimeList catalogue anime and manga only. They do return a figure
+for some game characters through tie-in manga, but that measures catalogue
+coverage rather than popularity, so both are treated as not applicable to game
+characters — who are scored on AO3 and Danbooru.
+
+## Scoring
+
+Each source is scored against the highest reading on the board for that source,
+on a log scale:
 
 ```
-husbandometrics/
-├── src/
-│   ├── components/          # React components
-│   │   ├── Header.tsx       # Floating pill header
-│   │   ├── CharacterCard.tsx # Ticket-style character cards
-│   │   ├── FilterBar.tsx    # Filter and view controls
-│   │   ├── DetailModal.tsx  # Character detail modal
-│   │   ├── Footer.tsx       # App footer
-│   │   └── AboutModal.tsx   # About/info modal
-│   ├── types/               # TypeScript type definitions
-│   │   └── index.ts         # Character, SourceType, Trend enums
-│   ├── lib/                 # Utilities and constants
-│   │   └── constants.ts     # Mock character data
-│   ├── data/                # Static data files
-│   │   └── seed-characters.json
-│   └── App.tsx              # Main app with React Query
-├── index.tsx                # App entry point
-├── index.html               # HTML template with font loading
-├── index.css                # Global styles + Tailwind directives
-├── tailwind.config.js       # Custom theme configuration
-├── postcss.config.js        # PostCSS configuration
-├── tsconfig.json            # TypeScript configuration
-├── vite.config.ts           # Vite bundler configuration
-└── package.json             # Dependencies and scripts
+score = 100 * log1p(value) / log1p(peak)
 ```
 
-## 🎨 Design System
+100 means "the most measured on this source", not "the maximum possible". The
+counts are heavy-tailed — the top AniList character has roughly 200× the
+favourites of the median tracked one — so a linear scale would leave everyone
+below the top few indistinguishable, and a fixed divisor would need re-tuning
+every time a franchise blows up.
 
-### Colors
-- **Tech Pink**: `#ff5d8f` - Primary brand color
-- **Holo Blue**: `#4cc9f0` - Secondary accent
-- **Deep Violet**: `#7209b7` - Tertiary accent
-- **Success**: `#06d6a0` - Rising trends
-- **Danger**: `#ef476f` - Falling trends
-- **Warning**: `#ffca3a` - Rank #1 gold
+The total is the weighted mean over the sources that returned a reading, with the
+weights renormalised across them (`WEIGHT_ANILIST` and friends in `.env`). A
+character measured by fewer than two sources is left off the board: one reading
+is not a ranking.
 
-### Typography
-- **Display/Headings**: Satoshi (Fontshare)
-- **Body/UI**: M PLUS Rounded 1c (Google Fonts)
-- **Handwritten**: Gochi Hand (Google Fonts)
+## Who is on the board
 
-### Components
-- **CharacterCard**: Ticket-style design with cutout circles and 3D hover
-- **Header**: Floating pill with glassmorphism
-- **DetailModal**: Dossier/folder aesthetic with radar charts
-- **FilterBar**: Tech pill tabs with smooth transitions
+Anime and manga characters are pulled from AniList's favourites ranking and
+filtered to male characters — no hand-picking. Game characters come from a short
+curated list in `server/data/gameRoster.ts`, because AniList and MyAnimeList do
+not catalogue games and auto-discovery would erase every gacha character. That
+list decides who is covered; it never supplies their numbers.
 
-## 📊 Data Sources
-- 🎨 **Pixiv** - Fanart illustration counts
-- 📝 **AO3** - Fanfiction engagement metrics
-- 🔍 **Google Trends** - Search interest data
-- 🖼️ **Booru** - Archived fan content tags
-- 🐦 **Twitter** - Social media engagement
+## Ops
 
-## ✨ Features
-- ✅ Global character rankings
-- ✅ Trend tracking (Rising/Stable/Falling)
-- ✅ Filter by source type (Anime/Game/Manga)
-- ✅ Real-time search
-- ✅ Score breakdown with radar charts
-- ✅ Responsive design
-- ✅ React Query for data management
-- ✅ TypeScript for type safety
+- **Scheduled refresh** — `node-cron`, Mondays 04:00 UTC. Disable with
+  `DISABLE_JOBS=true`, or trigger manually with `POST /api/rankings/refresh`
+  (guard it with `REFRESH_TOKEN` plus the `x-refresh-token` header).
+- **Caching** — Upstash Redis when `UPSTASH_REDIS_REST_URL` and
+  `UPSTASH_REDIS_REST_TOKEN` are set, otherwise an in-process TTL cache. Six
+  hours by default (`CACHE_TTL_SECONDS`).
+- **Rate limiting** — 100 requests/min on `/api/*`, Upstash-backed when
+  configured.
+- **Database (optional)** — Drizzle with Turso or PlanetScale. Set
+  `DATABASE_PROVIDER` and the matching connection variables, then
+  `npx drizzle-kit generate`. Without one the API still works; only trend and
+  history need stored snapshots.
+- **Upstream limits** — AO3 is paced at one request per 1.2s with backoff, Jikan
+  at one per 400ms. Both throttle aggressively.
 
-## 🔧 Tech Stack
-- **Frontend**: React 19 + TypeScript
-- **Styling**: Tailwind CSS with custom theme
-- **State Management**: React Query (@tanstack/react-query)
-- **Charts**: Recharts
-- **Build Tool**: Vite
-- **Icons**: Lucide React
+## Structure
 
-## 🎯 Roadmap & Future Enhancements
+```
+src/
+  App.tsx
+  components/   Header, Toolbar, RankingTable, RankRow, SourceDots,
+                DetailPanel, MethodologyModal, Footer
+  lib/          i18n, search, history, images
+  types/        Character, ScoreBreakdown, METRIC_SOURCES
+server/
+  index.ts
+  config/env.ts
+  data/gameRoster.ts
+  db/           client, repository, schema/{sqlite,mysql}
+  services/     aggregator, fetchers/{anilist,mal,ao3,danbooru,http}
+  tasks/scheduler.ts
+  utils/metrics.ts
+drizzle/
+```
 
-### Phase 2: Data Pipeline 🔄
-- [x] **Backend API** - Implement Hono/Next.js API routes for data fetching
-- [x] **Database Layer** - Set up Drizzle ORM + Turso (SQLite edge) or PlanetScale (MySQL)
-- [x] **Data Fetchers**
-  - [x] Pixiv API integration (fanart counts)
-  - [x] AO3 scraper (fanfiction metrics)
-  - [x] Google Trends unofficial API (search trends)
-  - [x] Danbooru API (booru archive tags)
-  - [x] Twitter/X API (social engagement)
-- [x] **Scoring Algorithm** - Normalize and weight metrics (0-100 scale)
+## Design
 
-### Phase 3: Advanced Features 📊
-- [ ] **Historical Tracking** - Store weekly snapshots, display trend charts over time
-- [ ] **Character Comparison** - Side-by-side radar charts for multiple characters
-- [ ] **Advanced Filtering**
-  - [ ] Filter by franchise/source
-  - [ ] Time period selection (week/month/year)
-  - [ ] Min/max score ranges
-- [ ] **Search Improvements** - Fuzzy search, romaji/kanji support, character aliases
+Quiet editorial: type and whitespace carry the design, colour carries meaning.
+The board is a ranking table rather than a card grid, every row shows which
+sources measured that character, and the detail panel prints the raw upstream
+figure beside each score so a reader can check it. Conventions are in
+`CLAUDE.md`.
 
-### Phase 4: Automation & Scale 🚀
-- [x] **Cron Jobs** - Automated weekly data refresh using node-cron (compatible with Vercel Cron/GitHub Actions triggers)
-- [x] **Caching Strategy** - Redis/Upstash-backed cache with in-memory fallback for rankings API responses
-- [x] **Rate Limiting** - Middleware to protect API endpoints from abuse
-- [x] **Database Migrations** - Version-controlled schema changes via Drizzle
+## Known gaps
 
-### Phase 5: Community & Polish ✨
-- [x] **User Features**
-  - [x] Save favorite characters
-  - [x] Custom watchlists
-  - [x] Email notifications for rank changes
-- [x] **Social Features**
-  - [x] Share character cards (OG images)
-  - [x] Embed widgets for blogs/forums
-- [x] **Admin Dashboard**
-  - [x] Manual character curation
-  - [x] Data refresh triggers
-  - [x] Analytics overview
-- [x] **Mobile App** - React Native/PWA version
+- **MyAnimeList reads 0/40.** Jikan returns `504 "Jikan failed to connect to
+  MyAnimeList"` — upstream, not this codebase. The fetcher degrades to `null`.
+- **Three game characters have no portrait** (Alhaitham, Blade, Wriothesley);
+  AniList has no entry for them, so a generated monogram stands in.
+- **Trend and history need a database.** Without stored snapshots there is no
+  previous reading, so every character is STABLE and the trend column is hidden.
 
-### Nice to Have 💡
-- [x] Multi-language support (EN/JP/KR/CN)
-- [x] Dark mode toggle
-- [x] Export rankings as CSV/JSON
-- [x] API for third-party developers
-- [x] Character request system
-- [x] Integration with MAL/AniList APIs
+## Not built
 
----
-
-Built for the yumejoshi, fujoshi, and otaku community who want numbers, not opinions. 💜
+Listed so nobody has to read the code to find out: character comparison, user
+accounts, watchlists, notifications, OG image generation, embeddable widgets,
+admin dashboard, and a mobile app. Multi-language (EN/JP/KR/CN), dark mode, CSV
+export, and search over names, aliases, and franchises do exist.

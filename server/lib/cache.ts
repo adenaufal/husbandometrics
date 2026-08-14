@@ -54,4 +54,9 @@ class RedisCache implements CacheClient {
 export const cacheClient: CacheClient =
   redisUrl && redisToken ? new RedisCache(new Redis({ url: redisUrl, token: redisToken })) : new InMemoryCache();
 
-export const defaultTtlSeconds = Number(process.env.CACHE_TTL_SECONDS ?? 900);
+/**
+ * Six hours. A cold rebuild reads four sources for every character on the board
+ * and takes about two minutes, so a short TTL would make ordinary traffic pay
+ * that cost repeatedly. The weekly cron is what keeps the figures current.
+ */
+export const defaultTtlSeconds = Number(process.env.CACHE_TTL_SECONDS ?? 21_600);

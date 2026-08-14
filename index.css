@@ -3,58 +3,51 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --color-bg: #f8f9fc;
-    --color-text: #2d3436;
-    --color-pink: #ff5d8f;
-    --color-blue: #4cc9f0;
-    --color-purple: #7209b7;
-  }
-
-  .dark {
-    --color-bg: #0b1222;
-    --color-text: #e2e8f0;
+  html {
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    background-image: radial-gradient(#dbe0e8 1.5px, transparent 1.5px);
-    background-size: 24px 24px;
-    overflow-x: hidden;
+    @apply bg-paper-light text-ink-light dark:bg-paper-dark dark:text-ink-dark;
+    font-family: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: 'ss01';
+    -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, .font-display {
-    font-family: 'Satoshi', sans-serif;
+  /* Every figure on this site is compared against another figure directly above
+     or below it, so digits have to hold their column. */
+  .tabular,
+  table,
+  time {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
   }
 
-  .font-hand {
-    font-family: 'Gochi Hand', cursive;
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent dark:ring-accent-dark ring-offset-2 ring-offset-paper-light dark:ring-offset-paper-dark;
+  }
+
+  ::selection {
+    @apply bg-accent/15 dark:bg-accent-dark/25;
   }
 }
 
 @layer utilities {
-  .perspective-500 {
-    perspective: 500px;
+  /* Long names truncate rather than reflow a ranking row. */
+  .truncate-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #fff;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #ffbcd2;
-  border-radius: 5px;
-  border: 2px solid #fff;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #ff5d8f;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

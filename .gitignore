@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local env (also covered by *.local, kept explicit)
+.env
+.env.local
+.data

@@ -1,112 +1,115 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
-import { SourceType, Character, TimePeriod, ScoreBreakdown } from './types';
-import { MOCK_CHARACTERS } from './lib/constants';
+import { AlertTriangle } from 'lucide-react';
+import { Character, MetricSourceId, SourceType, TimePeriod } from './types';
 import Header from './components/Header';
-import CharacterCard from './components/CharacterCard';
-import DetailModal from './components/DetailModal';
-import Controls from './components/Controls';
+import Toolbar from './components/Toolbar';
+import RankingTable from './components/RankingTable';
+import DetailPanel from './components/DetailPanel';
+import MethodologyModal from './components/MethodologyModal';
 import Footer from './components/Footer';
-import AboutModal from './components/AboutModal';
-import CharacterRequestPanel, { CharacterRequest } from './components/CharacterRequestPanel';
-import IntegrationStatus, { IntegrationStat } from './components/IntegrationStatus';
-import { TranslationProvider, SupportedLanguage, useTranslation } from './lib/i18n';
+import { SupportedLanguage, TranslationProvider, useTranslation } from './lib/i18n';
 import { matchesQuery } from './lib/search';
 import { getScoreForPeriod } from './lib/history';
 
-// Create a client for React Query
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
       retry: 1,
-      staleTime: 5 * 60 * 1000, // 5 minutes
+      staleTime: 5 * 60 * 1000,
     },
   },
 });
 
-interface AppContentProps {
-  language: SupportedLanguage;
-  onLanguageChange: (lang: SupportedLanguage) => void;
-}
-
 type RankingsResponse = {
   metadata: {
     updated_at: string;
-    weights: ScoreBreakdown;
+    weights: Record<MetricSourceId, number>;
+    sources: MetricSourceId[];
+    roster: { anime: number; game: number };
     mode: string;
   };
   characters: Character[];
 };
 
+interface AppContentProps {
+  language: SupportedLanguage;
+  onLanguageChange: (language: SupportedLanguage) => void;
+}
+
 const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) => {
-  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
-  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const { t } = useTranslation();
+  const [selected, setSelected] = useState<Character | null>(null);
+  const [isMethodologyOpen, setMethodologyOpen] = useState(false);
   const [filterType, setFilterType] = useState<SourceType>(SourceType.ALL);
   const [searchQuery, setSearchQuery] = useState('');
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
-  const [requests, setRequests] = useState<CharacterRequest[]>([]);
-  const [integrations, setIntegrations] = useState<IntegrationStat[]>([
-    { id: 'mal', service: 'MAL', syncedAt: new Date().toISOString(), characters: 1200, latencyMs: 182, status: 'healthy' },
-    { id: 'anilist', service: 'AniList', syncedAt: new Date().toISOString(), characters: 980, latencyMs: 234, status: 'warning' },
-  ]);
   const [timePeriod, setTimePeriod] = useState<TimePeriod>(TimePeriod.WEEK);
-  const [minScore, setMinScore] = useState<number>(0);
-  const [maxScore, setMaxScore] = useState<number>(100);
-  const { t } = useTranslation();
+  const [minScore, setMinScore] = useState(0);
+  const [maxScore, setMaxScore] = useState(100);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() =>
+    typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light',
+  );
+
   const apiBase = import.meta.env.VITE_API_BASE_URL ?? '';
 
-  const { data, isLoading, isError } = useQuery<RankingsResponse>({
+  const { data, isLoading, isError, refetch, isFetching } = useQuery<RankingsResponse>({
     queryKey: ['rankings'],
     queryFn: async () => {
       const response = await fetch(`${apiBase}/api/rankings`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch rankings');
-      }
+      if (!response.ok) throw new Error('Failed to fetch rankings');
       return response.json();
     },
   });
 
-  const characters = useMemo(() => data?.characters ?? MOCK_CHARACTERS, [data]);
+  // No sample-data fallback: every figure on the board is a live reading, so an
+  // unreachable API shows an error rather than an invented ranking.
+  const characters = data?.characters ?? [];
+
+  useEffect(() => {
+    const stored = localStorage.getItem('husbandometrics-theme');
+    if (stored === 'light' || stored === 'dark') setTheme(stored);
+  }, []);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('husbandometrics-theme', theme);
-    }
+    localStorage.setItem('husbandometrics-theme', theme);
   }, [theme]);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const storedTheme = localStorage.getItem('husbandometrics-theme');
-      if (storedTheme === 'light' || storedTheme === 'dark') {
-        setTheme(storedTheme);
-      }
-    }
-  }, []);
-
-  const periodScores = useMemo(() => {
-    const scores = new Map<string, number>();
-    characters.forEach((char) => {
-      scores.set(char.id, getScoreForPeriod(char, timePeriod));
+  const scoreFor = useMemo(() => {
+    const cache = new Map<string, number>();
+    characters.forEach((character) => {
+      cache.set(character.id, getScoreForPeriod(character, timePeriod));
     });
-    return scores;
+    return (character: Character) => cache.get(character.id) ?? character.weighted_total;
   }, [characters, timePeriod]);
 
-  // Filtering Logic
-  const filteredCharacters = useMemo(() => {
-    return characters.filter((char) => {
-      const matchesType = filterType === SourceType.ALL || char.source_type === filterType;
-      const withinScoreRange = (() => {
-        const score = periodScores.get(char.id) ?? char.weighted_total;
-        return score >= minScore && score <= maxScore;
-      })();
-      const matchesSearch = matchesQuery(char, searchQuery);
-      return matchesType && matchesSearch && withinScoreRange;
-    }).sort((a, b) => a.rank - b.rank);
-  }, [characters, filterType, searchQuery, minScore, maxScore, periodScores]);
+  const filtered = useMemo(
+    () =>
+      characters
+        .filter((character) => {
+          const score = scoreFor(character);
+          return (
+            (filterType === SourceType.ALL || character.source_type === filterType) &&
+            score >= minScore &&
+            score <= maxScore &&
+            matchesQuery(character, searchQuery)
+          );
+        })
+        .sort((a, b) => a.rank - b.rank),
+    [characters, filterType, searchQuery, minScore, maxScore, scoreFor],
+  );
 
-  const handleResetFilters = () => {
+  const hasFilters =
+    filterType !== SourceType.ALL ||
+    searchQuery !== '' ||
+    minScore !== 0 ||
+    maxScore !== 100 ||
+    timePeriod !== TimePeriod.WEEK;
+
+  const clearFilters = () => {
     setFilterType(SourceType.ALL);
     setSearchQuery('');
     setMinScore(0);
@@ -114,30 +117,20 @@ const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) =
     setTimePeriod(TimePeriod.WEEK);
   };
 
-  const handleExportJson = () => {
-    const blob = new Blob([JSON.stringify(filteredCharacters, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'husbandometrics-rankings.json';
-    link.click();
-    URL.revokeObjectURL(url);
-  };
-
-  const handleExportCsv = () => {
-    const header = ['rank', 'id', 'name', 'source', 'type', 'total', 'trend'];
-    const rows = filteredCharacters.map((char) => [
-      char.rank,
-      char.id,
-      char.name,
-      char.source,
-      char.source_type,
-      char.weighted_total,
-      char.trend,
+  const exportCsv = () => {
+    const header = ['rank', 'id', 'name', 'franchise', 'type', 'score', 'trend', 'measured_sources'];
+    const rows = filtered.map((character) => [
+      character.rank,
+      character.id,
+      `"${character.name.replace(/"/g, '""')}"`,
+      `"${character.source.replace(/"/g, '""')}"`,
+      character.source_type,
+      character.weighted_total,
+      character.trend,
+      `"${character.measured_sources.join(' ')}"`,
     ]);
     const csv = [header.join(','), ...rows.map((row) => row.join(','))].join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
+    const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
     const link = document.createElement('a');
     link.href = url;
     link.download = 'husbandometrics-rankings.csv';
@@ -145,105 +138,106 @@ const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) =
     URL.revokeObjectURL(url);
   };
 
-  const handleAddRequest = (text: string) => {
-    const entry: CharacterRequest = {
-      id: (requests.length + 1).toString().padStart(3, '0'),
-      text,
-      createdAt: new Date().toISOString(),
-    };
-    setRequests((prev) => [entry, ...prev]);
-  };
-
-  const handleSyncIntegrations = () => {
-    setIntegrations((prev) =>
-      prev.map((integration) => ({
-        ...integration,
-        syncedAt: new Date().toISOString(),
-        latencyMs: Math.max(140, Math.round(Math.random() * 300)),
-      })),
-    );
-  };
-
   return (
-    <div className="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300 min-h-screen flex flex-col">
-
-      {/* Header */}
+    <div className="min-h-screen flex flex-col">
       <Header
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
-        onResetFilters={handleResetFilters}
+        onResetFilters={clearFilters}
         theme={theme}
-        onToggleTheme={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}
+        onToggleTheme={() => setTheme((previous) => (previous === 'dark' ? 'light' : 'dark'))}
+        language={language}
+        onLanguageChange={onLanguageChange}
       />
 
-      {/* Main Content */}
-      <main className="flex-grow max-w-7xl mx-auto px-4 py-6 w-full space-y-6">
-        {isError && (
-          <div className="bg-amber-100 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg px-4 py-3 flex items-start gap-3">
-            <span className="material-icons-round text-amber-600 dark:text-amber-500 text-sm mt-0.5">warning</span>
-            <p className="text-sm text-amber-800 dark:text-amber-200 font-medium">Live API unreachable; showing sample data instead.</p>
-          </div>
-        )}
-
-        <Controls
-          currentFilter={filterType}
-          onFilterChange={setFilterType}
-          timePeriod={timePeriod}
-          onTimePeriodChange={setTimePeriod}
-          minScore={minScore}
-          maxScore={maxScore}
-          onScoreRangeChange={(min, max) => {
-            setMinScore(min);
-            setMaxScore(max);
-          }}
-          onExportCsv={handleExportCsv}
-        />
-
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-min">
-          {filteredCharacters.length > 0 ? (
-            filteredCharacters.map((char, index) => (
-              <CharacterCard
-                key={char.id}
-                character={char}
-                displayScore={periodScores.get(char.id) ?? char.weighted_total}
-                onClick={setSelectedCharacter}
-                layout={index === 0 ? 'featured' : index < 3 ? 'large' : 'standard'}
-              />
-            ))
-          ) : (
-            <div className="col-span-full py-24 text-center">
-              <p className="text-2xl font-bold text-slate-400">{t('noMatches')}</p>
-              <button
-                onClick={handleResetFilters}
-                className="mt-4 text-primary hover:underline font-bold"
-              >
-                {t('resetSystem')}
-              </button>
+      <main className="flex-1 mx-auto w-full max-w-[1400px] px-4">
+        {/* The panel column only exists once something is selected; reserving it
+            permanently squeezed the ranking into two thirds of the page and
+            truncated most of the names. */}
+        <div
+          className={`grid lg:gap-8 ${selected ? 'lg:grid-cols-[minmax(0,1fr)_380px]' : 'grid-cols-1'}`}
+        >
+          <div className="min-w-0">
+            <div className="pt-8 pb-2">
+              <h1 className="font-display text-3xl sm:text-4xl font-black tracking-tight">
+                {t('boardTitle')}
+              </h1>
+              <p className="mt-1 text-muted-light dark:text-muted-dark">{t('boardSubtitle')}</p>
             </div>
+
+            {isError && (
+              <div className="my-4 flex items-start gap-3 rounded-lg border border-falling/30 bg-falling/5 px-4 py-3">
+                <AlertTriangle className="mt-0.5 w-4 h-4 shrink-0 text-falling" aria-hidden />
+                <div className="flex-1">
+                  <p className="text-sm font-bold">{t('apiDownTitle')}</p>
+                  <p className="text-sm text-muted-light dark:text-muted-dark">{t('apiDownBody')}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => refetch()}
+                  disabled={isFetching}
+                  className="shrink-0 text-sm font-bold hover:underline disabled:opacity-50"
+                >
+                  {isFetching ? t('retrying') : t('retry')}
+                </button>
+              </div>
+            )}
+
+            {/* Sticky only from sm up: on phones the header wraps to two rows,
+                so a fixed top offset would leave a gap or overlap. */}
+            <div className="sm:sticky sm:top-16 z-20 bg-paper-light/85 dark:bg-paper-dark/85 backdrop-blur">
+              <Toolbar
+                filterType={filterType}
+                onFilterChange={setFilterType}
+                timePeriod={timePeriod}
+                onTimePeriodChange={setTimePeriod}
+                minScore={minScore}
+                maxScore={maxScore}
+                onScoreRangeChange={(min, max) => {
+                  setMinScore(min);
+                  setMaxScore(max);
+                }}
+                onExportCsv={exportCsv}
+                hasFilters={hasFilters}
+                onClearFilters={clearFilters}
+                resultCount={filtered.length}
+              />
+            </div>
+
+            <RankingTable
+              characters={filtered}
+              scoreFor={scoreFor}
+              selectedId={selected?.id ?? null}
+              onSelect={(character) =>
+                setSelected((current) => (current?.id === character.id ? null : character))
+              }
+              isLoading={isLoading}
+              onClearFilters={clearFilters}
+            />
+          </div>
+
+          {/* On wide screens the panel is a column beside the board; below that
+              it overlays, so the ranking never has to shrink to make room. */}
+          {selected && (
+            <DetailPanel
+              character={selected}
+              onClose={() => setSelected(null)}
+              timePeriod={timePeriod}
+            />
           )}
         </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12">
-              <CharacterRequestPanel requests={requests} onAddRequest={handleAddRequest} />
-              <IntegrationStatus integrations={integrations} onSync={handleSyncIntegrations} />
-            </div>
       </main>
 
-      <Footer onOpenAbout={() => setIsAboutOpen(true)} />
+      <Footer
+        onOpenMethodology={() => setMethodologyOpen(true)}
+        updatedAt={data?.metadata.updated_at}
+      />
 
-      {/* Detail Modal */}
-      {selectedCharacter && (
-        <DetailModal
-          character={selectedCharacter}
-          onClose={() => setSelectedCharacter(null)}
-          timePeriod={timePeriod}
+      {isMethodologyOpen && (
+        <MethodologyModal
+          onClose={() => setMethodologyOpen(false)}
+          weights={data?.metadata.weights}
         />
-      )}
-
-      {/* About Modal */}
-      {isAboutOpen && (
-        <AboutModal onClose={() => setIsAboutOpen(false)} />
       )}
     </div>
   );
@@ -253,18 +247,12 @@ const App: React.FC = () => {
   const [language, setLanguage] = useState<SupportedLanguage>('en');
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const storedLanguage = localStorage.getItem('husbandometrics-lang') as SupportedLanguage | null;
-      if (storedLanguage) {
-        setLanguage(storedLanguage);
-      }
-    }
+    const stored = localStorage.getItem('husbandometrics-lang') as SupportedLanguage | null;
+    if (stored) setLanguage(stored);
   }, []);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('husbandometrics-lang', language);
-    }
+    localStorage.setItem('husbandometrics-lang', language);
   }, [language]);
 
   return (
