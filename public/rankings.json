@@ -1,0 +1,1420 @@
+{
+  "metadata": {
+    "updated_at": "2026-08-14T23:20:54.724Z",
+    "weights": {
+      "anilist": 0.35,
+      "mal": 0.25,
+      "ao3": 0.2,
+      "danbooru": 0.2
+    },
+    "sources": [
+      "anilist",
+      "mal",
+      "ao3",
+      "danbooru"
+    ],
+    "roster": {
+      "anime": 27,
+      "game": 12
+    },
+    "mode": "live"
+  },
+  "characters": [
+    {
+      "id": "levi",
+      "name": "Levi",
+      "name_jp": "リヴァイ",
+      "aliases": [
+        "Levi Heichou (リヴァイ兵長)",
+        "Captain Levi",
+        "Jinrui Saikyou no Heishi (人類最強の兵士)",
+        "Humanity's Strongest Soldier",
+        "Heishichou (兵士長)"
+      ],
+      "source": "Attack on Titan",
+      "franchise": "Attack on Titan",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b45627-CR68RyZmddGG.png",
+      "scores": {
+        "anilist": 100,
+        "mal": null,
+        "ao3": 90.23,
+        "danbooru": null
+      },
+      "counts": {
+        "anilist": 43001,
+        "mal": null,
+        "ao3": 54358,
+        "danbooru": null
+      },
+      "weighted_total": 96.45,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3"
+      ],
+      "history": [],
+      "rank": 1
+    },
+    {
+      "id": "satoru-gojou",
+      "name": "Satoru Gojou",
+      "name_jp": "五条悟",
+      "aliases": [
+        "Satoru Gojo"
+      ],
+      "source": "JUJUTSU KAISEN",
+      "franchise": "JUJUTSU KAISEN",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b127691-9zqh1xpIubn7.png",
+      "scores": {
+        "anilist": 99.71,
+        "mal": null,
+        "ao3": 92.31,
+        "danbooru": 93.56
+      },
+      "counts": {
+        "anilist": 41687,
+        "mal": null,
+        "ao3": 69842,
+        "danbooru": 5604
+      },
+      "weighted_total": 96.1,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 2
+    },
+    {
+      "id": "eren-yeager",
+      "name": "Eren Yeager",
+      "name_jp": "エレン・イェーガー",
+      "aliases": [
+        "Eren Jaeger",
+        "Eren Jäger",
+        "Shi ni Isogi Yarou (死に急ぎ野郎)",
+        "Suicidal Maniac"
+      ],
+      "source": "Attack on Titan",
+      "franchise": "Attack on Titan",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b40882-dsj7IP943WFF.jpg",
+      "scores": {
+        "anilist": 98,
+        "mal": null,
+        "ao3": 89.01,
+        "danbooru": 99.41
+      },
+      "counts": {
+        "anilist": 34740,
+        "mal": null,
+        "ao3": 46868,
+        "danbooru": 9615
+      },
+      "weighted_total": 95.98,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 3
+    },
+    {
+      "id": "katsuki-bakugou",
+      "name": "Katsuki Bakugou",
+      "name_jp": "爆豪勝己",
+      "aliases": [
+        "Katsuki Bakugo",
+        "Kacchan (かっちゃん)"
+      ],
+      "source": "My Hero Academia",
+      "franchise": "My Hero Academia",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b88892-bdOha3lNcaN6.png",
+      "scores": {
+        "anilist": 92.15,
+        "mal": null,
+        "ao3": 100,
+        "danbooru": null
+      },
+      "counts": {
+        "anilist": 18614,
+        "mal": null,
+        "ao3": 176956,
+        "danbooru": null
+      },
+      "weighted_total": 95,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3"
+      ],
+      "history": [],
+      "rank": 4
+    },
+    {
+      "id": "zhongli",
+      "name": "Zhongli",
+      "name_jp": "钟离",
+      "aliases": [
+        "Rex Lapis",
+        "Morax"
+      ],
+      "source": "Genshin Impact",
+      "franchise": "Genshin Impact",
+      "source_type": "GAME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b209686-GMeNj5q9gkkz.png",
+      "scores": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 86.58,
+        "danbooru": 100
+      },
+      "counts": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 34952,
+        "danbooru": 10150
+      },
+      "weighted_total": 93.29,
+      "trend": "STABLE",
+      "measured_sources": [
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 5
+    },
+    {
+      "id": "naruto-uzumaki",
+      "name": "Naruto Uzumaki",
+      "name_jp": "うずまきナルト",
+      "aliases": [
+        "Nine-Tails Jinchuuriki",
+        "The Show-Off",
+        "Number One Unpredictable",
+        "Noisy Ninja",
+        "Number One Hyperactive",
+        "Knucklehead Ninja",
+        "Fox"
+      ],
+      "source": "Naruto",
+      "franchise": "Naruto",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b17-phjcWCkRuIhu.png",
+      "scores": {
+        "anilist": 92.79,
+        "mal": null,
+        "ao3": 90.53,
+        "danbooru": 93.42
+      },
+      "counts": {
+        "anilist": 19927,
+        "mal": null,
+        "ao3": 56325,
+        "danbooru": 5532
+      },
+      "weighted_total": 92.36,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 6
+    },
+    {
+      "id": "tartaglia",
+      "name": "Tartaglia",
+      "name_jp": "达达利亚",
+      "aliases": [
+        "Childe",
+        "Ajax",
+        "公子 (Childe)",
+        "阿贾克斯 (Ajax)",
+        "タルタリヤ",
+        "타르탈리아"
+      ],
+      "source": "Genshin Impact",
+      "franchise": "Genshin Impact",
+      "source_type": "GAME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b209687-E6ft1ITgPzOK.png",
+      "scores": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 87.81,
+        "danbooru": 96.47
+      },
+      "counts": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 40576,
+        "danbooru": 7331
+      },
+      "weighted_total": 92.14,
+      "trend": "STABLE",
+      "measured_sources": [
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 7
+    },
+    {
+      "id": "shouto-todoroki",
+      "name": "Shouto Todoroki",
+      "name_jp": "轟焦凍",
+      "aliases": [
+        "Shouto (ショート)",
+        "Shoto Todoroki",
+        "Half-and-Half",
+        "Icy-Hot"
+      ],
+      "source": "My Hero Academia",
+      "franchise": "My Hero Academia",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b89220-KNBwaVFAR8FD.png",
+      "scores": {
+        "anilist": 92.65,
+        "mal": null,
+        "ao3": 94.83,
+        "danbooru": 86.11
+      },
+      "counts": {
+        "anilist": 19637,
+        "mal": null,
+        "ao3": 94743,
+        "danbooru": 2817
+      },
+      "weighted_total": 91.49,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 8
+    },
+    {
+      "id": "yuuji-itadori",
+      "name": "Yuuji Itadori",
+      "name_jp": "虎杖悠仁",
+      "aliases": [
+        "Sukuna's Vessel",
+        "The Tiger of West Junior High"
+      ],
+      "source": "JUJUTSU KAISEN",
+      "franchise": "JUJUTSU KAISEN",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b127212-FVm2tD0erQ5B.png",
+      "scores": {
+        "anilist": 94.01,
+        "mal": null,
+        "ao3": 87.4,
+        "danbooru": 90.71
+      },
+      "counts": {
+        "anilist": 22699,
+        "mal": null,
+        "ao3": 38617,
+        "danbooru": 4309
+      },
+      "weighted_total": 91.37,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 9
+    },
+    {
+      "id": "megumi-fushiguro",
+      "name": "Megumi Fushiguro",
+      "name_jp": "伏黒恵",
+      "aliases": [
+        "Sea Urchin Head"
+      ],
+      "source": "JUJUTSU KAISEN",
+      "franchise": "JUJUTSU KAISEN",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b126635-L0y3I92JSUkN.png",
+      "scores": {
+        "anilist": 92.23,
+        "mal": null,
+        "ao3": 87.51,
+        "danbooru": 88.13
+      },
+      "counts": {
+        "anilist": 18776,
+        "mal": null,
+        "ao3": 39117,
+        "danbooru": 3396
+      },
+      "weighted_total": 89.88,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 10
+    },
+    {
+      "id": "xiao",
+      "name": "Xiao",
+      "name_jp": "魈",
+      "aliases": [
+        "Alatus",
+        "Xiao (Genshin Impact)",
+        "Shou"
+      ],
+      "source": "Genshin Impact",
+      "franchise": "Genshin Impact",
+      "source_type": "GAME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b233893-Ep3FChR9Dnai.jpg",
+      "scores": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 83.51,
+        "danbooru": 94.66
+      },
+      "counts": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 24124,
+        "danbooru": 6200
+      },
+      "weighted_total": 89.08,
+      "trend": "STABLE",
+      "measured_sources": [
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 11
+    },
+    {
+      "id": "denji",
+      "name": "Denji",
+      "name_jp": "デンジ",
+      "aliases": [
+        "Chainsaw Man (チェンソーマン)",
+        "Chainsaw Devil",
+        "Chainsaw-sama (チェンソー様)",
+        "Lord Chainsaw",
+        "Chainsaw-kun (チェンソー君)",
+        "Chainsaw Kid",
+        "Akai Chainsaw Man (赤いチェンソーマン)",
+        "Red Chainsaw Man"
+      ],
+      "source": "Chainsaw Man",
+      "franchise": "Chainsaw Man",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b130102-FO1VHNnEnLlB.png",
+      "scores": {
+        "anilist": 93.45,
+        "mal": null,
+        "ao3": 71.07,
+        "danbooru": 97.33
+      },
+      "counts": {
+        "anilist": 21383,
+        "mal": null,
+        "ao3": 5366,
+        "danbooru": 7935
+      },
+      "weighted_total": 88.52,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 12
+    },
+    {
+      "id": "killua-zoldyck",
+      "name": "Killua Zoldyck",
+      "name_jp": "キルア=ゾルディック",
+      "aliases": [
+        "Kill",
+        "Kil",
+        "Evans"
+      ],
+      "source": "Hunter x Hunter (2011)",
+      "franchise": "Hunter x Hunter (2011)",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b27-Z5O02kQUydpT.jpg",
+      "scores": {
+        "anilist": 98.75,
+        "mal": null,
+        "ao3": 75.92,
+        "danbooru": 82.7
+      },
+      "counts": {
+        "anilist": 37623,
+        "mal": null,
+        "ao3": 9642,
+        "danbooru": 2056
+      },
+      "weighted_total": 88.38,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 13
+    },
+    {
+      "id": "diluc",
+      "name": "Diluc",
+      "name_jp": "迪卢克·莱艮芬德",
+      "aliases": [
+        "Diluc Ragnvindr",
+        "Darknight Hero",
+        "Dark Side of Dawn",
+        "ディルック",
+        "다이루크 라겐펜더"
+      ],
+      "source": "Genshin Impact",
+      "franchise": "Genshin Impact",
+      "source_type": "GAME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b187554-gemvxuuEgwDW.png",
+      "scores": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 85.42,
+        "danbooru": 89.7
+      },
+      "counts": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 30406,
+        "danbooru": 3924
+      },
+      "weighted_total": 87.56,
+      "trend": "STABLE",
+      "measured_sources": [
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 14
+    },
+    {
+      "id": "osamu-dazai",
+      "name": "Osamu Dazai",
+      "name_jp": "太宰治",
+      "aliases": [
+        "Mackerel",
+        "Bandage Wasting Device"
+      ],
+      "source": "Bungo Stray Dogs",
+      "franchise": "Bungo Stray Dogs",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b89198-qKmRTw4Y3PRC.png",
+      "scores": {
+        "anilist": 91.77,
+        "mal": null,
+        "ao3": 92.52,
+        "danbooru": 71.56
+      },
+      "counts": {
+        "anilist": 17864,
+        "mal": null,
+        "ao3": 71686,
+        "danbooru": 735
+      },
+      "weighted_total": 86.58,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 15
+    },
+    {
+      "id": "kaeya",
+      "name": "Kaeya",
+      "name_jp": "凯亚",
+      "aliases": [
+        "Kaeya Alberich",
+        "Kaeya Ragnvindr",
+        "ガイア"
+      ],
+      "source": "Genshin Impact",
+      "franchise": "Genshin Impact",
+      "source_type": "GAME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b190868-DXB9wDaVMrwS.png",
+      "scores": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 85.96,
+        "danbooru": 87.18
+      },
+      "counts": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 32448,
+        "danbooru": 3109
+      },
+      "weighted_total": 86.57,
+      "trend": "STABLE",
+      "measured_sources": [
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 16
+    },
+    {
+      "id": "alhaitham",
+      "name": "Alhaitham",
+      "name_jp": "",
+      "aliases": [
+        "Al-Haitham"
+      ],
+      "source": "Genshin Impact",
+      "franchise": "Genshin Impact",
+      "source_type": "GAME",
+      "image_url": "",
+      "scores": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 83.07,
+        "danbooru": 89.18
+      },
+      "counts": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 22876,
+        "danbooru": 3739
+      },
+      "weighted_total": 86.13,
+      "trend": "STABLE",
+      "measured_sources": [
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 17
+    },
+    {
+      "id": "dan-heng-imbibitor-lunae",
+      "name": "Dan Heng",
+      "name_jp": "丹恒",
+      "aliases": [
+        "Imbibitor Lunae",
+        "Dan Heng (Imbibitor Lunae)",
+        "단항"
+      ],
+      "source": "Honkai: Star Rail",
+      "franchise": "Honkai: Star Rail",
+      "source_type": "GAME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b314988-GRznn0CbXHS9.png",
+      "scores": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 79.32,
+        "danbooru": 92.2
+      },
+      "counts": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 14545,
+        "danbooru": 4944
+      },
+      "weighted_total": 85.76,
+      "trend": "STABLE",
+      "measured_sources": [
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 18
+    },
+    {
+      "id": "itachi-uchiha",
+      "name": "Itachi Uchiha",
+      "name_jp": "うちはイタチ",
+      "aliases": [
+        "Sharingan no Itachi (写輪眼のイタチ)",
+        "Itachi of the Sharingan"
+      ],
+      "source": "Naruto",
+      "franchise": "Naruto",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b14-9Kb1E5oel1ke.png",
+      "scores": {
+        "anilist": 94.23,
+        "mal": null,
+        "ao3": 82.07,
+        "danbooru": 73.77
+      },
+      "counts": {
+        "anilist": 23224,
+        "mal": null,
+        "ao3": 20261,
+        "danbooru": 902
+      },
+      "weighted_total": 85.53,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 19
+    },
+    {
+      "id": "kurapika",
+      "name": "Kurapika",
+      "name_jp": "クラピカ",
+      "aliases": [
+        "Chain User",
+        "Chain Bastard"
+      ],
+      "source": "Hunter x Hunter (2011)",
+      "franchise": "Hunter x Hunter (2011)",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b28-ivA7UGnfE40a.png",
+      "scores": {
+        "anilist": 93.69,
+        "mal": null,
+        "ao3": 73.62,
+        "danbooru": 81.68
+      },
+      "counts": {
+        "anilist": 21942,
+        "mal": null,
+        "ao3": 7305,
+        "danbooru": 1872
+      },
+      "weighted_total": 85.14,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 20
+    },
+    {
+      "id": "ken-kaneki",
+      "name": "Ken Kaneki",
+      "name_jp": "金木研",
+      "aliases": [
+        "Eyepatch",
+        "Kane-yan",
+        "Kanekichi"
+      ],
+      "source": "Tokyo Ghoul",
+      "franchise": "Tokyo Ghoul",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b87275-mb13EWZBdbh3.png",
+      "scores": {
+        "anilist": 95.96,
+        "mal": null,
+        "ao3": 71.09,
+        "danbooru": 79.58
+      },
+      "counts": {
+        "anilist": 27934,
+        "mal": null,
+        "ao3": 5379,
+        "danbooru": 1542
+      },
+      "weighted_total": 84.96,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 21
+    },
+    {
+      "id": "arataka-reigen",
+      "name": "Arataka Reigen",
+      "name_jp": "霊幻新隆",
+      "aliases": [
+        "The Century's Greatest Psychic",
+        "Master"
+      ],
+      "source": "Mob Psycho 100",
+      "franchise": "Mob Psycho 100",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b89334-OPj1hCzvrt7X.png",
+      "scores": {
+        "anilist": 94.93,
+        "mal": null,
+        "ao3": 74.72,
+        "danbooru": 76.55
+      },
+      "counts": {
+        "anilist": 25035,
+        "mal": null,
+        "ao3": 8340,
+        "danbooru": 1166
+      },
+      "weighted_total": 84.64,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 22
+    },
+    {
+      "id": "blade-hsr",
+      "name": "Blade",
+      "name_jp": "",
+      "aliases": [
+        "Yingxing",
+        "Blade (Honkai: Star Rail)"
+      ],
+      "source": "Honkai: Star Rail",
+      "franchise": "Honkai: Star Rail",
+      "source_type": "GAME",
+      "image_url": "",
+      "scores": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 77.43,
+        "danbooru": 88.73
+      },
+      "counts": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 11578,
+        "danbooru": 3588
+      },
+      "weighted_total": 83.08,
+      "trend": "STABLE",
+      "measured_sources": [
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 23
+    },
+    {
+      "id": "neuvillette",
+      "name": "Neuvillette",
+      "name_jp": "那维莱特",
+      "aliases": [
+        "Chief Justice",
+        "ヌヴィレット",
+        "느비예트"
+      ],
+      "source": "Genshin Impact",
+      "franchise": "Genshin Impact",
+      "source_type": "GAME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b386544-tcx3YD9yhVk0.png",
+      "scores": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 77.88,
+        "danbooru": 86.67
+      },
+      "counts": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 12212,
+        "danbooru": 2966
+      },
+      "weighted_total": 82.27,
+      "trend": "STABLE",
+      "measured_sources": [
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 24
+    },
+    {
+      "id": "shigeo-kageyama",
+      "name": "Shigeo Kageyama",
+      "name_jp": "影山茂夫",
+      "aliases": [
+        "Mob (モブ)",
+        "White T Poison",
+        "Shige",
+        "Shadow Leader"
+      ],
+      "source": "Mob Psycho 100",
+      "franchise": "Mob Psycho 100",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b89616-dXmdOc7L6SDi.png",
+      "scores": {
+        "anilist": 93.32,
+        "mal": null,
+        "ao3": 74.12,
+        "danbooru": 68.82
+      },
+      "counts": {
+        "anilist": 21091,
+        "mal": null,
+        "ao3": 7759,
+        "danbooru": 571
+      },
+      "weighted_total": 81.67,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 25
+    },
+    {
+      "id": "guts",
+      "name": "Guts",
+      "name_jp": "ガッツ",
+      "aliases": [
+        "The Black Swordsman",
+        "Hundred Man Slayer",
+        "Heartless Swordsman",
+        "Struggler",
+        "Kuroi Kenshi"
+      ],
+      "source": "Berserk",
+      "franchise": "Berserk",
+      "source_type": "MANGA",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b422-XTaiTuvRohsV.png",
+      "scores": {
+        "anilist": 94.62,
+        "mal": null,
+        "ao3": 59.41,
+        "danbooru": 78.66
+      },
+      "counts": {
+        "anilist": 24223,
+        "mal": null,
+        "ao3": 1311,
+        "danbooru": 1417
+      },
+      "weighted_total": 80.97,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 26
+    },
+    {
+      "id": "wriothesley",
+      "name": "Wriothesley",
+      "name_jp": "",
+      "aliases": [
+        "Duke of Meropide"
+      ],
+      "source": "Genshin Impact",
+      "franchise": "Genshin Impact",
+      "source_type": "GAME",
+      "image_url": "",
+      "scores": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 75.37,
+        "danbooru": 83.61
+      },
+      "counts": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 9016,
+        "danbooru": 2236
+      },
+      "weighted_total": 79.49,
+      "trend": "STABLE",
+      "measured_sources": [
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 27
+    },
+    {
+      "id": "sunday-hsr",
+      "name": "Sunday",
+      "name_jp": "星期日",
+      "aliases": [
+        "Sunday (Honkai: Star Rail)",
+        "Sunday (サンデー‚ 선데이)"
+      ],
+      "source": "Honkai: Star Rail",
+      "franchise": "Honkai: Star Rail",
+      "source_type": "GAME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b349495-RNBo2MtPrFUM.png",
+      "scores": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 71.22,
+        "danbooru": 86.91
+      },
+      "counts": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 5463,
+        "danbooru": 3034
+      },
+      "weighted_total": 79.06,
+      "trend": "STABLE",
+      "measured_sources": [
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 28
+    },
+    {
+      "id": "light-yagami",
+      "name": "Light Yagami",
+      "name_jp": "夜神月",
+      "aliases": [
+        "Kira",
+        "Light Asahi",
+        "God"
+      ],
+      "source": "Death Note",
+      "franchise": "Death Note",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b80-26EhwSsSqQ50.png",
+      "scores": {
+        "anilist": 93.66,
+        "mal": null,
+        "ao3": 49.12,
+        "danbooru": 77.15
+      },
+      "counts": {
+        "anilist": 21866,
+        "mal": null,
+        "ao3": 377,
+        "danbooru": 1232
+      },
+      "weighted_total": 77.38,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 29
+    },
+    {
+      "id": "jing-yuan",
+      "name": "Jing Yuan",
+      "name_jp": "景元",
+      "aliases": [
+        "General Jing Yuan",
+        "The Divine Foresight",
+        "The Dozing General"
+      ],
+      "source": "Honkai: Star Rail",
+      "franchise": "Honkai: Star Rail",
+      "source_type": "GAME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b315735-C2bpdboJrCtA.png",
+      "scores": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 73.88,
+        "danbooru": 79.68
+      },
+      "counts": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 7538,
+        "danbooru": 1557
+      },
+      "weighted_total": 76.78,
+      "trend": "STABLE",
+      "measured_sources": [
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 30
+    },
+    {
+      "id": "zoro-roronoa",
+      "name": "Zoro Roronoa",
+      "name_jp": "ロロノア・ゾロ",
+      "aliases": [
+        "Zolo",
+        "Kaizoku Gari (海賊狩り)",
+        "Pirate Hunter",
+        "Marimo Head",
+        "Mr. Bushido",
+        "Zorojuro",
+        "Moss Head",
+        "Lorenor Zorro"
+      ],
+      "source": "ONE PIECE",
+      "franchise": "ONE PIECE",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b62-S7oAeA9WInjV.png",
+      "scores": {
+        "anilist": 96.25,
+        "mal": null,
+        "ao3": 86.75,
+        "danbooru": 30.71
+      },
+      "counts": {
+        "anilist": 28834,
+        "mal": null,
+        "ao3": 35681,
+        "danbooru": 16
+      },
+      "weighted_total": 76.24,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 31
+    },
+    {
+      "id": "lelouch-lamperouge",
+      "name": "Lelouch Lamperouge",
+      "name_jp": "ルルーシュ・ランペルージ",
+      "aliases": [
+        "Lulu",
+        "Zero",
+        "King of Elevens",
+        "The Demon",
+        "Black King",
+        "Black Demon",
+        "Julius Kingsley"
+      ],
+      "source": "Code Geass: Lelouch of the Rebellion",
+      "franchise": "Code Geass: Lelouch of the Rebellion",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b417-gVLmIJu9phcK.png",
+      "scores": {
+        "anilist": 96.3,
+        "mal": null,
+        "ao3": 5.74,
+        "danbooru": 99.96
+      },
+      "counts": {
+        "anilist": 28961,
+        "mal": null,
+        "ao3": 1,
+        "danbooru": 10112
+      },
+      "weighted_total": 73.13,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 32
+    },
+    {
+      "id": "l-lawliet",
+      "name": "L Lawliet",
+      "name_jp": "エル・ローライト",
+      "aliases": [
+        "Ryuga Hideki",
+        "Ryuzaki",
+        "Eraldo Coil",
+        "Deneuve",
+        "Asahi",
+        "Suzuki",
+        "L-Prime"
+      ],
+      "source": "Death Note",
+      "franchise": "Death Note",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b71-1W4panC53vfs.png",
+      "scores": {
+        "anilist": 96.32,
+        "mal": null,
+        "ao3": 11.47,
+        "danbooru": 84.02
+      },
+      "counts": {
+        "anilist": 29028,
+        "mal": null,
+        "ao3": 3,
+        "danbooru": 2324
+      },
+      "weighted_total": 70.41,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 33
+    },
+    {
+      "id": "tanjirou-kamado",
+      "name": "Tanjirou Kamado",
+      "name_jp": "竈門炭治郎",
+      "aliases": [
+        "Gonpachiro Kamaboko",
+        "Monjiro",
+        "Santaro",
+        "Kentaro",
+        "Soichiro",
+        "Ponjiro",
+        "Gengo Shakariki",
+        "Tontaro Itadaki",
+        "Kanjiro Anago",
+        "Tangoro Hamado",
+        "Jangoro Amado",
+        "카마도 탄지로"
+      ],
+      "source": "Demon Slayer: Kimetsu no Yaiba",
+      "franchise": "Demon Slayer: Kimetsu no Yaiba",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b126071-BTNEc1nRIv68.png",
+      "scores": {
+        "anilist": 92.78,
+        "mal": null,
+        "ao3": 80.45,
+        "danbooru": 15.03
+      },
+      "counts": {
+        "anilist": 19906,
+        "mal": null,
+        "ao3": 16673,
+        "danbooru": 3
+      },
+      "weighted_total": 68.76,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 34
+    },
+    {
+      "id": "edward-elric",
+      "name": "Edward Elric",
+      "name_jp": "エドワード・エルリック",
+      "aliases": [
+        "Ed",
+        "Fullmetal Alchemist",
+        "Pipsqueak",
+        "Little Red Runt",
+        "Shorty",
+        "Insect",
+        "Hero of the People"
+      ],
+      "source": "Fullmetal Alchemist: Brotherhood",
+      "franchise": "Fullmetal Alchemist: Brotherhood",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b11-TA5Nuk7EDUZG.jpg",
+      "scores": {
+        "anilist": 92.91,
+        "mal": null,
+        "ao3": 58.99,
+        "danbooru": 32.47
+      },
+      "counts": {
+        "anilist": 20183,
+        "mal": null,
+        "ao3": 1245,
+        "danbooru": 19
+      },
+      "weighted_total": 67.75,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 35
+    },
+    {
+      "id": "kakashi-hatake",
+      "name": "Kakashi Hatake",
+      "name_jp": "はたけカカシ",
+      "aliases": [
+        "The Copy Ninja",
+        "Kakashi of the Sharingan",
+        "Sukea"
+      ],
+      "source": "Naruto",
+      "franchise": "Naruto",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b85-mkVBh2yjxjmx.png",
+      "scores": {
+        "anilist": 93.99,
+        "mal": null,
+        "ao3": 47.71,
+        "danbooru": 29.35
+      },
+      "counts": {
+        "anilist": 22650,
+        "mal": null,
+        "ao3": 318,
+        "danbooru": 14
+      },
+      "weighted_total": 64.41,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 36
+    },
+    {
+      "id": "thorfinn-karlsefni",
+      "name": "Thorfinn Karlsefni",
+      "name_jp": "トルフィン・カルルセヴニ",
+      "aliases": [
+        "ثورفين",
+        "Thorsson"
+      ],
+      "source": "Vinland Saga",
+      "franchise": "Vinland Saga",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b10138-zOPrka0ddZOR.png",
+      "scores": {
+        "anilist": 93.99,
+        "mal": null,
+        "ao3": 9.09,
+        "danbooru": 60.48
+      },
+      "counts": {
+        "anilist": 22648,
+        "mal": null,
+        "ao3": 2,
+        "danbooru": 264
+      },
+      "weighted_total": 62.41,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 37
+    },
+    {
+      "id": "luffy-monkey",
+      "name": "Luffy Monkey",
+      "name_jp": "モンキー・D・ルフィ",
+      "aliases": [
+        "Mugiwara (麦わら)",
+        "Straw Hat",
+        "Mugi (麦)",
+        "Straw",
+        "Mugiwara no Luffy (麦わらのルフィ)",
+        "Straw Hat Luffy",
+        "Lucy",
+        "Luffyland",
+        "Mugiwara-ya",
+        "Ruffy",
+        "Monkey D. Rufy",
+        "Rufy",
+        "Rubber"
+      ],
+      "source": "ONE PIECE",
+      "franchise": "ONE PIECE",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b40-MNypXsxSRb1R.png",
+      "scores": {
+        "anilist": 98.37,
+        "mal": null,
+        "ao3": 46.08,
+        "danbooru": 11.91
+      },
+      "counts": {
+        "anilist": 36130,
+        "mal": null,
+        "ao3": 261,
+        "danbooru": 2
+      },
+      "weighted_total": 61.37,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 38
+    },
+    {
+      "id": "rintarou-okabe",
+      "name": "Rintarou Okabe",
+      "name_jp": "岡部倫太郎",
+      "aliases": [
+        "Rintaro",
+        "Hououin Kyouma (鳳凰院凶真)",
+        "Okarin (オカリン)",
+        "Mad Scientist",
+        "Future Gadget Lab Member #001",
+        "Lintahlo",
+        "M3",
+        "Salieri's Neighbor",
+        "Rinta-kun"
+      ],
+      "source": "Steins;Gate",
+      "franchise": "Steins;Gate",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b35252-DY9TW6pusqeh.png",
+      "scores": {
+        "anilist": 93.66,
+        "mal": null,
+        "ao3": 13.32,
+        "danbooru": 7.51
+      },
+      "counts": {
+        "anilist": 21871,
+        "mal": null,
+        "ao3": 4,
+        "danbooru": 1
+      },
+      "weighted_total": 49.26,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [],
+      "rank": 39
+    }
+  ]
+}

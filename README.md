@@ -2,7 +2,7 @@
 
 Popularity rankings for male 2D characters, measured from public sources.
 
-Forty characters, ranked by a weighted mean of four live readings. Nothing on the
+Around forty characters, ranked by a weighted mean of four live readings. Nothing on the
 board is estimated, sampled, or filled in: when a source cannot be read it is
 marked "Not measured" and left out of the total rather than counted as zero.
 
@@ -10,22 +10,48 @@ marked "Not measured" and left out of the total rather than counted as zero.
 
 ```bash
 npm install
-cp .env.example .env.local   # every value is optional
-
-npm run server               # Hono API on :3001
-npm run dev                  # Vite on :3000, proxies /api to :3001
+npm run dev            # Vite on :3000, reads the committed public/rankings.json
 ```
 
-Two terminals. The first read of `/api/rankings` queries four sources for every
-character and takes about four minutes; it is then cached for six hours.
+That is the whole thing. The board ships as a file, so nothing needs to be
+running behind it.
+
+To rebuild the data yourself:
+
+```bash
+cp .env.example .env.local   # every value is optional
+npm run snapshot             # reads all four sources, ~4 minutes
+```
 
 | Script | What it does |
 | --- | --- |
 | `npm run dev` | Vite dev server on :3000 |
-| `npm run server` | Hono API on :3001 (`server:dev` for watch mode) |
+| `npm run snapshot` | Read every source, write `public/rankings.json` |
+| `npm run server` | Hono API on :3001, for developing against live reads |
 | `npm run build` | `tsc && vite build` |
 | `npm run lint` | `tsc --noEmit` over client and server |
-| `npm run check` | Scoring self-check |
+| `npm run check` | Scoring and snapshot-store self-checks |
+
+## Deployment
+
+Static. The board is a weekly measurement with no per-visitor state and no
+writes, so there is no API in production:
+
+1. A GitHub Action runs `npm run snapshot` every Monday, writing
+   `public/rankings.json` and appending to `data/snapshots.json`.
+2. It commits both. The host redeploys on the push.
+3. The page fetches `/rankings.json`.
+
+This also sidesteps the shape of the work. A cold read takes about four minutes,
+which no serverless request timeout tolerates — Netlify allows 30 seconds for a
+synchronous or scheduled function, and a background function returns 202 without
+serving a response.
+
+`netlify.toml` is included. Any static host works; the Action does the rest.
+
+The Hono API in `server/` is still there and still runs (`npm run server`), but
+production does not use it. Point `VITE_RANKINGS_URL` at `/api/rankings` to
+develop against live reads instead of the file.
 
 ## Data sources
 
@@ -81,10 +107,11 @@ list decides who is covered; it never supplies their numbers.
   hours by default (`CACHE_TTL_SECONDS`).
 - **Rate limiting** — 100 requests/min on `/api/*`, Upstash-backed when
   configured.
-- **Database (optional)** — Drizzle with Turso or PlanetScale. Set
-  `DATABASE_PROVIDER` and the matching connection variables, then
-  `npx drizzle-kit generate`. Without one the API still works; only trend and
-  history need stored snapshots.
+- **History** — `data/snapshots.json`, committed. One row per character per
+  refresh, capped at two years, deduplicated per day so a hand-triggered refresh
+  cannot weight that day twice. This is what trend and the history chart read.
+- **Database (optional)** — Drizzle with Turso or PlanetScale, used instead of
+  the file when `DATABASE_PROVIDER` is set. Not needed for the static deploy.
 - **Upstream limits** — AO3 is paced at one request per 1.2s with backoff, Jikan
   at one per 400ms. Both throttle aggressively.
 
@@ -101,11 +128,15 @@ server/
   index.ts
   config/env.ts
   data/gameRoster.ts
-  db/           client, repository, schema/{sqlite,mysql}
+  db/           client, repository, fileStore, schema/{sqlite,mysql}
   services/     aggregator, fetchers/{anilist,mal,ao3,danbooru,http}
   tasks/scheduler.ts
   utils/metrics.ts
-drizzle/
+scripts/
+  build-snapshot.ts     writes public/rankings.json
+data/snapshots.json     committed history
+public/rankings.json    what production serves
+.github/workflows/      weekly refresh
 ```
 
 ## Design
@@ -118,12 +149,17 @@ figure beside each score so a reader can check it. Conventions are in
 
 ## Known gaps
 
-- **MyAnimeList reads 0/40.** Jikan returns `504 "Jikan failed to connect to
+- **MyAnimeList reads 0/39.** Jikan returns `504 "Jikan failed to connect to
   MyAnimeList"` — upstream, not this codebase. The fetcher degrades to `null`.
 - **Three game characters have no portrait** (Alhaitham, Blade, Wriothesley);
   AniList has no entry for them, so a generated monogram stands in.
-- **Trend and history need a database.** Without stored snapshots there is no
-  previous reading, so every character is STABLE and the trend column is hidden.
+- **Trend needs two refreshes.** The first snapshot has nothing to compare
+  against, so every character reads STABLE and the trend column stays hidden
+  until the second weekly run.
+- **Scores are relative, so a missing source moves everyone.** If the character
+  holding the peak on a source fails to read that week, the peak drops and every
+  other score on that source rises. Week-over-week movement is not purely
+  popularity — check the provenance dots before trusting an arrow.
 
 ## Not built
 

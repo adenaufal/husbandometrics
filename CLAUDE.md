@@ -18,16 +18,31 @@ actually read.
 ## Commands
 
 ```bash
-npm run dev          # Vite dev server on :3000, proxies /api to :3001
-npm run server       # Hono API on :3001
-npm run server:dev   # same, with watch
+npm run dev          # Vite on :3000, reads the committed public/rankings.json
+npm run snapshot     # read every source, write public/rankings.json (~4 min)
+npm run server       # Hono API on :3001, only for developing against live reads
 npm run build        # tsc && vite build
 npm run lint         # tsc --noEmit
-npm run check        # scoring self-check (server/utils/metrics.selfcheck.ts)
+npm run check        # scoring + snapshot-store self-checks
 ```
 
-Dev needs both `npm run dev` and `npm run server`. Copy `.env.example` to
-`.env.local`; every value is optional.
+`npm run dev` alone is enough: production is static and the board ships as a
+file. Copy `.env.example` to `.env.local` before `npm run snapshot`; every value
+is optional.
+
+## Deployment
+
+There is no API in production. A GitHub Action runs `npm run snapshot` weekly,
+commits `public/rankings.json` and `data/snapshots.json`, and the host redeploys
+on the push. The page fetches `/rankings.json`.
+
+This is not just simplicity: a cold read takes about four minutes, and no
+serverless request timeout tolerates that — Netlify allows 30s for a synchronous
+or scheduled function, and a background function returns 202 without serving a
+response.
+
+`server/` still runs and is still the thing the snapshot script calls into, but
+nothing deployed talks to it over HTTP.
 
 ## Data model
 
@@ -70,6 +85,18 @@ everyone below the top few indistinguishable.
 
 Weights live in `.env` (`WEIGHT_ANILIST` etc.) and default to
 0.35 / 0.25 / 0.2 / 0.2.
+
+### History
+
+`data/snapshots.json`, committed to the repo. One row per character per refresh,
+newest-first on read, capped at two years, deduplicated per day — a
+hand-triggered refresh must not weight that day's average by how often someone
+pressed the button. A hosted database is a lot of moving parts for a board that
+refreshes weekly and never takes a write from a visitor; Drizzle with Turso or
+PlanetScale is still wired up and takes over when `DATABASE_PROVIDER` is set.
+
+Snapshots are written as one batch, never one call per character: the file store
+rewrites the whole file, so concurrent appends would race and keep only the last.
 
 ### The roster
 
@@ -152,11 +179,15 @@ husbandometrics/
 │   │   ├── DetailPanel.tsx, MethodologyModal.tsx
 │   ├── lib/          # i18n, search, history, images
 │   └── types/        # Character, ScoreBreakdown, METRIC_SOURCES
+├── scripts/build-snapshot.ts   # writes public/rankings.json
+├── data/snapshots.json         # committed history
+├── public/rankings.json        # what production serves
+├── .github/workflows/          # weekly refresh
 ├── server/
 │   ├── index.ts
 │   ├── config/env.ts
 │   ├── data/gameRoster.ts
-│   ├── db/           # client, repository, schema/{sqlite,mysql}
+│   ├── db/           # client, repository, fileStore, schema/{sqlite,mysql}
 │   ├── lib/cache.ts
 │   ├── middleware/rateLimit.ts
 │   ├── routes/       # rankings, integrations
@@ -168,9 +199,13 @@ husbandometrics/
 
 ## Known gaps
 
-- MyAnimeList reads 0/40. Jikan returns 504 (`"Jikan failed to connect to
+- MyAnimeList reads 0/39. Jikan returns 504 (`"Jikan failed to connect to
   MyAnimeList"`) — upstream, not our bug. The fetcher degrades to `null`.
 - Three game characters have no AniList portrait and fall back to a generated
   monogram.
-- Trend and history need a database. Without one there are no snapshots, so
-  every character reads STABLE and the trend column stays hidden.
+- Trend needs two refreshes. The first snapshot has nothing to compare against,
+  so every character reads STABLE and the trend column stays hidden until the
+  second weekly run.
+- Scores are relative, so a source failing for the character who holds its peak
+  lifts everyone else's score on that source. Week-over-week movement is not
+  purely popularity.
