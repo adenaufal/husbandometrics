@@ -24,7 +24,7 @@ import { measuredSources, normalizeAgainstPeak, peaksBySource, weightedTotal } f
 import {
   fetchMetricHistory,
   fetchPersistedCharacters,
-  saveMetricSnapshot,
+  saveMetricSnapshots,
   upsertCharacters,
   type PersistedMetrics,
 } from '../db/repository';
@@ -300,14 +300,12 @@ const fetchRankingsFromSource = async (): Promise<RankingsResponse> => {
     })),
   );
 
-  await Promise.all(
-    characters.map((character) =>
-      saveMetricSnapshot({
-        character_id: character.id,
-        ...character.scores,
-        weighted_total: character.weighted_total,
-      }),
-    ),
+  await saveMetricSnapshots(
+    characters.map((character) => ({
+      character_id: character.id,
+      ...character.scores,
+      weighted_total: character.weighted_total,
+    })),
   );
 
   const persisted = await fetchPersistedCharacters();
