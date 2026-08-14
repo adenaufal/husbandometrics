@@ -2,6 +2,7 @@ import { desc, inArray, sql } from 'drizzle-orm';
 import { getConnection, initConnection } from './client';
 import { sqliteCharacters, sqliteMetrics } from './schema/sqlite';
 import { mysqlCharacters, mysqlMetrics } from './schema/mysql';
+import { appendSnapshots, readSnapshots } from './fileStore';
 
 export type PersistedCharacter = {
   id: string;
@@ -57,8 +58,12 @@ export const fetchPersistedCharacters = async (): Promise<PersistedCharacter[] |
 export const fetchMetricHistory = async (
   ids: string[],
 ): Promise<Record<string, PersistedMetrics[]> | null> => {
+  if (ids.length === 0) return null;
+
   const connection = getConnection() ?? (await initConnection());
-  if (!connection || ids.length === 0) return null;
+  // Without a database the committed snapshot file is the history, so trend and
+  // the history chart work on a static deploy too.
+  if (!connection) return readSnapshots(ids);
 
   const rows =
     connection.type === 'turso'
@@ -95,18 +100,28 @@ export const fetchMetricHistory = async (
   }, {});
 };
 
-export const saveMetricSnapshot = async (metrics: PersistedMetrics) => {
-  const connection = getConnection() ?? (await initConnection());
-  if (!connection) return;
+/**
+ * Written as one batch, not one call per character. The file-backed store
+ * rewrites the whole snapshot file, so forty concurrent appends would race and
+ * keep only whichever finished last.
+ */
+export const saveMetricSnapshots = async (batch: PersistedMetrics[]) => {
+  if (!batch.length) return;
 
-  const values = {
+  const connection = getConnection() ?? (await initConnection());
+  if (!connection) {
+    await appendSnapshots(batch);
+    return;
+  }
+
+  const values = batch.map((metrics) => ({
     characterId: metrics.character_id,
     anilist: metrics.anilist,
     mal: metrics.mal,
     ao3: metrics.ao3,
     danbooru: metrics.danbooru,
     weightedTotal: metrics.weighted_total,
-  };
+  }));
 
   if (connection.type === 'turso') {
     await connection.db.insert(sqliteMetrics).values(values);

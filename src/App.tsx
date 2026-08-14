@@ -53,12 +53,15 @@ const AppContent: React.FC<AppContentProps> = ({ language, onLanguageChange }) =
       : 'light',
   );
 
-  const apiBase = import.meta.env.VITE_API_BASE_URL ?? '';
+  // A committed file by default. The board is a weekly measurement with no
+  // per-visitor state, so production serves it statically and never waits on an
+  // upstream read. Point this at /api/rankings to develop against the live API.
+  const rankingsUrl = import.meta.env.VITE_RANKINGS_URL ?? '/rankings.json';
 
   const { data, isLoading, isError, refetch, isFetching } = useQuery<RankingsResponse>({
-    queryKey: ['rankings'],
+    queryKey: ['rankings', rankingsUrl],
     queryFn: async () => {
-      const response = await fetch(`${apiBase}/api/rankings`);
+      const response = await fetch(rankingsUrl);
       if (!response.ok) throw new Error('Failed to fetch rankings');
       return response.json();
     },

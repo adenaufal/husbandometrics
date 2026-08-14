@@ -8,8 +8,10 @@ export default defineConfig(({ mode }) => {
       server: {
         port: 3000,
         host: '0.0.0.0',
+        // Only used when VITE_RANKINGS_URL points at /api/rankings; the
+        // default build reads the committed rankings.json instead.
         proxy: {
-          '/api': env.VITE_API_BASE_URL || 'http://localhost:3001',
+          '/api': env.API_ORIGIN || 'http://localhost:3001',
         },
       },
       plugins: [react()],
