@@ -1,155 +1,176 @@
 # HUSBANDOMETRICS
 
-Data-driven popularity rankings for 2D male characters, aggregated from Pixiv, AO3, and fan communities worldwide.
+Popularity rankings for male 2D characters, measured from public sources.
+
+The product claim is measurement. Everything in here follows from that: no
+sample data, no estimated figures, and no source shown as a number unless it was
+actually read.
 
 ## Tech Stack
-- Vite + React 18 + TypeScript
+
+- Vite + React 19 + TypeScript
 - Tailwind CSS v3
-- Hono (lightweight backend/API)
-- Drizzle ORM + Turso (SQLite edge)
+- Hono (API, run on Node via `@hono/node-server`)
+- Drizzle ORM, optional Turso (SQLite) or PlanetScale (MySQL)
 - Recharts
-- Deploy: Vercel/Cloudflare Pages
-
-## Design System Reference
-
-### Aesthetic
-**Style:** Kawaii-Tech / Y2K Futurist / "Decorated Notebook"
-**Metaphors:** ID Cards, Event Tickets, Personnel Dossiers
-
-### Colors
-```css
-/* Brand */
---tech-pink: #ff5d8f;
---holo-blue: #4cc9f0;
---deep-violet: #7209b7;
---soft-pink: #ff8fa3;
-
-/* Functional */
---bg-main: #f8f9fc;
---bg-modal: #f0f2f5;
---card-surface: #ffffff;
---success: #06d6a0;
---danger: #ef476f;
---warning: #ffca3a;
-
-/* Text */
---text-heading: #1e293b;
---text-body: #475569;
---text-muted: #94a3b8;
-```
-
-### Fonts
-- **Display:** Satoshi (Black 900) - Fontshare
-- **Body:** M PLUS Rounded 1c (500, 700) - Google Fonts
-- **Handwritten:** Gochi Hand - Google Fonts
-
-### Key Components
-
-**Character Card ("The Ticket")**
-- `bg-white border-2 border-slate-100 rounded-3xl`
-- Decorative cutout circles (ticket stub effect)
-- 3D perspective hover rotation
-- Visual barcode element
-
-**Header ("Floating Pill")**
-- `bg-white/90 backdrop-blur-md rounded-full`
-- `border border-slate-200/60 shadow-lg shadow-slate-200/20`
-
-**Detail Modal ("The Dossier")**
-- Split layout: Left profile, Right data
-- Tape strips, stamps, paper clip decorations
-- AI Note: `bg-[#fff9c4]` with handwritten font
-
-**Filter Bar**
-- `bg-white/50 backdrop-blur-sm`
-- Active: `bg-white text-[#ff5d8f] ring-2 ring-[#ff5d8f]/20 scale-105`
-
-### Animations
-- Cards: `hover:-translate-y-2`
-- Images: `group-hover:scale-110 group-hover:rotate-6`
-- Keyframes: `fade-in-up`, `float`
-
-## File Structure
-
-```
-husbandometrics/
-├── src/
-│   ├── main.tsx
-│   ├── App.tsx
-│   ├── index.css
-│   ├── components/
-│   │   ├── Header.tsx
-│   │   ├── FilterBar.tsx
-│   │   ├── CharacterCard.tsx
-│   │   ├── CharacterModal.tsx
-│   │   ├── RadarChart.tsx
-│   │   └── TrendBadge.tsx
-│   ├── hooks/
-│   │   └── useCharacters.ts
-│   ├── lib/
-│   │   ├── api.ts
-│   │   └── scoring.ts
-│   └── data/
-│       └── characters.json
-├── server/                    # Hono backend (optional, for data fetching)
-│   ├── index.ts
-│   ├── routes/
-│   │   └── rankings.ts
-│   └── db/
-│       └── schema.ts
-├── tailwind.config.ts
-├── vite.config.ts
-└── package.json
-```
-
-## Tailwind Config
-
-```typescript
-export default {
-  theme: {
-    extend: {
-      colors: {
-        'tech-pink': '#ff5d8f',
-        'holo-blue': '#4cc9f0',
-        'deep-violet': '#7209b7',
-        'soft-pink': '#ff8fa3',
-      },
-      fontFamily: {
-        display: ['Satoshi', 'sans-serif'],
-        body: ['M PLUS Rounded 1c', 'sans-serif'],
-        hand: ['Gochi Hand', 'cursive'],
-      },
-      animation: {
-        'fade-in-up': 'fadeInUp 0.5s ease-out',
-        'float': 'float 3s ease-in-out infinite',
-      },
-      keyframes: {
-        fadeInUp: {
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-5px)' },
-        },
-      },
-    },
-  },
-}
-```
-
-## Implementation Order
-
-1. **Refactor** - Organize existing prototype into component structure
-2. **Polish Components** - Ensure all ticket/dossier styling matches spec
-3. **State Management** - React Query or Zustand for data fetching
-4. **Backend (Phase 2)** - Hono API + Drizzle for real data
-5. **Fetchers (Phase 3)** - Pixiv, AO3, Danbooru integrations
+- TanStack Query
 
 ## Commands
 
 ```bash
-npm run dev          # Vite dev server
-npm run build        # Production build
-npm run server       # Run Hono backend (if separate)
+npm run dev          # Vite dev server on :3000, proxies /api to :3001
+npm run server       # Hono API on :3001
+npm run server:dev   # same, with watch
+npm run build        # tsc && vite build
+npm run lint         # tsc --noEmit
+npm run check        # scoring self-check (server/utils/metrics.selfcheck.ts)
 ```
+
+Dev needs both `npm run dev` and `npm run server`. Copy `.env.example` to
+`.env.local`; every value is optional.
+
+## Data model
+
+### Sources
+
+Four, all read live, none requiring an API key:
+
+| Source | Counts | Applies to |
+| --- | --- | --- |
+| `anilist` | character favourites | anime, manga |
+| `mal` | character favourites (via Jikan) | anime, manga |
+| `ao3` | works under the canonical character tag | all |
+| `danbooru` | posts under the character tag | all |
+
+AniList and MyAnimeList catalogue anime and manga only. They return a figure for
+some game characters through tie-in manga, but that measures catalogue coverage
+rather than popularity, so both are treated as not applicable to `GAME`.
+
+### The null rule
+
+`null` means no reading. It never means zero, and it is never filled in.
+
+- A source with no reading is excluded from the weighted mean, and the weights
+  renormalise across the sources that did return one.
+- The UI shows it as "Not measured", never as a 0 bar.
+- A character measured by fewer than two sources is left off the board entirely
+  — one reading is not a ranking.
+
+There is no synthetic fallback anywhere in the codebase. An earlier version
+generated hash-based numbers for unreachable sources; they were indistinguishable
+from measurements once they reached the ranking. Do not reintroduce them.
+
+### Scoring
+
+Each source is scored relative to the highest reading on the board for that
+source, on a log scale: `100 * log1p(value) / log1p(peak)`. 100 means "the most
+measured here", not "the maximum possible". The counts are heavy-tailed, so a
+fixed divisor would need re-tuning constantly and a linear scale would leave
+everyone below the top few indistinguishable.
+
+Weights live in `.env` (`WEIGHT_ANILIST` etc.) and default to
+0.35 / 0.25 / 0.2 / 0.2.
+
+### The roster
+
+- Anime and manga characters are discovered from AniList's favourites ranking,
+  filtered to male. No hand-picking.
+- Game characters come from `server/data/gameRoster.ts`. That list is editorial
+  scope, not data — it decides who is covered and never supplies their numbers.
+
+### Matching
+
+Names do not line up across catalogues, and a confident wrong match is worse
+than no match:
+
+- Danbooru writes `surname_given` and its own romanisation (`todoroki_shoto`
+  against AniList's "Shouto Todoroki"), so matching is by token with long vowels
+  collapsed, and the franchise is the tie-breaker.
+- AO3 needs the canonical character tag via `/autocomplete/character`. Free-text
+  search returns 103,000 works for "Xiao" because it matches the substring
+  anywhere. Pairing tags (`/`, `&`) count two characters and are excluded.
+- AniList search hits are only accepted when the franchise corroborates them.
+  Searching "Xiao" otherwise returns a character with 22,000 favourites who is
+  not the Genshin Xiao.
+
+### Rate limits
+
+AO3 throttles hard and is paced at one request per 1.2s with backoff; Jikan at
+one per 400ms. A full refresh takes about four minutes, which the six-hour cache
+and the weekly cron absorb.
+
+## Design
+
+**Direction:** quiet editorial. Type and whitespace carry the design; colour
+carries meaning only.
+
+The board is a ranking table, not a card grid: full-width rows in rank order,
+large rank numeral, portrait, name, provenance dots, score. Detail opens in a
+side panel, not a modal.
+
+### Rules
+
+- **Colour means something.** `rising` and `falling` mark trend; `accent` marks
+  the brand mark and the active control. Nothing else is coloured. Portraits are
+  the only large colour on the page.
+- **Provenance is always visible.** Every row carries four dots showing which
+  sources measured that character. A total averaged over two sources must never
+  look as authoritative as one averaged over four.
+- **No chart that flatters.** Scores cluster between roughly 60 and 96, so a bar
+  drawn from zero fills to nearly the same width on every row and reads as
+  agreement where there is none. The figure in a tabular column is the honest
+  comparison. Same reason the trend column is hidden entirely until snapshots
+  exist rather than filled with em dashes.
+- **Show the arithmetic.** The detail panel prints the raw upstream figure beside
+  each score so a reader can check it against the source.
+- `tabular-nums` on every figure. Digits have to hold their column.
+
+### Tokens
+
+Defined in `tailwind.config.js`; use them, never raw hex.
+
+`paper` (page) · `surface` (raised) · `line` (borders) · `ink` (text) ·
+`muted` (secondary text) · `accent` · `rising` · `falling`
+
+Each has `-light` and `-dark`. Dark mode is a `class` on `<html>`.
+
+### Fonts
+
+- **Satoshi** — display, body, and all figures (Fontshare)
+- **M PLUS Rounded 1c** — Japanese names only; Satoshi has no kana
+
+## File structure
+
+```
+husbandometrics/
+├── index.html, index.tsx, index.css
+├── src/
+│   ├── App.tsx
+│   ├── components/
+│   │   ├── Header.tsx, Footer.tsx, Toolbar.tsx
+│   │   ├── RankingTable.tsx, RankRow.tsx, SourceDots.tsx
+│   │   ├── DetailPanel.tsx, MethodologyModal.tsx
+│   ├── lib/          # i18n, search, history, images
+│   └── types/        # Character, ScoreBreakdown, METRIC_SOURCES
+├── server/
+│   ├── index.ts
+│   ├── config/env.ts
+│   ├── data/gameRoster.ts
+│   ├── db/           # client, repository, schema/{sqlite,mysql}
+│   ├── lib/cache.ts
+│   ├── middleware/rateLimit.ts
+│   ├── routes/       # rankings, integrations
+│   ├── services/     # aggregator, fetchers/
+│   ├── tasks/scheduler.ts
+│   └── utils/metrics.ts
+└── drizzle/
+```
+
+## Known gaps
+
+- MyAnimeList reads 0/40. Jikan returns 504 (`"Jikan failed to connect to
+  MyAnimeList"`) — upstream, not our bug. The fetcher degrades to `null`.
+- Three game characters have no AniList portrait and fall back to a generated
+  monogram.
+- Trend and history need a database. Without one there are no snapshots, so
+  every character reads STABLE and the trend column stays hidden.
