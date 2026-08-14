@@ -1,3 +1,4 @@
+import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
@@ -21,12 +22,11 @@ app.get('/health', (c) => {
   return c.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-const port = process.env.PORT || 3001;
+const port = Number(process.env.PORT ?? 3001);
 
-console.log(`Server running on http://localhost:${port}`);
-startScheduledJobs();
+serve({ fetch: app.fetch, port }, (info) => {
+  console.log(`Server running on http://localhost:${info.port}`);
+  startScheduledJobs();
+});
 
-export default {
-  port,
-  fetch: app.fetch,
-};
+export default app;

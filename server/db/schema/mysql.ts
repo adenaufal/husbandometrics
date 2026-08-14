@@ -10,14 +10,15 @@ export const mysqlCharacters = mysqlTable('characters', {
   createdAt: datetime('created_at').default(sql`CURRENT_TIMESTAMP`),
 });
 
+// Per-source columns are nullable on purpose: null records that a source had no
+// reading for this character, which is different from a measured zero.
 export const mysqlMetrics = mysqlTable('character_metrics', {
   id: int('id').primaryKey().autoincrement(),
   characterId: varchar('character_id', { length: 128 }).notNull(),
-  pixiv: double('pixiv').notNull(),
-  ao3: double('ao3').notNull(),
-  googleTrends: double('google_trends').notNull(),
-  danbooru: double('danbooru').notNull(),
-  twitter: double('twitter').notNull(),
+  anilist: double('anilist'),
+  mal: double('mal'),
+  ao3: double('ao3'),
+  danbooru: double('danbooru'),
   weightedTotal: double('weighted_total').notNull(),
   recordedAt: datetime('recorded_at').default(sql`CURRENT_TIMESTAMP`),
 });

@@ -1,181 +1,294 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { Character, ScoreBreakdown, SourceType, Trend } from '../../src/types';
-import { env } from '../config/env';
 import {
+  Character,
+  HistoricalSnapshot,
+  METRIC_SOURCES,
+  MetricCounts,
+  MetricSourceId,
+  ScoreBreakdown,
+  SourceType,
+  TimePeriod,
+  Trend,
+} from '../../src/types';
+import { env } from '../config/env';
+import { GAME_ROSTER } from '../data/gameRoster';
+import {
+  CharacterProfile,
+  CharacterQuery,
+  discoverTopMaleCharacters,
   fetchAo3Metric,
   fetchDanbooruMetric,
-  fetchGoogleTrendsMetric,
-  fetchPixivMetric,
-  fetchTwitterMetric,
-  MetricResult,
+  fetchMalMetric,
+  lookupProfiles,
 } from './fetchers';
-import { normalizeMetric } from '../utils/metrics';
+import { measuredSources, normalizeAgainstPeak, peaksBySource, weightedTotal } from '../utils/metrics';
 import {
-  fetchLatestMetrics,
+  fetchMetricHistory,
   fetchPersistedCharacters,
   saveMetricSnapshot,
   upsertCharacters,
+  type PersistedMetrics,
 } from '../db/repository';
 import { cacheClient, defaultTtlSeconds } from '../lib/cache';
 
-interface SeedCharacter {
-  id: string;
-  name: string;
-  name_jp: string;
-  aliases?: string[];
-  franchise: string;
-  source_type: string;
-  image_url: string;
-  scores: Partial<ScoreBreakdown>;
-  weighted_total?: number;
-}
+/** Keeps AO3 and Danbooru from rate-limiting a full roster refresh. */
+const FETCH_CONCURRENCY = 4;
 
-interface SeedPayload {
-  characters: SeedCharacter[];
-  metadata: {
-    weights: ScoreBreakdown;
-    version: string;
-  };
-}
-
-interface RankingsResponse {
-  metadata: {
-    updated_at: string;
-    weights: ScoreBreakdown;
-    mode: string;
-  };
-  characters: Character[];
-}
+/** Below this, a character's total says more about our luck than their fandom. */
+const MIN_SOURCES_TO_RANK = 2;
 
 const CACHE_KEYS = {
   all: 'rankings:all',
   byId: (id: string) => `rankings:${id}`,
 };
 
-const loadSeedCharacters = async (): Promise<SeedPayload> => {
-  const seedPath = path.join(process.cwd(), 'src', 'data', 'seed-characters.json');
-  const raw = await fs.readFile(seedPath, 'utf-8');
-  return JSON.parse(raw) as SeedPayload;
+interface RankingsResponse {
+  metadata: {
+    updated_at: string;
+    weights: Record<MetricSourceId, number>;
+    sources: MetricSourceId[];
+    roster: { anime: number; game: number };
+    mode: string;
+  };
+  characters: Character[];
+}
+
+type RosterCharacter = {
+  id: string;
+  name: string;
+  nameJp: string;
+  aliases: string[];
+  franchise: string;
+  sourceType: SourceType;
+  imageUrl: string | null;
+  anilistFavourites: number | null;
+  franchiseHints: string[];
 };
 
-const computeWeightedScore = (scores: ScoreBreakdown) => {
-  const total =
-    scores.pixiv * env.weights.pixiv +
-    scores.ao3 * env.weights.ao3 +
-    scores.google_trends * env.weights.google_trends +
-    scores.danbooru * env.weights.danbooru +
-    scores.twitter * env.weights.twitter;
-  return Number(total.toFixed(2));
+const emptyBreakdown = (): ScoreBreakdown =>
+  Object.fromEntries(METRIC_SOURCES.map((source) => [source, null])) as ScoreBreakdown;
+
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+
+const toRosterCharacter = (
+  profile: CharacterProfile,
+  overrides: Partial<RosterCharacter> = {},
+): RosterCharacter => ({
+  id: slugify(profile.name),
+  name: profile.name,
+  nameJp: profile.nameJp,
+  aliases: profile.aliases,
+  franchise: profile.franchise,
+  sourceType: profile.sourceType,
+  imageUrl: profile.imageUrl,
+  anilistFavourites: profile.favourites,
+  franchiseHints: profile.franchiseHints,
+  ...overrides,
+});
+
+/**
+ * The board is the union of two lists: anime and manga characters discovered
+ * from AniList's favourites ranking, and the curated game roster, whose
+ * identity still comes from a live AniList lookup wherever one exists.
+ */
+const buildRoster = async (): Promise<RosterCharacter[]> => {
+  const [discovered, curatedProfiles] = await Promise.all([
+    discoverTopMaleCharacters(env.animeRosterSize),
+    lookupProfiles(
+      GAME_ROSTER.map((entry) => ({
+        key: entry.id,
+        name: entry.name,
+        franchiseHints: entry.franchiseHints,
+      })),
+    ),
+  ]);
+
+  const roster: RosterCharacter[] = discovered.map((profile) => toRosterCharacter(profile));
+  const seen = new Set(roster.map((character) => character.id));
+
+  GAME_ROSTER.forEach((entry) => {
+    const profile = curatedProfiles[entry.id];
+    // Franchise and type come from the roster: AniList files gacha characters
+    // under whatever anthology manga happens to mention them.
+    roster.push({
+      id: entry.id,
+      name: entry.name,
+      nameJp: profile?.nameJp ?? '',
+      aliases: [...new Set([...entry.aliases, ...(profile?.aliases ?? [])])],
+      franchise: entry.franchise,
+      sourceType: entry.sourceType,
+      imageUrl: profile?.imageUrl ?? entry.imageUrl ?? null,
+      anilistFavourites: profile?.favourites ?? null,
+      franchiseHints: entry.franchiseHints,
+    });
+    seen.add(entry.id);
+  });
+
+  return roster.filter((character, index) => roster.findIndex((c) => c.id === character.id) === index);
 };
 
-const computeTrend = (current: number, previous?: number) => {
-  if (!previous) return Trend.STABLE;
+/**
+ * AniList and MyAnimeList catalogue anime and manga, so neither applies to a
+ * game character.
+ *
+ * They do return a figure for some of them - Zhongli has 1,019 AniList
+ * favourites via a Genshin anthology manga - but that measures how many people
+ * catalogued a tie-in comic, not how popular he is. Counting it would rank the
+ * character with the highest Danbooru tally on the board at #20, for a reason
+ * that is about catalogue coverage rather than popularity. Their profile is
+ * still used for the portrait and the Japanese name.
+ */
+const sourceApplies = (source: MetricSourceId, sourceType: SourceType) =>
+  sourceType !== SourceType.GAME || (source !== 'anilist' && source !== 'mal');
+
+const readCounts = async (character: RosterCharacter): Promise<MetricCounts> => {
+  const query: CharacterQuery = {
+    name: character.name,
+    aliases: character.aliases,
+    franchiseHints: [character.franchise, ...character.franchiseHints],
+  };
+
+  const [ao3, danbooru, mal] = await Promise.all([
+    fetchAo3Metric(query),
+    fetchDanbooruMetric(query),
+    sourceApplies('mal', character.sourceType) ? fetchMalMetric(query) : { value: null },
+  ]);
+
+  const counts: MetricCounts = {
+    anilist: character.anilistFavourites,
+    mal: mal.value,
+    ao3: ao3.value,
+    danbooru: danbooru.value,
+  };
+
+  METRIC_SOURCES.forEach((source) => {
+    if (!sourceApplies(source, character.sourceType)) counts[source] = null;
+  });
+
+  return counts;
+};
+
+const computeTrend = (current: number, previous?: number | null) => {
+  if (previous === undefined || previous === null) return Trend.STABLE;
   const delta = current - previous;
   if (delta > 1.5) return Trend.RISING;
   if (delta < -1.5) return Trend.FALLING;
   return Trend.STABLE;
 };
 
-const normalizeResults = (results: MetricResult[]): ScoreBreakdown => {
-  const mapped: ScoreBreakdown = {
-    pixiv: 0,
-    ao3: 0,
-    google_trends: 0,
-    danbooru: 0,
-    twitter: 0,
-  };
+const bucketKey = (date: Date, period: TimePeriod) => {
+  if (period === TimePeriod.YEAR) return String(date.getUTCFullYear());
+  if (period === TimePeriod.MONTH) {
+    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+  }
+  return date.toISOString().slice(0, 10);
+};
 
-  results.forEach((result) => {
-    mapped[result.source] = normalizeMetric(result.source, result.value);
+const averageOrNull = (values: Array<number | null>) => {
+  const present = values.filter((value): value is number => value !== null && Number.isFinite(value));
+  if (!present.length) return null;
+  return Number((present.reduce((sum, value) => sum + value, 0) / present.length).toFixed(2));
+};
+
+/**
+ * Snapshots land weekly (see tasks/scheduler). MONTH and YEAR are averages over
+ * the same rows rather than separately stored series - one source of truth.
+ */
+const buildHistory = (snapshots: PersistedMetrics[]): HistoricalSnapshot[] => {
+  const chronological = [...snapshots]
+    .filter((row) => row.recorded_at instanceof Date)
+    .sort((a, b) => (a.recorded_at as Date).getTime() - (b.recorded_at as Date).getTime());
+  if (!chronological.length) return [];
+
+  return [TimePeriod.WEEK, TimePeriod.MONTH, TimePeriod.YEAR].flatMap((period) => {
+    const buckets = new Map<string, PersistedMetrics[]>();
+    chronological.forEach((row) => {
+      const key = bucketKey(row.recorded_at as Date, period);
+      const existing = buckets.get(key);
+      if (existing) existing.push(row);
+      else buckets.set(key, [row]);
+    });
+
+    return [...buckets.entries()].map(([label, rows]) => ({
+      label,
+      period,
+      scores: Object.fromEntries(
+        METRIC_SOURCES.map((source) => [source, averageOrNull(rows.map((row) => row[source]))]),
+      ) as ScoreBreakdown,
+      weighted_total: Number(
+        (rows.reduce((sum, row) => sum + row.weighted_total, 0) / rows.length).toFixed(2),
+      ),
+    }));
   });
-
-  return mapped;
-};
-
-const fetchMetricsForCharacter = async (character: SeedCharacter) => {
-  const [pixiv, ao3, google, danbooru, twitter] = await Promise.all([
-    fetchPixivMetric(character.name),
-    fetchAo3Metric(character.name),
-    fetchGoogleTrendsMetric(character.name),
-    fetchDanbooruMetric(character.name),
-    fetchTwitterMetric(character.name),
-  ]);
-
-  return normalizeResults([pixiv, ao3, google, danbooru, twitter]);
-};
-
-const hydrateFromDatabase = async (seedCharacters: SeedCharacter[]) => {
-  const persistedCharacters = await fetchPersistedCharacters();
-  if (!persistedCharacters) return null;
-
-  const persistedMetrics = await fetchLatestMetrics(seedCharacters.map((c) => c.id));
-  if (!persistedMetrics) return null;
-
-  return seedCharacters.map((character) => {
-    const metrics = persistedMetrics[character.id];
-    const breakdown: ScoreBreakdown = {
-      pixiv: metrics?.pixiv ?? 0,
-      ao3: metrics?.ao3 ?? 0,
-      google_trends: metrics?.google_trends ?? 0,
-      danbooru: metrics?.danbooru ?? 0,
-      twitter: metrics?.twitter ?? 0,
-    };
-
-    const weighted_total = metrics?.weighted_total ?? computeWeightedScore(breakdown);
-
-    return {
-      ...character,
-      trend: computeTrend(weighted_total, metrics?.weighted_total),
-      weighted_total,
-      scores: breakdown,
-    } as unknown as Character;
-  });
-};
-
-const mapSeedToCharacter = (seed: SeedCharacter, breakdown: ScoreBreakdown, previous?: number) => {
-  const weighted_total = computeWeightedScore(breakdown);
-  return {
-    id: seed.id,
-    name: seed.name,
-    name_jp: seed.name_jp,
-    source: seed.franchise,
-    source_type: (seed.source_type as keyof typeof SourceType) in SourceType
-      ? (seed.source_type.toUpperCase() as SourceType)
-      : SourceType.ANIME,
-    image_url: seed.image_url,
-    weighted_total,
-    scores: breakdown,
-    trend: computeTrend(weighted_total, previous),
-    rank: 0,
-  } as Character;
 };
 
 const fetchRankingsFromSource = async (): Promise<RankingsResponse> => {
-  const seed = await loadSeedCharacters();
+  const roster = await buildRoster();
 
-  // Try to hydrate from database if configured
-  const hydrated = await hydrateFromDatabase(seed.characters);
-  let characters: Character[];
-
-  if (hydrated) {
-    characters = hydrated;
-  } else {
-    const resolved = await Promise.all(
-      seed.characters.map(async (character) => {
-        const metrics = await fetchMetricsForCharacter(character);
-        return mapSeedToCharacter(character, metrics, character.weighted_total);
-      }),
+  const readings: Array<{ character: RosterCharacter; counts: MetricCounts }> = [];
+  for (let i = 0; i < roster.length; i += FETCH_CONCURRENCY) {
+    const batch = await Promise.all(
+      roster.slice(i, i + FETCH_CONCURRENCY).map(async (character) => ({
+        character,
+        counts: await readCounts(character),
+      })),
     );
-    characters = resolved;
+    readings.push(...batch);
   }
+
+  // Scores are relative, so every peak has to be known before any character can
+  // be scored.
+  const peaks = peaksBySource(readings.map((reading) => reading.counts));
+  const history = await fetchMetricHistory(roster.map((character) => character.id));
+
+  const characters = readings
+    .map(({ character, counts }) => {
+      const scores = Object.fromEntries(
+        METRIC_SOURCES.map((source) => [source, normalizeAgainstPeak(counts[source], peaks[source])]),
+      ) as ScoreBreakdown;
+
+      const measured = measuredSources(scores);
+      // One reading is not a ranking. A transient AO3 failure once left a
+      // character scored on Danbooru alone, which put him at #9 on the strength
+      // of a single number nobody else was being compared on.
+      if (measured.length < MIN_SOURCES_TO_RANK) return null;
+
+      const total = weightedTotal(scores, env.weights);
+      if (total === null) return null;
+
+      const snapshots = history?.[character.id] ?? [];
+      const character_: Character = {
+        id: character.id,
+        name: character.name,
+        name_jp: character.nameJp,
+        aliases: character.aliases,
+        source: character.franchise,
+        franchise: character.franchise,
+        source_type: character.sourceType,
+        image_url: character.imageUrl ?? '',
+        scores,
+        counts,
+        weighted_total: total,
+        // Newest first, so [0] is the reading this run replaces.
+        trend: computeTrend(total, snapshots[0]?.weighted_total),
+        measured_sources: measured,
+        history: buildHistory(snapshots),
+        rank: 0,
+      };
+      return character_;
+    })
+    .filter((character): character is Character => character !== null);
 
   characters.sort((a, b) => b.weighted_total - a.weighted_total);
   characters.forEach((character, index) => {
     characters[index] = { ...character, rank: index + 1 };
   });
 
-  // Persist data if database is connected
   await upsertCharacters(
     characters.map((character) => ({
       id: character.id,
@@ -197,27 +310,29 @@ const fetchRankingsFromSource = async (): Promise<RankingsResponse> => {
     ),
   );
 
+  const persisted = await fetchPersistedCharacters();
+
   return {
     metadata: {
       updated_at: new Date().toISOString(),
       weights: env.weights,
-      mode: hydrated ? 'database' : 'live',
+      sources: [...METRIC_SOURCES],
+      roster: {
+        anime: characters.filter((c) => c.source_type !== SourceType.GAME).length,
+        game: characters.filter((c) => c.source_type === SourceType.GAME).length,
+      },
+      mode: persisted?.length ? 'live+persisted' : 'live',
     },
     characters,
   };
 };
 
 export const getAllRankings = async (): Promise<RankingsResponse> => {
-  // Try to get from cache first
   const cached = await cacheClient.get<RankingsResponse>(CACHE_KEYS.all);
   if (cached) return cached;
 
-  // Fetch fresh data
   const payload = await fetchRankingsFromSource();
-  
-  // Cache the result
   await cacheClient.set(CACHE_KEYS.all, payload, defaultTtlSeconds);
-  
   return payload;
 };
 
@@ -240,12 +355,13 @@ export const refreshRankings = async (): Promise<RankingsResponse> => {
   await cacheClient.delete(CACHE_KEYS.all);
   const refreshed = await getAllRankings();
 
-  // Refresh individual caches so detail pages stay hot in Redis/Upstash
   await Promise.all(
-    refreshed.characters.map((character) => 
-      cacheClient.set(CACHE_KEYS.byId(character.id), character, defaultTtlSeconds)
-    )
+    refreshed.characters.map((character) =>
+      cacheClient.set(CACHE_KEYS.byId(character.id), character, defaultTtlSeconds),
+    ),
   );
 
   return refreshed;
 };
+
+export { emptyBreakdown };

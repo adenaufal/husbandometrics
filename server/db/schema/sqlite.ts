@@ -6,17 +6,18 @@ export const sqliteCharacters = sqliteTable('characters', {
   source: text('source').notNull(),
   sourceType: text('source_type', { enum: ['ANIME', 'GAME', 'MANGA'] }).notNull(),
   imageUrl: text('image_url'),
-  createdAt: integer('created_at', { mode: 'timestamp' }).defaultNow(),
+  createdAt: integer('created_at', { mode: 'timestamp_ms' }).defaultNow(),
 });
 
+// Per-source columns are nullable on purpose: null records that a source had no
+// reading for this character, which is different from a measured zero.
 export const sqliteMetrics = sqliteTable('character_metrics', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   characterId: text('character_id').notNull(),
-  pixiv: real('pixiv').notNull(),
-  ao3: real('ao3').notNull(),
-  googleTrends: real('google_trends').notNull(),
-  danbooru: real('danbooru').notNull(),
-  twitter: real('twitter').notNull(),
+  anilist: real('anilist'),
+  mal: real('mal'),
+  ao3: real('ao3'),
+  danbooru: real('danbooru'),
   weightedTotal: real('weighted_total').notNull(),
-  recordedAt: integer('recorded_at', { mode: 'timestamp' }).defaultNow(),
+  recordedAt: integer('recorded_at', { mode: 'timestamp_ms' }).defaultNow(),
 });
