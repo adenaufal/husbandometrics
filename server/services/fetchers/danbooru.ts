@@ -43,7 +43,30 @@ const scoreTag = (tag: DanbooruTag, nameTokens: string[], franchiseTokens: strin
   return score;
 };
 
+/** Direct count for a tag we already know, skipping the candidate search. */
+const countPosts = async (tag: string) => {
+  const response = await http.get('https://danbooru.donmai.us/counts/posts.json', {
+    params: { tags: tag },
+    headers: env.danbooruToken ? { Authorization: `Bearer ${env.danbooruToken}` } : undefined,
+  });
+
+  const count = response.data?.counts?.posts;
+  return Number.isFinite(count) ? (count as number) : null;
+};
+
 export const fetchDanbooruMetric = async (query: CharacterQuery): Promise<MetricResult> => {
+  // A remembered tag is one request instead of a search per alias. A stale one
+  // counts zero, and the fall-through re-resolves it.
+  if (query.knownTag) {
+    try {
+      const cached = await countPosts(query.knownTag);
+      if (cached) return { source: 'danbooru', value: cached, raw: query.knownTag };
+    } catch (error) {
+      const status = (error as { response?: { status?: number } }).response?.status;
+      console.warn(`[danbooru] Cached tag lookup failed for "${query.knownTag}"${status ? ` (${status})` : ''}`);
+    }
+  }
+
   const franchiseTokens = query.franchiseHints.flatMap(tokenize);
   const terms = [query.name, ...query.aliases];
 

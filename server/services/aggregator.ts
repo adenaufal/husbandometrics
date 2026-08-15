@@ -29,6 +29,7 @@ import {
   type PersistedMetrics,
 } from '../db/repository';
 import { cacheClient, defaultTtlSeconds } from '../lib/cache';
+import { readTags, writeTags, type KnownTags } from '../db/tagStore';
 
 /** Keeps AO3 and Danbooru from rate-limiting a full roster refresh. */
 const FETCH_CONCURRENCY = 4;
@@ -146,7 +147,10 @@ const buildRoster = async (): Promise<RosterCharacter[]> => {
 const sourceApplies = (source: MetricSourceId, sourceType: SourceType) =>
   sourceType !== SourceType.GAME || (source !== 'anilist' && source !== 'mal');
 
-const readCounts = async (character: RosterCharacter): Promise<MetricCounts> => {
+const readCounts = async (
+  character: RosterCharacter,
+  known: KnownTags = {},
+): Promise<{ counts: MetricCounts; tags: KnownTags }> => {
   const query: CharacterQuery = {
     name: character.name,
     aliases: character.aliases,
@@ -154,9 +158,9 @@ const readCounts = async (character: RosterCharacter): Promise<MetricCounts> => 
   };
 
   const [ao3, danbooru, mal] = await Promise.all([
-    fetchAo3Metric(query),
-    fetchDanbooruMetric(query),
-    sourceApplies('mal', character.sourceType) ? fetchMalMetric(query) : { value: null },
+    fetchAo3Metric({ ...query, knownTag: known.ao3 }),
+    fetchDanbooruMetric({ ...query, knownTag: known.danbooru }),
+    sourceApplies('mal', character.sourceType) ? fetchMalMetric(query) : { value: null, raw: undefined },
   ]);
 
   const counts: MetricCounts = {
@@ -170,7 +174,11 @@ const readCounts = async (character: RosterCharacter): Promise<MetricCounts> => 
     if (!sourceApplies(source, character.sourceType)) counts[source] = null;
   });
 
-  return counts;
+  const tags: KnownTags = {};
+  if (typeof ao3.raw === 'string') tags.ao3 = ao3.raw;
+  if (typeof danbooru.raw === 'string') tags.danbooru = danbooru.raw;
+
+  return { counts, tags };
 };
 
 const computeTrend = (current: number, previous?: number | null) => {
@@ -230,21 +238,30 @@ const buildHistory = (snapshots: PersistedMetrics[]): HistoricalSnapshot[] => {
 const fetchRankingsFromSource = async (): Promise<RankingsResponse> => {
   const roster = await buildRoster();
 
+  const knownTags = await readTags();
   const readings: Array<{ character: RosterCharacter; counts: MetricCounts }> = [];
+  const resolvedTags: Record<string, KnownTags> = {};
+
   for (let i = 0; i < roster.length; i += FETCH_CONCURRENCY) {
     const batch = await Promise.all(
-      roster.slice(i, i + FETCH_CONCURRENCY).map(async (character) => ({
-        character,
-        counts: await readCounts(character),
-      })),
+      roster.slice(i, i + FETCH_CONCURRENCY).map(async (character) => {
+        const { counts, tags } = await readCounts(character, knownTags[character.id]);
+        if (Object.keys(tags).length) resolvedTags[character.id] = tags;
+        return { character, counts };
+      }),
     );
     readings.push(...batch);
   }
 
+  await writeTags(resolvedTags);
+
   // Scores are relative, so every peak has to be known before any character can
   // be scored.
   const peaks = peaksBySource(readings.map((reading) => reading.counts));
-  const history = await fetchMetricHistory(roster.map((character) => character.id));
+  // Read before the save: [0] is the previous reading, which is what the trend
+  // compares this run against.
+  const rosterIds = roster.map((character) => character.id);
+  const priorHistory = await fetchMetricHistory(rosterIds);
 
   const characters = readings
     .map(({ character, counts }) => {
@@ -261,7 +278,7 @@ const fetchRankingsFromSource = async (): Promise<RankingsResponse> => {
       const total = weightedTotal(scores, env.weights);
       if (total === null) return null;
 
-      const snapshots = history?.[character.id] ?? [];
+      const snapshots = priorHistory?.[character.id] ?? [];
       const character_: Character = {
         id: character.id,
         name: character.name,
@@ -277,7 +294,7 @@ const fetchRankingsFromSource = async (): Promise<RankingsResponse> => {
         // Newest first, so [0] is the reading this run replaces.
         trend: computeTrend(total, snapshots[0]?.weighted_total),
         measured_sources: measured,
-        history: buildHistory(snapshots),
+        history: [],
         rank: 0,
       };
       return character_;
@@ -307,6 +324,14 @@ const fetchRankingsFromSource = async (): Promise<RankingsResponse> => {
       weighted_total: character.weighted_total,
     })),
   );
+
+  // Re-read so the attached history ends on this run's reading. Built from the
+  // pre-save state, the newest point was the previous refresh, so the score the
+  // UI showed for the current period disagreed with the rank beside it.
+  const history = await fetchMetricHistory(rosterIds);
+  characters.forEach((character, index) => {
+    characters[index] = { ...character, history: buildHistory(history?.[character.id] ?? []) };
+  });
 
   const persisted = await fetchPersistedCharacters();
 
