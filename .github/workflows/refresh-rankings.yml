@@ -18,9 +18,12 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    # A full read paces ~80 AO3 requests and takes about four minutes; this is
-    # headroom for a slow upstream, not an expected duration.
-    timeout-minutes: 25
+    # A warm refresh takes about five minutes: data/tags.json remembers which
+    # upstream tag each character is filed under, which halves the AO3 requests
+    # and turns each Danbooru search into a single count. A cold one — new
+    # characters, or tags that moved — costs four times that, so the ceiling is
+    # set for the cold case rather than the usual one.
+    timeout-minutes: 45
 
     steps:
       - uses: actions/checkout@v4
@@ -37,12 +40,12 @@ jobs:
 
       - name: Commit if the numbers moved
         run: |
-          if [ -z "$(git status --porcelain public/rankings.json data/snapshots.json)" ]; then
+          if [ -z "$(git status --porcelain public/rankings.json data/snapshots.json data/tags.json)" ]; then
             echo "No change; nothing to commit."
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/rankings.json data/snapshots.json
+          git add public/rankings.json data/snapshots.json data/tags.json
           git commit -m "chore(data): weekly refresh $(date -u +%Y-%m-%d)"
           git push

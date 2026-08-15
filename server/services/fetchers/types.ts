@@ -27,6 +27,12 @@ export type CharacterQuery = {
   name: string;
   aliases: string[];
   franchiseHints: string[];
+  /**
+   * The tag this source used last time, if we know it. Resolving a tag costs a
+   * request against the slowest source in the pipeline and the answer almost
+   * never changes, so it is remembered between refreshes.
+   */
+  knownTag?: string;
 };
 
 export type Fetcher = (query: CharacterQuery) => Promise<MetricResult>;

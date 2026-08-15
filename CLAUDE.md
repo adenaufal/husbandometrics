@@ -86,6 +86,15 @@ everyone below the top few indistinguishable.
 Weights live in `.env` (`WEIGHT_ANILIST` etc.) and default to
 0.35 / 0.25 / 0.2 / 0.2.
 
+### Tag cache
+
+`data/tags.json`, committed. Half of an AO3 read is spent resolving which tag a
+character is filed under — "Zhongli (Genshin Impact)", "Bakugou Katsuki" — and
+that answer changes about never. Remembering it halves the requests to the
+slowest source and turns each Danbooru search into a single count, taking a
+refresh from roughly 22 minutes to 5. A stale tag returns nothing, and the
+fetcher re-resolves it in place.
+
 ### History
 
 `data/snapshots.json`, committed to the repo. One row per character per refresh,
@@ -123,8 +132,9 @@ than no match:
 ### Rate limits
 
 AO3 throttles hard and is paced at one request per 1.2s with backoff; Jikan at
-one per 400ms. A full refresh takes about four minutes, which the six-hour cache
-and the weekly cron absorb.
+one per 400ms. AO3 sets the wall clock: a warm refresh of ~100 characters takes
+about five minutes, a cold one about twenty-two. Roster size is sized against
+that budget, not against a web request.
 
 ## Design
 
@@ -181,6 +191,7 @@ husbandometrics/
 │   └── types/        # Character, ScoreBreakdown, METRIC_SOURCES
 ├── scripts/build-snapshot.ts   # writes public/rankings.json
 ├── data/snapshots.json         # committed history
+├── data/tags.json              # remembered upstream tag names
 ├── public/rankings.json        # what production serves
 ├── .github/workflows/          # weekly refresh
 ├── server/
@@ -199,7 +210,7 @@ husbandometrics/
 
 ## Known gaps
 
-- MyAnimeList reads 0/39. Jikan returns 504 (`"Jikan failed to connect to
+- MyAnimeList reads 0/103. Jikan returns 504 (`"Jikan failed to connect to
   MyAnimeList"`) — upstream, not our bug. The fetcher degrades to `null`.
 - Three game characters have no AniList portrait and fall back to a generated
   monogram.
