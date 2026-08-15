@@ -2,7 +2,7 @@
 
 Popularity rankings for male 2D characters, measured from public sources.
 
-Around forty characters, ranked by a weighted mean of four live readings. Nothing on the
+Around a hundred characters, ranked by a weighted mean of four live readings. Nothing on the
 board is estimated, sampled, or filled in: when a source cannot be read it is
 marked "Not measured" and left out of the total rather than counted as zero.
 
@@ -20,7 +20,7 @@ To rebuild the data yourself:
 
 ```bash
 cp .env.example .env.local   # every value is optional
-npm run snapshot             # reads all four sources, ~4 minutes
+npm run snapshot             # reads all four sources; ~5 min warm, ~22 cold
 ```
 
 | Script | What it does |
@@ -38,7 +38,8 @@ Static. The board is a weekly measurement with no per-visitor state and no
 writes, so there is no API in production:
 
 1. A GitHub Action runs `npm run snapshot` every Monday, writing
-   `public/rankings.json` and appending to `data/snapshots.json`.
+   `public/rankings.json`, appending to `data/snapshots.json`, and updating
+   `data/tags.json`.
 2. It commits both. The host redeploys on the push.
 3. The page fetches `/rankings.json`.
 
@@ -107,6 +108,10 @@ list decides who is covered; it never supplies their numbers.
   hours by default (`CACHE_TTL_SECONDS`).
 - **Rate limiting** — 100 requests/min on `/api/*`, Upstash-backed when
   configured.
+- **Tag cache** — `data/tags.json`, committed. Half of an AO3 read is spent
+  asking which tag a character is filed under, and that answer changes about
+  never. Remembering it takes a refresh from ~22 minutes to ~5. A stale tag
+  returns nothing and is re-resolved on the spot.
 - **History** — `data/snapshots.json`, committed. One row per character per
   refresh, capped at two years, deduplicated per day so a hand-triggered refresh
   cannot weight that day twice. This is what trend and the history chart read.
@@ -135,6 +140,7 @@ server/
 scripts/
   build-snapshot.ts     writes public/rankings.json
 data/snapshots.json     committed history
+data/tags.json          remembered upstream tag names
 public/rankings.json    what production serves
 .github/workflows/      weekly refresh
 ```
@@ -149,7 +155,7 @@ figure beside each score so a reader can check it. Conventions are in
 
 ## Known gaps
 
-- **MyAnimeList reads 0/39.** Jikan returns `504 "Jikan failed to connect to
+- **MyAnimeList reads 0/103.** Jikan returns `504 "Jikan failed to connect to
   MyAnimeList"` — upstream, not this codebase. The fetcher degrades to `null`.
 - **Three game characters have no portrait** (Alhaitham, Blade, Wriothesley);
   AniList has no entry for them, so a generated monogram stands in.

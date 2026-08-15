@@ -91,7 +91,9 @@ export const discoverTopMaleCharacters = async (limit: number): Promise<Characte
 
   const collected: CharacterProfile[] = [];
   // Cap the paging so a shifting upstream ordering cannot spin this forever.
-  for (let page = 1; page <= 8 && collected.length < limit; page += 1) {
+  // Roughly two thirds of AniList's top characters are female, so reaching a
+  // male roster of N needs noticeably more than N/50 pages.
+  for (let page = 1; page <= 20 && collected.length < limit; page += 1) {
     const data = await post<{
       Page: { pageInfo: { hasNextPage: boolean }; characters: AniListCharacter[] };
     }>(query, { page });

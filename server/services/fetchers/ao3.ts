@@ -112,23 +112,34 @@ const resolveCharacterTag = async (query: CharacterQuery): Promise<string | null
   return scored.sort((a, b) => b.score - a.score)[0].tag;
 };
 
+const countWorks = async (tag: string) => {
+  // /works is the generic index and ignores work_search - only /works/search
+  // actually runs the query.
+  const response = await withRetry(() =>
+    paced(() =>
+      http.get(`${env.ao3BaseUrl}/works/search`, {
+        params: { 'work_search[character_names]': tag },
+        headers: AO3_HEADERS,
+      }),
+    ),
+  );
+
+  return parseResultCount(response.data);
+};
+
 export const fetchAo3Metric = async (query: CharacterQuery): Promise<MetricResult> => {
   try {
+    // A remembered tag skips the lookup entirely. If it has gone stale the
+    // count comes back empty, and the fall-through re-resolves it once.
+    if (query.knownTag) {
+      const cached = await countWorks(query.knownTag);
+      if (Number.isFinite(cached)) return { source: 'ao3', value: cached, raw: query.knownTag };
+    }
+
     const tag = await resolveCharacterTag(query);
     if (!tag) return { source: 'ao3', value: null };
 
-    // /works is the generic index and ignores work_search - only /works/search
-    // actually runs the query.
-    const response = await withRetry(() =>
-      paced(() =>
-        http.get(`${env.ao3BaseUrl}/works/search`, {
-          params: { 'work_search[character_names]': tag },
-          headers: AO3_HEADERS,
-        }),
-      ),
-    );
-
-    const count = parseResultCount(response.data);
+    const count = await countWorks(tag);
     return Number.isFinite(count)
       ? { source: 'ao3', value: count, raw: tag }
       : { source: 'ao3', value: null };
