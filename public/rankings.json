@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "updated_at": "2026-08-15T00:36:41.997Z",
+    "updated_at": "2026-08-17T05:00:25.837Z",
     "weights": {
       "anilist": 0.35,
       "mal": 0.25,
@@ -32,18 +32,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b127691-9zqh1xpIubn7.png",
       "scores": {
-        "anilist": 99.71,
+        "anilist": 99.7,
         "mal": null,
-        "ao3": 91.72,
-        "danbooru": 93.56
+        "ao3": 91.73,
+        "danbooru": 93.59
       },
       "counts": {
-        "anilist": 41687,
+        "anilist": 41503,
         "mal": null,
-        "ao3": 69842,
-        "danbooru": 5604
+        "ao3": 69989,
+        "danbooru": 5618
       },
-      "weighted_total": 95.94,
+      "weighted_total": 95.95,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -74,13 +74,24 @@
           "weighted_total": 95.94
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 99.7,
+            "mal": null,
+            "ao3": 91.73,
+            "danbooru": 93.59
+          },
+          "weighted_total": 95.95
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": 99.71,
             "mal": null,
             "ao3": 91.72,
-            "danbooru": 93.56
+            "danbooru": 93.57
           },
           "weighted_total": 95.94
         },
@@ -91,7 +102,7 @@
             "anilist": 99.71,
             "mal": null,
             "ao3": 91.72,
-            "danbooru": 93.56
+            "danbooru": 93.57
           },
           "weighted_total": 95.94
         }
@@ -116,13 +127,13 @@
         "anilist": 98,
         "mal": null,
         "ao3": 88.44,
-        "danbooru": 99.41
+        "danbooru": 99.42
       },
       "counts": {
-        "anilist": 34740,
+        "anilist": 34626,
         "mal": null,
-        "ao3": 46868,
-        "danbooru": 9615
+        "ao3": 46892,
+        "danbooru": 9621
       },
       "weighted_total": 95.83,
       "trend": "STABLE",
@@ -151,6 +162,17 @@
             "mal": null,
             "ao3": 88.44,
             "danbooru": 99.41
+          },
+          "weighted_total": 95.83
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 98,
+            "mal": null,
+            "ao3": 88.44,
+            "danbooru": 99.42
           },
           "weighted_total": 95.83
         },
@@ -194,16 +216,16 @@
       "scores": {
         "anilist": 92.15,
         "mal": null,
-        "ao3": 99.37,
-        "danbooru": 96.47
+        "ao3": 99.36,
+        "danbooru": 96.51
       },
       "counts": {
-        "anilist": 18614,
+        "anilist": 18550,
         "mal": null,
-        "ao3": 176962,
-        "danbooru": 7329
+        "ao3": 176937,
+        "danbooru": 7360
       },
-      "weighted_total": 95.23,
+      "weighted_total": 95.24,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -234,13 +256,24 @@
           "weighted_total": 95.23
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 92.15,
+            "mal": null,
+            "ao3": 99.36,
+            "danbooru": 96.51
+          },
+          "weighted_total": 95.24
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": 92.15,
             "mal": null,
             "ao3": 99.37,
-            "danbooru": 96.47
+            "danbooru": 96.48
           },
           "weighted_total": 95.23
         },
@@ -251,7 +284,7 @@
             "anilist": 92.15,
             "mal": null,
             "ao3": 99.37,
-            "danbooru": 96.47
+            "danbooru": 96.48
           },
           "weighted_total": 95.23
         }
@@ -271,16 +304,16 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b89028-8w1I9o1ISHMg.png",
       "scores": {
-        "anilist": 90.68,
+        "anilist": 90.67,
         "mal": null,
         "ao3": 100,
-        "danbooru": 97.77
+        "danbooru": 97.79
       },
       "counts": {
-        "anilist": 15906,
+        "anilist": 15850,
         "mal": null,
-        "ao3": 191125,
-        "danbooru": 8263
+        "ao3": 191331,
+        "danbooru": 8279
       },
       "weighted_total": 95.06,
       "trend": "STABLE",
@@ -313,13 +346,24 @@
           "weighted_total": 95.06
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.67,
+            "mal": null,
+            "ao3": 100,
+            "danbooru": 97.79
+          },
+          "weighted_total": 95.06
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": 90.68,
             "mal": null,
             "ao3": 100,
-            "danbooru": 97.77
+            "danbooru": 97.78
           },
           "weighted_total": 95.06
         },
@@ -330,7 +374,7 @@
             "anilist": 90.68,
             "mal": null,
             "ao3": 100,
-            "danbooru": 97.77
+            "danbooru": 97.78
           },
           "weighted_total": 95.06
         }
@@ -359,9 +403,9 @@
         "danbooru": 84.97
       },
       "counts": {
-        "anilist": 43001,
+        "anilist": 42873,
         "mal": null,
-        "ao3": 54358,
+        "ao3": 54394,
         "danbooru": 2537
       },
       "weighted_total": 93.23,
@@ -385,6 +429,17 @@
         },
         {
           "label": "2026-08-15",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 100,
+            "mal": null,
+            "ao3": 89.66,
+            "danbooru": 84.97
+          },
+          "weighted_total": 93.23
+        },
+        {
+          "label": "2026-08-17",
           "period": "WEEK",
           "scores": {
             "anilist": 100,
@@ -434,16 +489,16 @@
       "scores": {
         "anilist": null,
         "mal": null,
-        "ao3": 86.03,
+        "ao3": 86.02,
         "danbooru": 100
       },
       "counts": {
         "anilist": null,
         "mal": null,
-        "ao3": 34952,
-        "danbooru": 10150
+        "ao3": 34961,
+        "danbooru": 10153
       },
-      "weighted_total": 93.02,
+      "weighted_total": 93.01,
       "trend": "STABLE",
       "measured_sources": [
         "ao3",
@@ -471,6 +526,17 @@
             "danbooru": 100
           },
           "weighted_total": 93.02
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 86.02,
+            "danbooru": 100
+          },
+          "weighted_total": 93.01
         },
         {
           "label": "Aug 2026",
@@ -498,6 +564,95 @@
       "rank": 6
     },
     {
+      "id": "yuuji-itadori",
+      "name": "Yuuji Itadori",
+      "name_jp": "虎杖悠仁",
+      "aliases": [
+        "Sukuna's Vessel",
+        "The Tiger of West Junior High"
+      ],
+      "source": "JUJUTSU KAISEN",
+      "franchise": "JUJUTSU KAISEN",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b127212-FVm2tD0erQ5B.png",
+      "scores": {
+        "anilist": 94.01,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 90.74
+      },
+      "counts": {
+        "anilist": 22629,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 4320
+      },
+      "weighted_total": 92.82,
+      "trend": "RISING",
+      "measured_sources": [
+        "anilist",
+        "danbooru"
+      ],
+      "history": [
+        {
+          "label": "2026-08-14",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 94.01,
+            "mal": null,
+            "ao3": 86.85,
+            "danbooru": 90.71
+          },
+          "weighted_total": 91.22
+        },
+        {
+          "label": "2026-08-15",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 94.01,
+            "mal": null,
+            "ao3": 86.85,
+            "danbooru": 90.71
+          },
+          "weighted_total": 91.22
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 94.01,
+            "mal": null,
+            "ao3": null,
+            "danbooru": 90.74
+          },
+          "weighted_total": 92.82
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": 94.01,
+            "mal": null,
+            "ao3": 86.85,
+            "danbooru": 90.72
+          },
+          "weighted_total": 91.75
+        },
+        {
+          "label": "2026",
+          "period": "YEAR",
+          "scores": {
+            "anilist": 94.01,
+            "mal": null,
+            "ao3": 86.85,
+            "danbooru": 90.72
+          },
+          "weighted_total": 91.75
+        }
+      ],
+      "rank": 7
+    },
+    {
       "id": "naruto-uzumaki",
       "name": "Naruto Uzumaki",
       "name_jp": "うずまきナルト",
@@ -515,18 +670,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b17-phjcWCkRuIhu.png",
       "scores": {
-        "anilist": 92.79,
+        "anilist": 92.8,
         "mal": null,
         "ao3": 89.95,
-        "danbooru": 93.42
+        "danbooru": 93.43
       },
       "counts": {
-        "anilist": 19927,
+        "anilist": 19883,
         "mal": null,
-        "ao3": 56325,
-        "danbooru": 5532
+        "ao3": 56351,
+        "danbooru": 5537
       },
-      "weighted_total": 92.2,
+      "weighted_total": 92.21,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -557,6 +712,17 @@
           "weighted_total": 92.2
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 92.8,
+            "mal": null,
+            "ao3": 89.95,
+            "danbooru": 93.43
+          },
+          "weighted_total": 92.21
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -579,7 +745,7 @@
           "weighted_total": 92.2
         }
       ],
-      "rank": 7
+      "rank": 8
     },
     {
       "id": "tartaglia",
@@ -600,16 +766,16 @@
       "scores": {
         "anilist": null,
         "mal": null,
-        "ao3": 87.26,
-        "danbooru": 96.47
+        "ao3": 87.25,
+        "danbooru": 96.49
       },
       "counts": {
         "anilist": null,
         "mal": null,
-        "ao3": 40576,
-        "danbooru": 7331
+        "ao3": 40592,
+        "danbooru": 7341
       },
-      "weighted_total": 91.86,
+      "weighted_total": 91.87,
       "trend": "STABLE",
       "measured_sources": [
         "ao3",
@@ -639,13 +805,24 @@
           "weighted_total": 91.86
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 87.25,
+            "danbooru": 96.49
+          },
+          "weighted_total": 91.87
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": null,
             "mal": null,
             "ao3": 87.26,
-            "danbooru": 96.47
+            "danbooru": 96.48
           },
           "weighted_total": 91.86
         },
@@ -656,12 +833,12 @@
             "anilist": null,
             "mal": null,
             "ao3": 87.26,
-            "danbooru": 96.47
+            "danbooru": 96.48
           },
           "weighted_total": 91.86
         }
       ],
-      "rank": 8
+      "rank": 9
     },
     {
       "id": "shouto-todoroki",
@@ -681,15 +858,15 @@
         "anilist": 92.65,
         "mal": null,
         "ao3": 94.23,
-        "danbooru": 86.11
+        "danbooru": 86.17
       },
       "counts": {
-        "anilist": 19637,
+        "anilist": 19565,
         "mal": null,
-        "ao3": 94747,
-        "danbooru": 2817
+        "ao3": 94818,
+        "danbooru": 2834
       },
-      "weighted_total": 91.33,
+      "weighted_total": 91.34,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -720,13 +897,24 @@
           "weighted_total": 91.33
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 92.65,
+            "mal": null,
+            "ao3": 94.23,
+            "danbooru": 86.17
+          },
+          "weighted_total": 91.34
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": 92.65,
             "mal": null,
             "ao3": 94.23,
-            "danbooru": 86.11
+            "danbooru": 86.13
           },
           "weighted_total": 91.33
         },
@@ -737,88 +925,9 @@
             "anilist": 92.65,
             "mal": null,
             "ao3": 94.23,
-            "danbooru": 86.11
+            "danbooru": 86.13
           },
           "weighted_total": 91.33
-        }
-      ],
-      "rank": 9
-    },
-    {
-      "id": "yuuji-itadori",
-      "name": "Yuuji Itadori",
-      "name_jp": "虎杖悠仁",
-      "aliases": [
-        "Sukuna's Vessel",
-        "The Tiger of West Junior High"
-      ],
-      "source": "JUJUTSU KAISEN",
-      "franchise": "JUJUTSU KAISEN",
-      "source_type": "ANIME",
-      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b127212-FVm2tD0erQ5B.png",
-      "scores": {
-        "anilist": 94.01,
-        "mal": null,
-        "ao3": 86.85,
-        "danbooru": 90.71
-      },
-      "counts": {
-        "anilist": 22699,
-        "mal": null,
-        "ao3": 38617,
-        "danbooru": 4309
-      },
-      "weighted_total": 91.22,
-      "trend": "STABLE",
-      "measured_sources": [
-        "anilist",
-        "ao3",
-        "danbooru"
-      ],
-      "history": [
-        {
-          "label": "2026-08-14",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 94.01,
-            "mal": null,
-            "ao3": 86.85,
-            "danbooru": 90.71
-          },
-          "weighted_total": 91.22
-        },
-        {
-          "label": "2026-08-15",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 94.01,
-            "mal": null,
-            "ao3": 86.85,
-            "danbooru": 90.71
-          },
-          "weighted_total": 91.22
-        },
-        {
-          "label": "Aug 2026",
-          "period": "MONTH",
-          "scores": {
-            "anilist": 94.01,
-            "mal": null,
-            "ao3": 86.85,
-            "danbooru": 90.71
-          },
-          "weighted_total": 91.22
-        },
-        {
-          "label": "2026",
-          "period": "YEAR",
-          "scores": {
-            "anilist": 94.01,
-            "mal": null,
-            "ao3": 86.85,
-            "danbooru": 90.71
-          },
-          "weighted_total": 91.22
         }
       ],
       "rank": 10
@@ -839,14 +948,14 @@
       "scores": {
         "anilist": 89.66,
         "mal": null,
-        "ao3": 89.11,
-        "danbooru": 90.88
+        "ao3": 89.1,
+        "danbooru": 90.89
       },
       "counts": {
-        "anilist": 14261,
+        "anilist": 14235,
         "mal": null,
-        "ao3": 50806,
-        "danbooru": 4377
+        "ao3": 50842,
+        "danbooru": 4381
       },
       "weighted_total": 89.84,
       "trend": "STABLE",
@@ -875,6 +984,17 @@
             "mal": null,
             "ao3": 89.11,
             "danbooru": 90.88
+          },
+          "weighted_total": 89.84
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 89.66,
+            "mal": null,
+            "ao3": 89.1,
+            "danbooru": 90.89
           },
           "weighted_total": 89.84
         },
@@ -923,18 +1043,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b305-6lisPmHtCnLT.png",
       "scores": {
-        "anilist": 90.3,
+        "anilist": 90.32,
         "mal": null,
         "ao3": 85.76,
-        "danbooru": 92.82
+        "danbooru": 92.83
       },
       "counts": {
-        "anilist": 15276,
+        "anilist": 15270,
         "mal": null,
-        "ao3": 33815,
-        "danbooru": 5233
+        "ao3": 33859,
+        "danbooru": 5238
       },
-      "weighted_total": 89.76,
+      "weighted_total": 89.77,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -965,10 +1085,21 @@
           "weighted_total": 89.76
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.32,
+            "mal": null,
+            "ao3": 85.76,
+            "danbooru": 92.83
+          },
+          "weighted_total": 89.77
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 90.3,
+            "anilist": 90.31,
             "mal": null,
             "ao3": 85.76,
             "danbooru": 92.82
@@ -979,7 +1110,7 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 90.3,
+            "anilist": 90.31,
             "mal": null,
             "ao3": 85.76,
             "danbooru": 92.82
@@ -1001,16 +1132,16 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b126635-L0y3I92JSUkN.png",
       "scores": {
-        "anilist": 92.23,
+        "anilist": 92.21,
         "mal": null,
-        "ao3": 86.96,
-        "danbooru": 88.13
+        "ao3": 86.97,
+        "danbooru": 88.14
       },
       "counts": {
-        "anilist": 18776,
+        "anilist": 18674,
         "mal": null,
-        "ao3": 39118,
-        "danbooru": 3396
+        "ao3": 39229,
+        "danbooru": 3399
       },
       "weighted_total": 89.73,
       "trend": "STABLE",
@@ -1043,10 +1174,21 @@
           "weighted_total": 89.73
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 92.21,
+            "mal": null,
+            "ao3": 86.97,
+            "danbooru": 88.14
+          },
+          "weighted_total": 89.73
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 92.23,
+            "anilist": 92.22,
             "mal": null,
             "ao3": 86.96,
             "danbooru": 88.13
@@ -1057,7 +1199,7 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 92.23,
+            "anilist": 92.22,
             "mal": null,
             "ao3": 86.96,
             "danbooru": 88.13
@@ -1066,6 +1208,95 @@
         }
       ],
       "rank": 13
+    },
+    {
+      "id": "kurapika",
+      "name": "Kurapika",
+      "name_jp": "クラピカ",
+      "aliases": [
+        "Chain User",
+        "Chain Bastard"
+      ],
+      "source": "Hunter x Hunter (2011)",
+      "franchise": "Hunter x Hunter (2011)",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b28-ivA7UGnfE40a.png",
+      "scores": {
+        "anilist": 93.7,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 81.7
+      },
+      "counts": {
+        "anilist": 21900,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 1875
+      },
+      "weighted_total": 89.34,
+      "trend": "RISING",
+      "measured_sources": [
+        "anilist",
+        "danbooru"
+      ],
+      "history": [
+        {
+          "label": "2026-08-14",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 93.69,
+            "mal": null,
+            "ao3": 73.16,
+            "danbooru": 81.68
+          },
+          "weighted_total": 85.01
+        },
+        {
+          "label": "2026-08-15",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 93.69,
+            "mal": null,
+            "ao3": 73.16,
+            "danbooru": 81.69
+          },
+          "weighted_total": 85.02
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 93.7,
+            "mal": null,
+            "ao3": null,
+            "danbooru": 81.7
+          },
+          "weighted_total": 89.34
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": 93.69,
+            "mal": null,
+            "ao3": 73.16,
+            "danbooru": 81.69
+          },
+          "weighted_total": 86.46
+        },
+        {
+          "label": "2026",
+          "period": "YEAR",
+          "scores": {
+            "anilist": 93.69,
+            "mal": null,
+            "ao3": 73.16,
+            "danbooru": 81.69
+          },
+          "weighted_total": 86.46
+        }
+      ],
+      "rank": 14
     },
     {
       "id": "xiao",
@@ -1083,16 +1314,16 @@
       "scores": {
         "anilist": null,
         "mal": null,
-        "ao3": 82.98,
-        "danbooru": 94.66
+        "ao3": 82.97,
+        "danbooru": 94.65
       },
       "counts": {
         "anilist": null,
         "mal": null,
-        "ao3": 24124,
-        "danbooru": 6200
+        "ao3": 24128,
+        "danbooru": 6199
       },
-      "weighted_total": 88.82,
+      "weighted_total": 88.81,
       "trend": "STABLE",
       "measured_sources": [
         "ao3",
@@ -1122,6 +1353,17 @@
           "weighted_total": 88.82
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 82.97,
+            "danbooru": 94.65
+          },
+          "weighted_total": 88.81
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -1144,7 +1386,7 @@
           "weighted_total": 88.82
         }
       ],
-      "rank": 14
+      "rank": 15
     },
     {
       "id": "denji",
@@ -1168,13 +1410,13 @@
         "anilist": 93.45,
         "mal": null,
         "ao3": 70.62,
-        "danbooru": 97.33
+        "danbooru": 97.34
       },
       "counts": {
-        "anilist": 21383,
+        "anilist": 21320,
         "mal": null,
-        "ao3": 5366,
-        "danbooru": 7935
+        "ao3": 5371,
+        "danbooru": 7942
       },
       "weighted_total": 88.4,
       "trend": "STABLE",
@@ -1207,6 +1449,17 @@
           "weighted_total": 88.4
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 93.45,
+            "mal": null,
+            "ao3": 70.62,
+            "danbooru": 97.34
+          },
+          "weighted_total": 88.4
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -1229,7 +1482,7 @@
           "weighted_total": 88.4
         }
       ],
-      "rank": 15
+      "rank": 16
     },
     {
       "id": "killua-zoldyck",
@@ -1251,10 +1504,10 @@
         "danbooru": 82.7
       },
       "counts": {
-        "anilist": 37623,
+        "anilist": 37527,
         "mal": null,
-        "ao3": 9642,
-        "danbooru": 2056
+        "ao3": 9650,
+        "danbooru": 2057
       },
       "weighted_total": 88.25,
       "trend": "STABLE",
@@ -1287,6 +1540,17 @@
           "weighted_total": 88.25
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 98.75,
+            "mal": null,
+            "ao3": 75.44,
+            "danbooru": 82.7
+          },
+          "weighted_total": 88.25
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -1309,7 +1573,98 @@
           "weighted_total": 88.25
         }
       ],
-      "rank": 16
+      "rank": 17
+    },
+    {
+      "id": "saitama",
+      "name": "Saitama",
+      "name_jp": "サイタマ",
+      "aliases": [
+        "One Punch Man",
+        "Bald Cape",
+        "Hagemanto (ハゲマント)",
+        "Caped Baldy"
+      ],
+      "source": "One-Punch Man",
+      "franchise": "One-Punch Man",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b73935-ON5d0mAcrItd.jpg",
+      "scores": {
+        "anilist": 90.87,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 82.96
+      },
+      "counts": {
+        "anilist": 16185,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 2108
+      },
+      "weighted_total": 87.99,
+      "trend": "RISING",
+      "measured_sources": [
+        "anilist",
+        "danbooru"
+      ],
+      "history": [
+        {
+          "label": "2026-08-14",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.86,
+            "mal": null,
+            "ao3": 67.6,
+            "danbooru": 82.96
+          },
+          "weighted_total": 82.55
+        },
+        {
+          "label": "2026-08-15",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.86,
+            "mal": null,
+            "ao3": 67.6,
+            "danbooru": 82.96
+          },
+          "weighted_total": 82.55
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.87,
+            "mal": null,
+            "ao3": null,
+            "danbooru": 82.96
+          },
+          "weighted_total": 87.99
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": 90.86,
+            "mal": null,
+            "ao3": 67.6,
+            "danbooru": 82.96
+          },
+          "weighted_total": 84.36
+        },
+        {
+          "label": "2026",
+          "period": "YEAR",
+          "scores": {
+            "anilist": 90.86,
+            "mal": null,
+            "ao3": 67.6,
+            "danbooru": 82.96
+          },
+          "weighted_total": 84.36
+        }
+      ],
+      "rank": 18
     },
     {
       "id": "diluc",
@@ -1335,8 +1690,8 @@
       "counts": {
         "anilist": null,
         "mal": null,
-        "ao3": 30407,
-        "danbooru": 3924
+        "ao3": 30414,
+        "danbooru": 3925
       },
       "weighted_total": 87.29,
       "trend": "STABLE",
@@ -1368,6 +1723,17 @@
           "weighted_total": 87.29
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 84.88,
+            "danbooru": 89.7
+          },
+          "weighted_total": 87.29
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -1390,7 +1756,7 @@
           "weighted_total": 87.29
         }
       ],
-      "rank": 17
+      "rank": 19
     },
     {
       "id": "gon-freecss",
@@ -1402,18 +1768,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b30-lyFExKyDhefc.jpg",
       "scores": {
-        "anilist": 91.09,
+        "anilist": 91.1,
         "mal": null,
         "ao3": null,
         "danbooru": 80.53
       },
       "counts": {
-        "anilist": 16614,
+        "anilist": 16585,
         "mal": null,
         "ao3": null,
         "danbooru": 1684
       },
-      "weighted_total": 87.25,
+      "weighted_total": 87.26,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -1443,6 +1809,17 @@
           "weighted_total": 87.25
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 91.1,
+            "mal": null,
+            "ao3": null,
+            "danbooru": 80.53
+          },
+          "weighted_total": 87.26
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -1465,7 +1842,7 @@
           "weighted_total": 87.25
         }
       ],
-      "rank": 18
+      "rank": 20
     },
     {
       "id": "giyuu-tomioka",
@@ -1481,16 +1858,16 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b130050-qsLThJs5VIbz.png",
       "scores": {
-        "anilist": 89.38,
+        "anilist": 89.37,
         "mal": null,
-        "ao3": 80.53,
+        "ao3": 80.54,
         "danbooru": 89.73
       },
       "counts": {
-        "anilist": 13846,
+        "anilist": 13792,
         "mal": null,
-        "ao3": 17897,
-        "danbooru": 3935
+        "ao3": 17950,
+        "danbooru": 3937
       },
       "weighted_total": 87.11,
       "trend": "STABLE",
@@ -1523,6 +1900,17 @@
           "weighted_total": 87.11
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 89.37,
+            "mal": null,
+            "ao3": 80.54,
+            "danbooru": 89.73
+          },
+          "weighted_total": 87.11
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -1545,7 +1933,95 @@
           "weighted_total": 87.11
         }
       ],
-      "rank": 19
+      "rank": 21
+    },
+    {
+      "id": "armin-arlert",
+      "name": "Armin Arlert",
+      "name_jp": "アルミン・アルレルト",
+      "aliases": [
+        "Armin Arlelt"
+      ],
+      "source": "Attack on Titan",
+      "franchise": "Attack on Titan",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b46494-g7xYYuBtYPnO.png",
+      "scores": {
+        "anilist": 90.78,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 80.23
+      },
+      "counts": {
+        "anilist": 16033,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 1638
+      },
+      "weighted_total": 86.94,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "danbooru"
+      ],
+      "history": [
+        {
+          "label": "2026-08-14",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.79,
+            "mal": null,
+            "ao3": 84.77,
+            "danbooru": 80.23
+          },
+          "weighted_total": 86.37
+        },
+        {
+          "label": "2026-08-15",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.79,
+            "mal": null,
+            "ao3": 84.77,
+            "danbooru": 80.23
+          },
+          "weighted_total": 86.37
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.78,
+            "mal": null,
+            "ao3": null,
+            "danbooru": 80.23
+          },
+          "weighted_total": 86.94
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": 90.79,
+            "mal": null,
+            "ao3": 84.77,
+            "danbooru": 80.23
+          },
+          "weighted_total": 86.56
+        },
+        {
+          "label": "2026",
+          "period": "YEAR",
+          "scores": {
+            "anilist": 90.79,
+            "mal": null,
+            "ao3": 84.77,
+            "danbooru": 80.23
+          },
+          "weighted_total": 86.56
+        }
+      ],
+      "rank": 22
     },
     {
       "id": "osamu-dazai",
@@ -1560,16 +2036,16 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b89198-qKmRTw4Y3PRC.png",
       "scores": {
-        "anilist": 91.77,
+        "anilist": 91.74,
         "mal": null,
         "ao3": 91.94,
-        "danbooru": 71.56
+        "danbooru": 71.63
       },
       "counts": {
-        "anilist": 17864,
+        "anilist": 17764,
         "mal": null,
-        "ao3": 71686,
-        "danbooru": 735
+        "ao3": 71751,
+        "danbooru": 740
       },
       "weighted_total": 86.43,
       "trend": "STABLE",
@@ -1602,13 +2078,24 @@
           "weighted_total": 86.43
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 91.74,
+            "mal": null,
+            "ao3": 91.94,
+            "danbooru": 71.63
+          },
+          "weighted_total": 86.43
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 91.77,
+            "anilist": 91.76,
             "mal": null,
             "ao3": 91.94,
-            "danbooru": 71.56
+            "danbooru": 71.58
           },
           "weighted_total": 86.43
         },
@@ -1616,93 +2103,15 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 91.77,
+            "anilist": 91.76,
             "mal": null,
             "ao3": 91.94,
-            "danbooru": 71.56
+            "danbooru": 71.58
           },
           "weighted_total": 86.43
         }
       ],
-      "rank": 20
-    },
-    {
-      "id": "armin-arlert",
-      "name": "Armin Arlert",
-      "name_jp": "アルミン・アルレルト",
-      "aliases": [
-        "Armin Arlelt"
-      ],
-      "source": "Attack on Titan",
-      "franchise": "Attack on Titan",
-      "source_type": "ANIME",
-      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b46494-g7xYYuBtYPnO.png",
-      "scores": {
-        "anilist": 90.79,
-        "mal": null,
-        "ao3": 84.77,
-        "danbooru": 80.23
-      },
-      "counts": {
-        "anilist": 16089,
-        "mal": null,
-        "ao3": 29998,
-        "danbooru": 1638
-      },
-      "weighted_total": 86.37,
-      "trend": "STABLE",
-      "measured_sources": [
-        "anilist",
-        "ao3",
-        "danbooru"
-      ],
-      "history": [
-        {
-          "label": "2026-08-14",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 90.79,
-            "mal": null,
-            "ao3": 84.77,
-            "danbooru": 80.23
-          },
-          "weighted_total": 86.37
-        },
-        {
-          "label": "2026-08-15",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 90.79,
-            "mal": null,
-            "ao3": 84.77,
-            "danbooru": 80.23
-          },
-          "weighted_total": 86.37
-        },
-        {
-          "label": "Aug 2026",
-          "period": "MONTH",
-          "scores": {
-            "anilist": 90.79,
-            "mal": null,
-            "ao3": 84.77,
-            "danbooru": 80.23
-          },
-          "weighted_total": 86.37
-        },
-        {
-          "label": "2026",
-          "period": "YEAR",
-          "scores": {
-            "anilist": 90.79,
-            "mal": null,
-            "ao3": 84.77,
-            "danbooru": 80.23
-          },
-          "weighted_total": 86.37
-        }
-      ],
-      "rank": 21
+      "rank": 23
     },
     {
       "id": "kaeya",
@@ -1720,16 +2129,16 @@
       "scores": {
         "anilist": null,
         "mal": null,
-        "ao3": 85.42,
-        "danbooru": 87.18
+        "ao3": 85.41,
+        "danbooru": 87.17
       },
       "counts": {
         "anilist": null,
         "mal": null,
-        "ao3": 32448,
+        "ao3": 32452,
         "danbooru": 3109
       },
-      "weighted_total": 86.3,
+      "weighted_total": 86.29,
       "trend": "STABLE",
       "measured_sources": [
         "ao3",
@@ -1759,6 +2168,17 @@
           "weighted_total": 86.3
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 85.41,
+            "danbooru": 87.17
+          },
+          "weighted_total": 86.29
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -1781,7 +2201,7 @@
           "weighted_total": 86.3
         }
       ],
-      "rank": 22
+      "rank": 24
     },
     {
       "id": "ichigo-kurosaki",
@@ -1798,18 +2218,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b5-a7bkJgjhhigE.png",
       "scores": {
-        "anilist": 89.94,
+        "anilist": 89.96,
         "mal": null,
         "ao3": 78,
-        "danbooru": 86.77
+        "danbooru": 86.79
       },
       "counts": {
-        "anilist": 14708,
+        "anilist": 14689,
         "mal": null,
-        "ao3": 13170,
-        "danbooru": 2994
+        "ao3": 13179,
+        "danbooru": 3000
       },
-      "weighted_total": 85.91,
+      "weighted_total": 85.93,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -1840,29 +2260,40 @@
           "weighted_total": 85.91
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 89.96,
+            "mal": null,
+            "ao3": 78,
+            "danbooru": 86.79
+          },
+          "weighted_total": 85.93
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 89.94,
+            "anilist": 89.95,
             "mal": null,
             "ao3": 78,
             "danbooru": 86.77
           },
-          "weighted_total": 85.91
+          "weighted_total": 85.92
         },
         {
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 89.94,
+            "anilist": 89.95,
             "mal": null,
             "ao3": 78,
             "danbooru": 86.77
           },
-          "weighted_total": 85.91
+          "weighted_total": 85.92
         }
       ],
-      "rank": 23
+      "rank": 25
     },
     {
       "id": "alhaitham",
@@ -1879,15 +2310,15 @@
         "anilist": null,
         "mal": null,
         "ao3": 82.54,
-        "danbooru": 89.18
+        "danbooru": 89.17
       },
       "counts": {
         "anilist": null,
         "mal": null,
-        "ao3": 22876,
+        "ao3": 22893,
         "danbooru": 3739
       },
-      "weighted_total": 85.86,
+      "weighted_total": 85.85,
       "trend": "STABLE",
       "measured_sources": [
         "ao3",
@@ -1917,6 +2348,17 @@
           "weighted_total": 85.86
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 82.54,
+            "danbooru": 89.17
+          },
+          "weighted_total": 85.85
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -1939,7 +2381,7 @@
           "weighted_total": 85.86
         }
       ],
-      "rank": 24
+      "rank": 26
     },
     {
       "id": "sukuna",
@@ -1957,18 +2399,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b133701-rCQuDpHr3UZL.png",
       "scores": {
-        "anilist": 88.52,
+        "anilist": 88.51,
         "mal": null,
         "ao3": 82.72,
         "danbooru": 84.04
       },
       "counts": {
-        "anilist": 12634,
+        "anilist": 12582,
         "mal": null,
-        "ao3": 23360,
-        "danbooru": 2328
+        "ao3": 23399,
+        "danbooru": 2329
       },
-      "weighted_total": 85.78,
+      "weighted_total": 85.77,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -1999,6 +2441,17 @@
           "weighted_total": 85.78
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 88.51,
+            "mal": null,
+            "ao3": 82.72,
+            "danbooru": 84.04
+          },
+          "weighted_total": 85.77
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -2021,7 +2474,190 @@
           "weighted_total": 85.78
         }
       ],
-      "rank": 25
+      "rank": 27
+    },
+    {
+      "id": "senkuu-ishigami",
+      "name": "Senkuu Ishigami",
+      "name_jp": "石神千空",
+      "aliases": [
+        "Sorcerer",
+        "Sorcerer Gentleman",
+        "Professor Senku",
+        "String bean",
+        "Dr. Senku",
+        "Lab"
+      ],
+      "source": "Dr. STONE",
+      "franchise": "Dr. STONE",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b124142-XUO1g7wRqkaT.png",
+      "scores": {
+        "anilist": 90.94,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 76.3
+      },
+      "counts": {
+        "anilist": 16305,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 1139
+      },
+      "weighted_total": 85.62,
+      "trend": "RISING",
+      "measured_sources": [
+        "anilist",
+        "danbooru"
+      ],
+      "history": [
+        {
+          "label": "2026-08-14",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.92,
+            "mal": null,
+            "ao3": 26.47,
+            "danbooru": 76.3
+          },
+          "weighted_total": 69.83
+        },
+        {
+          "label": "2026-08-15",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.92,
+            "mal": null,
+            "ao3": 26.47,
+            "danbooru": 76.3
+          },
+          "weighted_total": 69.83
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.94,
+            "mal": null,
+            "ao3": null,
+            "danbooru": 76.3
+          },
+          "weighted_total": 85.62
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": 90.93,
+            "mal": null,
+            "ao3": 26.47,
+            "danbooru": 76.3
+          },
+          "weighted_total": 75.09
+        },
+        {
+          "label": "2026",
+          "period": "YEAR",
+          "scores": {
+            "anilist": 90.93,
+            "mal": null,
+            "ao3": 26.47,
+            "danbooru": 76.3
+          },
+          "weighted_total": 75.09
+        }
+      ],
+      "rank": 28
+    },
+    {
+      "id": "dan-heng-imbibitor-lunae",
+      "name": "Dan Heng",
+      "name_jp": "丹恒",
+      "aliases": [
+        "Imbibitor Lunae",
+        "Dan Heng (Imbibitor Lunae)",
+        "단항"
+      ],
+      "source": "Honkai: Star Rail",
+      "franchise": "Honkai: Star Rail",
+      "source_type": "GAME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b314988-GRznn0CbXHS9.png",
+      "scores": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 78.82,
+        "danbooru": 92.21
+      },
+      "counts": {
+        "anilist": null,
+        "mal": null,
+        "ao3": 14549,
+        "danbooru": 4948
+      },
+      "weighted_total": 85.52,
+      "trend": "STABLE",
+      "measured_sources": [
+        "ao3",
+        "danbooru"
+      ],
+      "history": [
+        {
+          "label": "2026-08-14",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 78.82,
+            "danbooru": 92.2
+          },
+          "weighted_total": 85.51
+        },
+        {
+          "label": "2026-08-15",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 78.82,
+            "danbooru": 92.2
+          },
+          "weighted_total": 85.51
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 78.82,
+            "danbooru": 92.21
+          },
+          "weighted_total": 85.52
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 78.82,
+            "danbooru": 92.2
+          },
+          "weighted_total": 85.51
+        },
+        {
+          "label": "2026",
+          "period": "YEAR",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 78.82,
+            "danbooru": 92.2
+          },
+          "weighted_total": 85.51
+        }
+      ],
+      "rank": 29
     },
     {
       "id": "kento-nanami",
@@ -2036,15 +2672,15 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b133704-8wLTGjc234q2.png",
       "scores": {
-        "anilist": 89.71,
+        "anilist": 89.7,
         "mal": null,
         "ao3": 81.74,
         "danbooru": 81.93
       },
       "counts": {
-        "anilist": 14351,
+        "anilist": 14292,
         "mal": null,
-        "ao3": 20755,
+        "ao3": 20776,
         "danbooru": 1916
       },
       "weighted_total": 85.51,
@@ -2078,6 +2714,17 @@
           "weighted_total": 85.51
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 89.7,
+            "mal": null,
+            "ao3": 81.74,
+            "danbooru": 81.93
+          },
+          "weighted_total": 85.51
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -2100,86 +2747,7 @@
           "weighted_total": 85.51
         }
       ],
-      "rank": 26
-    },
-    {
-      "id": "dan-heng-imbibitor-lunae",
-      "name": "Dan Heng",
-      "name_jp": "丹恒",
-      "aliases": [
-        "Imbibitor Lunae",
-        "Dan Heng (Imbibitor Lunae)",
-        "단항"
-      ],
-      "source": "Honkai: Star Rail",
-      "franchise": "Honkai: Star Rail",
-      "source_type": "GAME",
-      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b314988-GRznn0CbXHS9.png",
-      "scores": {
-        "anilist": null,
-        "mal": null,
-        "ao3": 78.82,
-        "danbooru": 92.2
-      },
-      "counts": {
-        "anilist": null,
-        "mal": null,
-        "ao3": 14546,
-        "danbooru": 4944
-      },
-      "weighted_total": 85.51,
-      "trend": "STABLE",
-      "measured_sources": [
-        "ao3",
-        "danbooru"
-      ],
-      "history": [
-        {
-          "label": "2026-08-14",
-          "period": "WEEK",
-          "scores": {
-            "anilist": null,
-            "mal": null,
-            "ao3": 78.82,
-            "danbooru": 92.2
-          },
-          "weighted_total": 85.51
-        },
-        {
-          "label": "2026-08-15",
-          "period": "WEEK",
-          "scores": {
-            "anilist": null,
-            "mal": null,
-            "ao3": 78.82,
-            "danbooru": 92.2
-          },
-          "weighted_total": 85.51
-        },
-        {
-          "label": "Aug 2026",
-          "period": "MONTH",
-          "scores": {
-            "anilist": null,
-            "mal": null,
-            "ao3": 78.82,
-            "danbooru": 92.2
-          },
-          "weighted_total": 85.51
-        },
-        {
-          "label": "2026",
-          "period": "YEAR",
-          "scores": {
-            "anilist": null,
-            "mal": null,
-            "ao3": 78.82,
-            "danbooru": 92.2
-          },
-          "weighted_total": 85.51
-        }
-      ],
-      "rank": 27
+      "rank": 30
     },
     {
       "id": "dio-brando",
@@ -2191,18 +2759,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b4004-w0OtWuvjhftG.png",
       "scores": {
-        "anilist": 86.35,
+        "anilist": 86.36,
         "mal": null,
         "ao3": 74.42,
         "danbooru": 94.92
       },
       "counts": {
-        "anilist": 10018,
+        "anilist": 10008,
         "mal": null,
-        "ao3": 8513,
-        "danbooru": 6352
+        "ao3": 8525,
+        "danbooru": 6353
       },
-      "weighted_total": 85.45,
+      "weighted_total": 85.46,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -2233,6 +2801,17 @@
           "weighted_total": 85.45
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.36,
+            "mal": null,
+            "ao3": 74.42,
+            "danbooru": 94.92
+          },
+          "weighted_total": 85.46
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -2255,7 +2834,7 @@
           "weighted_total": 85.45
         }
       ],
-      "rank": 28
+      "rank": 31
     },
     {
       "id": "itachi-uchiha",
@@ -2272,16 +2851,16 @@
       "scores": {
         "anilist": 94.23,
         "mal": null,
-        "ao3": 81.55,
-        "danbooru": 73.77
+        "ao3": 81.54,
+        "danbooru": 73.82
       },
       "counts": {
-        "anilist": 23224,
+        "anilist": 23171,
         "mal": null,
-        "ao3": 20261,
-        "danbooru": 902
+        "ao3": 20275,
+        "danbooru": 906
       },
-      "weighted_total": 85.39,
+      "weighted_total": 85.4,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -2312,13 +2891,24 @@
           "weighted_total": 85.39
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 94.23,
+            "mal": null,
+            "ao3": 81.54,
+            "danbooru": 73.82
+          },
+          "weighted_total": 85.4
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": 94.23,
             "mal": null,
             "ao3": 81.55,
-            "danbooru": 73.77
+            "danbooru": 73.79
           },
           "weighted_total": 85.39
         },
@@ -2329,12 +2919,12 @@
             "anilist": 94.23,
             "mal": null,
             "ao3": 81.55,
-            "danbooru": 73.77
+            "danbooru": 73.79
           },
           "weighted_total": 85.39
         }
       ],
-      "rank": 29
+      "rank": 32
     },
     {
       "id": "gokuu-son",
@@ -2348,18 +2938,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/246-wsRRr6z1kii8.png",
       "scores": {
-        "anilist": 86.2,
+        "anilist": 86.22,
         "mal": null,
         "ao3": 72.74,
         "danbooru": 96.15
       },
       "counts": {
-        "anilist": 9868,
+        "anilist": 9856,
         "mal": null,
-        "ao3": 6941,
-        "danbooru": 7116
+        "ao3": 6945,
+        "danbooru": 7119
       },
-      "weighted_total": 85.26,
+      "weighted_total": 85.27,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -2390,10 +2980,21 @@
           "weighted_total": 85.26
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.22,
+            "mal": null,
+            "ao3": 72.74,
+            "danbooru": 96.15
+          },
+          "weighted_total": 85.27
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 86.2,
+            "anilist": 86.21,
             "mal": null,
             "ao3": 72.74,
             "danbooru": 96.15
@@ -2404,7 +3005,7 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 86.2,
+            "anilist": 86.21,
             "mal": null,
             "ao3": 72.74,
             "danbooru": 96.15
@@ -2412,86 +3013,7 @@
           "weighted_total": 85.26
         }
       ],
-      "rank": 30
-    },
-    {
-      "id": "kurapika",
-      "name": "Kurapika",
-      "name_jp": "クラピカ",
-      "aliases": [
-        "Chain User",
-        "Chain Bastard"
-      ],
-      "source": "Hunter x Hunter (2011)",
-      "franchise": "Hunter x Hunter (2011)",
-      "source_type": "ANIME",
-      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b28-ivA7UGnfE40a.png",
-      "scores": {
-        "anilist": 93.69,
-        "mal": null,
-        "ao3": 73.16,
-        "danbooru": 81.69
-      },
-      "counts": {
-        "anilist": 21942,
-        "mal": null,
-        "ao3": 7305,
-        "danbooru": 1873
-      },
-      "weighted_total": 85.02,
-      "trend": "STABLE",
-      "measured_sources": [
-        "anilist",
-        "ao3",
-        "danbooru"
-      ],
-      "history": [
-        {
-          "label": "2026-08-14",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 93.69,
-            "mal": null,
-            "ao3": 73.16,
-            "danbooru": 81.68
-          },
-          "weighted_total": 85.01
-        },
-        {
-          "label": "2026-08-15",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 93.69,
-            "mal": null,
-            "ao3": 73.16,
-            "danbooru": 81.69
-          },
-          "weighted_total": 85.02
-        },
-        {
-          "label": "Aug 2026",
-          "period": "MONTH",
-          "scores": {
-            "anilist": 93.69,
-            "mal": null,
-            "ao3": 73.16,
-            "danbooru": 81.69
-          },
-          "weighted_total": 85.02
-        },
-        {
-          "label": "2026",
-          "period": "YEAR",
-          "scores": {
-            "anilist": 93.69,
-            "mal": null,
-            "ao3": 73.16,
-            "danbooru": 81.69
-          },
-          "weighted_total": 85.02
-        }
-      ],
-      "rank": 31
+      "rank": 33
     },
     {
       "id": "shinji-ikari",
@@ -2505,18 +3027,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b89-ZtZhXkh1rITn.png",
       "scores": {
-        "anilist": 87.81,
+        "anilist": 87.83,
         "mal": null,
-        "ao3": 69.64,
+        "ao3": 69.63,
         "danbooru": 94.93
       },
       "counts": {
-        "anilist": 11714,
+        "anilist": 11706,
         "mal": null,
-        "ao3": 4760,
-        "danbooru": 6355
+        "ao3": 4763,
+        "danbooru": 6360
       },
-      "weighted_total": 84.86,
+      "weighted_total": 84.87,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -2547,10 +3069,21 @@
           "weighted_total": 84.86
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 87.83,
+            "mal": null,
+            "ao3": 69.63,
+            "danbooru": 94.93
+          },
+          "weighted_total": 84.87
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 87.81,
+            "anilist": 87.82,
             "mal": null,
             "ao3": 69.64,
             "danbooru": 94.93
@@ -2561,7 +3094,7 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 87.81,
+            "anilist": 87.82,
             "mal": null,
             "ao3": 69.64,
             "danbooru": 94.93
@@ -2569,7 +3102,7 @@
           "weighted_total": 84.86
         }
       ],
-      "rank": 32
+      "rank": 34
     },
     {
       "id": "ken-kaneki",
@@ -2591,9 +3124,9 @@
         "danbooru": 79.58
       },
       "counts": {
-        "anilist": 27934,
+        "anilist": 27858,
         "mal": null,
-        "ao3": 5379,
+        "ao3": 5381,
         "danbooru": 1542
       },
       "weighted_total": 84.84,
@@ -2627,6 +3160,17 @@
           "weighted_total": 84.84
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 95.96,
+            "mal": null,
+            "ao3": 70.64,
+            "danbooru": 79.58
+          },
+          "weighted_total": 84.84
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -2649,7 +3193,7 @@
           "weighted_total": 84.84
         }
       ],
-      "rank": 33
+      "rank": 35
     },
     {
       "id": "shouta-aizawa",
@@ -2669,12 +3213,12 @@
         "anilist": 86.27,
         "mal": null,
         "ao3": 94.47,
-        "danbooru": 72.41
+        "danbooru": 72.4
       },
       "counts": {
-        "anilist": 9937,
+        "anilist": 9907,
         "mal": null,
-        "ao3": 97599,
+        "ao3": 97658,
         "danbooru": 795
       },
       "weighted_total": 84.76,
@@ -2708,6 +3252,17 @@
           "weighted_total": 84.76
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.27,
+            "mal": null,
+            "ao3": 94.47,
+            "danbooru": 72.4
+          },
+          "weighted_total": 84.76
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -2730,7 +3285,7 @@
           "weighted_total": 84.76
         }
       ],
-      "rank": 34
+      "rank": 36
     },
     {
       "id": "subaru-natsuki",
@@ -2759,18 +3314,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b88573-F8yMTK9GhnTA.png",
       "scores": {
-        "anilist": 90.42,
+        "anilist": 90.43,
         "mal": null,
-        "ao3": 71.63,
-        "danbooru": 87.29
+        "ao3": 71.68,
+        "danbooru": 87.3
       },
       "counts": {
-        "anilist": 15468,
+        "anilist": 15451,
         "mal": null,
-        "ao3": 6068,
-        "danbooru": 3142
+        "ao3": 6110,
+        "danbooru": 3146
       },
-      "weighted_total": 84.57,
+      "weighted_total": 84.6,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -2801,15 +3356,26 @@
           "weighted_total": 84.57
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.43,
+            "mal": null,
+            "ao3": 71.68,
+            "danbooru": 87.3
+          },
+          "weighted_total": 84.6
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": 90.42,
             "mal": null,
-            "ao3": 71.63,
+            "ao3": 71.65,
             "danbooru": 87.29
           },
-          "weighted_total": 84.57
+          "weighted_total": 84.58
         },
         {
           "label": "2026",
@@ -2817,13 +3383,13 @@
           "scores": {
             "anilist": 90.42,
             "mal": null,
-            "ao3": 71.63,
+            "ao3": 71.65,
             "danbooru": 87.29
           },
-          "weighted_total": 84.57
+          "weighted_total": 84.58
         }
       ],
-      "rank": 35
+      "rank": 37
     },
     {
       "id": "arataka-reigen",
@@ -2838,18 +3404,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b89334-OPj1hCzvrt7X.png",
       "scores": {
-        "anilist": 94.93,
+        "anilist": 94.94,
         "mal": null,
-        "ao3": 74.25,
-        "danbooru": 76.55
+        "ao3": 74.26,
+        "danbooru": 76.56
       },
       "counts": {
-        "anilist": 25035,
+        "anilist": 25003,
         "mal": null,
-        "ao3": 8340,
-        "danbooru": 1166
+        "ao3": 8361,
+        "danbooru": 1167
       },
-      "weighted_total": 84.51,
+      "weighted_total": 84.52,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -2880,6 +3446,17 @@
           "weighted_total": 84.51
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 94.94,
+            "mal": null,
+            "ao3": 74.26,
+            "danbooru": 76.56
+          },
+          "weighted_total": 84.52
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -2902,7 +3479,98 @@
           "weighted_total": 84.51
         }
       ],
-      "rank": 36
+      "rank": 38
+    },
+    {
+      "id": "inosuke-hashibira",
+      "name": "Inosuke Hashibira",
+      "name_jp": "嘴平伊之助",
+      "aliases": [
+        "Svinosuke",
+        "Inoko",
+        "The Boar",
+        "하시비라 이노스케"
+      ],
+      "source": "Demon Slayer: Kimetsu no Yaiba",
+      "franchise": "Demon Slayer: Kimetsu no Yaiba",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/n129130-SJC0Kn1DU39E.jpg",
+      "scores": {
+        "anilist": 90.74,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 72.18
+      },
+      "counts": {
+        "anilist": 15969,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 779
+      },
+      "weighted_total": 83.99,
+      "trend": "RISING",
+      "measured_sources": [
+        "anilist",
+        "danbooru"
+      ],
+      "history": [
+        {
+          "label": "2026-08-14",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.76,
+            "mal": null,
+            "ao3": 74.28,
+            "danbooru": 72.18
+          },
+          "weighted_total": 81.41
+        },
+        {
+          "label": "2026-08-15",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.76,
+            "mal": null,
+            "ao3": 74.28,
+            "danbooru": 72.18
+          },
+          "weighted_total": 81.41
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.74,
+            "mal": null,
+            "ao3": null,
+            "danbooru": 72.18
+          },
+          "weighted_total": 83.99
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": 90.75,
+            "mal": null,
+            "ao3": 74.28,
+            "danbooru": 72.18
+          },
+          "weighted_total": 82.27
+        },
+        {
+          "label": "2026",
+          "period": "YEAR",
+          "scores": {
+            "anilist": 90.75,
+            "mal": null,
+            "ao3": 74.28,
+            "danbooru": 72.18
+          },
+          "weighted_total": 82.27
+        }
+      ],
+      "rank": 39
     },
     {
       "id": "aki-hayakawa",
@@ -2917,18 +3585,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b137081-TSrUR3mUJL6r.png",
       "scores": {
-        "anilist": 90.19,
+        "anilist": 90.17,
         "mal": null,
-        "ao3": 69.04,
-        "danbooru": 86.88
+        "ao3": 69.05,
+        "danbooru": 86.87
       },
       "counts": {
-        "anilist": 15101,
+        "anilist": 15027,
         "mal": null,
-        "ao3": 4428,
+        "ao3": 4437,
         "danbooru": 3024
       },
-      "weighted_total": 83.67,
+      "weighted_total": 83.66,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -2959,10 +3627,21 @@
           "weighted_total": 83.67
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.17,
+            "mal": null,
+            "ao3": 69.05,
+            "danbooru": 86.87
+          },
+          "weighted_total": 83.66
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 90.19,
+            "anilist": 90.18,
             "mal": null,
             "ao3": 69.04,
             "danbooru": 86.88
@@ -2973,7 +3652,7 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 90.19,
+            "anilist": 90.18,
             "mal": null,
             "ao3": 69.04,
             "danbooru": 86.88
@@ -2981,7 +3660,7 @@
           "weighted_total": 83.67
         }
       ],
-      "rank": 37
+      "rank": 40
     },
     {
       "id": "erwin-smith",
@@ -3001,9 +3680,9 @@
         "danbooru": 72.58
       },
       "counts": {
-        "anilist": 13794,
+        "anilist": 13759,
         "mal": null,
-        "ao3": 30140,
+        "ao3": 30158,
         "danbooru": 808
       },
       "weighted_total": 83.66,
@@ -3037,6 +3716,17 @@
           "weighted_total": 83.66
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 89.34,
+            "mal": null,
+            "ao3": 84.81,
+            "danbooru": 72.58
+          },
+          "weighted_total": 83.66
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -3059,7 +3749,95 @@
           "weighted_total": 83.66
         }
       ],
-      "rank": 38
+      "rank": 41
+    },
+    {
+      "id": "ray",
+      "name": "Ray",
+      "name_jp": "レイ",
+      "aliases": [
+        "Sleepy Cyclops"
+      ],
+      "source": "The Promised Neverland",
+      "franchise": "The Promised Neverland",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b121724-SJTdODjeO7e6.jpg",
+      "scores": {
+        "anilist": 87.57,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 76.75
+      },
+      "counts": {
+        "anilist": 11381,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 1188
+      },
+      "weighted_total": 83.64,
+      "trend": "RISING",
+      "measured_sources": [
+        "anilist",
+        "danbooru"
+      ],
+      "history": [
+        {
+          "label": "2026-08-14",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 87.58,
+            "mal": null,
+            "ao3": 65.15,
+            "danbooru": 76.73
+          },
+          "weighted_total": 78.71
+        },
+        {
+          "label": "2026-08-15",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 87.58,
+            "mal": null,
+            "ao3": 65.15,
+            "danbooru": 76.73
+          },
+          "weighted_total": 78.71
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 87.57,
+            "mal": null,
+            "ao3": null,
+            "danbooru": 76.75
+          },
+          "weighted_total": 83.64
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": 87.58,
+            "mal": null,
+            "ao3": 65.15,
+            "danbooru": 76.74
+          },
+          "weighted_total": 80.35
+        },
+        {
+          "label": "2026",
+          "period": "YEAR",
+          "scores": {
+            "anilist": 87.58,
+            "mal": null,
+            "ao3": 65.15,
+            "danbooru": 76.74
+          },
+          "weighted_total": 80.35
+        }
+      ],
+      "rank": 42
     },
     {
       "id": "yuu-nishinoya",
@@ -3083,9 +3861,9 @@
         "danbooru": 81.07
       },
       "counts": {
-        "anilist": 12039,
+        "anilist": 12004,
         "mal": null,
-        "ao3": 12805,
+        "ao3": 12809,
         "danbooru": 1770
       },
       "weighted_total": 83.46,
@@ -3119,6 +3897,17 @@
           "weighted_total": 83.46
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 88.07,
+            "mal": null,
+            "ao3": 77.77,
+            "danbooru": 81.07
+          },
+          "weighted_total": 83.46
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -3141,7 +3930,99 @@
           "weighted_total": 83.46
         }
       ],
-      "rank": 39
+      "rank": 43
+    },
+    {
+      "id": "manjirou-sano",
+      "name": "Manjirou Sano",
+      "name_jp": "佐野万次郎",
+      "aliases": [
+        "Mikey (マイキー)",
+        "Invincible Mikey",
+        "Shrimp",
+        "Michael"
+      ],
+      "source": "Tokyo Revengers",
+      "franchise": "Tokyo Revengers",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b145341-CuPldCLZMvvf.png",
+      "scores": {
+        "anilist": 86.93,
+        "mal": null,
+        "ao3": 87.03,
+        "danbooru": 73.29
+      },
+      "counts": {
+        "anilist": 10638,
+        "mal": null,
+        "ao3": 39526,
+        "danbooru": 863
+      },
+      "weighted_total": 83.32,
+      "trend": "STABLE",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [
+        {
+          "label": "2026-08-14",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.94,
+            "mal": null,
+            "ao3": 87.03,
+            "danbooru": 73.24
+          },
+          "weighted_total": 83.31
+        },
+        {
+          "label": "2026-08-15",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.94,
+            "mal": null,
+            "ao3": 87.03,
+            "danbooru": 73.24
+          },
+          "weighted_total": 83.31
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.93,
+            "mal": null,
+            "ao3": 87.03,
+            "danbooru": 73.29
+          },
+          "weighted_total": 83.32
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": 86.94,
+            "mal": null,
+            "ao3": 87.03,
+            "danbooru": 73.26
+          },
+          "weighted_total": 83.31
+        },
+        {
+          "label": "2026",
+          "period": "YEAR",
+          "scores": {
+            "anilist": 86.94,
+            "mal": null,
+            "ao3": 87.03,
+            "danbooru": 73.26
+          },
+          "weighted_total": 83.31
+        }
+      ],
+      "rank": 44
     },
     {
       "id": "tobio-kageyama",
@@ -3168,97 +4049,16 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b64771-BuCVs7B8bBdh.png",
       "scores": {
-        "anilist": 89.81,
+        "anilist": 89.8,
         "mal": null,
-        "ao3": 86.87,
+        "ao3": 86.86,
         "danbooru": 68.4
       },
       "counts": {
-        "anilist": 14492,
+        "anilist": 14441,
         "mal": null,
-        "ao3": 38701,
+        "ao3": 38709,
         "danbooru": 549
-      },
-      "weighted_total": 83.32,
-      "trend": "STABLE",
-      "measured_sources": [
-        "anilist",
-        "ao3",
-        "danbooru"
-      ],
-      "history": [
-        {
-          "label": "2026-08-14",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 89.81,
-            "mal": null,
-            "ao3": 86.87,
-            "danbooru": 68.4
-          },
-          "weighted_total": 83.32
-        },
-        {
-          "label": "2026-08-15",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 89.81,
-            "mal": null,
-            "ao3": 86.87,
-            "danbooru": 68.4
-          },
-          "weighted_total": 83.32
-        },
-        {
-          "label": "Aug 2026",
-          "period": "MONTH",
-          "scores": {
-            "anilist": 89.81,
-            "mal": null,
-            "ao3": 86.87,
-            "danbooru": 68.4
-          },
-          "weighted_total": 83.32
-        },
-        {
-          "label": "2026",
-          "period": "YEAR",
-          "scores": {
-            "anilist": 89.81,
-            "mal": null,
-            "ao3": 86.87,
-            "danbooru": 68.4
-          },
-          "weighted_total": 83.32
-        }
-      ],
-      "rank": 40
-    },
-    {
-      "id": "manjirou-sano",
-      "name": "Manjirou Sano",
-      "name_jp": "佐野万次郎",
-      "aliases": [
-        "Mikey (マイキー)",
-        "Invincible Mikey",
-        "Shrimp",
-        "Michael"
-      ],
-      "source": "Tokyo Revengers",
-      "franchise": "Tokyo Revengers",
-      "source_type": "ANIME",
-      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b145341-CuPldCLZMvvf.png",
-      "scores": {
-        "anilist": 86.94,
-        "mal": null,
-        "ao3": 87.03,
-        "danbooru": 73.24
-      },
-      "counts": {
-        "anilist": 10675,
-        "mal": null,
-        "ao3": 39480,
-        "danbooru": 859
       },
       "weighted_total": 83.31,
       "trend": "STABLE",
@@ -3272,21 +4072,32 @@
           "label": "2026-08-14",
           "period": "WEEK",
           "scores": {
-            "anilist": 86.94,
+            "anilist": 89.81,
             "mal": null,
-            "ao3": 87.03,
-            "danbooru": 73.24
+            "ao3": 86.87,
+            "danbooru": 68.4
           },
-          "weighted_total": 83.31
+          "weighted_total": 83.32
         },
         {
           "label": "2026-08-15",
           "period": "WEEK",
           "scores": {
-            "anilist": 86.94,
+            "anilist": 89.81,
             "mal": null,
-            "ao3": 87.03,
-            "danbooru": 73.24
+            "ao3": 86.87,
+            "danbooru": 68.4
+          },
+          "weighted_total": 83.32
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 89.8,
+            "mal": null,
+            "ao3": 86.86,
+            "danbooru": 68.4
           },
           "weighted_total": 83.31
         },
@@ -3294,26 +4105,26 @@
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 86.94,
+            "anilist": 89.81,
             "mal": null,
-            "ao3": 87.03,
-            "danbooru": 73.24
+            "ao3": 86.87,
+            "danbooru": 68.4
           },
-          "weighted_total": 83.31
+          "weighted_total": 83.32
         },
         {
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 86.94,
+            "anilist": 89.81,
             "mal": null,
-            "ao3": 87.03,
-            "danbooru": 73.24
+            "ao3": 86.87,
+            "danbooru": 68.4
           },
-          "weighted_total": 83.31
+          "weighted_total": 83.32
         }
       ],
-      "rank": 41
+      "rank": 45
     },
     {
       "id": "roy-mustang",
@@ -3329,15 +4140,15 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b68-moBLY2WO2am3.png",
       "scores": {
-        "anilist": 90.2,
+        "anilist": 90.21,
         "mal": null,
         "ao3": 78.88,
-        "danbooru": 75.42
+        "danbooru": 75.41
       },
       "counts": {
-        "anilist": 15118,
+        "anilist": 15084,
         "mal": null,
-        "ao3": 14658,
+        "ao3": 14661,
         "danbooru": 1050
       },
       "weighted_total": 83.24,
@@ -3371,6 +4182,17 @@
           "weighted_total": 83.24
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.21,
+            "mal": null,
+            "ao3": 78.88,
+            "danbooru": 75.41
+          },
+          "weighted_total": 83.24
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -3393,7 +4215,7 @@
           "weighted_total": 83.24
         }
       ],
-      "rank": 42
+      "rank": 46
     },
     {
       "id": "aventurine",
@@ -3410,14 +4232,14 @@
       "scores": {
         "anilist": null,
         "mal": null,
-        "ao3": 75.62,
+        "ao3": 75.63,
         "danbooru": 90.81
       },
       "counts": {
         "anilist": null,
         "mal": null,
-        "ao3": 9860,
-        "danbooru": 4349
+        "ao3": 9873,
+        "danbooru": 4350
       },
       "weighted_total": 83.22,
       "trend": "STABLE",
@@ -3449,6 +4271,17 @@
           "weighted_total": 83.22
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 75.63,
+            "danbooru": 90.81
+          },
+          "weighted_total": 83.22
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -3471,7 +4304,7 @@
           "weighted_total": 83.22
         }
       ],
-      "rank": 43
+      "rank": 47
     },
     {
       "id": "zenitsu-agatsuma",
@@ -3483,15 +4316,15 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b129131-FZrQ7lSlxmEr.png",
       "scores": {
-        "anilist": 90.34,
+        "anilist": 90.33,
         "mal": null,
         "ao3": 76.5,
         "danbooru": 76.71
       },
       "counts": {
-        "anilist": 15346,
+        "anilist": 15279,
         "mal": null,
-        "ao3": 10963,
+        "ao3": 10980,
         "danbooru": 1183
       },
       "weighted_total": 83.01,
@@ -3525,6 +4358,17 @@
           "weighted_total": 83.01
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.33,
+            "mal": null,
+            "ao3": 76.5,
+            "danbooru": 76.71
+          },
+          "weighted_total": 83.01
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -3547,7 +4391,101 @@
           "weighted_total": 83.01
         }
       ],
-      "rank": 44
+      "rank": 48
+    },
+    {
+      "id": "kiyotaka-ayanokouji",
+      "name": "Kiyotaka Ayanokouji",
+      "name_jp": "綾小路清隆",
+      "aliases": [
+        "Argos-4",
+        "Ayanokoji",
+        "Aya-non",
+        "Kiyo-pon",
+        "X",
+        "The False Genius",
+        "Elevator Boy"
+      ],
+      "source": "Classroom of the Elite",
+      "franchise": "Classroom of the Elite",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b123212-ewZgUQr9vvEM.png",
+      "scores": {
+        "anilist": 90.98,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 68.82
+      },
+      "counts": {
+        "anilist": 16382,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 571
+      },
+      "weighted_total": 82.92,
+      "trend": "RISING",
+      "measured_sources": [
+        "anilist",
+        "danbooru"
+      ],
+      "history": [
+        {
+          "label": "2026-08-14",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.99,
+            "mal": null,
+            "ao3": 52.35,
+            "danbooru": 68.82
+          },
+          "weighted_total": 74.77
+        },
+        {
+          "label": "2026-08-15",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.99,
+            "mal": null,
+            "ao3": 52.35,
+            "danbooru": 68.82
+          },
+          "weighted_total": 74.77
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.98,
+            "mal": null,
+            "ao3": null,
+            "danbooru": 68.82
+          },
+          "weighted_total": 82.92
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": 90.99,
+            "mal": null,
+            "ao3": 52.35,
+            "danbooru": 68.82
+          },
+          "weighted_total": 77.49
+        },
+        {
+          "label": "2026",
+          "period": "YEAR",
+          "scores": {
+            "anilist": 90.99,
+            "mal": null,
+            "ao3": 52.35,
+            "danbooru": 68.82
+          },
+          "weighted_total": 77.49
+        }
+      ],
+      "rank": 49
     },
     {
       "id": "blade-hsr",
@@ -3570,7 +4508,7 @@
       "counts": {
         "anilist": null,
         "mal": null,
-        "ao3": 11578,
+        "ao3": 11576,
         "danbooru": 3588
       },
       "weighted_total": 82.83,
@@ -3603,6 +4541,17 @@
           "weighted_total": 82.83
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 76.94,
+            "danbooru": 88.73
+          },
+          "weighted_total": 82.83
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -3625,88 +4574,7 @@
           "weighted_total": 82.83
         }
       ],
-      "rank": 45
-    },
-    {
-      "id": "saitama",
-      "name": "Saitama",
-      "name_jp": "サイタマ",
-      "aliases": [
-        "One Punch Man",
-        "Bald Cape",
-        "Hagemanto (ハゲマント)",
-        "Caped Baldy"
-      ],
-      "source": "One-Punch Man",
-      "franchise": "One-Punch Man",
-      "source_type": "ANIME",
-      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b73935-ON5d0mAcrItd.jpg",
-      "scores": {
-        "anilist": 90.86,
-        "mal": null,
-        "ao3": 67.6,
-        "danbooru": 82.96
-      },
-      "counts": {
-        "anilist": 16220,
-        "mal": null,
-        "ao3": 3718,
-        "danbooru": 2107
-      },
-      "weighted_total": 82.55,
-      "trend": "STABLE",
-      "measured_sources": [
-        "anilist",
-        "ao3",
-        "danbooru"
-      ],
-      "history": [
-        {
-          "label": "2026-08-14",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 90.86,
-            "mal": null,
-            "ao3": 67.6,
-            "danbooru": 82.96
-          },
-          "weighted_total": 82.55
-        },
-        {
-          "label": "2026-08-15",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 90.86,
-            "mal": null,
-            "ao3": 67.6,
-            "danbooru": 82.96
-          },
-          "weighted_total": 82.55
-        },
-        {
-          "label": "Aug 2026",
-          "period": "MONTH",
-          "scores": {
-            "anilist": 90.86,
-            "mal": null,
-            "ao3": 67.6,
-            "danbooru": 82.96
-          },
-          "weighted_total": 82.55
-        },
-        {
-          "label": "2026",
-          "period": "YEAR",
-          "scores": {
-            "anilist": 90.86,
-            "mal": null,
-            "ao3": 67.6,
-            "danbooru": 82.96
-          },
-          "weighted_total": 82.55
-        }
-      ],
-      "rank": 46
+      "rank": 50
     },
     {
       "id": "loid-forger",
@@ -3732,18 +4600,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b138101-7NCB0Md8zA6G.png",
       "scores": {
-        "anilist": 86.74,
+        "anilist": 86.66,
         "mal": null,
         "ao3": 65.01,
         "danbooru": 91.89
       },
       "counts": {
-        "anilist": 10447,
+        "anilist": 10337,
         "mal": null,
         "ao3": 2712,
-        "danbooru": 4802
+        "danbooru": 4805
       },
-      "weighted_total": 82.32,
+      "weighted_total": 82.28,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -3774,29 +4642,40 @@
           "weighted_total": 82.32
         },
         {
-          "label": "Aug 2026",
-          "period": "MONTH",
+          "label": "2026-08-17",
+          "period": "WEEK",
           "scores": {
-            "anilist": 86.74,
+            "anilist": 86.66,
             "mal": null,
             "ao3": 65.01,
             "danbooru": 91.89
           },
-          "weighted_total": 82.32
+          "weighted_total": 82.28
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": 86.71,
+            "mal": null,
+            "ao3": 65.01,
+            "danbooru": 91.89
+          },
+          "weighted_total": 82.31
         },
         {
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 86.74,
+            "anilist": 86.71,
             "mal": null,
             "ao3": 65.01,
             "danbooru": 91.89
           },
-          "weighted_total": 82.32
+          "weighted_total": 82.31
         }
       ],
-      "rank": 47
+      "rank": 51
     },
     {
       "id": "neuvillette",
@@ -3814,13 +4693,13 @@
       "scores": {
         "anilist": null,
         "mal": null,
-        "ao3": 77.38,
-        "danbooru": 86.67
+        "ao3": 77.39,
+        "danbooru": 86.66
       },
       "counts": {
         "anilist": null,
         "mal": null,
-        "ao3": 12212,
+        "ao3": 12226,
         "danbooru": 2966
       },
       "weighted_total": 82.03,
@@ -3853,6 +4732,17 @@
           "weighted_total": 82.03
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 77.39,
+            "danbooru": 86.66
+          },
+          "weighted_total": 82.03
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -3875,174 +4765,7 @@
           "weighted_total": 82.03
         }
       ],
-      "rank": 48
-    },
-    {
-      "id": "koro-sensei",
-      "name": "Koro-sensei",
-      "name_jp": "殺せんせー ",
-      "aliases": [
-        "Prince of the Fateful Eternal Wind",
-        "Octopus of Idiotic Perverted Chicken",
-        "Quiz Show",
-        "Octopus",
-        "The Creature of Mass Destruction",
-        "Guinea Pig",
-        "Unkillable Teacher",
-        "Demon King",
-        "Octorazzi"
-      ],
-      "source": "Assassination Classroom",
-      "franchise": "Assassination Classroom",
-      "source_type": "ANIME",
-      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b65643-jimrOw0RGtoB.png",
-      "scores": {
-        "anilist": 86.8,
-        "mal": null,
-        "ao3": null,
-        "danbooru": 73.39
-      },
-      "counts": {
-        "anilist": 10513,
-        "mal": null,
-        "ao3": null,
-        "danbooru": 871
-      },
-      "weighted_total": 81.92,
-      "trend": "RISING",
-      "measured_sources": [
-        "anilist",
-        "danbooru"
-      ],
-      "history": [
-        {
-          "label": "2026-08-14",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 86.8,
-            "mal": null,
-            "ao3": 31.48,
-            "danbooru": null
-          },
-          "weighted_total": 66.68
-        },
-        {
-          "label": "2026-08-15",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 86.8,
-            "mal": null,
-            "ao3": null,
-            "danbooru": 73.39
-          },
-          "weighted_total": 81.92
-        },
-        {
-          "label": "Aug 2026",
-          "period": "MONTH",
-          "scores": {
-            "anilist": 86.8,
-            "mal": null,
-            "ao3": 31.48,
-            "danbooru": 73.39
-          },
-          "weighted_total": 74.3
-        },
-        {
-          "label": "2026",
-          "period": "YEAR",
-          "scores": {
-            "anilist": 86.8,
-            "mal": null,
-            "ao3": 31.48,
-            "danbooru": 73.39
-          },
-          "weighted_total": 74.3
-        }
-      ],
-      "rank": 49
-    },
-    {
-      "id": "kenma-kozume",
-      "name": "Kenma Kozume",
-      "name_jp": "孤爪研磨",
-      "aliases": [
-        "Kyanma",
-        "Nekoma's Brain",
-        "Pudding Head",
-        "Kodzuken",
-        "Kenken"
-      ],
-      "source": "HAIKYU!!",
-      "franchise": "HAIKYU!!",
-      "source_type": "ANIME",
-      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b71267-q44J2MXMinXD.jpg",
-      "scores": {
-        "anilist": 87.42,
-        "mal": null,
-        "ao3": 83.49,
-        "danbooru": 70.52
-      },
-      "counts": {
-        "anilist": 11237,
-        "mal": null,
-        "ao3": 25673,
-        "danbooru": 668
-      },
-      "weighted_total": 81.87,
-      "trend": "STABLE",
-      "measured_sources": [
-        "anilist",
-        "ao3",
-        "danbooru"
-      ],
-      "history": [
-        {
-          "label": "2026-08-14",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 87.42,
-            "mal": null,
-            "ao3": 83.49,
-            "danbooru": 70.52
-          },
-          "weighted_total": 81.87
-        },
-        {
-          "label": "2026-08-15",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 87.42,
-            "mal": null,
-            "ao3": 83.49,
-            "danbooru": 70.52
-          },
-          "weighted_total": 81.87
-        },
-        {
-          "label": "Aug 2026",
-          "period": "MONTH",
-          "scores": {
-            "anilist": 87.42,
-            "mal": null,
-            "ao3": 83.49,
-            "danbooru": 70.52
-          },
-          "weighted_total": 81.87
-        },
-        {
-          "label": "2026",
-          "period": "YEAR",
-          "scores": {
-            "anilist": 87.42,
-            "mal": null,
-            "ao3": 83.49,
-            "danbooru": 70.52
-          },
-          "weighted_total": 81.87
-        }
-      ],
-      "rank": 50
+      "rank": 52
     },
     {
       "id": "tooru-oikawa",
@@ -4059,18 +4782,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b71611-cUZwVfzeNXD9.png",
       "scores": {
-        "anilist": 86.85,
+        "anilist": 86.83,
         "mal": null,
-        "ao3": 87.27,
+        "ao3": 87.26,
         "danbooru": 67.34
       },
       "counts": {
-        "anilist": 10571,
+        "anilist": 10520,
         "mal": null,
-        "ao3": 40626,
+        "ao3": 40635,
         "danbooru": 498
       },
-      "weighted_total": 81.76,
+      "weighted_total": 81.75,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -4101,10 +4824,21 @@
           "weighted_total": 81.76
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.83,
+            "mal": null,
+            "ao3": 87.26,
+            "danbooru": 67.34
+          },
+          "weighted_total": 81.75
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 86.85,
+            "anilist": 86.84,
             "mal": null,
             "ao3": 87.27,
             "danbooru": 67.34
@@ -4115,7 +4849,7 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 86.85,
+            "anilist": 86.84,
             "mal": null,
             "ao3": 87.27,
             "danbooru": 67.34
@@ -4123,7 +4857,7 @@
           "weighted_total": 81.76
         }
       ],
-      "rank": 51
+      "rank": 53
     },
     {
       "id": "yuuta-okkotsu",
@@ -4139,13 +4873,13 @@
       "scores": {
         "anilist": 87.86,
         "mal": null,
-        "ao3": 76.08,
+        "ao3": 76.09,
         "danbooru": 76.2
       },
       "counts": {
-        "anilist": 11770,
+        "anilist": 11740,
         "mal": null,
-        "ao3": 10422,
+        "ao3": 10438,
         "danbooru": 1129
       },
       "weighted_total": 81.61,
@@ -4179,6 +4913,17 @@
           "weighted_total": 81.61
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 87.86,
+            "mal": null,
+            "ao3": 76.09,
+            "danbooru": 76.2
+          },
+          "weighted_total": 81.61
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -4201,7 +4946,7 @@
           "weighted_total": 81.61
         }
       ],
-      "rank": 52
+      "rank": 54
     },
     {
       "id": "shigeo-kageyama",
@@ -4218,18 +4963,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b89616-dXmdOc7L6SDi.png",
       "scores": {
-        "anilist": 93.32,
+        "anilist": 93.33,
         "mal": null,
-        "ao3": 73.65,
-        "danbooru": 68.82
+        "ao3": 73.67,
+        "danbooru": 68.84
       },
       "counts": {
-        "anilist": 21091,
+        "anilist": 21052,
         "mal": null,
-        "ao3": 7759,
-        "danbooru": 571
+        "ao3": 7777,
+        "danbooru": 572
       },
-      "weighted_total": 81.54,
+      "weighted_total": 81.56,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -4260,15 +5005,26 @@
           "weighted_total": 81.54
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 93.33,
+            "mal": null,
+            "ao3": 73.67,
+            "danbooru": 68.84
+          },
+          "weighted_total": 81.56
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": 93.32,
             "mal": null,
-            "ao3": 73.65,
-            "danbooru": 68.82
+            "ao3": 73.66,
+            "danbooru": 68.83
           },
-          "weighted_total": 81.54
+          "weighted_total": 81.55
         },
         {
           "label": "2026",
@@ -4276,45 +5032,45 @@
           "scores": {
             "anilist": 93.32,
             "mal": null,
-            "ao3": 73.65,
-            "danbooru": 68.82
+            "ao3": 73.66,
+            "danbooru": 68.83
           },
-          "weighted_total": 81.54
+          "weighted_total": 81.55
         }
       ],
-      "rank": 53
+      "rank": 55
     },
     {
-      "id": "inosuke-hashibira",
-      "name": "Inosuke Hashibira",
-      "name_jp": "嘴平伊之助",
+      "id": "kenma-kozume",
+      "name": "Kenma Kozume",
+      "name_jp": "孤爪研磨",
       "aliases": [
-        "Svinosuke",
-        "Inoko",
-        "The Boar",
-        "하시비라 이노스케"
+        "Kyanma",
+        "Nekoma's Brain",
+        "Pudding Head",
+        "Kodzuken",
+        "Kenken"
       ],
-      "source": "Demon Slayer: Kimetsu no Yaiba",
-      "franchise": "Demon Slayer: Kimetsu no Yaiba",
+      "source": "HAIKYU!!",
+      "franchise": "HAIKYU!!",
       "source_type": "ANIME",
-      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/n129130-SJC0Kn1DU39E.jpg",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b71267-q44J2MXMinXD.jpg",
       "scores": {
-        "anilist": 90.76,
+        "anilist": 87.41,
         "mal": null,
-        "ao3": 74.28,
-        "danbooru": 72.18
+        "ao3": null,
+        "danbooru": 70.52
       },
       "counts": {
-        "anilist": 16044,
+        "anilist": 11188,
         "mal": null,
-        "ao3": 8371,
-        "danbooru": 779
+        "ao3": null,
+        "danbooru": 668
       },
-      "weighted_total": 81.41,
+      "weighted_total": 81.27,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
-        "ao3",
         "danbooru"
       ],
       "history": [
@@ -4322,48 +5078,59 @@
           "label": "2026-08-14",
           "period": "WEEK",
           "scores": {
-            "anilist": 90.76,
+            "anilist": 87.42,
             "mal": null,
-            "ao3": 74.28,
-            "danbooru": 72.18
+            "ao3": 83.49,
+            "danbooru": 70.52
           },
-          "weighted_total": 81.41
+          "weighted_total": 81.87
         },
         {
           "label": "2026-08-15",
           "period": "WEEK",
           "scores": {
-            "anilist": 90.76,
+            "anilist": 87.42,
             "mal": null,
-            "ao3": 74.28,
-            "danbooru": 72.18
+            "ao3": 83.49,
+            "danbooru": 70.52
           },
-          "weighted_total": 81.41
+          "weighted_total": 81.87
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 87.41,
+            "mal": null,
+            "ao3": null,
+            "danbooru": 70.52
+          },
+          "weighted_total": 81.27
         },
         {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 90.76,
+            "anilist": 87.42,
             "mal": null,
-            "ao3": 74.28,
-            "danbooru": 72.18
+            "ao3": 83.49,
+            "danbooru": 70.52
           },
-          "weighted_total": 81.41
+          "weighted_total": 81.67
         },
         {
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 90.76,
+            "anilist": 87.42,
             "mal": null,
-            "ao3": 74.28,
-            "danbooru": 72.18
+            "ao3": 83.49,
+            "danbooru": 70.52
           },
-          "weighted_total": 81.41
+          "weighted_total": 81.67
         }
       ],
-      "rank": 54
+      "rank": 56
     },
     {
       "id": "guts",
@@ -4381,16 +5148,16 @@
       "source_type": "MANGA",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b422-XTaiTuvRohsV.png",
       "scores": {
-        "anilist": 94.62,
+        "anilist": 94.63,
         "mal": null,
         "ao3": 59.04,
-        "danbooru": 78.66
+        "danbooru": 78.67
       },
       "counts": {
-        "anilist": 24223,
+        "anilist": 24178,
         "mal": null,
-        "ao3": 1311,
-        "danbooru": 1417
+        "ao3": 1312,
+        "danbooru": 1418
       },
       "weighted_total": 80.88,
       "trend": "STABLE",
@@ -4423,6 +5190,17 @@
           "weighted_total": 80.88
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 94.63,
+            "mal": null,
+            "ao3": 59.04,
+            "danbooru": 78.67
+          },
+          "weighted_total": 80.88
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -4445,7 +5223,7 @@
           "weighted_total": 80.88
         }
       ],
-      "rank": 55
+      "rank": 57
     },
     {
       "id": "hanako",
@@ -4461,18 +5239,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b128651-GaZImkP2Of1R.png",
       "scores": {
-        "anilist": 86.01,
+        "anilist": 85.98,
         "mal": null,
         "ao3": 55.14,
         "danbooru": 96.74
       },
       "counts": {
-        "anilist": 9662,
+        "anilist": 9605,
         "mal": null,
         "ao3": 816,
-        "danbooru": 7514
+        "danbooru": 7517
       },
-      "weighted_total": 80.64,
+      "weighted_total": 80.63,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -4503,29 +5281,40 @@
           "weighted_total": 80.64
         },
         {
-          "label": "Aug 2026",
-          "period": "MONTH",
+          "label": "2026-08-17",
+          "period": "WEEK",
           "scores": {
-            "anilist": 86.01,
+            "anilist": 85.98,
             "mal": null,
             "ao3": 55.14,
             "danbooru": 96.74
           },
-          "weighted_total": 77.71
+          "weighted_total": 80.63
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": 86,
+            "mal": null,
+            "ao3": 55.14,
+            "danbooru": 96.74
+          },
+          "weighted_total": 78.68
         },
         {
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 86.01,
+            "anilist": 86,
             "mal": null,
             "ao3": 55.14,
             "danbooru": 96.74
           },
-          "weighted_total": 77.71
+          "weighted_total": 78.68
         }
       ],
-      "rank": 56
+      "rank": 58
     },
     {
       "id": "gyro-zeppeli",
@@ -4539,18 +5328,18 @@
       "source_type": "MANGA",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b11772-p7MO37Mk0f5g.png",
       "scores": {
-        "anilist": 86.5,
+        "anilist": 86.52,
         "mal": null,
         "ao3": 66.74,
         "danbooru": 82.64
       },
       "counts": {
-        "anilist": 10184,
+        "anilist": 10179,
         "mal": null,
-        "ao3": 3345,
-        "danbooru": 2045
+        "ao3": 3350,
+        "danbooru": 2046
       },
-      "weighted_total": 80.2,
+      "weighted_total": 80.21,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -4581,10 +5370,21 @@
           "weighted_total": 80.2
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.52,
+            "mal": null,
+            "ao3": 66.74,
+            "danbooru": 82.64
+          },
+          "weighted_total": 80.21
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 86.5,
+            "anilist": 86.51,
             "mal": null,
             "ao3": 66.74,
             "danbooru": 82.64
@@ -4595,7 +5395,7 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 86.5,
+            "anilist": 86.51,
             "mal": null,
             "ao3": 66.74,
             "danbooru": 82.64
@@ -4603,7 +5403,7 @@
           "weighted_total": 80.2
         }
       ],
-      "rank": 57
+      "rank": 59
     },
     {
       "id": "wriothesley",
@@ -4619,16 +5419,16 @@
       "scores": {
         "anilist": null,
         "mal": null,
-        "ao3": 74.89,
+        "ao3": 74.88,
         "danbooru": 83.61
       },
       "counts": {
         "anilist": null,
         "mal": null,
-        "ao3": 9016,
-        "danbooru": 2236
+        "ao3": 9017,
+        "danbooru": 2238
       },
-      "weighted_total": 79.25,
+      "weighted_total": 79.24,
       "trend": "STABLE",
       "measured_sources": [
         "ao3",
@@ -4658,6 +5458,17 @@
           "weighted_total": 79.25
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 74.88,
+            "danbooru": 83.61
+          },
+          "weighted_total": 79.24
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -4680,7 +5491,7 @@
           "weighted_total": 79.25
         }
       ],
-      "rank": 58
+      "rank": 60
     },
     {
       "id": "joseph-joestar",
@@ -4698,18 +5509,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b6356-RImEfUfHpC58.png",
       "scores": {
-        "anilist": 91.68,
+        "anilist": 91.7,
         "mal": null,
         "ao3": 59.97,
         "danbooru": 76.67
       },
       "counts": {
-        "anilist": 17698,
+        "anilist": 17684,
         "mal": null,
-        "ao3": 1469,
+        "ao3": 1470,
         "danbooru": 1179
       },
-      "weighted_total": 79.22,
+      "weighted_total": 79.23,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -4740,10 +5551,21 @@
           "weighted_total": 79.22
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 91.7,
+            "mal": null,
+            "ao3": 59.97,
+            "danbooru": 76.67
+          },
+          "weighted_total": 79.23
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 91.68,
+            "anilist": 91.69,
             "mal": null,
             "ao3": 59.97,
             "danbooru": 76.67
@@ -4754,7 +5576,7 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 91.68,
+            "anilist": 91.69,
             "mal": null,
             "ao3": 59.97,
             "danbooru": 76.67
@@ -4762,7 +5584,7 @@
           "weighted_total": 79.22
         }
       ],
-      "rank": 59
+      "rank": 61
     },
     {
       "id": "sunday-hsr",
@@ -4779,16 +5601,16 @@
       "scores": {
         "anilist": null,
         "mal": null,
-        "ao3": 70.77,
-        "danbooru": 86.91
+        "ao3": 70.79,
+        "danbooru": 86.92
       },
       "counts": {
         "anilist": null,
         "mal": null,
-        "ao3": 5464,
-        "danbooru": 3034
+        "ao3": 5481,
+        "danbooru": 3037
       },
-      "weighted_total": 78.84,
+      "weighted_total": 78.86,
       "trend": "STABLE",
       "measured_sources": [
         "ao3",
@@ -4818,15 +5640,26 @@
           "weighted_total": 78.84
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 70.79,
+            "danbooru": 86.92
+          },
+          "weighted_total": 78.86
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": null,
             "mal": null,
-            "ao3": 70.77,
+            "ao3": 70.78,
             "danbooru": 86.91
           },
-          "weighted_total": 78.84
+          "weighted_total": 78.85
         },
         {
           "label": "2026",
@@ -4834,91 +5667,13 @@
           "scores": {
             "anilist": null,
             "mal": null,
-            "ao3": 70.77,
+            "ao3": 70.78,
             "danbooru": 86.91
           },
-          "weighted_total": 78.84
+          "weighted_total": 78.85
         }
       ],
-      "rank": 60
-    },
-    {
-      "id": "ray",
-      "name": "Ray",
-      "name_jp": "レイ",
-      "aliases": [
-        "Sleepy Cyclops"
-      ],
-      "source": "The Promised Neverland",
-      "franchise": "The Promised Neverland",
-      "source_type": "ANIME",
-      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b121724-SJTdODjeO7e6.jpg",
-      "scores": {
-        "anilist": 87.58,
-        "mal": null,
-        "ao3": 65.15,
-        "danbooru": 76.73
-      },
-      "counts": {
-        "anilist": 11428,
-        "mal": null,
-        "ao3": 2759,
-        "danbooru": 1185
-      },
-      "weighted_total": 78.71,
-      "trend": "STABLE",
-      "measured_sources": [
-        "anilist",
-        "ao3",
-        "danbooru"
-      ],
-      "history": [
-        {
-          "label": "2026-08-14",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 87.58,
-            "mal": null,
-            "ao3": 65.15,
-            "danbooru": 76.73
-          },
-          "weighted_total": 78.71
-        },
-        {
-          "label": "2026-08-15",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 87.58,
-            "mal": null,
-            "ao3": 65.15,
-            "danbooru": 76.73
-          },
-          "weighted_total": 78.71
-        },
-        {
-          "label": "Aug 2026",
-          "period": "MONTH",
-          "scores": {
-            "anilist": 87.58,
-            "mal": null,
-            "ao3": 65.15,
-            "danbooru": 76.73
-          },
-          "weighted_total": 78.71
-        },
-        {
-          "label": "2026",
-          "period": "YEAR",
-          "scores": {
-            "anilist": 87.58,
-            "mal": null,
-            "ao3": 65.15,
-            "danbooru": 76.73
-          },
-          "weighted_total": 78.71
-        }
-      ],
-      "rank": 61
+      "rank": 62
     },
     {
       "id": "joutarou-kuujou",
@@ -4935,18 +5690,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b4003-gWDSEGbeOAll.png",
       "scores": {
-        "anilist": 90.08,
+        "anilist": 90.09,
         "mal": null,
         "ao3": 59.97,
         "danbooru": 76.67
       },
       "counts": {
-        "anilist": 14924,
+        "anilist": 14904,
         "mal": null,
-        "ao3": 1469,
+        "ao3": 1470,
         "danbooru": 1179
       },
-      "weighted_total": 78.47,
+      "weighted_total": 78.48,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -4977,6 +5732,17 @@
           "weighted_total": 78.47
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.09,
+            "mal": null,
+            "ao3": 59.97,
+            "danbooru": 76.67
+          },
+          "weighted_total": 78.48
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -4999,7 +5765,7 @@
           "weighted_total": 78.47
         }
       ],
-      "rank": 62
+      "rank": 63
     },
     {
       "id": "kazuma-satou",
@@ -5014,18 +5780,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b89364-7Th8Tv1XKJtt.png",
       "scores": {
-        "anilist": 86.26,
+        "anilist": 86.27,
         "mal": null,
-        "ao3": 53.73,
-        "danbooru": 88.97
+        "ao3": 53.74,
+        "danbooru": 88.98
       },
       "counts": {
-        "anilist": 9927,
+        "anilist": 9910,
         "mal": null,
-        "ao3": 687,
-        "danbooru": 3668
+        "ao3": 688,
+        "danbooru": 3672
       },
-      "weighted_total": 78.31,
+      "weighted_total": 78.32,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -5056,6 +5822,17 @@
           "weighted_total": 78.31
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.27,
+            "mal": null,
+            "ao3": 53.74,
+            "danbooru": 88.98
+          },
+          "weighted_total": 78.32
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -5078,7 +5855,7 @@
           "weighted_total": 78.31
         }
       ],
-      "rank": 63
+      "rank": 64
     },
     {
       "id": "toge-inumaki",
@@ -5090,18 +5867,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b157115-kdhRYQdVhH95.png",
       "scores": {
-        "anilist": 86.98,
+        "anilist": 86.95,
         "mal": null,
         "ao3": 74.32,
         "danbooru": 66.32
       },
       "counts": {
-        "anilist": 10723,
+        "anilist": 10660,
         "mal": null,
-        "ao3": 8417,
+        "ao3": 8426,
         "danbooru": 453
       },
-      "weighted_total": 78.09,
+      "weighted_total": 78.08,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -5132,10 +5909,21 @@
           "weighted_total": 78.09
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.95,
+            "mal": null,
+            "ao3": 74.32,
+            "danbooru": 66.32
+          },
+          "weighted_total": 78.08
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 86.98,
+            "anilist": 86.97,
             "mal": null,
             "ao3": 74.32,
             "danbooru": 66.32
@@ -5146,7 +5934,7 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 86.98,
+            "anilist": 86.97,
             "mal": null,
             "ao3": 74.32,
             "danbooru": 66.32
@@ -5154,7 +5942,95 @@
           "weighted_total": 78.09
         }
       ],
-      "rank": 64
+      "rank": 65
+    },
+    {
+      "id": "ash-lynx",
+      "name": "Ash Lynx",
+      "name_jp": "アッシュ・リンクス",
+      "aliases": [
+        "Aslan Jade Callenreese"
+      ],
+      "source": "BANANA FISH",
+      "franchise": "BANANA FISH",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b13580-1J7PwIB8kTpu.png",
+      "scores": {
+        "anilist": 86.93,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 61.57
+      },
+      "counts": {
+        "anilist": 10630,
+        "mal": null,
+        "ao3": null,
+        "danbooru": 292
+      },
+      "weighted_total": 77.71,
+      "trend": "RISING",
+      "measured_sources": [
+        "anilist",
+        "danbooru"
+      ],
+      "history": [
+        {
+          "label": "2026-08-14",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.94,
+            "mal": null,
+            "ao3": 70.59,
+            "danbooru": 61.57
+          },
+          "weighted_total": 75.81
+        },
+        {
+          "label": "2026-08-15",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.94,
+            "mal": null,
+            "ao3": 70.59,
+            "danbooru": 61.57
+          },
+          "weighted_total": 75.81
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.93,
+            "mal": null,
+            "ao3": null,
+            "danbooru": 61.57
+          },
+          "weighted_total": 77.71
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": 86.94,
+            "mal": null,
+            "ao3": 70.59,
+            "danbooru": 61.57
+          },
+          "weighted_total": 76.44
+        },
+        {
+          "label": "2026",
+          "period": "YEAR",
+          "scores": {
+            "anilist": 86.94,
+            "mal": null,
+            "ao3": 70.59,
+            "danbooru": 61.57
+          },
+          "weighted_total": 76.44
+        }
+      ],
+      "rank": 66
     },
     {
       "id": "shouya-ishida",
@@ -5171,18 +6047,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b80491-NK6pxb6oH61P.png",
       "scores": {
-        "anilist": 87.61,
+        "anilist": 87.6,
         "mal": null,
-        "ao3": 39.23,
-        "danbooru": 98.57
+        "ao3": 39.3,
+        "danbooru": 98.58
       },
       "counts": {
-        "anilist": 11462,
+        "anilist": 11420,
         "mal": null,
-        "ao3": 117,
-        "danbooru": 8898
+        "ao3": 118,
+        "danbooru": 8904
       },
-      "weighted_total": 77.63,
+      "weighted_total": 77.65,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -5213,15 +6089,26 @@
           "weighted_total": 77.63
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 87.6,
+            "mal": null,
+            "ao3": 39.3,
+            "danbooru": 98.58
+          },
+          "weighted_total": 77.65
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": 87.61,
             "mal": null,
-            "ao3": 39.23,
+            "ao3": 39.25,
             "danbooru": 98.57
           },
-          "weighted_total": 77.63
+          "weighted_total": 77.64
         },
         {
           "label": "2026",
@@ -5229,13 +6116,13 @@
           "scores": {
             "anilist": 87.61,
             "mal": null,
-            "ao3": 39.23,
+            "ao3": 39.25,
             "danbooru": 98.57
           },
-          "weighted_total": 77.63
+          "weighted_total": 77.64
         }
       ],
-      "rank": 65
+      "rank": 67
     },
     {
       "id": "kyoujurou-rengoku",
@@ -5252,15 +6139,15 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b129133-VlTPowwt68rJ.png",
       "scores": {
-        "anilist": 88.09,
+        "anilist": 88.08,
         "mal": null,
-        "ao3": 76.76,
+        "ao3": 76.77,
         "danbooru": 59.59
       },
       "counts": {
-        "anilist": 12070,
+        "anilist": 12024,
         "mal": null,
-        "ao3": 11327,
+        "ao3": 11347,
         "danbooru": 243
       },
       "weighted_total": 77.47,
@@ -5294,6 +6181,17 @@
           "weighted_total": 77.47
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 88.08,
+            "mal": null,
+            "ao3": 76.77,
+            "danbooru": 59.59
+          },
+          "weighted_total": 77.47
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -5316,7 +6214,7 @@
           "weighted_total": 77.47
         }
       ],
-      "rank": 66
+      "rank": 68
     },
     {
       "id": "light-yagami",
@@ -5332,16 +6230,16 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b80-26EhwSsSqQ50.png",
       "scores": {
-        "anilist": 93.66,
+        "anilist": 93.67,
         "mal": null,
-        "ao3": 48.8,
+        "ao3": 48.78,
         "danbooru": 77.15
       },
       "counts": {
-        "anilist": 21866,
+        "anilist": 21815,
         "mal": null,
-        "ao3": 377,
-        "danbooru": 1232
+        "ao3": 376,
+        "danbooru": 1233
       },
       "weighted_total": 77.29,
       "trend": "STABLE",
@@ -5374,12 +6272,23 @@
           "weighted_total": 77.29
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 93.67,
+            "mal": null,
+            "ao3": 48.78,
+            "danbooru": 77.15
+          },
+          "weighted_total": 77.29
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": 93.66,
             "mal": null,
-            "ao3": 48.8,
+            "ao3": 48.79,
             "danbooru": 77.15
           },
           "weighted_total": 77.29
@@ -5390,13 +6299,13 @@
           "scores": {
             "anilist": 93.66,
             "mal": null,
-            "ao3": 48.8,
+            "ao3": 48.79,
             "danbooru": 77.15
           },
           "weighted_total": 77.29
         }
       ],
-      "rank": 67
+      "rank": 69
     },
     {
       "id": "hisoka-morow",
@@ -5418,9 +6327,9 @@
         "danbooru": 71.42
       },
       "counts": {
-        "anilist": 15925,
+        "anilist": 15886,
         "mal": null,
-        "ao3": 1095,
+        "ao3": 1096,
         "danbooru": 726
       },
       "weighted_total": 76.72,
@@ -5454,6 +6363,17 @@
           "weighted_total": 76.72
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.69,
+            "mal": null,
+            "ao3": 57.56,
+            "danbooru": 71.42
+          },
+          "weighted_total": 76.72
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -5476,7 +6396,7 @@
           "weighted_total": 76.72
         }
       ],
-      "rank": 68
+      "rank": 70
     },
     {
       "id": "jing-yuan",
@@ -5494,13 +6414,13 @@
       "scores": {
         "anilist": null,
         "mal": null,
-        "ao3": 73.42,
+        "ao3": 73.41,
         "danbooru": 79.68
       },
       "counts": {
         "anilist": null,
         "mal": null,
-        "ao3": 7538,
+        "ao3": 7535,
         "danbooru": 1557
       },
       "weighted_total": 76.55,
@@ -5533,6 +6453,17 @@
           "weighted_total": 76.55
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": null,
+            "mal": null,
+            "ao3": 73.41,
+            "danbooru": 79.68
+          },
+          "weighted_total": 76.55
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -5555,7 +6486,7 @@
           "weighted_total": 76.55
         }
       ],
-      "rank": 69
+      "rank": 71
     },
     {
       "id": "jin-u-seong",
@@ -5572,18 +6503,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b129928-BCEjVaP0AQSw.png",
       "scores": {
-        "anilist": 90.49,
+        "anilist": 90.5,
         "mal": null,
-        "ao3": 61.72,
+        "ao3": 61.73,
         "danbooru": 66.32
       },
       "counts": {
-        "anilist": 15584,
+        "anilist": 15564,
         "mal": null,
-        "ao3": 1818,
+        "ao3": 1820,
         "danbooru": 453
       },
-      "weighted_total": 76.37,
+      "weighted_total": 76.38,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -5614,6 +6545,17 @@
           "weighted_total": 76.37
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.5,
+            "mal": null,
+            "ao3": 61.73,
+            "danbooru": 66.32
+          },
+          "weighted_total": 76.38
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -5636,7 +6578,7 @@
           "weighted_total": 76.37
         }
       ],
-      "rank": 70
+      "rank": 72
     },
     {
       "id": "spike-spiegel",
@@ -5651,18 +6593,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b1-ChxaldmieFlQ.png",
       "scores": {
-        "anilist": 90.07,
+        "anilist": 90.08,
         "mal": null,
-        "ao3": 57.63,
+        "ao3": 57.64,
         "danbooru": 70.24
       },
       "counts": {
-        "anilist": 14909,
+        "anilist": 14879,
         "mal": null,
-        "ao3": 1105,
+        "ao3": 1107,
         "danbooru": 651
       },
-      "weighted_total": 76.13,
+      "weighted_total": 76.14,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -5693,6 +6635,17 @@
           "weighted_total": 76.13
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.08,
+            "mal": null,
+            "ao3": 57.64,
+            "danbooru": 70.24
+          },
+          "weighted_total": 76.14
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -5715,7 +6668,7 @@
           "weighted_total": 76.13
         }
       ],
-      "rank": 71
+      "rank": 73
     },
     {
       "id": "zoro-roronoa",
@@ -5736,18 +6689,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b62-S7oAeA9WInjV.png",
       "scores": {
-        "anilist": 96.25,
+        "anilist": 96.27,
         "mal": null,
         "ao3": 86.2,
         "danbooru": 30.71
       },
       "counts": {
-        "anilist": 28834,
+        "anilist": 28811,
         "mal": null,
-        "ao3": 35683,
+        "ao3": 35727,
         "danbooru": 16
       },
-      "weighted_total": 76.09,
+      "weighted_total": 76.1,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -5778,10 +6731,21 @@
           "weighted_total": 76.09
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 96.27,
+            "mal": null,
+            "ao3": 86.2,
+            "danbooru": 30.71
+          },
+          "weighted_total": 76.1
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 96.25,
+            "anilist": 96.26,
             "mal": null,
             "ao3": 86.2,
             "danbooru": 30.71
@@ -5792,7 +6756,7 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 96.25,
+            "anilist": 96.26,
             "mal": null,
             "ao3": 86.2,
             "danbooru": 30.71
@@ -5800,7 +6764,7 @@
           "weighted_total": 76.09
         }
       ],
-      "rank": 72
+      "rank": 74
     },
     {
       "id": "kusuo-saiki",
@@ -5821,18 +6785,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b90107-ZULW5HlPX1uU.png",
       "scores": {
-        "anilist": 90.68,
+        "anilist": 90.66,
         "mal": null,
-        "ao3": 68.24,
-        "danbooru": 58.06
+        "ao3": 68.26,
+        "danbooru": 58.11
       },
       "counts": {
-        "anilist": 15909,
+        "anilist": 15831,
         "mal": null,
-        "ao3": 4017,
-        "danbooru": 211
+        "ao3": 4027,
+        "danbooru": 212
       },
-      "weighted_total": 76,
+      "weighted_total": 76.01,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -5863,13 +6827,24 @@
           "weighted_total": 76
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.66,
+            "mal": null,
+            "ao3": 68.26,
+            "danbooru": 58.11
+          },
+          "weighted_total": 76.01
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 90.68,
+            "anilist": 90.67,
             "mal": null,
-            "ao3": 68.24,
-            "danbooru": 58.06
+            "ao3": 68.25,
+            "danbooru": 58.08
           },
           "weighted_total": 76
         },
@@ -5877,15 +6852,15 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 90.68,
+            "anilist": 90.67,
             "mal": null,
-            "ao3": 68.24,
-            "danbooru": 58.06
+            "ao3": 68.25,
+            "danbooru": 58.08
           },
           "weighted_total": 76
         }
       ],
-      "rank": 73
+      "rank": 75
     },
     {
       "id": "yuu-ishigami",
@@ -5904,16 +6879,16 @@
       "scores": {
         "anilist": 90.4,
         "mal": null,
-        "ao3": 46.79,
-        "danbooru": 79.64
+        "ao3": 46.84,
+        "danbooru": 79.65
       },
       "counts": {
-        "anilist": 15448,
+        "anilist": 15394,
         "mal": null,
-        "ao3": 295,
-        "danbooru": 1550
+        "ao3": 297,
+        "danbooru": 1552
       },
-      "weighted_total": 75.9,
+      "weighted_total": 75.92,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -5944,15 +6919,26 @@
           "weighted_total": 75.9
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.4,
+            "mal": null,
+            "ao3": 46.84,
+            "danbooru": 79.65
+          },
+          "weighted_total": 75.92
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": 90.4,
             "mal": null,
-            "ao3": 46.79,
+            "ao3": 46.81,
             "danbooru": 79.64
           },
-          "weighted_total": 75.9
+          "weighted_total": 75.91
         },
         {
           "label": "2026",
@@ -5960,172 +6946,10 @@
           "scores": {
             "anilist": 90.4,
             "mal": null,
-            "ao3": 46.79,
+            "ao3": 46.81,
             "danbooru": 79.64
           },
-          "weighted_total": 75.9
-        }
-      ],
-      "rank": 74
-    },
-    {
-      "id": "ash-lynx",
-      "name": "Ash Lynx",
-      "name_jp": "アッシュ・リンクス",
-      "aliases": [
-        "Aslan Jade Callenreese"
-      ],
-      "source": "BANANA FISH",
-      "franchise": "BANANA FISH",
-      "source_type": "ANIME",
-      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b13580-1J7PwIB8kTpu.png",
-      "scores": {
-        "anilist": 86.94,
-        "mal": null,
-        "ao3": 70.59,
-        "danbooru": 61.57
-      },
-      "counts": {
-        "anilist": 10671,
-        "mal": null,
-        "ao3": 5348,
-        "danbooru": 292
-      },
-      "weighted_total": 75.81,
-      "trend": "STABLE",
-      "measured_sources": [
-        "anilist",
-        "ao3",
-        "danbooru"
-      ],
-      "history": [
-        {
-          "label": "2026-08-14",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 86.94,
-            "mal": null,
-            "ao3": 70.59,
-            "danbooru": 61.57
-          },
-          "weighted_total": 75.81
-        },
-        {
-          "label": "2026-08-15",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 86.94,
-            "mal": null,
-            "ao3": 70.59,
-            "danbooru": 61.57
-          },
-          "weighted_total": 75.81
-        },
-        {
-          "label": "Aug 2026",
-          "period": "MONTH",
-          "scores": {
-            "anilist": 86.94,
-            "mal": null,
-            "ao3": 70.59,
-            "danbooru": 61.57
-          },
-          "weighted_total": 75.81
-        },
-        {
-          "label": "2026",
-          "period": "YEAR",
-          "scores": {
-            "anilist": 86.94,
-            "mal": null,
-            "ao3": 70.59,
-            "danbooru": 61.57
-          },
-          "weighted_total": 75.81
-        }
-      ],
-      "rank": 75
-    },
-    {
-      "id": "kiyotaka-ayanokouji",
-      "name": "Kiyotaka Ayanokouji",
-      "name_jp": "綾小路清隆",
-      "aliases": [
-        "Argos-4",
-        "Ayanokoji",
-        "Aya-non",
-        "Kiyo-pon",
-        "X",
-        "The False Genius",
-        "Elevator Boy"
-      ],
-      "source": "Classroom of the Elite",
-      "franchise": "Classroom of the Elite",
-      "source_type": "ANIME",
-      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b123212-ewZgUQr9vvEM.png",
-      "scores": {
-        "anilist": 90.99,
-        "mal": null,
-        "ao3": 52.35,
-        "danbooru": 68.82
-      },
-      "counts": {
-        "anilist": 16439,
-        "mal": null,
-        "ao3": 581,
-        "danbooru": 571
-      },
-      "weighted_total": 74.77,
-      "trend": "STABLE",
-      "measured_sources": [
-        "anilist",
-        "ao3",
-        "danbooru"
-      ],
-      "history": [
-        {
-          "label": "2026-08-14",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 90.99,
-            "mal": null,
-            "ao3": 52.35,
-            "danbooru": 68.82
-          },
-          "weighted_total": 74.77
-        },
-        {
-          "label": "2026-08-15",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 90.99,
-            "mal": null,
-            "ao3": 52.35,
-            "danbooru": 68.82
-          },
-          "weighted_total": 74.77
-        },
-        {
-          "label": "Aug 2026",
-          "period": "MONTH",
-          "scores": {
-            "anilist": 90.99,
-            "mal": null,
-            "ao3": 52.35,
-            "danbooru": 68.82
-          },
-          "weighted_total": 74.77
-        },
-        {
-          "label": "2026",
-          "period": "YEAR",
-          "scores": {
-            "anilist": 90.99,
-            "mal": null,
-            "ao3": 52.35,
-            "danbooru": 68.82
-          },
-          "weighted_total": 74.77
+          "weighted_total": 75.91
         }
       ],
       "rank": 76
@@ -6144,13 +6968,13 @@
       "scores": {
         "anilist": 86.29,
         "mal": null,
-        "ao3": 62.58,
-        "danbooru": 64.45
+        "ao3": 62.59,
+        "danbooru": 64.44
       },
       "counts": {
-        "anilist": 9960,
+        "anilist": 9933,
         "mal": null,
-        "ao3": 2017,
+        "ao3": 2021,
         "danbooru": 381
       },
       "weighted_total": 74.14,
@@ -6180,6 +7004,17 @@
             "mal": null,
             "ao3": 62.58,
             "danbooru": 64.45
+          },
+          "weighted_total": 74.14
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.29,
+            "mal": null,
+            "ao3": 62.59,
+            "danbooru": 64.44
           },
           "weighted_total": 74.14
         },
@@ -6231,18 +7066,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b209-NOAbiLvJt1QA.png",
       "scores": {
-        "anilist": 87.76,
+        "anilist": 87.7,
         "mal": null,
         "ao3": null,
-        "danbooru": 50.24
+        "danbooru": 50.34
       },
       "counts": {
-        "anilist": 11647,
+        "anilist": 11546,
         "mal": null,
         "ao3": null,
-        "danbooru": 102
+        "danbooru": 103
       },
-      "weighted_total": 74.12,
+      "weighted_total": 74.11,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -6272,13 +7107,24 @@
           "weighted_total": 74.12
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 87.7,
+            "mal": null,
+            "ao3": null,
+            "danbooru": 50.34
+          },
+          "weighted_total": 74.11
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 87.76,
+            "anilist": 87.74,
             "mal": null,
             "ao3": null,
-            "danbooru": 50.24
+            "danbooru": 50.27
           },
           "weighted_total": 74.12
         },
@@ -6286,10 +7132,10 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 87.76,
+            "anilist": 87.74,
             "mal": null,
             "ao3": null,
-            "danbooru": 50.24
+            "danbooru": 50.27
           },
           "weighted_total": 74.12
         }
@@ -6313,13 +7159,13 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b22036-Ed3CjwPlDLp4.png",
       "scores": {
-        "anilist": 88.69,
+        "anilist": 88.7,
         "mal": null,
         "ao3": 39.16,
         "danbooru": 81.63
       },
       "counts": {
-        "anilist": 12860,
+        "anilist": 12843,
         "mal": null,
         "ao3": 116,
         "danbooru": 1864
@@ -6348,6 +7194,17 @@
           "period": "WEEK",
           "scores": {
             "anilist": 88.69,
+            "mal": null,
+            "ao3": 39.16,
+            "danbooru": 81.63
+          },
+          "weighted_total": 73.6
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 88.7,
             "mal": null,
             "ao3": 39.16,
             "danbooru": 81.63
@@ -6397,16 +7254,16 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b417-gVLmIJu9phcK.png",
       "scores": {
-        "anilist": 96.3,
+        "anilist": 96.31,
         "mal": null,
         "ao3": 5.7,
         "danbooru": 99.96
       },
       "counts": {
-        "anilist": 28961,
+        "anilist": 28931,
         "mal": null,
         "ao3": 1,
-        "danbooru": 10112
+        "danbooru": 10117
       },
       "weighted_total": 73.12,
       "trend": "STABLE",
@@ -6432,6 +7289,17 @@
           "period": "WEEK",
           "scores": {
             "anilist": 96.3,
+            "mal": null,
+            "ao3": 5.7,
+            "danbooru": 99.96
+          },
+          "weighted_total": 73.12
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 96.31,
             "mal": null,
             "ao3": 5.7,
             "danbooru": 99.96
@@ -6477,16 +7345,16 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b66173-g8eU1LGWPB8O.png",
       "scores": {
-        "anilist": 90.67,
+        "anilist": 90.64,
         "mal": null,
         "ao3": 43.06,
-        "danbooru": 70.11
+        "danbooru": 70.17
       },
       "counts": {
-        "anilist": 15894,
+        "anilist": 15791,
         "mal": null,
         "ao3": 187,
-        "danbooru": 643
+        "danbooru": 647
       },
       "weighted_total": 72.49,
       "trend": "STABLE",
@@ -6519,13 +7387,24 @@
           "weighted_total": 72.49
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.64,
+            "mal": null,
+            "ao3": 43.06,
+            "danbooru": 70.17
+          },
+          "weighted_total": 72.49
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 90.67,
+            "anilist": 90.66,
             "mal": null,
             "ao3": 43.06,
-            "danbooru": 70.11
+            "danbooru": 70.13
           },
           "weighted_total": 72.49
         },
@@ -6533,10 +7412,10 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 90.67,
+            "anilist": 90.66,
             "mal": null,
             "ao3": 43.06,
-            "danbooru": 70.11
+            "danbooru": 70.13
           },
           "weighted_total": 72.49
         }
@@ -6556,18 +7435,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b13020-ZdiYlNmpRUNS.png",
       "scores": {
-        "anilist": 91.26,
+        "anilist": 91.27,
         "mal": null,
-        "ao3": 54.26,
+        "ao3": 54.27,
         "danbooru": 56.82
       },
       "counts": {
-        "anilist": 16923,
+        "anilist": 16898,
         "mal": null,
-        "ao3": 733,
+        "ao3": 734,
         "danbooru": 188
       },
-      "weighted_total": 72.21,
+      "weighted_total": 72.22,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -6596,6 +7475,17 @@
             "danbooru": 56.82
           },
           "weighted_total": 72.21
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 91.27,
+            "mal": null,
+            "ao3": 54.27,
+            "danbooru": 56.82
+          },
+          "weighted_total": 72.22
         },
         {
           "label": "Aug 2026",
@@ -6637,15 +7527,15 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b84677-PFmohzIXD1ud.png",
       "scores": {
-        "anilist": 89.53,
+        "anilist": 89.52,
         "mal": null,
-        "ao3": 59.34,
+        "ao3": 59.35,
         "danbooru": 53.72
       },
       "counts": {
-        "anilist": 14077,
+        "anilist": 14017,
         "mal": null,
-        "ao3": 1361,
+        "ao3": 1362,
         "danbooru": 141
       },
       "weighted_total": 71.93,
@@ -6674,6 +7564,17 @@
             "anilist": 89.53,
             "mal": null,
             "ao3": 59.34,
+            "danbooru": 53.72
+          },
+          "weighted_total": 71.93
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 89.52,
+            "mal": null,
+            "ao3": 59.35,
             "danbooru": 53.72
           },
           "weighted_total": 71.93
@@ -6720,18 +7621,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b13767-U604OJN9dxCn.jpg",
       "scores": {
-        "anilist": 86.68,
+        "anilist": 86.7,
         "mal": null,
         "ao3": 81.86,
         "danbooru": 30.71
       },
       "counts": {
-        "anilist": 10384,
+        "anilist": 10377,
         "mal": null,
-        "ao3": 21060,
+        "ao3": 21073,
         "danbooru": 16
       },
-      "weighted_total": 70.47,
+      "weighted_total": 70.48,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -6762,10 +7663,21 @@
           "weighted_total": 70.47
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.7,
+            "mal": null,
+            "ao3": 81.86,
+            "danbooru": 30.71
+          },
+          "weighted_total": 70.48
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 86.68,
+            "anilist": 86.69,
             "mal": null,
             "ao3": 81.86,
             "danbooru": 30.71
@@ -6776,7 +7688,7 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 86.68,
+            "anilist": 86.69,
             "mal": null,
             "ao3": 81.86,
             "danbooru": 30.71
@@ -6804,16 +7716,16 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b71-1W4panC53vfs.png",
       "scores": {
-        "anilist": 96.32,
+        "anilist": 96.31,
         "mal": null,
         "ao3": 11.4,
-        "danbooru": 84.02
+        "danbooru": 84.03
       },
       "counts": {
-        "anilist": 29028,
+        "anilist": 28937,
         "mal": null,
         "ao3": 3,
-        "danbooru": 2324
+        "danbooru": 2326
       },
       "weighted_total": 70.39,
       "trend": "STABLE",
@@ -6846,6 +7758,17 @@
           "weighted_total": 70.39
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 96.31,
+            "mal": null,
+            "ao3": 11.4,
+            "danbooru": 84.03
+          },
+          "weighted_total": 70.39
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
@@ -6871,89 +7794,6 @@
       "rank": 85
     },
     {
-      "id": "senkuu-ishigami",
-      "name": "Senkuu Ishigami",
-      "name_jp": "石神千空",
-      "aliases": [
-        "Sorcerer",
-        "Sorcerer Gentleman",
-        "Professor Senku",
-        "String bean",
-        "Dr. Senku",
-        "Lab"
-      ],
-      "source": "Dr. STONE",
-      "franchise": "Dr. STONE",
-      "source_type": "ANIME",
-      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b124142-XUO1g7wRqkaT.png",
-      "scores": {
-        "anilist": 90.92,
-        "mal": null,
-        "ao3": 26.47,
-        "danbooru": 76.3
-      },
-      "counts": {
-        "anilist": 16328,
-        "mal": null,
-        "ao3": 24,
-        "danbooru": 1139
-      },
-      "weighted_total": 69.83,
-      "trend": "STABLE",
-      "measured_sources": [
-        "anilist",
-        "ao3",
-        "danbooru"
-      ],
-      "history": [
-        {
-          "label": "2026-08-14",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 90.92,
-            "mal": null,
-            "ao3": 26.47,
-            "danbooru": 76.3
-          },
-          "weighted_total": 69.83
-        },
-        {
-          "label": "2026-08-15",
-          "period": "WEEK",
-          "scores": {
-            "anilist": 90.92,
-            "mal": null,
-            "ao3": 26.47,
-            "danbooru": 76.3
-          },
-          "weighted_total": 69.83
-        },
-        {
-          "label": "Aug 2026",
-          "period": "MONTH",
-          "scores": {
-            "anilist": 90.92,
-            "mal": null,
-            "ao3": 26.47,
-            "danbooru": 76.3
-          },
-          "weighted_total": 69.83
-        },
-        {
-          "label": "2026",
-          "period": "YEAR",
-          "scores": {
-            "anilist": 90.92,
-            "mal": null,
-            "ao3": 26.47,
-            "danbooru": 76.3
-          },
-          "weighted_total": 69.83
-        }
-      ],
-      "rank": 86
-    },
-    {
       "id": "karma-akabane",
       "name": "Karma Akabane",
       "name_jp": "赤羽業",
@@ -6974,18 +7814,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b71933-HQ1TSjlrJ8Hv.jpg",
       "scores": {
-        "anilist": 88.03,
+        "anilist": 88.01,
         "mal": null,
-        "ao3": 69.06,
+        "ao3": 69.07,
         "danbooru": 35.32
       },
       "counts": {
-        "anilist": 11993,
+        "anilist": 11930,
         "mal": null,
-        "ao3": 4439,
+        "ao3": 4444,
         "danbooru": 25
       },
-      "weighted_total": 68.92,
+      "weighted_total": 68.91,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -7016,10 +7856,21 @@
           "weighted_total": 68.92
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 88.01,
+            "mal": null,
+            "ao3": 69.07,
+            "danbooru": 35.32
+          },
+          "weighted_total": 68.91
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 88.03,
+            "anilist": 88.02,
             "mal": null,
             "ao3": 69.06,
             "danbooru": 35.32
@@ -7030,7 +7881,7 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 88.03,
+            "anilist": 88.02,
             "mal": null,
             "ao3": 69.06,
             "danbooru": 35.32
@@ -7038,7 +7889,7 @@
           "weighted_total": 68.92
         }
       ],
-      "rank": 87
+      "rank": 86
     },
     {
       "id": "tanjirou-kamado",
@@ -7063,15 +7914,15 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b126071-BTNEc1nRIv68.png",
       "scores": {
-        "anilist": 92.78,
+        "anilist": 92.76,
         "mal": null,
-        "ao3": 79.94,
+        "ao3": 79.95,
         "danbooru": 15.03
       },
       "counts": {
-        "anilist": 19906,
+        "anilist": 19813,
         "mal": null,
-        "ao3": 16673,
+        "ao3": 16702,
         "danbooru": 3
       },
       "weighted_total": 68.62,
@@ -7105,10 +7956,21 @@
           "weighted_total": 68.62
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 92.76,
+            "mal": null,
+            "ao3": 79.95,
+            "danbooru": 15.03
+          },
+          "weighted_total": 68.62
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 92.78,
+            "anilist": 92.77,
             "mal": null,
             "ao3": 79.94,
             "danbooru": 15.03
@@ -7119,12 +7981,109 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 92.78,
+            "anilist": 92.77,
             "mal": null,
             "ao3": 79.94,
             "danbooru": 15.03
           },
           "weighted_total": 68.62
+        }
+      ],
+      "rank": 87
+    },
+    {
+      "id": "koro-sensei",
+      "name": "Koro-sensei",
+      "name_jp": "殺せんせー ",
+      "aliases": [
+        "Prince of the Fateful Eternal Wind",
+        "Octopus of Idiotic Perverted Chicken",
+        "Quiz Show",
+        "Octopus",
+        "The Creature of Mass Destruction",
+        "Guinea Pig",
+        "Unkillable Teacher",
+        "Demon King",
+        "Octorazzi"
+      ],
+      "source": "Assassination Classroom",
+      "franchise": "Assassination Classroom",
+      "source_type": "ANIME",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b65643-jimrOw0RGtoB.png",
+      "scores": {
+        "anilist": 86.8,
+        "mal": null,
+        "ao3": 31.48,
+        "danbooru": 73.48
+      },
+      "counts": {
+        "anilist": 10484,
+        "mal": null,
+        "ao3": 45,
+        "danbooru": 878
+      },
+      "weighted_total": 68.5,
+      "trend": "FALLING",
+      "measured_sources": [
+        "anilist",
+        "ao3",
+        "danbooru"
+      ],
+      "history": [
+        {
+          "label": "2026-08-14",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.8,
+            "mal": null,
+            "ao3": 31.48,
+            "danbooru": null
+          },
+          "weighted_total": 66.68
+        },
+        {
+          "label": "2026-08-15",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.8,
+            "mal": null,
+            "ao3": null,
+            "danbooru": 73.39
+          },
+          "weighted_total": 81.92
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.8,
+            "mal": null,
+            "ao3": 31.48,
+            "danbooru": 73.48
+          },
+          "weighted_total": 68.5
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": 86.8,
+            "mal": null,
+            "ao3": 31.48,
+            "danbooru": 73.44
+          },
+          "weighted_total": 72.37
+        },
+        {
+          "label": "2026",
+          "period": "YEAR",
+          "scores": {
+            "anilist": 86.8,
+            "mal": null,
+            "ao3": 31.48,
+            "danbooru": 73.44
+          },
+          "weighted_total": 72.37
         }
       ],
       "rank": 88
@@ -7142,13 +8101,13 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b23277-EYmIxzL64Mji.png",
       "scores": {
-        "anilist": 86,
+        "anilist": 86.01,
         "mal": null,
-        "ao3": 50.44,
-        "danbooru": 53.8
+        "ao3": 50.43,
+        "danbooru": 53.79
       },
       "counts": {
-        "anilist": 9654,
+        "anilist": 9639,
         "mal": null,
         "ao3": 460,
         "danbooru": 142
@@ -7180,6 +8139,17 @@
             "mal": null,
             "ao3": 50.44,
             "danbooru": 53.8
+          },
+          "weighted_total": 67.93
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.01,
+            "mal": null,
+            "ao3": 50.43,
+            "danbooru": 53.79
           },
           "weighted_total": 67.93
         },
@@ -7239,13 +8209,13 @@
       "scores": {
         "anilist": 90.79,
         "mal": null,
-        "ao3": 88.1,
+        "ao3": 88.09,
         "danbooru": 7.51
       },
       "counts": {
-        "anilist": 16103,
+        "anilist": 16055,
         "mal": null,
-        "ao3": 44948,
+        "ao3": 44969,
         "danbooru": 1
       },
       "weighted_total": 67.86,
@@ -7274,6 +8244,17 @@
             "anilist": 90.79,
             "mal": null,
             "ao3": 88.1,
+            "danbooru": 7.51
+          },
+          "weighted_total": 67.86
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 90.79,
+            "mal": null,
+            "ao3": 88.09,
             "danbooru": 7.51
           },
           "weighted_total": 67.86
@@ -7321,15 +8302,15 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b11-TA5Nuk7EDUZG.jpg",
       "scores": {
-        "anilist": 92.91,
+        "anilist": 92.92,
         "mal": null,
-        "ao3": 58.61,
+        "ao3": 58.59,
         "danbooru": 32.47
       },
       "counts": {
-        "anilist": 20183,
+        "anilist": 20138,
         "mal": null,
-        "ao3": 1245,
+        "ao3": 1242,
         "danbooru": 19
       },
       "weighted_total": 67.65,
@@ -7363,12 +8344,23 @@
           "weighted_total": 67.65
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 92.92,
+            "mal": null,
+            "ao3": 58.59,
+            "danbooru": 32.47
+          },
+          "weighted_total": 67.65
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": 92.91,
             "mal": null,
-            "ao3": 58.61,
+            "ao3": 58.6,
             "danbooru": 32.47
           },
           "weighted_total": 67.65
@@ -7379,7 +8371,7 @@
           "scores": {
             "anilist": 92.91,
             "mal": null,
-            "ao3": 58.61,
+            "ao3": 58.6,
             "danbooru": 32.47
           },
           "weighted_total": 67.65
@@ -7399,16 +8391,16 @@
       "scores": {
         "anilist": 87.68,
         "mal": null,
-        "ao3": 37.45,
+        "ao3": 37.44,
         "danbooru": 57.27
       },
       "counts": {
-        "anilist": 11547,
+        "anilist": 11522,
         "mal": null,
         "ao3": 94,
         "danbooru": 196
       },
-      "weighted_total": 66.18,
+      "weighted_total": 66.17,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -7437,6 +8429,17 @@
             "danbooru": 57.27
           },
           "weighted_total": 66.18
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 87.68,
+            "mal": null,
+            "ao3": 37.44,
+            "danbooru": 57.27
+          },
+          "weighted_total": 66.17
         },
         {
           "label": "Aug 2026",
@@ -7483,9 +8486,9 @@
         "danbooru": 33.99
       },
       "counts": {
-        "anilist": 10446,
+        "anilist": 10423,
         "mal": null,
-        "ao3": 874,
+        "ao3": 875,
         "danbooru": 22
       },
       "weighted_total": 64.4,
@@ -7509,6 +8512,17 @@
         },
         {
           "label": "2026-08-15",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.74,
+            "mal": null,
+            "ao3": 55.71,
+            "danbooru": 33.99
+          },
+          "weighted_total": 64.4
+        },
+        {
+          "label": "2026-08-17",
           "period": "WEEK",
           "scores": {
             "anilist": 86.74,
@@ -7557,18 +8571,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b85-mkVBh2yjxjmx.png",
       "scores": {
-        "anilist": 93.99,
+        "anilist": 94,
         "mal": null,
-        "ao3": 47.41,
+        "ao3": 47.48,
         "danbooru": 29.35
       },
       "counts": {
-        "anilist": 22650,
+        "anilist": 22601,
         "mal": null,
-        "ao3": 318,
+        "ao3": 321,
         "danbooru": 14
       },
-      "weighted_total": 64.33,
+      "weighted_total": 64.35,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -7599,15 +8613,26 @@
           "weighted_total": 64.33
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 94,
+            "mal": null,
+            "ao3": 47.48,
+            "danbooru": 29.35
+          },
+          "weighted_total": 64.35
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": 93.99,
             "mal": null,
-            "ao3": 47.41,
+            "ao3": 47.43,
             "danbooru": 29.35
           },
-          "weighted_total": 64.33
+          "weighted_total": 64.34
         },
         {
           "label": "2026",
@@ -7615,10 +8640,10 @@
           "scores": {
             "anilist": 93.99,
             "mal": null,
-            "ao3": 47.41,
+            "ao3": 47.43,
             "danbooru": 29.35
           },
-          "weighted_total": 64.33
+          "weighted_total": 64.34
         }
       ],
       "rank": 94
@@ -7655,13 +8680,13 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b672-cP5VPriN67xJ.png",
       "scores": {
-        "anilist": 91.08,
+        "anilist": 91.09,
         "mal": null,
-        "ao3": 45.24,
-        "danbooru": 35.73
+        "ao3": 45.23,
+        "danbooru": 35.72
       },
       "counts": {
-        "anilist": 16598,
+        "anilist": 16567,
         "mal": null,
         "ao3": 244,
         "danbooru": 26
@@ -7693,6 +8718,17 @@
             "mal": null,
             "ao3": 45.24,
             "danbooru": 35.73
+          },
+          "weighted_total": 64.1
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 91.09,
+            "mal": null,
+            "ao3": 45.23,
+            "danbooru": 35.72
           },
           "weighted_total": 64.1
         },
@@ -7734,13 +8770,13 @@
       "source_type": "MANGA",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b6194-HOyr8E7FCFHJ.png",
       "scores": {
-        "anilist": 86.18,
+        "anilist": 86.19,
         "mal": null,
-        "ao3": 41.53,
+        "ao3": 41.52,
         "danbooru": 43.04
       },
       "counts": {
-        "anilist": 9840,
+        "anilist": 9832,
         "mal": null,
         "ao3": 155,
         "danbooru": 52
@@ -7771,6 +8807,17 @@
             "anilist": 86.18,
             "mal": null,
             "ao3": 41.53,
+            "danbooru": 43.04
+          },
+          "weighted_total": 62.77
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 86.19,
+            "mal": null,
+            "ao3": 41.52,
             "danbooru": 43.04
           },
           "weighted_total": 62.77
@@ -7822,18 +8869,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b719-y984mDWyGf5n.jpg",
       "scores": {
-        "anilist": 87.61,
+        "anilist": 87.62,
         "mal": null,
         "ao3": 9.03,
         "danbooru": 72.07
       },
       "counts": {
-        "anilist": 11464,
+        "anilist": 11451,
         "mal": null,
         "ao3": 2,
         "danbooru": 771
       },
-      "weighted_total": 62.51,
+      "weighted_total": 62.52,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -7862,6 +8909,17 @@
             "danbooru": 72.07
           },
           "weighted_total": 62.51
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 87.62,
+            "mal": null,
+            "ao3": 9.03,
+            "danbooru": 72.07
+          },
+          "weighted_total": 62.52
         },
         {
           "label": "Aug 2026",
@@ -7901,13 +8959,13 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b10138-zOPrka0ddZOR.png",
       "scores": {
-        "anilist": 93.99,
+        "anilist": 94,
         "mal": null,
         "ao3": 9.03,
         "danbooru": 60.48
       },
       "counts": {
-        "anilist": 22648,
+        "anilist": 22614,
         "mal": null,
         "ao3": 2,
         "danbooru": 264
@@ -7936,6 +8994,17 @@
           "period": "WEEK",
           "scores": {
             "anilist": 93.99,
+            "mal": null,
+            "ao3": 9.03,
+            "danbooru": 60.48
+          },
+          "weighted_total": 62.4
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 94,
             "mal": null,
             "ao3": 9.03,
             "danbooru": 60.48
@@ -7991,18 +9060,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b40-MNypXsxSRb1R.png",
       "scores": {
-        "anilist": 98.37,
+        "anilist": 98.39,
         "mal": null,
-        "ao3": 45.79,
+        "ao3": 45.85,
         "danbooru": 11.91
       },
       "counts": {
-        "anilist": 36130,
+        "anilist": 36100,
         "mal": null,
-        "ao3": 261,
+        "ao3": 263,
         "danbooru": 2
       },
-      "weighted_total": 61.29,
+      "weighted_total": 61.32,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -8033,26 +9102,37 @@
           "weighted_total": 61.29
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 98.39,
+            "mal": null,
+            "ao3": 45.85,
+            "danbooru": 11.91
+          },
+          "weighted_total": 61.32
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 98.37,
+            "anilist": 98.38,
             "mal": null,
-            "ao3": 45.79,
+            "ao3": 45.81,
             "danbooru": 11.91
           },
-          "weighted_total": 61.29
+          "weighted_total": 61.3
         },
         {
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 98.37,
+            "anilist": 98.38,
             "mal": null,
-            "ao3": 45.79,
+            "ao3": 45.81,
             "danbooru": 11.91
           },
-          "weighted_total": 61.29
+          "weighted_total": 61.3
         }
       ],
       "rank": 99
@@ -8074,16 +9154,16 @@
       "scores": {
         "anilist": 88.97,
         "mal": null,
-        "ao3": 48.49,
+        "ao3": 48.51,
         "danbooru": 23.82
       },
       "counts": {
-        "anilist": 13256,
+        "anilist": 13223,
         "mal": null,
-        "ao3": 363,
+        "ao3": 364,
         "danbooru": 8
       },
-      "weighted_total": 60.8,
+      "weighted_total": 60.81,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -8114,12 +9194,23 @@
           "weighted_total": 60.8
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 88.97,
+            "mal": null,
+            "ao3": 48.51,
+            "danbooru": 23.82
+          },
+          "weighted_total": 60.81
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
             "anilist": 88.97,
             "mal": null,
-            "ao3": 48.49,
+            "ao3": 48.5,
             "danbooru": 23.82
           },
           "weighted_total": 60.8
@@ -8130,7 +9221,7 @@
           "scores": {
             "anilist": 88.97,
             "mal": null,
-            "ao3": 48.49,
+            "ao3": 48.5,
             "danbooru": 23.82
           },
           "weighted_total": 60.8
@@ -8153,16 +9244,16 @@
       "scores": {
         "anilist": 87.48,
         "mal": null,
-        "ao3": 61.51,
+        "ao3": 61.52,
         "danbooru": 11.91
       },
       "counts": {
-        "anilist": 11303,
+        "anilist": 11277,
         "mal": null,
-        "ao3": 1772,
+        "ao3": 1774,
         "danbooru": 2
       },
-      "weighted_total": 60.4,
+      "weighted_total": 60.41,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -8191,6 +9282,17 @@
             "danbooru": 11.91
           },
           "weighted_total": 60.4
+        },
+        {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 87.48,
+            "mal": null,
+            "ao3": 61.52,
+            "danbooru": 11.91
+          },
+          "weighted_total": 60.41
         },
         {
           "label": "Aug 2026",
@@ -8231,18 +9333,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b121101-Q8HzKP15At2d.png",
       "scores": {
-        "anilist": 86.03,
+        "anilist": 86,
         "mal": null,
         "ao3": 46.51,
         "danbooru": 15.03
       },
       "counts": {
-        "anilist": 9681,
+        "anilist": 9634,
         "mal": null,
         "ao3": 285,
         "danbooru": 3
       },
-      "weighted_total": 56.56,
+      "weighted_total": 56.54,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -8273,26 +9375,37 @@
           "weighted_total": 56.56
         },
         {
-          "label": "Aug 2026",
-          "period": "MONTH",
+          "label": "2026-08-17",
+          "period": "WEEK",
           "scores": {
-            "anilist": 86.03,
+            "anilist": 86,
             "mal": null,
             "ao3": 46.51,
             "danbooru": 15.03
           },
-          "weighted_total": 56.56
+          "weighted_total": 56.54
+        },
+        {
+          "label": "Aug 2026",
+          "period": "MONTH",
+          "scores": {
+            "anilist": 86.02,
+            "mal": null,
+            "ao3": 46.51,
+            "danbooru": 15.03
+          },
+          "weighted_total": 56.55
         },
         {
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 86.03,
+            "anilist": 86.02,
             "mal": null,
             "ao3": 46.51,
             "danbooru": 15.03
           },
-          "weighted_total": 56.56
+          "weighted_total": 56.55
         }
       ],
       "rank": 102
@@ -8317,18 +9430,18 @@
       "source_type": "ANIME",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b35252-DY9TW6pusqeh.png",
       "scores": {
-        "anilist": 93.66,
+        "anilist": 93.68,
         "mal": null,
         "ao3": 13.23,
         "danbooru": 7.51
       },
       "counts": {
-        "anilist": 21871,
+        "anilist": 21839,
         "mal": null,
         "ao3": 4,
         "danbooru": 1
       },
-      "weighted_total": 49.24,
+      "weighted_total": 49.25,
       "trend": "STABLE",
       "measured_sources": [
         "anilist",
@@ -8359,10 +9472,21 @@
           "weighted_total": 49.24
         },
         {
+          "label": "2026-08-17",
+          "period": "WEEK",
+          "scores": {
+            "anilist": 93.68,
+            "mal": null,
+            "ao3": 13.23,
+            "danbooru": 7.51
+          },
+          "weighted_total": 49.25
+        },
+        {
           "label": "Aug 2026",
           "period": "MONTH",
           "scores": {
-            "anilist": 93.66,
+            "anilist": 93.67,
             "mal": null,
             "ao3": 13.23,
             "danbooru": 7.51
@@ -8373,7 +9497,7 @@
           "label": "2026",
           "period": "YEAR",
           "scores": {
-            "anilist": 93.66,
+            "anilist": 93.67,
             "mal": null,
             "ao3": 13.23,
             "danbooru": 7.51
