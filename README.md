@@ -61,7 +61,7 @@ All four are read live and none needs an API key.
 | Source | Counts | Applies to |
 | --- | --- | --- |
 | AniList | character favourites | anime, manga |
-| MyAnimeList (via Jikan) | character favourites | anime, manga |
+| MyAnimeList | character favourites | anime, manga |
 | AO3 | works under the canonical character tag | all |
 | Danbooru | posts under the character tag | all |
 
@@ -117,8 +117,9 @@ list decides who is covered; it never supplies their numbers.
   cannot weight that day twice. This is what trend and the history chart read.
 - **Database (optional)** — Drizzle with Turso or PlanetScale, used instead of
   the file when `DATABASE_PROVIDER` is set. Not needed for the static deploy.
-- **Upstream limits** — AO3 is paced at one request per 1.2s with backoff, Jikan
-  at one per 400ms. Both throttle aggressively.
+- **Upstream limits** — AO3 is paced at one request per 1.2s with backoff and
+  throttles aggressively. MyAnimeList's board is paced at one per 1.1s, and is
+  read once per refresh rather than once per character.
 
 ## Structure
 
@@ -155,8 +156,9 @@ figure beside each score so a reader can check it. Conventions are in
 
 ## Known gaps
 
-- **MyAnimeList reads 0/103.** Jikan returns `504 "Jikan failed to connect to
-  MyAnimeList"` — upstream, not this codebase. The fetcher degrades to `null`.
+- **MyAnimeList covers the top 1,000 of its favourites board.** That spans the
+  whole roster today; anyone outside the window reads `null`. Raise
+  `MAL_TOP_CHARACTERS` if it starts costing readings.
 - **Three game characters have no portrait** (Alhaitham, Blade, Wriothesley);
   AniList has no entry for them, so a generated monogram stands in.
 - **Trend needs two refreshes.** The first snapshot has nothing to compare

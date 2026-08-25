@@ -53,7 +53,7 @@ Four, all read live, none requiring an API key:
 | Source | Counts | Applies to |
 | --- | --- | --- |
 | `anilist` | character favourites | anime, manga |
-| `mal` | character favourites (via Jikan) | anime, manga |
+| `mal` | character favourites | anime, manga |
 | `ao3` | works under the canonical character tag | all |
 | `danbooru` | posts under the character tag | all |
 
@@ -131,8 +131,9 @@ than no match:
 
 ### Rate limits
 
-AO3 throttles hard and is paced at one request per 1.2s with backoff; Jikan at
-one per 400ms. AO3 sets the wall clock: a warm refresh of ~100 characters takes
+AO3 throttles hard and is paced at one request per 1.2s with backoff; MAL's
+board at one per 1.1s, but that is 20 requests for the whole roster rather than
+one per character. AO3 sets the wall clock: a warm refresh of ~100 characters takes
 about five minutes, a cold one about twenty-two. Roster size is sized against
 that budget, not against a web request.
 
@@ -210,8 +211,9 @@ husbandometrics/
 
 ## Known gaps
 
-- MyAnimeList reads 0/103. Jikan returns 504 (`"Jikan failed to connect to
-  MyAnimeList"`) — upstream, not our bug. The fetcher degrades to `null`.
+- MyAnimeList covers the favourites board's top 1,000 only. That is the whole
+  roster today, but a character who is on our board and outside that window
+  reads `null`. Raise `MAL_TOP_CHARACTERS` if it starts costing readings.
 - Three game characters have no AniList portrait and fall back to a generated
   monogram.
 - Trend needs two refreshes. The first snapshot has nothing to compare against,
