@@ -8,9 +8,9 @@ import {
   SourceType,
   TimePeriod,
   Trend,
-} from '../../src/types';
-import { env } from '../config/env';
-import { GAME_ROSTER } from '../data/gameRoster';
+} from "../../src/types";
+import { env } from "../config/env";
+import { GAME_ROSTER } from "../data/gameRoster";
 import {
   CharacterProfile,
   CharacterQuery,
@@ -19,17 +19,22 @@ import {
   fetchDanbooruMetric,
   fetchMalMetric,
   lookupProfiles,
-} from './fetchers';
-import { measuredSources, normalizeAgainstPeak, peaksBySource, weightedTotal } from '../utils/metrics';
+} from "./fetchers";
+import {
+  measuredSources,
+  normalizeAgainstPeak,
+  peaksBySource,
+  weightedTotal,
+} from "../utils/metrics";
 import {
   fetchMetricHistory,
   fetchPersistedCharacters,
   saveMetricSnapshots,
   upsertCharacters,
   type PersistedMetrics,
-} from '../db/repository';
-import { cacheClient, defaultTtlSeconds } from '../lib/cache';
-import { readTags, writeTags, type KnownTags } from '../db/tagStore';
+} from "../db/repository";
+import { cacheClient, defaultTtlSeconds } from "../lib/cache";
+import { readTags, writeTags, type KnownTags } from "../db/tagStore";
 
 /** Keeps AO3 and Danbooru from rate-limiting a full roster refresh. */
 const FETCH_CONCURRENCY = 4;
@@ -38,7 +43,7 @@ const FETCH_CONCURRENCY = 4;
 const MIN_SOURCES_TO_RANK = 2;
 
 const CACHE_KEYS = {
-  all: 'rankings:all',
+  all: "rankings:all",
   byId: (id: string) => `rankings:${id}`,
 };
 
@@ -66,15 +71,17 @@ type RosterCharacter = {
 };
 
 const emptyBreakdown = (): ScoreBreakdown =>
-  Object.fromEntries(METRIC_SOURCES.map((source) => [source, null])) as ScoreBreakdown;
+  Object.fromEntries(
+    METRIC_SOURCES.map((source) => [source, null]),
+  ) as ScoreBreakdown;
 
 const slugify = (value: string) =>
   value
     .toLowerCase()
-    .normalize('NFKD')
-    .replace(/[^\w\s-]/g, '')
+    .normalize("NFKD")
+    .replace(/[^\w\s-]/g, "")
     .trim()
-    .replace(/\s+/g, '-');
+    .replace(/\s+/g, "-");
 
 const toRosterCharacter = (
   profile: CharacterProfile,
@@ -109,8 +116,9 @@ const buildRoster = async (): Promise<RosterCharacter[]> => {
     ),
   ]);
 
-  const roster: RosterCharacter[] = discovered.map((profile) => toRosterCharacter(profile));
-  const seen = new Set(roster.map((character) => character.id));
+  const roster: RosterCharacter[] = discovered.map((profile) =>
+    toRosterCharacter(profile),
+  );
 
   GAME_ROSTER.forEach((entry) => {
     const profile = curatedProfiles[entry.id];
@@ -119,7 +127,7 @@ const buildRoster = async (): Promise<RosterCharacter[]> => {
     roster.push({
       id: entry.id,
       name: entry.name,
-      nameJp: profile?.nameJp ?? '',
+      nameJp: profile?.nameJp ?? "",
       aliases: [...new Set([...entry.aliases, ...(profile?.aliases ?? [])])],
       franchise: entry.franchise,
       sourceType: entry.sourceType,
@@ -127,10 +135,14 @@ const buildRoster = async (): Promise<RosterCharacter[]> => {
       anilistFavourites: profile?.favourites ?? null,
       franchiseHints: entry.franchiseHints,
     });
-    seen.add(entry.id);
   });
 
-  return roster.filter((character, index) => roster.findIndex((c) => c.id === character.id) === index);
+  // Ids collide only if an AniList-discovered name slugifies to a curated
+  // game id; first occurrence wins, which keeps the discovery's own profile.
+  return roster.filter(
+    (character, index) =>
+      roster.findIndex((c) => c.id === character.id) === index,
+  );
 };
 
 /**
@@ -145,7 +157,7 @@ const buildRoster = async (): Promise<RosterCharacter[]> => {
  * still used for the portrait and the Japanese name.
  */
 const sourceApplies = (source: MetricSourceId, sourceType: SourceType) =>
-  sourceType !== SourceType.GAME || (source !== 'anilist' && source !== 'mal');
+  sourceType !== SourceType.GAME || (source !== "anilist" && source !== "mal");
 
 const readCounts = async (
   character: RosterCharacter,
@@ -160,7 +172,9 @@ const readCounts = async (
   const [ao3, danbooru, mal] = await Promise.all([
     fetchAo3Metric({ ...query, knownTag: known.ao3 }),
     fetchDanbooruMetric({ ...query, knownTag: known.danbooru }),
-    sourceApplies('mal', character.sourceType) ? fetchMalMetric(query) : { value: null, raw: undefined },
+    sourceApplies("mal", character.sourceType)
+      ? fetchMalMetric(query)
+      : { value: null, raw: undefined },
   ]);
 
   const counts: MetricCounts = {
@@ -175,8 +189,8 @@ const readCounts = async (
   });
 
   const tags: KnownTags = {};
-  if (typeof ao3.raw === 'string') tags.ao3 = ao3.raw;
-  if (typeof danbooru.raw === 'string') tags.danbooru = danbooru.raw;
+  if (typeof ao3.raw === "string") tags.ao3 = ao3.raw;
+  if (typeof danbooru.raw === "string") tags.danbooru = danbooru.raw;
 
   return { counts, tags };
 };
@@ -192,15 +206,25 @@ const computeTrend = (current: number, previous?: number | null) => {
 const bucketKey = (date: Date, period: TimePeriod) => {
   if (period === TimePeriod.YEAR) return String(date.getUTCFullYear());
   if (period === TimePeriod.MONTH) {
-    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      year: "numeric",
+      timeZone: "UTC",
+    });
   }
   return date.toISOString().slice(0, 10);
 };
 
 const averageOrNull = (values: Array<number | null>) => {
-  const present = values.filter((value): value is number => value !== null && Number.isFinite(value));
+  const present = values.filter(
+    (value): value is number => value !== null && Number.isFinite(value),
+  );
   if (!present.length) return null;
-  return Number((present.reduce((sum, value) => sum + value, 0) / present.length).toFixed(2));
+  return Number(
+    (present.reduce((sum, value) => sum + value, 0) / present.length).toFixed(
+      2,
+    ),
+  );
 };
 
 /**
@@ -210,42 +234,56 @@ const averageOrNull = (values: Array<number | null>) => {
 const buildHistory = (snapshots: PersistedMetrics[]): HistoricalSnapshot[] => {
   const chronological = [...snapshots]
     .filter((row) => row.recorded_at instanceof Date)
-    .sort((a, b) => (a.recorded_at as Date).getTime() - (b.recorded_at as Date).getTime());
+    .sort(
+      (a, b) =>
+        (a.recorded_at as Date).getTime() - (b.recorded_at as Date).getTime(),
+    );
   if (!chronological.length) return [];
 
-  return [TimePeriod.WEEK, TimePeriod.MONTH, TimePeriod.YEAR].flatMap((period) => {
-    const buckets = new Map<string, PersistedMetrics[]>();
-    chronological.forEach((row) => {
-      const key = bucketKey(row.recorded_at as Date, period);
-      const existing = buckets.get(key);
-      if (existing) existing.push(row);
-      else buckets.set(key, [row]);
-    });
+  return [TimePeriod.WEEK, TimePeriod.MONTH, TimePeriod.YEAR].flatMap(
+    (period) => {
+      const buckets = new Map<string, PersistedMetrics[]>();
+      chronological.forEach((row) => {
+        const key = bucketKey(row.recorded_at as Date, period);
+        const existing = buckets.get(key);
+        if (existing) existing.push(row);
+        else buckets.set(key, [row]);
+      });
 
-    return [...buckets.entries()].map(([label, rows]) => ({
-      label,
-      period,
-      scores: Object.fromEntries(
-        METRIC_SOURCES.map((source) => [source, averageOrNull(rows.map((row) => row[source]))]),
-      ) as ScoreBreakdown,
-      weighted_total: Number(
-        (rows.reduce((sum, row) => sum + row.weighted_total, 0) / rows.length).toFixed(2),
-      ),
-    }));
-  });
+      return [...buckets.entries()].map(([label, rows]) => ({
+        label,
+        period,
+        scores: Object.fromEntries(
+          METRIC_SOURCES.map((source) => [
+            source,
+            averageOrNull(rows.map((row) => row[source])),
+          ]),
+        ) as ScoreBreakdown,
+        weighted_total: Number(
+          (
+            rows.reduce((sum, row) => sum + row.weighted_total, 0) / rows.length
+          ).toFixed(2),
+        ),
+      }));
+    },
+  );
 };
 
 const fetchRankingsFromSource = async (): Promise<RankingsResponse> => {
   const roster = await buildRoster();
 
   const knownTags = await readTags();
-  const readings: Array<{ character: RosterCharacter; counts: MetricCounts }> = [];
+  const readings: Array<{ character: RosterCharacter; counts: MetricCounts }> =
+    [];
   const resolvedTags: Record<string, KnownTags> = {};
 
   for (let i = 0; i < roster.length; i += FETCH_CONCURRENCY) {
     const batch = await Promise.all(
       roster.slice(i, i + FETCH_CONCURRENCY).map(async (character) => {
-        const { counts, tags } = await readCounts(character, knownTags[character.id]);
+        const { counts, tags } = await readCounts(
+          character,
+          knownTags[character.id],
+        );
         if (Object.keys(tags).length) resolvedTags[character.id] = tags;
         return { character, counts };
       }),
@@ -266,7 +304,10 @@ const fetchRankingsFromSource = async (): Promise<RankingsResponse> => {
   const characters = readings
     .map(({ character, counts }) => {
       const scores = Object.fromEntries(
-        METRIC_SOURCES.map((source) => [source, normalizeAgainstPeak(counts[source], peaks[source])]),
+        METRIC_SOURCES.map((source) => [
+          source,
+          normalizeAgainstPeak(counts[source], peaks[source]),
+        ]),
       ) as ScoreBreakdown;
 
       const measured = measuredSources(scores);
@@ -287,7 +328,7 @@ const fetchRankingsFromSource = async (): Promise<RankingsResponse> => {
         source: character.franchise,
         franchise: character.franchise,
         source_type: character.sourceType,
-        image_url: character.imageUrl ?? '',
+        image_url: character.imageUrl ?? "",
         scores,
         counts,
         weighted_total: total,
@@ -330,7 +371,10 @@ const fetchRankingsFromSource = async (): Promise<RankingsResponse> => {
   // UI showed for the current period disagreed with the rank beside it.
   const history = await fetchMetricHistory(rosterIds);
   characters.forEach((character, index) => {
-    characters[index] = { ...character, history: buildHistory(history?.[character.id] ?? []) };
+    characters[index] = {
+      ...character,
+      history: buildHistory(history?.[character.id] ?? []),
+    };
   });
 
   const persisted = await fetchPersistedCharacters();
@@ -341,10 +385,12 @@ const fetchRankingsFromSource = async (): Promise<RankingsResponse> => {
       weights: env.weights,
       sources: [...METRIC_SOURCES],
       roster: {
-        anime: characters.filter((c) => c.source_type !== SourceType.GAME).length,
-        game: characters.filter((c) => c.source_type === SourceType.GAME).length,
+        anime: characters.filter((c) => c.source_type !== SourceType.GAME)
+          .length,
+        game: characters.filter((c) => c.source_type === SourceType.GAME)
+          .length,
       },
-      mode: persisted?.length ? 'live+persisted' : 'live',
+      mode: persisted?.length ? "live+persisted" : "live",
     },
     characters,
   };
@@ -359,7 +405,9 @@ export const getAllRankings = async (): Promise<RankingsResponse> => {
   return payload;
 };
 
-export const getCharacterById = async (id: string): Promise<Character | null> => {
+export const getCharacterById = async (
+  id: string,
+): Promise<Character | null> => {
   const cacheKey = CACHE_KEYS.byId(id);
   const cached = await cacheClient.get<Character>(cacheKey);
   if (cached) return cached;
@@ -380,7 +428,11 @@ export const refreshRankings = async (): Promise<RankingsResponse> => {
 
   await Promise.all(
     refreshed.characters.map((character) =>
-      cacheClient.set(CACHE_KEYS.byId(character.id), character, defaultTtlSeconds),
+      cacheClient.set(
+        CACHE_KEYS.byId(character.id),
+        character,
+        defaultTtlSeconds,
+      ),
     ),
   );
 
