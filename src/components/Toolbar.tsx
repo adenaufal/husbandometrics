@@ -1,7 +1,7 @@
-import React from 'react';
-import { Download } from 'lucide-react';
-import { SourceType, TimePeriod } from '../types';
-import { useTranslation } from '../lib/i18n';
+import React from "react";
+import { Download } from "lucide-react";
+import { SourceType, TimePeriod } from "../types";
+import { useTranslation } from "../lib/i18n";
 
 interface ToolbarProps {
   filterType: SourceType;
@@ -18,10 +18,11 @@ interface ToolbarProps {
 }
 
 const segment =
-  'px-3 py-1.5 text-sm font-bold rounded-md transition-colors whitespace-nowrap';
-const segmentActive = 'bg-ink-light text-paper-light dark:bg-ink-dark dark:text-paper-dark';
+  "px-3 py-1.5 text-sm font-bold rounded-md transition-colors whitespace-nowrap";
+const segmentActive =
+  "bg-ink-light text-paper-light dark:bg-ink-dark dark:text-paper-dark";
 const segmentIdle =
-  'text-muted-light dark:text-muted-dark hover:text-ink-light dark:hover:text-ink-dark';
+  "text-muted-light dark:text-muted-dark hover:text-ink-light dark:hover:text-ink-dark";
 
 const Toolbar: React.FC<ToolbarProps> = ({
   filterType,
@@ -39,21 +40,25 @@ const Toolbar: React.FC<ToolbarProps> = ({
   const { t } = useTranslation();
 
   const types: Array<{ value: SourceType; label: string }> = [
-    { value: SourceType.ALL, label: t('allTypes') },
-    { value: SourceType.ANIME, label: 'Anime' },
-    { value: SourceType.MANGA, label: 'Manga' },
-    { value: SourceType.GAME, label: 'Game' },
+    { value: SourceType.ALL, label: t("allTypes") },
+    { value: SourceType.ANIME, label: "Anime" },
+    { value: SourceType.MANGA, label: "Manga" },
+    { value: SourceType.GAME, label: "Game" },
   ];
 
   const periods: Array<{ value: TimePeriod; label: string }> = [
-    { value: TimePeriod.WEEK, label: 'W' },
-    { value: TimePeriod.MONTH, label: 'M' },
-    { value: TimePeriod.YEAR, label: 'Y' },
+    { value: TimePeriod.WEEK, label: "W" },
+    { value: TimePeriod.MONTH, label: "M" },
+    { value: TimePeriod.YEAR, label: "Y" },
   ];
 
   return (
     <div className="flex flex-wrap items-center gap-x-6 gap-y-3 py-3">
-      <div className="flex items-center gap-1" role="group" aria-label={t('character')}>
+      <div
+        className="flex items-center gap-1"
+        role="group"
+        aria-label={t("character")}
+      >
         {types.map((type) => (
           <button
             key={type.value}
@@ -69,9 +74,13 @@ const Toolbar: React.FC<ToolbarProps> = ({
 
       <div className="flex items-center gap-2">
         <span className="text-[11px] font-bold uppercase tracking-widest text-muted-light dark:text-muted-dark">
-          {t('period')}
+          {t("period")}
         </span>
-        <div className="flex items-center gap-1" role="group" aria-label={t('period')}>
+        <div
+          className="flex items-center gap-1"
+          role="group"
+          aria-label={t("period")}
+        >
           {periods.map((period) => (
             <button
               key={period.value}
@@ -89,7 +98,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
       </div>
 
       <label className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-muted-light dark:text-muted-dark">
-        {t('scoreRange')}
+        {t("scoreRange")}
         <input
           type="number"
           min={0}
@@ -99,7 +108,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
             onScoreRangeChange(Number(event.target.value) || 0, maxScore)
           }
           className="tabular w-16 px-2 py-1 rounded-md border border-line-light dark:border-line-dark bg-transparent text-sm font-bold text-ink-light dark:text-ink-dark normal-case tracking-normal"
-          aria-label={`${t('scoreRange')} min`}
+          aria-label={`${t("scoreRange")} min`}
         />
         <span aria-hidden>–</span>
         <input
@@ -107,23 +116,32 @@ const Toolbar: React.FC<ToolbarProps> = ({
           min={0}
           max={100}
           value={maxScore}
-          onChange={(event) =>
-            onScoreRangeChange(minScore, Number(event.target.value) || 0)
-          }
+          onChange={(event) => {
+            const value = event.target.value;
+            // An emptied field falls back to 100, not 0: 0 would hide every
+            // row the moment the field is cleared, and 0 is still reachable
+            // by typing it.
+            onScoreRangeChange(
+              minScore,
+              value === "" ? 100 : Number(value) || 100,
+            );
+          }}
           className="tabular w-16 px-2 py-1 rounded-md border border-line-light dark:border-line-dark bg-transparent text-sm font-bold text-ink-light dark:text-ink-dark normal-case tracking-normal"
-          aria-label={`${t('scoreRange')} max`}
+          aria-label={`${t("scoreRange")} max`}
         />
       </label>
 
       <div className="ml-auto flex items-center gap-3">
-        <span className="tabular text-sm text-muted-light dark:text-muted-dark">{resultCount}</span>
+        <span className="tabular text-sm text-muted-light dark:text-muted-dark">
+          {resultCount}
+        </span>
         {hasFilters && (
           <button
             type="button"
             onClick={onClearFilters}
             className="text-sm font-bold text-accent dark:text-accent-dark hover:underline"
           >
-            {t('clearFilters')}
+            {t("clearFilters")}
           </button>
         )}
         <button
@@ -132,7 +150,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-line-light dark:border-line-dark text-sm font-bold hover:bg-surface-light dark:hover:bg-surface-dark transition-colors"
         >
           <Download className="w-3.5 h-3.5" aria-hidden />
-          {t('exportCsv')}
+          {t("exportCsv")}
         </button>
       </div>
     </div>

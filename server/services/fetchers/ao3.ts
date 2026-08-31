@@ -1,13 +1,13 @@
-import { createPacer, http } from './http';
-import * as cheerio from 'cheerio';
-import { env } from '../../config/env';
-import { CharacterQuery, MetricResult, tokenize } from './types';
+import { createPacer, http } from "./http";
+import * as cheerio from "cheerio";
+import { env } from "../../config/env";
+import { CharacterQuery, MetricResult, tokenize } from "./types";
 
 /**
  * AO3 answers `Accept: application/json` with a 302 to a page that then 404s.
  * Axios sends that Accept header by default, so both calls have to override it.
  */
-const AO3_HEADERS = { Accept: '*/*' };
+const AO3_HEADERS = { Accept: "*/*" };
 
 /**
  * AO3 throttles hard and its search pages time out under load. One retry turns
@@ -26,14 +26,17 @@ const withRetry = async <T>(request: () => Promise<T>): Promise<T> => {
     try {
       return await request();
     } catch (error) {
-      const status = (error as { response?: { status?: number } }).response?.status;
+      const status = (error as { response?: { status?: number } }).response
+        ?.status;
       // A 404 is a real answer about this tag; anything else - throttling, a
       // gateway blip, a timeout - is worth another try. Without the backoff,
       // two to five characters lost their AO3 figure on every full refresh.
       if (status === 404) throw error;
       lastError = error;
       if (attempt < RETRY_DELAYS_MS.length) {
-        await new Promise((resolve) => setTimeout(resolve, RETRY_DELAYS_MS[attempt]));
+        await new Promise((resolve) =>
+          setTimeout(resolve, RETRY_DELAYS_MS[attempt]),
+        );
       }
     }
   }
@@ -47,11 +50,12 @@ const withRetry = async <T>(request: () => Promise<T>): Promise<T> => {
  */
 const parseResultCount = (html: string) => {
   const $ = cheerio.load(html);
-  for (const text of $('.heading')
+  for (const text of $(".heading")
     .toArray()
     .map((element) => $(element).text())) {
     const match = text.match(/(?<count>[\d,]+)\s+Found/i);
-    if (match?.groups?.count) return Number(match.groups.count.replace(/,/g, ''));
+    if (match?.groups?.count)
+      return Number(match.groups.count.replace(/,/g, ""));
   }
   return null;
 };
@@ -63,7 +67,9 @@ const parseResultCount = (html: string) => {
  * 103,000 works, because it matches the substring anywhere in any field. The
  * character tag returns the works actually about them.
  */
-const resolveCharacterTag = async (query: CharacterQuery): Promise<string | null> => {
+const resolveCharacterTag = async (
+  query: CharacterQuery,
+): Promise<string | null> => {
   const franchiseTokens = query.franchiseHints.flatMap(tokenize);
   const scored: Array<{ tag: string; score: number }> = [];
 
@@ -76,30 +82,35 @@ const resolveCharacterTag = async (query: CharacterQuery): Promise<string | null
     // Uncle" (62 works) outranked the real character tag.
     const response = await withRetry(() =>
       paced(() =>
-        http.get('https://archiveofourown.org/autocomplete/character', {
+        http.get(`${env.ao3BaseUrl}/autocomplete/character`, {
           params: { term },
           headers: AO3_HEADERS,
         }),
       ),
     );
-    const suggestions: string[] = (response.data ?? []).map((entry: { name: string }) => entry.name);
+    const suggestions: string[] = (response.data ?? []).map(
+      (entry: { name: string }) => entry.name,
+    );
 
     suggestions
       // `/` is a romantic pairing and `&` a platonic one; both count works for
       // two characters, so neither measures this character alone.
-      .filter((tag) => !tag.includes('/') && !tag.includes('&'))
+      .filter((tag) => !tag.includes("/") && !tag.includes("&"))
       .forEach((tag) => {
         const tagTokens = tokenize(tag);
         // The name is a hard requirement; the rest only ranks.
         if (!nameTokens.every((token) => tagTokens.includes(token))) return;
 
-        const hasFranchise = franchiseTokens.some((token) => tagTokens.includes(token));
+        const hasFranchise = franchiseTokens.some((token) =>
+          tagTokens.includes(token),
+        );
         // Every word that is neither the name nor the fandom narrows the tag to
         // something other than the character: "Bakugou Katsuki's Dragon (My Hero
         // Academia: Fantasy Setting)" carries the name and the fandom, yet has
         // 23 works against the real tag's 200,000.
         const extraTokens = tagTokens.filter(
-          (token) => !nameTokens.includes(token) && !franchiseTokens.includes(token),
+          (token) =>
+            !nameTokens.includes(token) && !franchiseTokens.includes(token),
         ).length;
 
         scored.push({ tag, score: (hasFranchise ? 3 : 0) - extraTokens });
@@ -118,7 +129,7 @@ const countWorks = async (tag: string) => {
   const response = await withRetry(() =>
     paced(() =>
       http.get(`${env.ao3BaseUrl}/works/search`, {
-        params: { 'work_search[character_names]': tag },
+        params: { "work_search[character_names]": tag },
         headers: AO3_HEADERS,
       }),
     ),
@@ -127,25 +138,31 @@ const countWorks = async (tag: string) => {
   return parseResultCount(response.data);
 };
 
-export const fetchAo3Metric = async (query: CharacterQuery): Promise<MetricResult> => {
+export const fetchAo3Metric = async (
+  query: CharacterQuery,
+): Promise<MetricResult> => {
   try {
     // A remembered tag skips the lookup entirely. If it has gone stale the
     // count comes back empty, and the fall-through re-resolves it once.
     if (query.knownTag) {
       const cached = await countWorks(query.knownTag);
-      if (Number.isFinite(cached)) return { source: 'ao3', value: cached, raw: query.knownTag };
+      if (Number.isFinite(cached))
+        return { source: "ao3", value: cached, raw: query.knownTag };
     }
 
     const tag = await resolveCharacterTag(query);
-    if (!tag) return { source: 'ao3', value: null };
+    if (!tag) return { source: "ao3", value: null };
 
     const count = await countWorks(tag);
     return Number.isFinite(count)
-      ? { source: 'ao3', value: count, raw: tag }
-      : { source: 'ao3', value: null };
+      ? { source: "ao3", value: count, raw: tag }
+      : { source: "ao3", value: null };
   } catch (error) {
-    const status = (error as { response?: { status?: number } }).response?.status;
-    console.warn(`[ao3] Lookup failed for "${query.name}"${status ? ` (${status})` : ''}`);
-    return { source: 'ao3', value: null };
+    const status = (error as { response?: { status?: number } }).response
+      ?.status;
+    console.warn(
+      `[ao3] Lookup failed for "${query.name}"${status ? ` (${status})` : ""}`,
+    );
+    return { source: "ao3", value: null };
   }
 };
