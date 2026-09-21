@@ -1,4 +1,8 @@
 {
+  "ace-portgas": {
+    "ao3": "Portgas D. Ace",
+    "danbooru": "portgas_d._ace"
+  },
   "aki-hayakawa": {
     "ao3": "Hayakawa Aki",
     "danbooru": "hayakawa_aki"
@@ -149,6 +153,10 @@
   "kakashi-hatake": {
     "ao3": "Sukea (Naruto)",
     "danbooru": "sukea_(naruto)"
+  },
+  "kamina": {
+    "ao3": "Kamina (Gurren Lagann)",
+    "danbooru": "kamina_(ttgl)"
   },
   "karma-akabane": {
     "ao3": "Akabane Karma",
