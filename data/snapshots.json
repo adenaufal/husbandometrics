@@ -8215,5 +8215,923 @@
     "danbooru": 30.66,
     "weighted_total": 80.24,
     "recorded_at": "2026-09-28T11:07:21.911Z"
+  },
+  {
+    "character_id": "ace-portgas",
+    "anilist": 86.12,
+    "mal": 77.4,
+    "ao3": 80.79,
+    "danbooru": 83.08,
+    "weighted_total": 82.27,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "aki-hayakawa",
+    "anilist": 90.7,
+    "mal": 76.76,
+    "ao3": 69.17,
+    "danbooru": 87.33,
+    "weighted_total": 82.24,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "alhaitham",
+    "anilist": null,
+    "mal": null,
+    "ao3": 82.6,
+    "danbooru": 89.18,
+    "weighted_total": 85.89,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "arataka-reigen",
+    "anilist": 95.54,
+    "mal": 88.07,
+    "ao3": 74.28,
+    "danbooru": 76.66,
+    "weighted_total": 85.64,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "armin-arlert",
+    "anilist": 90.32,
+    "mal": 82.54,
+    "ao3": 84.82,
+    "danbooru": 80.21,
+    "weighted_total": 85.25,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "ash-lynx",
+    "anilist": 86.52,
+    "mal": 78.99,
+    "ao3": 70.68,
+    "danbooru": 61.59,
+    "weighted_total": 76.48,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "askeladd",
+    "anilist": 91.84,
+    "mal": 85.33,
+    "ao3": 54.36,
+    "danbooru": 56.82,
+    "weighted_total": 75.71,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "asta",
+    "anilist": 86.58,
+    "mal": 79.61,
+    "ao3": 62.68,
+    "danbooru": 64.4,
+    "weighted_total": 75.62,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "aventurine",
+    "anilist": null,
+    "mal": null,
+    "ao3": 75.86,
+    "danbooru": 90.99,
+    "weighted_total": 83.43,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "blade-hsr",
+    "anilist": null,
+    "mal": null,
+    "ao3": 77.09,
+    "danbooru": 88.84,
+    "weighted_total": 82.96,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "chrollo-lucilfer",
+    "anilist": 86.61,
+    "mal": 77,
+    "ao3": 55.7,
+    "danbooru": 73.5,
+    "weighted_total": 75.4,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "dan-heng-imbibitor-lunae",
+    "anilist": null,
+    "mal": null,
+    "ao3": 78.95,
+    "danbooru": 92.31,
+    "weighted_total": 85.63,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "denji",
+    "anilist": 94.06,
+    "mal": 83.11,
+    "ao3": 70.71,
+    "danbooru": 97.64,
+    "weighted_total": 87.37,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "diluc",
+    "anilist": null,
+    "mal": null,
+    "ao3": 84.86,
+    "danbooru": 89.7,
+    "weighted_total": 87.28,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "dio-brando",
+    "anilist": 86.58,
+    "mal": 80.22,
+    "ao3": 74.41,
+    "danbooru": 94.88,
+    "weighted_total": 84.22,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "edward-elric",
+    "anilist": 93.24,
+    "mal": 94.39,
+    "ao3": 58.56,
+    "danbooru": 32.41,
+    "weighted_total": 74.43,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "eren-yeager",
+    "anilist": 98,
+    "mal": 92.74,
+    "ao3": 88.45,
+    "danbooru": 99.44,
+    "weighted_total": 95.06,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "erwin-smith",
+    "anilist": 89.45,
+    "mal": 84.9,
+    "ao3": 84.82,
+    "danbooru": 72.58,
+    "weighted_total": 84.01,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "gintoki-sakata",
+    "anilist": 91.52,
+    "mal": 92.93,
+    "ao3": 45.42,
+    "danbooru": 35.65,
+    "weighted_total": 71.48,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "giyuu-tomioka",
+    "anilist": 89.12,
+    "mal": 77.92,
+    "ao3": 80.75,
+    "danbooru": 89.8,
+    "weighted_total": 84.78,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "gokuu-son",
+    "anilist": 86.7,
+    "mal": 85.35,
+    "ao3": null,
+    "danbooru": 96.16,
+    "weighted_total": 88.64,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "gon-freecss",
+    "anilist": 91.12,
+    "mal": 82.97,
+    "ao3": null,
+    "danbooru": 80.59,
+    "weighted_total": 85.94,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "guts",
+    "anilist": 95.2,
+    "mal": 93.89,
+    "ao3": 59.27,
+    "danbooru": 78.94,
+    "weighted_total": 84.43,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "gyro-zeppeli",
+    "anilist": 87.12,
+    "mal": 81.82,
+    "ao3": 66.99,
+    "danbooru": 82.95,
+    "weighted_total": 80.94,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "hachiman-hikigaya",
+    "anilist": 89.33,
+    "mal": 89.97,
+    "ao3": 48.78,
+    "danbooru": 23.77,
+    "weighted_total": 68.27,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "hisoka-morow",
+    "anilist": 90.32,
+    "mal": 86.53,
+    "ao3": 57.83,
+    "danbooru": 71.38,
+    "weighted_total": 79.09,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "ichigo-kurosaki",
+    "anilist": 90.61,
+    "mal": 87,
+    "ao3": 78.1,
+    "danbooru": 87.38,
+    "weighted_total": 86.56,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "inosuke-hashibira",
+    "anilist": 90.64,
+    "mal": 79.67,
+    "ao3": 74.34,
+    "danbooru": 72.3,
+    "weighted_total": 80.97,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "itachi-uchiha",
+    "anilist": 94.26,
+    "mal": 91.89,
+    "ao3": 81.68,
+    "danbooru": 74.07,
+    "weighted_total": 87.11,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "izuku-midoriya",
+    "anilist": 90.26,
+    "mal": 84.14,
+    "ao3": 100,
+    "danbooru": 98.01,
+    "weighted_total": 92.23,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "izumi-miyamura",
+    "anilist": 90.74,
+    "mal": 80.25,
+    "ao3": 43.32,
+    "danbooru": 70.12,
+    "weighted_total": 74.51,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "jin-u-seong",
+    "anilist": 91.02,
+    "mal": 81.41,
+    "ao3": 61.9,
+    "danbooru": 66.28,
+    "weighted_total": 77.85,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "jing-yuan",
+    "anilist": null,
+    "mal": null,
+    "ao3": 73.52,
+    "danbooru": 79.62,
+    "weighted_total": 76.57,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "johan-liebert",
+    "anilist": 88.22,
+    "mal": 84.53,
+    "ao3": 9.03,
+    "danbooru": 71.97,
+    "weighted_total": 68.21,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "joseph-joestar",
+    "anilist": 92.07,
+    "mal": 88.4,
+    "ao3": 59.59,
+    "danbooru": 76.57,
+    "weighted_total": 81.56,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "joutarou-kuujou",
+    "anilist": 90.37,
+    "mal": 84.36,
+    "ao3": 59.59,
+    "danbooru": 76.57,
+    "weighted_total": 79.95,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "kaeya",
+    "anilist": null,
+    "mal": null,
+    "ao3": 85.4,
+    "danbooru": 87.16,
+    "weighted_total": 86.28,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "kakashi-hatake",
+    "anilist": 93.84,
+    "mal": 89.24,
+    "ao3": 47.56,
+    "danbooru": 29.99,
+    "weighted_total": 70.66,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "kamina",
+    "anilist": 86.34,
+    "mal": 86.43,
+    "ao3": 41.38,
+    "danbooru": 79.15,
+    "weighted_total": 75.93,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "karma-akabane",
+    "anilist": 87.56,
+    "mal": 80.21,
+    "ao3": 69.1,
+    "danbooru": 35.25,
+    "weighted_total": 71.57,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "katsuki-bakugou",
+    "anilist": 91.64,
+    "mal": 83.51,
+    "ao3": 99.35,
+    "danbooru": 97.25,
+    "weighted_total": 92.27,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "kazuma-satou",
+    "anilist": 86.54,
+    "mal": 82.39,
+    "ao3": 54.03,
+    "danbooru": 88.99,
+    "weighted_total": 79.49,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "ken-kaneki",
+    "anilist": 96.11,
+    "mal": 90.27,
+    "ao3": 70.88,
+    "danbooru": 79.44,
+    "weighted_total": 86.27,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "kenma-kozume",
+    "anilist": 86.88,
+    "mal": 77.03,
+    "ao3": null,
+    "danbooru": 71.69,
+    "weighted_total": 80,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "kento-nanami",
+    "anilist": 90.03,
+    "mal": 78.87,
+    "ao3": null,
+    "danbooru": 81.85,
+    "weighted_total": 84.5,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "killua-zoldyck",
+    "anilist": 98.84,
+    "mal": 95.24,
+    "ao3": 75.47,
+    "danbooru": 82.78,
+    "weighted_total": 90.05,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "kiyotaka-ayanokouji",
+    "anilist": 91.38,
+    "mal": 86.77,
+    "ao3": 52.63,
+    "danbooru": 69.73,
+    "weighted_total": 78.15,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "koro-sensei",
+    "anilist": 86.79,
+    "mal": 81.9,
+    "ao3": 31.45,
+    "danbooru": 73.53,
+    "weighted_total": 71.85,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "koyomi-araragi",
+    "anilist": 89.2,
+    "mal": 85.39,
+    "ao3": 39.12,
+    "danbooru": 81.72,
+    "weighted_total": 76.74,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "kurapika",
+    "anilist": 93.92,
+    "mal": 84.23,
+    "ao3": 73.28,
+    "danbooru": 81.77,
+    "weighted_total": 84.94,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "kusuo-saiki",
+    "anilist": 90.7,
+    "mal": 83.66,
+    "ao3": 68.47,
+    "danbooru": 58.15,
+    "weighted_total": 77.98,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "kyou-souma",
+    "anilist": 87.41,
+    "mal": 79.92,
+    "ao3": null,
+    "danbooru": 50.75,
+    "weighted_total": 75.9,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "kyoujurou-rengoku",
+    "anilist": 88.39,
+    "mal": 79.3,
+    "ao3": 76.83,
+    "danbooru": 59.69,
+    "weighted_total": 78.07,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "l-lawliet",
+    "anilist": 96.28,
+    "mal": 97.39,
+    "ao3": 11.39,
+    "danbooru": 83.99,
+    "weighted_total": 77.12,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "law-trafalgar",
+    "anilist": 87.38,
+    "mal": 82.59,
+    "ao3": 81.97,
+    "danbooru": 32.41,
+    "weighted_total": 74.11,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "lelouch-lamperouge",
+    "anilist": 96.9,
+    "mal": 100,
+    "ao3": 5.69,
+    "danbooru": 100,
+    "weighted_total": 80.05,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "levi",
+    "anilist": 99.74,
+    "mal": 98.27,
+    "ao3": 89.69,
+    "danbooru": 85.04,
+    "weighted_total": 94.42,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "light-yagami",
+    "anilist": 93.77,
+    "mal": 95.1,
+    "ao3": 49.14,
+    "danbooru": 77.42,
+    "weighted_total": 81.91,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "loid-forger",
+    "anilist": 87.16,
+    "mal": 72.63,
+    "ao3": 65.05,
+    "danbooru": 92.05,
+    "weighted_total": 80.08,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "luffy-monkey",
+    "anilist": 99.17,
+    "mal": 98.43,
+    "ao3": 46.08,
+    "danbooru": 11.88,
+    "weighted_total": 70.91,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "manjirou-sano",
+    "anilist": 87.2,
+    "mal": 76.54,
+    "ao3": 87.12,
+    "danbooru": 73.95,
+    "weighted_total": 81.87,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "megumi-fushiguro",
+    "anilist": 92.27,
+    "mal": 78.63,
+    "ao3": 87.24,
+    "danbooru": 88.6,
+    "weighted_total": 87.12,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "meruem",
+    "anilist": 86.43,
+    "mal": 81.09,
+    "ao3": 50.47,
+    "danbooru": 53.69,
+    "weighted_total": 71.35,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "miyuki-shirogane",
+    "anilist": 86.17,
+    "mal": 74.68,
+    "ao3": 46.69,
+    "danbooru": 15,
+    "weighted_total": 61.17,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "musashi-miyamoto",
+    "anilist": 86.85,
+    "mal": 81.82,
+    "ao3": 41.64,
+    "danbooru": 43.15,
+    "weighted_total": 67.81,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "naruto-uzumaki",
+    "anilist": 92.7,
+    "mal": 94.05,
+    "ao3": 90.06,
+    "danbooru": 93.9,
+    "weighted_total": 92.75,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "neuvillette",
+    "anilist": null,
+    "mal": null,
+    "ao3": 77.42,
+    "danbooru": 86.63,
+    "weighted_total": 82.03,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "osamu-dazai",
+    "anilist": 91.67,
+    "mal": 86.76,
+    "ao3": 92,
+    "danbooru": 71.66,
+    "weighted_total": 86.51,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "ray",
+    "anilist": 86.89,
+    "mal": 74.39,
+    "ao3": 65.13,
+    "danbooru": 77.36,
+    "weighted_total": 77.51,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "rintarou-okabe",
+    "anilist": 94.17,
+    "mal": 95.16,
+    "ao3": 13.22,
+    "danbooru": 7.5,
+    "weighted_total": 60.89,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "roy-mustang",
+    "anilist": 90.54,
+    "mal": 87.48,
+    "ao3": null,
+    "danbooru": 75.52,
+    "weighted_total": 85.83,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "saitama",
+    "anilist": 90.93,
+    "mal": 89.03,
+    "ao3": 67.55,
+    "danbooru": 82.94,
+    "weighted_total": 84.18,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "sakuta-azusagawa",
+    "anilist": 87.69,
+    "mal": 80.34,
+    "ao3": 37.67,
+    "danbooru": 57.42,
+    "weighted_total": 69.79,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "sanji",
+    "anilist": 91.04,
+    "mal": 86.08,
+    "ao3": 85.85,
+    "danbooru": 92.85,
+    "weighted_total": 89.12,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "sasuke-uchiha",
+    "anilist": 89.56,
+    "mal": 85.26,
+    "ao3": null,
+    "danbooru": 91.43,
+    "weighted_total": 88.68,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "satoru-gojou",
+    "anilist": 100,
+    "mal": 91.44,
+    "ao3": 91.95,
+    "danbooru": 94.38,
+    "weighted_total": 95.13,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "senkuu-ishigami",
+    "anilist": 91.17,
+    "mal": 83.47,
+    "ao3": 28.21,
+    "danbooru": 76.24,
+    "weighted_total": 73.67,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "shigeo-kageyama",
+    "anilist": 93.86,
+    "mal": 84.62,
+    "ao3": null,
+    "danbooru": 68.84,
+    "weighted_total": 84.72,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "shinji-ikari",
+    "anilist": 88.25,
+    "mal": 82.45,
+    "ao3": 69.71,
+    "danbooru": 95.17,
+    "weighted_total": 84.48,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "shouto-todoroki",
+    "anilist": 91.95,
+    "mal": 83.77,
+    "ao3": 94.21,
+    "danbooru": 86.28,
+    "weighted_total": 89.22,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "shouya-ishida",
+    "anilist": 87.7,
+    "mal": 77.88,
+    "ao3": 39.4,
+    "danbooru": 98.47,
+    "weighted_total": 77.74,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "shouyou-hinata",
+    "anilist": 90.65,
+    "mal": 81.67,
+    "ao3": 88.07,
+    "danbooru": 7.5,
+    "weighted_total": 71.26,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "spike-spiegel",
+    "anilist": 90.44,
+    "mal": 89.26,
+    "ao3": 57.76,
+    "danbooru": 70.13,
+    "weighted_total": 79.55,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "subaru-natsuki",
+    "anilist": 91.31,
+    "mal": 85.12,
+    "ao3": 72.82,
+    "danbooru": 88.31,
+    "weighted_total": 85.46,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "sukuna",
+    "anilist": 88.72,
+    "mal": 78.49,
+    "ao3": 82.97,
+    "danbooru": 84.55,
+    "weighted_total": 84.18,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "sunday-hsr",
+    "anilist": null,
+    "mal": null,
+    "ao3": 71.03,
+    "danbooru": 87.05,
+    "weighted_total": 79.04,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "tanjirou-kamado",
+    "anilist": 92.61,
+    "mal": 83.76,
+    "ao3": 80.05,
+    "danbooru": 15,
+    "weighted_total": 72.36,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "tartaglia",
+    "anilist": null,
+    "mal": null,
+    "ao3": 87.24,
+    "danbooru": 96.62,
+    "weighted_total": 91.93,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "thorfinn-karlsefni",
+    "anilist": 94.64,
+    "mal": 86.7,
+    "ao3": 9.03,
+    "danbooru": 60.44,
+    "weighted_total": 68.69,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "tobio-kageyama",
+    "anilist": 89.18,
+    "mal": 79.27,
+    "ao3": 86.84,
+    "danbooru": 68.74,
+    "weighted_total": 82.15,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "toge-inumaki",
+    "anilist": 86.89,
+    "mal": 74.37,
+    "ao3": 74.5,
+    "danbooru": 66.33,
+    "weighted_total": 77.17,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "tooru-oikawa",
+    "anilist": 86.37,
+    "mal": 78.49,
+    "ao3": 87.21,
+    "danbooru": 67.65,
+    "weighted_total": 80.82,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "wriothesley",
+    "anilist": null,
+    "mal": null,
+    "ao3": 74.95,
+    "danbooru": 83.64,
+    "weighted_total": 79.3,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "xiao",
+    "anilist": null,
+    "mal": null,
+    "ao3": 82.93,
+    "danbooru": 94.64,
+    "weighted_total": 88.78,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "yami-sukehiro",
+    "anilist": 87.86,
+    "mal": 79.93,
+    "ao3": 61.64,
+    "danbooru": 11.88,
+    "weighted_total": 65.44,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "yato",
+    "anilist": 89.41,
+    "mal": 87.43,
+    "ao3": 59.27,
+    "danbooru": 53.61,
+    "weighted_total": 75.73,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "yuu-ishigami",
+    "anilist": 90.66,
+    "mal": 82.57,
+    "ao3": 47.07,
+    "danbooru": 79.57,
+    "weighted_total": 77.7,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "yuu-nishinoya",
+    "anilist": 87.62,
+    "mal": 78.07,
+    "ao3": 77.73,
+    "danbooru": 80.92,
+    "weighted_total": 81.91,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "yuuji-itadori",
+    "anilist": 94.16,
+    "mal": 80.91,
+    "ao3": 87.18,
+    "danbooru": 90.87,
+    "weighted_total": 88.79,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "yuuta-okkotsu",
+    "anilist": 88.52,
+    "mal": 74.8,
+    "ao3": 76.33,
+    "danbooru": 76.41,
+    "weighted_total": 80.23,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "zenitsu-agatsuma",
+    "anilist": 90.07,
+    "mal": 80.37,
+    "ao3": 76.61,
+    "danbooru": 76.78,
+    "weighted_total": 82.29,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
+  },
+  {
+    "character_id": "zoro-roronoa",
+    "anilist": 97.08,
+    "mal": 96.35,
+    "ao3": 86.26,
+    "danbooru": 30.65,
+    "weighted_total": 81.45,
+    "recorded_at": "2026-10-05T11:32:28.691Z"
   }
 ]
