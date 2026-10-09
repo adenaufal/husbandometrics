@@ -52,7 +52,7 @@ const ListingEntry: React.FC<{ character: Character; onOpen: OpenEntry }> = ({ c
             {score(board.scoreFor(character))}
           </span>
           <span className="flex items-center gap-1.5">
-            <TrendMark trend={character.trend} size={7} />
+            <TrendMark character={character} size={7} />
             <SourceMarks measured={character.measured_sources} size="sm" />
           </span>
         </div>

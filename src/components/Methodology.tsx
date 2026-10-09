@@ -4,6 +4,7 @@ import { METRIC_SOURCES, METRIC_SOURCE_LABELS, METRIC_SOURCE_UNITS } from '../ty
 import { useTranslation } from '../lib/i18n';
 import { useBoard } from '../lib/board-context';
 import { METHODOLOGY, SOURCE_NOTES } from '../lib/methodology';
+import { REMEASURED } from '../lib/remeasured';
 import { useMagStrings } from './strings';
 import { longDate, percent, utcClock } from './format';
 import { useDialog } from './useDialog';
@@ -111,6 +112,11 @@ const Methodology: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
               <Heading>{s('movement')}</Heading>
               <p>{METHODOLOGY.movement}</p>
+              {REMEASURED.map((remeasure) => (
+                <p key={remeasure.label} className="mt-3">
+                  {remeasure.note} {METHODOLOGY.remeasured}
+                </p>
+              ))}
             </div>
           </div>
         </div>

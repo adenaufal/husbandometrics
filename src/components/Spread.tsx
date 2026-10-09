@@ -161,7 +161,7 @@ const Feature: React.FC<EntryProps> = ({ character, onOpen, scoreLabel }) => {
             </p>
           </div>
           <div className="flex flex-col items-start gap-2.5 pb-1">
-            <TrendMark trend={character.trend} size={14} />
+            <TrendMark character={character} size={14} />
             <SourceMarks measured={character.measured_sources} size="lg" />
             <span className="mag-label text-mag-muted">
               {character.measured_sources.length}/{METRIC_SOURCES.length}
@@ -238,7 +238,7 @@ const Runner: React.FC<EntryProps & { variant: 'a' | 'b' }> = ({
             </p>
           </div>
           <div className="flex items-center gap-2 pb-1">
-            <TrendMark trend={character.trend} size={10} />
+            <TrendMark character={character} size={10} />
             <SourceMarks measured={character.measured_sources} />
           </div>
         </div>
