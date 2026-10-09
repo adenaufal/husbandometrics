@@ -3,20 +3,20 @@
 @tailwind utilities;
 
 @layer base {
+  /* Print has one appearance: the board is newsprint whatever the system
+     theme, and the scrollbars and form controls follow it. */
   html {
     -webkit-text-size-adjust: 100%;
+    color-scheme: light;
   }
 
   body {
-    @apply bg-paper-light text-ink-light dark:bg-paper-dark dark:text-ink-dark;
-    font-family: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
-    font-feature-settings: 'ss01';
+    @apply bg-mag-paper font-mag-sans text-mag-ink;
     -webkit-font-smoothing: antialiased;
   }
 
   /* Every figure on this site is compared against another figure directly above
      or below it, so digits have to hold their column. */
-  .tabular,
   table,
   time {
     font-variant-numeric: tabular-nums;
@@ -24,21 +24,13 @@
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-accent dark:ring-accent-dark ring-offset-2 ring-offset-paper-light dark:ring-offset-paper-dark;
+    outline: 2px solid theme('colors.mag.ink');
+    outline-offset: 2px;
   }
 
   ::selection {
-    @apply bg-accent/15 dark:bg-accent-dark/25;
-  }
-}
-
-@layer utilities {
-  /* Long names truncate rather than reflow a ranking row. */
-  .truncate-1 {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    background: theme('colors.mag.red');
+    color: theme('colors.mag.paper');
   }
 }
 

@@ -1,233 +1,280 @@
-import React, { useEffect, useRef } from 'react';
+import React, { Suspense, lazy, useId } from 'react';
 import { X } from 'lucide-react';
 import {
-  CartesianGrid,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
-import {
-  Character,
   METRIC_SOURCES,
   METRIC_SOURCE_LABELS,
   METRIC_SOURCE_UNITS,
-  TimePeriod,
+  type Character,
 } from '../types';
 import { useTranslation } from '../lib/i18n';
-import { getSnapshotsForPeriod } from '../lib/history';
-import { characterImage, handleImageError } from '../lib/images';
-import SourceDots from './SourceDots';
-import { TYPE_LABEL } from './RankRow';
+import { useBoard } from '../lib/board-context';
+import { arithmeticFor, formatCount, isoWeek, readingSeries } from '../lib/board';
+import { METHODOLOGY } from '../lib/methodology';
+import { useMagStrings, type MagStringKey } from './strings';
+import {
+  SOURCE_SHORT,
+  glyphCount,
+  jpName,
+  percent,
+  score,
+  shortDate,
+  signed,
+} from './format';
+import { MovementNote, Panel, RankNumeral, SourceMarks } from './parts';
+import { useDialog } from './useDialog';
 
-interface DetailPanelProps {
-  character: Character;
-  onClose: () => void;
-  timePeriod: TimePeriod;
-}
+// recharts is the largest dependency on the page and draws only this chart, so
+// it loads when a profile first opens instead of before the board can render.
+const HistoryChart = lazy(() => import('./HistoryChart'));
 
-const DetailPanel: React.FC<DetailPanelProps> = ({ character, onClose, timePeriod }) => {
-  const { t } = useTranslation();
-  const history = getSnapshotsForPeriod(character, timePeriod);
-  const closeRef = useRef<HTMLButtonElement>(null);
+/**
+ * The arithmetic behind the total: the upstream figure, its score against the
+ * board's peak, the weight it carries after renormalising, and what it adds.
+ * The sum is printed only when the terms rebuild the published total.
+ */
+const Arithmetic: React.FC<{ character: Character }> = ({ character }) => {
+  const { t, language } = useTranslation();
+  const s = useMagStrings();
+  const board = useBoard();
+  const headId = useId();
+  const weights = board.metadata?.weights;
+  if (!weights) return null;
 
-  useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', onKey);
-    closeRef.current?.focus();
-    return () => window.removeEventListener('keydown', onKey);
-  }, [onClose]);
+  const sum = arithmeticFor(character, weights, board.peaks);
+  const measured = sum.terms.filter((term) => term.score !== null).length;
+  const updated = board.metadata ? new Date(board.metadata.updated_at) : null;
+  const peaks = METRIC_SOURCES.flatMap((source) => {
+    const peak = board.peaks[source];
+    // A peak held off the board is back-solved from stored scores, so it is
+    // marked approximate rather than printed as if it were read.
+    return peak ? [`${SOURCE_SHORT[source]} ${peak.holder ? '' : '≈'}${formatCount(peak.count)}`] : [];
+  });
+
+  const cell = 'py-2.5 align-top tabular-nums';
 
   return (
-    <>
-      {/* Backdrop only exists below the breakpoint where the panel overlays. */}
-      <div
-        className="lg:hidden fixed inset-0 z-40 bg-ink-light/30 dark:bg-black/60 animate-fade-in"
-        onClick={onClose}
-        aria-hidden
-      />
+    <section aria-labelledby={headId} className="mt-8">
+      <div className="flex items-baseline justify-between gap-3 bg-mag-ink px-3 pb-1.5 pt-2 text-mag-paper">
+        <h3 id={headId} className="flex items-baseline gap-2.5">
+          <span lang="ja" className="font-mag-jp text-[14px] font-black leading-none">
+            計測データ
+          </span>
+          <span className="mag-label leading-none">{t('breakdown')}</span>
+        </h3>
+        {updated && (
+          <span className="mag-label text-[10px] leading-none">
+            {s('latestReading', { date: shortDate(updated, language) })}
+          </span>
+        )}
+      </div>
 
-      <aside
+      <table className="w-full border-x-2 border-b-2 border-mag-ink text-[12px] leading-tight">
+        <thead>
+          <tr className="border-b border-mag-ink text-mag-muted">
+            <th scope="col" className="mag-label py-2 pl-3 pr-2 text-left text-[10px]">
+              {s('source')}
+            </th>
+            <th scope="col" className="mag-label py-2 pr-2 text-right text-[10px]">
+              {t('rawFigure')}
+            </th>
+            <th scope="col" className="mag-label py-2 pr-2 text-right text-[10px]">
+              {t('score')}
+            </th>
+            <th scope="col" className="mag-label py-2 pr-2 text-right text-[10px]">
+              {s('share')}
+            </th>
+            <th scope="col" className="mag-label py-2 pr-3 text-right text-[10px]">
+              {s('adds')}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {sum.terms.map((term) => (
+            <tr key={term.source} className="border-b border-mag-ink/25 last:border-b-0">
+              <th scope="row" className="py-2.5 pl-3 pr-2 text-left align-top font-bold">
+                {METRIC_SOURCE_LABELS[term.source]}
+              </th>
+              {term.score === null || term.share === null || term.contribution === null ? (
+                <td colSpan={4} className="py-2.5 pr-3 text-right align-top text-mag-muted">
+                  {s('notMeasuredRow')}
+                </td>
+              ) : (
+                <>
+                  <td className={`${cell} pr-2 text-right`}>
+                    <span className="block font-semibold">
+                      {term.count === null ? '—' : formatCount(term.count)}
+                    </span>
+                    <span className="block text-[11px] text-mag-muted">
+                      {METRIC_SOURCE_UNITS[term.source]}
+                    </span>
+                  </td>
+                  <td className={`${cell} pr-2 text-right font-bold`}>{score(term.score)}</td>
+                  <td className={`${cell} pr-2 text-right`}>{percent(term.share)}</td>
+                  <td className={`${cell} pr-3 text-right font-bold`}>{score(term.contribution)}</td>
+                </>
+              )}
+            </tr>
+          ))}
+        </tbody>
+        {sum.consistent && (
+          <tfoot>
+            <tr className="border-t-2 border-mag-ink">
+              <td colSpan={4} className="py-2.5 pl-3 pr-2 align-middle text-[12px] text-mag-ink-2">
+                {s('sumLine', { n: measured })}
+              </td>
+              <td className="whitespace-nowrap py-2 pr-3 text-right align-middle font-mag-sans mag-x62 text-[26px] font-black leading-none tabular-nums">
+                = {score(sum.total)}
+              </td>
+            </tr>
+          </tfoot>
+        )}
+      </table>
+
+      <p className="mt-2.5 text-[11px] leading-snug text-mag-muted">
+        {s('scoreRule')} {peaks.length > 0 && `${s('peaks')}: ${peaks.join(' · ')}.`}
+      </p>
+    </section>
+  );
+};
+
+/**
+ * The character's own page: a side panel on wide screens, a full-screen sheet
+ * on phones, with a sticky bar that keeps the close button in reach.
+ */
+const DetailPanel: React.FC<{ character: Character; onClose: () => void }> = ({
+  character,
+  onClose,
+}) => {
+  const { t, language } = useTranslation();
+  const s = useMagStrings();
+  const board = useBoard();
+  const ref = useDialog<HTMLDivElement>(onClose);
+  const titleId = useId();
+
+  const jp = jpName(character);
+  const updated = board.metadata ? new Date(board.metadata.updated_at) : null;
+  const issue = updated ? isoWeek(updated) : null;
+  const movement = board.movement.byId.get(character.id);
+  const series = readingSeries(character);
+  const previous = series[series.length - 2];
+
+  return (
+    <div className="fixed inset-0 z-50">
+      <div aria-hidden className="mag-fade-in absolute inset-0 bg-mag-ink/40" onClick={onClose} />
+
+      <div
+        ref={ref}
         role="dialog"
         aria-modal="true"
-        aria-label={character.name}
-        className="fixed lg:sticky top-0 right-0 z-50 lg:z-0 h-screen lg:h-[calc(100vh-4rem)] w-full max-w-md lg:max-w-none overflow-y-auto bg-surface-light dark:bg-surface-dark border-l border-line-light dark:border-line-dark animate-slide-in lg:animate-none"
+        aria-labelledby={titleId}
+        tabIndex={-1}
+        className="mag-slide-in absolute inset-y-0 right-0 w-full overflow-y-auto overscroll-contain bg-mag-paper text-mag-ink outline-none sm:w-[460px] sm:border-l-4 sm:border-mag-ink"
       >
-        <div className="flex items-start justify-between gap-3 p-5 pb-0">
-          <div className="min-w-0">
-            <span className="tabular font-display text-rank-lg font-black leading-none">
-              {character.rank}
-            </span>
-          </div>
+        <div className="sticky top-0 z-10 flex h-14 items-center justify-between gap-4 border-b border-mag-ink bg-mag-paper px-5 sm:px-7">
+          <p className="mag-label flex items-baseline gap-3">
+            <span>{s('rankPrefix', { n: character.rank })}</span>
+            {issue && (
+              <span lang="ja" className="font-mag-jp text-[12px] font-bold tracking-[0.04em] text-mag-muted">
+                {issue.year}年 第{issue.week}号
+              </span>
+            )}
+          </p>
           <button
-            ref={closeRef}
             type="button"
+            data-autofocus
             onClick={onClose}
             aria-label={t('close')}
-            className="shrink-0 p-1.5 -m-1.5 rounded-md text-muted-light dark:text-muted-dark hover:text-ink-light dark:hover:text-ink-dark transition-colors"
+            className="grid h-10 w-10 place-items-center border-2 border-mag-ink hover:bg-mag-band"
           >
-            <X className="w-5 h-5" />
+            <X aria-hidden className="h-5 w-5" strokeWidth={2.5} />
           </button>
         </div>
 
-        <div className="px-5 pt-3">
-          <img
-            src={characterImage(character.image_url, character.name)}
-            alt={character.name}
-            onError={handleImageError}
-            className="w-full aspect-[3/4] max-h-72 object-cover rounded-lg bg-line-light dark:bg-line-dark"
-          />
-
-          <h2 className="mt-4 font-display text-2xl font-black tracking-tight">{character.name}</h2>
-          {character.name_jp && (
-            <p className="font-jp text-muted-light dark:text-muted-dark">{character.name_jp}</p>
-          )}
-          <p className="mt-1 text-sm text-muted-light dark:text-muted-dark">
-            {character.source}
-            <span className="mx-1.5 opacity-40">·</span>
-            {TYPE_LABEL[character.source_type]}
-          </p>
-
-          <div className="mt-5 flex items-end justify-between border-t border-line-light dark:border-line-dark pt-4">
-            <div>
-              <p className="text-[11px] font-bold uppercase tracking-widest text-muted-light dark:text-muted-dark">
-                {t('totalScore')}
-              </p>
-              <p className="tabular font-display text-4xl font-black leading-tight">
-                {character.weighted_total.toFixed(1)}
-              </p>
-            </div>
-            <div className="text-right">
-              <p className="text-[11px] font-bold uppercase tracking-widest text-muted-light dark:text-muted-dark">
-                {t('measuredBy')}
-              </p>
-              <div className="mt-1.5 flex items-center justify-end gap-2">
-                <SourceDots measured={character.measured_sources} />
-                <span className="tabular text-sm font-bold">
-                  {character.measured_sources.length}
-                  <span className="font-normal text-muted-light dark:text-muted-dark">
-                    /{METRIC_SOURCES.length}
-                  </span>
-                </span>
-              </div>
+        <div className="px-5 pb-12 pt-6 sm:px-7">
+          <div className="grid grid-cols-[minmax(0,13.5rem)_minmax(0,1fr)] gap-x-4">
+            <Panel
+              character={character}
+              cut="b"
+              eager
+              alt={character.name}
+              className="aspect-[2/3] w-full"
+            />
+            <div className="flex min-w-0 flex-col items-start">
+              <RankNumeral
+                rank={character.rank}
+                red={character.rank === 1}
+                keyline={false}
+                suffix={0.3}
+                className="-ml-[0.04em] text-[112px] sm:text-[140px]"
+              />
+              {jp && (
+                <p
+                  lang="ja"
+                  className="mag-vertical mt-auto max-h-[60%] self-end font-mag-jp font-black text-mag-ink"
+                  style={{ fontSize: `max(15px, min(40px, calc(180px / ${glyphCount(jp)})))` }}
+                >
+                  {jp}
+                </p>
+              )}
             </div>
           </div>
-        </div>
 
-        {/* The arithmetic behind the total, with the upstream figure beside each
-            score so a reader can check it against the source themselves. */}
-        <section className="px-5 mt-6">
-          <h3 className="text-[11px] font-bold uppercase tracking-widest text-muted-light dark:text-muted-dark">
-            {t('breakdown')}
-          </h3>
-
-          <dl className="mt-3 space-y-3">
-            {METRIC_SOURCES.map((source) => {
-              const score = character.scores[source];
-              const count = character.counts?.[source] ?? null;
-
-              return (
-                <div key={source}>
-                  <div className="flex items-baseline justify-between gap-3">
-                    <dt className="text-sm font-bold">{METRIC_SOURCE_LABELS[source]}</dt>
-                    <dd className="tabular text-sm">
-                      {score === null ? (
-                        <span className="text-muted-light dark:text-muted-dark">
-                          {t('notMeasured')}
-                        </span>
-                      ) : (
-                        <>
-                          <span className="text-muted-light dark:text-muted-dark">
-                            {count?.toLocaleString()} {METRIC_SOURCE_UNITS[source]}
-                          </span>
-                          <span className="ml-3 font-black">{score.toFixed(1)}</span>
-                        </>
-                      )}
-                    </dd>
-                  </div>
-                  <div className="mt-1.5 h-1 rounded-full bg-line-light dark:bg-line-dark overflow-hidden">
-                    <div
-                      className={`h-full rounded-full transition-[width] duration-500 ${
-                        score === null ? '' : 'bg-ink-light/80 dark:bg-ink-dark/80'
-                      }`}
-                      style={{ width: `${score ?? 0}%` }}
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </dl>
-
-          <p className="mt-4 text-xs leading-relaxed text-muted-light dark:text-muted-dark">
-            {t('weightNote')}
-            {character.measured_sources.length < METRIC_SOURCES.length && (
-              <>
-                {' '}
-                {METRIC_SOURCES.filter((source) => character.scores[source] === null)
-                  .map((source) => METRIC_SOURCE_LABELS[source])
-                  .join(', ')}
-                : {t('unmeasuredNote')}
-              </>
-            )}
+          <h2
+            id={titleId}
+            className="mag-name mt-5 font-mag-sans mag-x75 text-[34px] font-extrabold uppercase leading-[0.9] tracking-[-0.005em] sm:text-[40px]"
+          >
+            {character.name}
+          </h2>
+          <p className="mag-label mt-2.5 text-mag-ink-2">
+            {character.source}
+            <span aria-hidden className="px-1.5 text-mag-muted">
+              ·
+            </span>
+            {s(`type${character.source_type}` as MagStringKey)}
           </p>
-        </section>
 
-        <section className="px-5 mt-8 pb-10">
-          <h3 className="text-[11px] font-bold uppercase tracking-widest text-muted-light dark:text-muted-dark">
-            {t('history')}
-          </h3>
-
-          {history.length === 0 ? (
-            // Live rankings only gain history once snapshots accumulate, so an
-            // empty axis frame would read as a bug.
-            <div className="mt-3 rounded-lg border border-dashed border-line-light dark:border-line-dark px-4 py-8 text-center">
-              <p className="text-sm font-bold">{t('noHistoryTitle')}</p>
-              <p className="mt-1 text-xs text-muted-light dark:text-muted-dark">
-                {t('noHistoryHint')}
+          <div className="mt-6 flex items-end justify-between gap-4 border-t-2 border-mag-ink pt-3">
+            <div>
+              <p className="mag-label text-mag-muted">{t('totalScore')}</p>
+              <p className="font-mag-sans mag-x62 text-[68px] font-black leading-[0.8] tabular-nums">
+                {score(character.weighted_total)}
               </p>
             </div>
-          ) : (
-            <div className="mt-3 h-44">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={history} margin={{ top: 8, right: 8, left: -20, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="2 4" stroke="currentColor" opacity={0.15} />
-                  <XAxis
-                    dataKey="label"
-                    tick={{ fontSize: 11 }}
-                    stroke="currentColor"
-                    opacity={0.5}
-                  />
-                  <YAxis
-                    domain={[0, 100]}
-                    tick={{ fontSize: 11 }}
-                    stroke="currentColor"
-                    opacity={0.5}
-                  />
-                  <Tooltip
-                    contentStyle={{
-                      borderRadius: 8,
-                      border: '1px solid rgba(128,128,128,0.25)',
-                      fontSize: 12,
-                    }}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="weighted_total"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    dot={{ r: 3 }}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+            <div className="flex flex-col items-end gap-2 pb-0.5">
+              <p className="mag-label text-mag-muted">{t('measuredBy')}</p>
+              <SourceMarks measured={character.measured_sources} size="lg" />
+              <p className="text-[12px] font-semibold tabular-nums">
+                {character.measured_sources.length}/{METRIC_SOURCES.length}
+              </p>
+            </div>
+          </div>
+
+          {movement && (
+            <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-mag-ink/30 pt-2.5">
+              <MovementNote character={character} className="text-mag-ink" />
+              {movement.delta !== null && previous && (
+                <p className="text-[12px] tabular-nums text-mag-ink-2">
+                  {s('changeSince', {
+                    delta: signed(movement.delta),
+                    date: shortDate(previous.date, language),
+                  })}
+                </p>
+              )}
             </div>
           )}
-        </section>
-      </aside>
-    </>
+
+          <Arithmetic character={character} />
+          {/* Holds the chart's height so the panel does not jump when it lands. */}
+          <Suspense fallback={<div aria-hidden className="mt-10 h-[290px]" />}>
+            <HistoryChart character={character} />
+          </Suspense>
+
+          <p className="mt-6 border-t border-mag-ink/30 pt-3 text-[12px] leading-relaxed text-mag-ink-2">
+            {METHODOLOGY.movement}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 

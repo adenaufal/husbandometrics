@@ -28,7 +28,8 @@ npm run check        # scoring + snapshot-store self-checks
 
 `npm run dev` alone is enough: production is static and the board ships as a
 file. Copy `.env.example` to `.env.local` before `npm run snapshot`; every value
-is optional.
+is optional. In development, `?simulate=loading` and `?simulate=error` render
+those states on demand.
 
 ## Deployment
 
@@ -107,6 +108,23 @@ PlanetScale is still wired up and takes over when `DATABASE_PROVIDER` is set.
 Snapshots are written as one batch, never one call per character: the file store
 rewrites the whole file, so concurrent appends would race and keep only the last.
 
+### Derived on the page
+
+`src/lib/board.ts` recombines figures already in `rankings.json`; nothing there
+estimates. `BoardProvider` (`src/lib/board-context.tsx`) computes them once, from
+the whole board, never the filtered view:
+
+- **Last week's rank**, rebuilt from each character's history. Checked against the
+  board published on 2026-09-28: all 91 ranks matched. Someone missing from the
+  previous board is "returning" or "new", never "unranked".
+- **Peaks** per source, which every score is relative to. When the holder is off
+  the board the peak is back-solved from stored scores, and shown as approximate.
+- **The arithmetic** for a character: raw figure, score, renormalised share and
+  contribution per source. `consistent` is false when the terms do not rebuild
+  the published total; print the sum only when it is true.
+- **Late starts**: the first refresh each source returned anything. MyAnimeList
+  started on 2026-08-25, so totals step there for reasons of method.
+
 ### The roster
 
 - Anime and manga characters are discovered from AniList's favourites ranking,
@@ -139,56 +157,89 @@ that budget, not against a web request.
 
 ## Design
 
-**Direction:** quiet editorial. Type and whitespace carry the design; colour
-carries meaning only.
+**Direction:** "Magazine" — the character-popularity results page of a Japanese
+manga weekly, rebuilt as a live board and printed in two colours on newsprint.
+The strapline is the claim: 人気ランキング — *measured, not voted*. Never call it
+a poll or a vote (人気投票): nothing on this site is voted.
 
-The board is a ranking table, not a card grid: full-width rows in rank order,
-large rank numeral, portrait, name, provenance dots, score. Detail opens in a
-side panel, not a modal.
+The page reads like a results spread. 1位〜3位 is a feature, with slanted manga
+panel gutters and vertical Japanese names. 4位〜10位 is a band of seven panels,
+and 11位〜 a dense three-column listing. A search skips the spread and lists the
+matches. A type filter fills the spread from the filtered board, but every
+numeral keeps the character's real board rank. A profile opens as a side panel
+(a full-screen sheet on phones); the methodology as the magazine's editorial
+column.
+
+Light only: it is print.
 
 ### Rules
 
-- **Colour means something.** `rising` and `falling` mark trend; `accent` marks
-  the brand mark and the active control. Nothing else is coloured. Portraits are
-  the only large colour on the page.
-- **Provenance is always visible.** Every row carries four dots showing which
-  sources measured that character. A total averaged over two sources must never
-  look as authoritative as one averaged over four.
+- **Colour means something.** Ink does almost everything. Vermilion (`mag-red`)
+  is the one spot colour, used only for the 計 seal, the active control, the
+  No. 1 numeral and the top rule of the error notice. Trend marks are ink ▲ / ▼:
+  the shape carries the meaning. Portraits are the only other colour.
+- **Provenance is always visible.** Every entry carries four squares, filled where
+  a source returned a reading, in fixed order AniList · MAL · AO3 · Danbooru. A
+  total averaged over two sources must never look as authoritative as one
+  averaged over four.
 - **No chart that flatters.** Scores cluster between roughly 60 and 96, so a bar
-  drawn from zero fills to nearly the same width on every row and reads as
-  agreement where there is none. The figure in a tabular column is the honest
-  comparison. Same reason the trend column is hidden entirely until snapshots
-  exist rather than filled with em dashes.
-- **Show the arithmetic.** The detail panel prints the raw upstream figure beside
-  each score so a reader can check it against the source.
-- `tabular-nums` on every figure. Digits have to hold their column.
+  drawn from zero reads as agreement where there is none; the figure is the
+  comparison. The history chart uses one vertical scale for the whole board and
+  marks the day a source started being read, so a change of method never reads
+  as a change in popularity.
+- **Show the arithmetic.** The profile prints each source's raw figure, score,
+  share and contribution, and the sum beneath them.
+- **No movers spotlight.** Week-over-week movement is partly measurement (see
+  Known gaps). Per-entry trend marks are fine; a "biggest movers" module is not.
+- `tabular-nums` on every figure. Square corners everywhere.
+- Portraits are 230×345 at source. Never display one much wider than 300px.
 
 ### Tokens
 
-Defined in `tailwind.config.js`; use them, never raw hex.
+Defined in `tailwind.config.js` under `mag`; use them, never raw hex.
 
-`paper` (page) · `surface` (raised) · `line` (borders) · `ink` (text) ·
-`muted` (secondary text) · `accent` · `rising` · `falling`
+`mag-paper` (newsprint) · `mag-band` (second paper tone, hover) · `mag-ink` ·
+`mag-ink-2` (secondary ink) · `mag-muted` (secondary text) · `mag-red` (vermilion)
 
-Each has `-light` and `-dark`. Dark mode is a `class` on `<html>`.
+Hand-set print pieces — panels and their slanted cuts, screentone, vertical
+type, the seal, the width steps `mag-x62` / `mag-x75` / `mag-x87` — are classes
+in `src/components/magazine.css`, prefixed `mag-`.
 
 ### Fonts
 
-- **Satoshi** — display, body, and all figures (Fontshare)
-- **M PLUS Rounded 1c** — Japanese names only; Satoshi has no kana
+Loaded in `index.html`.
+
+- **Archivo** for everything Latin. It is variable in width as well as weight,
+  and the numerals and names are set extra-condensed through `font-stretch`.
+- **Zen Kaku Gothic New** for Japanese names and labels. A few names on the
+  board are Chinese or Korean and use glyphs it lacks; `useFallbackGlyphs`
+  fetches only those from Noto Sans SC / KR.
+
+### Copy
+
+Two tables, both in four languages: shared keys in `src/lib/i18n.tsx` through
+`t()`, and the board's own furniture in `src/components/strings.ts` through
+`useMagStrings()`, which is typed and interpolates `{var}`. The methodology text
+in `src/lib/methodology.ts` is English in every language.
 
 ## File structure
 
 ```
 husbandometrics/
-├── index.html, index.tsx, index.css
+├── index.html, index.tsx, index.css   # fonts load in index.html
 ├── src/
 │   ├── App.tsx
-│   ├── components/
-│   │   ├── Header.tsx, Footer.tsx, Toolbar.tsx
-│   │   ├── RankingTable.tsx, RankRow.tsx, SourceDots.tsx
-│   │   ├── DetailPanel.tsx, MethodologyModal.tsx
-│   ├── lib/          # i18n, search, history, images
+│   ├── components/   # the board
+│   │   ├── Board.tsx                         # page, sections, overlays
+│   │   ├── Masthead.tsx, Controls.tsx, Colophon.tsx
+│   │   ├── Spread.tsx, Band.tsx, Listing.tsx  # 1–3, 4–10, 11+
+│   │   ├── DetailPanel.tsx, HistoryChart.tsx  # the profile; chart lazy-loads
+│   │   ├── Methodology.tsx, States.tsx
+│   │   ├── parts.tsx     # source marks, trend marks, panels, numerals, seal
+│   │   ├── format.ts, strings.ts, useDialog.ts, useFallbackGlyphs.ts
+│   │   └── magazine.css
+│   ├── lib/          # board-context, board, methodology, i18n, search,
+│   │                 # history, images
 │   └── types/        # Character, ScoreBreakdown, METRIC_SOURCES
 ├── scripts/build-snapshot.ts   # writes public/rankings.json
 ├── data/snapshots.json         # committed history
@@ -217,8 +268,7 @@ husbandometrics/
 - Three game characters have no AniList portrait and fall back to a generated
   monogram.
 - Trend needs two refreshes. The first snapshot has nothing to compare against,
-  so every character reads STABLE and the trend column stays hidden until the
-  second weekly run.
+  so every character reads STABLE until the second weekly run.
 - Scores are relative, so a source failing for the character who holds its peak
   lifts everyone else's score on that source. Week-over-week movement is not
   purely popularity.
