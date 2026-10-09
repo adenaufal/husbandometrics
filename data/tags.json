@@ -5,7 +5,7 @@
   },
   "aki-hayakawa": {
     "ao3": "Hayakawa Aki",
-    "danbooru": "hayakawa_aki"
+    "danbooru": "hayakawa_aki_(chainsaw_man)"
   },
   "alhaitham": {
     "ao3": "Alhaitham (Genshin Impact)",
@@ -40,7 +40,7 @@
     "danbooru": "blade_(honkai:_star_rail)"
   },
   "chrollo-lucilfer": {
-    "ao3": "Danchou | Captain (Granblue Fantasy)",
+    "ao3": "Kuroro Lucifer | Chrollo Lucifer",
     "danbooru": "chrollo_lucilfer"
   },
   "dan-heng-imbibitor-lunae": {
@@ -60,20 +60,20 @@
     "danbooru": "dio_brando"
   },
   "edward-elric": {
-    "ao3": "Envy (Fullmetal Alchemist)",
-    "danbooru": "mitsu_the_insect_ninja"
+    "ao3": "Edward Elric",
+    "danbooru": "edward_elric"
   },
   "eren-yeager": {
     "ao3": "Eren Yeager",
-    "danbooru": "fern_(sousou_no_frieren)"
+    "danbooru": "eren_yeager"
   },
   "erwin-smith": {
     "ao3": "Erwin Smith",
     "danbooru": "erwin_smith"
   },
   "gintoki-sakata": {
-    "ao3": "Yorozuya (Gintama)",
-    "danbooru": "sakata_kintoki_(gintama)"
+    "ao3": "Sakata Gintoki",
+    "danbooru": "sakata_gintoki"
   },
   "giyuu-tomioka": {
     "ao3": "Tomioka Giyuu",
@@ -84,7 +84,8 @@
     "danbooru": "son_goku"
   },
   "gon-freecss": {
-    "danbooru": "gon_freecss"
+    "danbooru": "gon_freecss",
+    "ao3": "Gon Freecs"
   },
   "guts": {
     "ao3": "Guts (Berserk)",
@@ -96,14 +97,14 @@
   },
   "hachiman-hikigaya": {
     "ao3": "Hikigaya Hachiman",
-    "danbooru": "8man"
+    "danbooru": "hikigaya_hachiman"
   },
   "hanako": {
     "ao3": "Tsuchigomori (Jibaku Shounen Hanako-kun)",
     "danbooru": "hanako_(blue_archive)"
   },
   "hisoka-morow": {
-    "ao3": "Grim Reaper",
+    "ao3": "Hisoka (Hunter X Hunter)",
     "danbooru": "hisoka_morow"
   },
   "ichigo-kurosaki": {
@@ -124,7 +125,7 @@
   },
   "izumi-miyamura": {
     "ao3": "Miyamura Izumi",
-    "danbooru": "konoha_(kagerou_project)"
+    "danbooru": "miyamura_izumi"
   },
   "jin-u-seong": {
     "ao3": "Sung Jin-Woo (Solo Leveling)",
@@ -132,27 +133,27 @@
   },
   "jing-yuan": {
     "ao3": "Jing Yuan (Honkai: Star Rail)",
-    "danbooru": "jingliu_(honkai:_star_rail)"
+    "danbooru": "jing_yuan"
   },
   "johan-liebert": {
-    "ao3": "The Nameless Monster (Monster)",
-    "danbooru": "hans_christian_andersen_(fate)"
+    "ao3": "Johan Liebert",
+    "danbooru": "johan_liebert"
   },
   "joseph-joestar": {
-    "ao3": "Jojo",
-    "danbooru": "kars_(jojo)"
+    "ao3": "Joseph Joestar (JoJo: Battle Tendency)",
+    "danbooru": "joseph_joestar"
   },
   "joutarou-kuujou": {
-    "ao3": "Jojo",
-    "danbooru": "kars_(jojo)"
+    "ao3": "Kujo Jotaro",
+    "danbooru": "kujo_jotaro"
   },
   "kaeya": {
     "ao3": "Kaeya (Genshin Impact)",
     "danbooru": "kaeya_(genshin_impact)"
   },
   "kakashi-hatake": {
-    "ao3": "Sukea (Naruto)",
-    "danbooru": "sukea_(naruto)"
+    "ao3": "Hatake Kakashi",
+    "danbooru": "hatake_kakashi"
   },
   "kamina": {
     "ao3": "Kamina (Gurren Lagann)",
@@ -160,7 +161,7 @@
   },
   "karma-akabane": {
     "ao3": "Akabane Karma",
-    "danbooru": "buddy_(b.u.d.d.i.e.s)"
+    "danbooru": "akabane_karma"
   },
   "katsuki-bakugou": {
     "ao3": "Bakugou Katsuki",
@@ -188,11 +189,11 @@
   },
   "kiyotaka-ayanokouji": {
     "ao3": "Ayanokouji Kiyotaka",
-    "danbooru": "henya_the_genius"
+    "danbooru": "ayanokouji_kiyotaka"
   },
   "koro-sensei": {
-    "ao3": "Decoy Octopus",
-    "danbooru": "demon_king_of_salvation"
+    "ao3": "Korosensei (Assassination Classroom)",
+    "danbooru": "koro-sensei"
   },
   "koyomi-araragi": {
     "ao3": "Araragi Koyomi",
@@ -207,43 +208,44 @@
     "danbooru": "saiki_kusuo"
   },
   "kyou-souma": {
-    "danbooru": "sohma_kyou"
+    "danbooru": "souma_kyou",
+    "ao3": "Sohma Kyou"
   },
   "kyoujurou-rengoku": {
     "ao3": "Rengoku Kyoujurou",
-    "danbooru": "demon_pillar_(fate)"
+    "danbooru": "rengoku_kyoujurou"
   },
   "l-lawliet": {
-    "ao3": "Deneuve (Death Note)",
-    "danbooru": "serizawa_asahi"
+    "ao3": "L (Death Note)",
+    "danbooru": "l_(death_note)"
   },
   "law-trafalgar": {
     "ao3": "Trafalgar D. Water Law",
-    "danbooru": "toraou"
+    "danbooru": "trafalgar_law"
   },
   "lelouch-lamperouge": {
-    "ao3": "The Black King (Code Geass)",
-    "danbooru": "rem_(re:zero)"
+    "ao3": "Lelouch Lamperouge | Lelouch vi Britannia",
+    "danbooru": "lelouch_lamperouge"
   },
   "levi": {
     "danbooru": "levi_(shingeki_no_kyojin)",
     "ao3": "Levi Ackerman"
   },
   "light-yagami": {
-    "ao3": "Kira (Death Note)",
-    "danbooru": "kira_yoshikage"
+    "ao3": "Yagami Light",
+    "danbooru": "yagami_light"
   },
   "loid-forger": {
-    "ao3": "Lionel",
-    "danbooru": "twilight_(spy_x_family)"
+    "ao3": "Loid Forger | Twilight",
+    "danbooru": "loid_forger"
   },
   "luffy-monkey": {
-    "ao3": "Straw Hat Fleet (One Piece)",
-    "danbooru": "red_xiii_(rubber_harness)"
+    "ao3": "Monkey D. Luffy",
+    "danbooru": "monkey_d._luffy"
   },
   "manjirou-sano": {
-    "ao3": "Mikey",
-    "danbooru": "michael_roa_valdamjong"
+    "ao3": "Mikey | Sano Manjirou",
+    "danbooru": "sano_manjirou"
   },
   "megumi-fushiguro": {
     "ao3": "Fushiguro Megumi",
@@ -255,10 +257,9 @@
   },
   "miyuki-shirogane": {
     "ao3": "Shirogane Miyuki",
-    "danbooru": "honoka_(kaichou_wa_maid-sama!)"
+    "danbooru": "shirogane_miyuki"
   },
   "musashi-miyamoto": {
-    "ao3": "Miyamoto Musashi | Saber",
     "danbooru": "miyamoto_musashi_(vagabond)"
   },
   "naruto-uzumaki": {
@@ -275,11 +276,11 @@
   },
   "ray": {
     "ao3": "Ray (The Promised Neverland)",
-    "danbooru": "amuro_ray"
+    "danbooru": "ray_(yakusoku_no_neverland)"
   },
   "rintarou-okabe": {
-    "ao3": "John the Mad Scientist (Eddsworld)",
-    "danbooru": "mad_scientist_(slay_the_spire)"
+    "ao3": "Okabe Rintarou | Hououin Kyouma",
+    "danbooru": "okabe_rintarou"
   },
   "roy-mustang": {
     "ao3": "Roy Mustang",
@@ -306,12 +307,12 @@
     "danbooru": "gojo_satoru"
   },
   "senkuu-ishigami": {
-    "ao3": "Mecha Senkuu (Dr. STONE)",
-    "danbooru": "sorcerer_(ragnarok_online)"
+    "ao3": "Ishigami Senkuu",
+    "danbooru": "ishigami_senkuu"
   },
   "shigeo-kageyama": {
     "ao3": "Kageyama \"Mob\" Shigeo",
-    "danbooru": "ekubo_(mob_psycho_100)"
+    "danbooru": "kageyama_shigeo"
   },
   "shinji-ikari": {
     "ao3": "Ikari Shinji",
@@ -327,11 +328,11 @@
   },
   "shouya-ishida": {
     "ao3": "Ishida Shouya",
-    "danbooru": "toramaru_shou"
+    "danbooru": "ishida_shouya"
   },
   "shouyou-hinata": {
     "ao3": "Hinata Shouyou",
-    "danbooru": "shorty"
+    "danbooru": "hinata_shouyou"
   },
   "spike-spiegel": {
     "ao3": "Spike Spiegel",
@@ -351,14 +352,14 @@
   },
   "tanjirou-kamado": {
     "ao3": "Kamado Tanjirou",
-    "danbooru": "soichirou"
+    "danbooru": "kamado_tanjirou"
   },
   "tartaglia": {
     "ao3": "Tartaglia | Childe (Genshin Impact)",
     "danbooru": "tartaglia_(genshin_impact)"
   },
   "thorfinn-karlsefni": {
-    "ao3": "Þorfinnur karlsefni | Thorfinn Karlsefni (fl. 11th Century)",
+    "ao3": "Thorfinn (Vinland Saga)",
     "danbooru": "thorfinn_thorsson"
   },
   "tobio-kageyama": {
@@ -383,7 +384,7 @@
   },
   "yami-sukehiro": {
     "ao3": "Yami Sukehiro",
-    "danbooru": "god_of_destruction_(disgaea)"
+    "danbooru": "yami_sukehiro"
   },
   "yato": {
     "ao3": "Yato (Noragami)",
@@ -391,11 +392,11 @@
   },
   "yuu-ishigami": {
     "ao3": "Ishigami Yuu",
-    "danbooru": "captain_(kemono_friends)"
+    "danbooru": "ishigami_yuu"
   },
   "yuu-nishinoya": {
     "ao3": "Nishinoya Yuu",
-    "danbooru": "nishi_kinuyo"
+    "danbooru": "nishinoya_yuu"
   },
   "yuuji-itadori": {
     "ao3": "Itadori Yuuji",
@@ -415,6 +416,6 @@
   },
   "zoro-roronoa": {
     "ao3": "Roronoa Zoro",
-    "danbooru": "zolo"
+    "danbooru": "roronoa_zoro"
   }
 }
