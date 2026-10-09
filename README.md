@@ -126,9 +126,9 @@ list decides who is covered; it never supplies their numbers.
 ```
 src/
   App.tsx
-  components/   Header, Toolbar, RankingTable, RankRow, SourceDots,
-                DetailPanel, MethodologyModal, Footer
-  lib/          i18n, search, history, images
+  components/   Board, Masthead, Controls, Spread, Band, Listing,
+                DetailPanel, HistoryChart, Methodology, Colophon
+  lib/          board-context, board, methodology, i18n, search, history, images
   types/        Character, ScoreBreakdown, METRIC_SOURCES
 server/
   index.ts
@@ -148,11 +148,12 @@ public/rankings.json    what production serves
 
 ## Design
 
-Quiet editorial: type and whitespace carry the design, colour carries meaning.
-The board is a ranking table rather than a card grid, every row shows which
-sources measured that character, and the detail panel prints the raw upstream
-figure beside each score so a reader can check it. Conventions are in
-`CLAUDE.md`.
+The board is set as the character-popularity results page of a Japanese manga
+weekly, printed in two colours on newsprint: *measured, not voted*. The top three
+get a manga-panel spread, fourth to tenth a band, and everyone else a dense
+listing. Every entry shows which sources measured that character, and each
+profile prints the raw upstream figures and the arithmetic behind the total so a
+reader can check it. Conventions are in `CLAUDE.md`.
 
 ## Known gaps
 
@@ -162,8 +163,7 @@ figure beside each score so a reader can check it. Conventions are in
 - **Three game characters have no portrait** (Alhaitham, Blade, Wriothesley);
   AniList has no entry for them, so a generated monogram stands in.
 - **Trend needs two refreshes.** The first snapshot has nothing to compare
-  against, so every character reads STABLE and the trend column stays hidden
-  until the second weekly run.
+  against, so every character reads STABLE until the second weekly run.
 - **Scores are relative, so a missing source moves everyone.** If the character
   holding the peak on a source fails to read that week, the peak drops and every
   other score on that source rises. Week-over-week movement is not purely
@@ -173,5 +173,6 @@ figure beside each score so a reader can check it. Conventions are in
 
 Listed so nobody has to read the code to find out: character comparison, user
 accounts, watchlists, notifications, OG image generation, embeddable widgets,
-admin dashboard, and a mobile app. Multi-language (EN/JP/KR/CN), dark mode, CSV
-export, and search over names, aliases, and franchises do exist.
+admin dashboard, a mobile app, and dark mode (the board is print, light only).
+Multi-language (EN/JP/KR/CN), CSV export, and search over names, aliases, and
+franchises do exist.

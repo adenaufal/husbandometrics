@@ -1,0 +1,361 @@
+import { useCallback } from 'react';
+import { useTranslation, type SupportedLanguage } from '../lib/i18n';
+
+/**
+ * The board's own copy, typed and with {var} interpolation. Keys the shared
+ * table in lib/i18n already has are read through t() instead; everything here
+ * is page furniture (section labels, the strapline, the key) or a sentence the
+ * shared table does not carry.
+ *
+ * The large Japanese labels - 1位〜3位, 該当なし, 計測中 - are typeset as part
+ * of the page in every language, the way a Japanese weekly prints them. These
+ * strings are the readable line set beside them, so in Japanese that line stays
+ * English, as it would in the magazine.
+ */
+const en = {
+  strap: 'Measured, not voted',
+  characters: '{n} characters',
+  sourceCount: '{n} sources',
+  readingLive: 'Reading live sources',
+
+  search: 'Search',
+  searchHint: 'Name or franchise',
+  clearSearch: 'Clear search',
+  type: 'Type',
+  typeALL: 'All',
+  typeANIME: 'Anime',
+  typeMANGA: 'Manga',
+  typeGAME: 'Game',
+  periodWEEK: 'W',
+  periodMONTH: 'M',
+  periodYEAR: 'Y',
+  periodWEEKLong: 'Latest reading',
+  periodMONTHLong: 'Average over {label}',
+  periodYEARLong: 'Average over {label}',
+  scoreShort: 'Score',
+  scoreLow: 'Lowest score',
+  scoreHigh: 'Highest score',
+  shown: '{n} shown',
+  more: 'More',
+  less: 'Less',
+
+  top: 'The top three',
+  topView: 'Top three in this view',
+  band: 'Fourth to tenth',
+  bandView: 'The next seven',
+  rest: 'The rest of the board',
+  restView: 'The rest of this view',
+  matches: '{n} matching “{q}”',
+  boardRanks: 'Numerals are ranks on the full board',
+
+  legendMeasured: 'measured',
+  legendNot: 'not measured',
+  rankPrefix: 'No. {n}',
+  rising: 'Rising: up more than 1.5 points on the previous reading',
+  falling: 'Falling: down more than 1.5 points on the previous reading',
+  steady: 'Steady: within 1.5 points of the previous reading',
+  measuredByOf: 'Measured by {list} — {n} of 4',
+  measuredByNone: 'Measured by no source',
+
+  keyTitle: 'How to read an entry',
+  keyRank: 'Rank on the board',
+  keyMarks: 'AniList, MAL, AO3, Danbooru. Filled where that source returned a reading.',
+  keyTrend: 'Moved more than 1.5 points since the previous reading.',
+
+  lastWeek: 'Last week No. {n}',
+  returning: 'Back on the board',
+  newEntry: 'New this week',
+  changeSince: '{delta} since {date}',
+  source: 'Source',
+  share: 'Share',
+  adds: 'Adds',
+  sumLine: 'weighted mean of {n} measured sources',
+  notMeasuredRow: 'Not measured — excluded, weights renormalised',
+  scoreRule: 'Score = 100 × log(1 + figure) ÷ log(1 + the highest figure on the board).',
+  peaks: 'Highest on the board',
+  data: 'Data',
+  latestReading: 'Read {date}',
+  readings: 'Readings',
+  readFromHere: '{source} read from here',
+  chartLabel: 'Total score at each of {n} readings, {from} to {to}: {first} to {last}.',
+  chartCaption:
+    'Total at each reading. The vertical scale, {lo}–{hi}, is shared by every character on the board, so lines compare honestly.',
+  readingDate: 'Reading',
+  sinceLabel: 'Movement',
+
+  colophon: 'Colophon',
+  weights: 'Weights',
+  sourcesLabel: 'Sources',
+  scoring: 'Scoring',
+  roster: 'Who is on the board',
+  movement: 'Week to week',
+  weightOf: 'weight {w}',
+  countsUnit: 'counts {unit}',
+  notice: 'Notice',
+};
+
+type Key = keyof typeof en;
+type Table = Record<Key, string>;
+
+const jp: Table = {
+  ...en,
+  strap: '投票ではなく、実測。',
+  characters: '{n}名',
+  sourceCount: '{n}つの情報源',
+  readingLive: 'ライブデータを取得中',
+
+  search: '検索',
+  searchHint: '名前・作品名',
+  clearSearch: '検索をクリア',
+  type: '種別',
+  typeALL: 'すべて',
+  typeANIME: 'アニメ',
+  typeMANGA: 'マンガ',
+  typeGAME: 'ゲーム',
+  periodWEEK: '週',
+  periodMONTH: '月',
+  periodYEAR: '年',
+  periodWEEKLong: '最新の計測値',
+  periodMONTHLong: '{label}の平均',
+  periodYEARLong: '{label}年の平均',
+  scoreShort: 'スコア',
+  scoreLow: 'スコア下限',
+  scoreHigh: 'スコア上限',
+  shown: '{n}名を表示',
+  more: '詳細条件',
+  less: '閉じる',
+
+  matches: '「{q}」に一致：{n}名',
+  boardRanks: '数字は総合ランキングでの順位です',
+
+  legendMeasured: '計測あり',
+  legendNot: '計測なし',
+  rankPrefix: '{n}位',
+  rising: '上昇：前回の計測から1.5点を超えて上がった',
+  falling: '下降：前回の計測から1.5点を超えて下がった',
+  steady: '横ばい：前回の計測との差が1.5点以内',
+  measuredByOf: '{list} で計測 — 4つ中{n}つ',
+  measuredByNone: '計測した情報源なし',
+
+  keyTitle: '読み方',
+  keyRank: '総合ランキングでの順位',
+  keyMarks: 'AniList・MAL・AO3・Danbooru の順。塗りつぶしはその情報源で計測できたことを示します。',
+  keyTrend: '前回の計測から1.5点を超えて変動。',
+
+  lastWeek: '前回 {n}位',
+  returning: 'ランキングに復帰',
+  newEntry: '今回初登場',
+  changeSince: '{date}比 {delta}',
+  source: '情報源',
+  share: '比重',
+  adds: '寄与',
+  sumLine: '計測できた{n}つの情報源の加重平均',
+  notMeasuredRow: '計測なし — 合計から除外し、重みを再配分',
+  scoreRule: 'スコア = 100 × log(1 + 実数) ÷ log(1 + ランキング内の最大値)',
+  peaks: 'ランキング内の最大値',
+  data: '計測データ',
+  latestReading: '{date} 計測',
+  readings: '計測の推移',
+  readFromHere: '{source} の計測はここから',
+  chartLabel: '{from}から{to}まで、{n}回の計測による総合スコア：{first}から{last}。',
+  chartCaption:
+    '各計測時点の総合スコア。縦軸 {lo}〜{hi} はランキング全員で共通なので、線同士を正しく比較できます。',
+  readingDate: '計測日',
+  sinceLabel: '変動',
+
+  colophon: '奥付',
+  weights: '重み',
+  sourcesLabel: '情報源',
+  scoring: 'スコアの算出',
+  roster: '対象キャラクター',
+  movement: '週ごとの変動',
+  weightOf: '重み {w}',
+  countsUnit: '{unit} を集計',
+  notice: 'お知らせ',
+};
+
+const kr: Table = {
+  ...en,
+  strap: '투표가 아닌 실측',
+  characters: '{n}명',
+  sourceCount: '출처 {n}곳',
+  readingLive: '실시간 출처를 읽는 중',
+
+  search: '검색',
+  searchHint: '이름 또는 작품명',
+  clearSearch: '검색 지우기',
+  type: '유형',
+  typeALL: '전체',
+  typeANIME: '애니',
+  typeMANGA: '만화',
+  typeGAME: '게임',
+  periodWEEK: '주',
+  periodMONTH: '월',
+  periodYEAR: '년',
+  periodWEEKLong: '최신 측정값',
+  periodMONTHLong: '{label} 평균',
+  periodYEARLong: '{label}년 평균',
+  scoreShort: '점수',
+  scoreLow: '최저 점수',
+  scoreHigh: '최고 점수',
+  shown: '{n}명 표시',
+  more: '조건 더보기',
+  less: '접기',
+
+  top: '상위 3명',
+  topView: '이 목록의 상위 3명',
+  band: '4위부터 10위까지',
+  bandView: '다음 7명',
+  rest: '나머지 순위',
+  restView: '이 목록의 나머지',
+  matches: '“{q}” 검색 결과 {n}명',
+  boardRanks: '숫자는 전체 순위입니다',
+
+  legendMeasured: '측정됨',
+  legendNot: '측정 없음',
+  rankPrefix: '{n}위',
+  rising: '상승: 이전 측정보다 1.5점 넘게 오름',
+  falling: '하락: 이전 측정보다 1.5점 넘게 내림',
+  steady: '보합: 이전 측정과 1.5점 이내',
+  measuredByOf: '{list} 측정 — 4곳 중 {n}곳',
+  measuredByNone: '측정한 출처 없음',
+
+  keyTitle: '보는 법',
+  keyRank: '전체 순위',
+  keyMarks: 'AniList, MAL, AO3, Danbooru 순서. 채워진 칸은 그 출처에서 측정값을 얻었다는 뜻입니다.',
+  keyTrend: '이전 측정보다 1.5점 넘게 변동.',
+
+  lastWeek: '지난주 {n}위',
+  returning: '순위 복귀',
+  newEntry: '이번 주 첫 등장',
+  changeSince: '{date} 대비 {delta}',
+  source: '출처',
+  share: '비중',
+  adds: '기여',
+  sumLine: '측정된 출처 {n}곳의 가중 평균',
+  notMeasuredRow: '측정 없음 — 총점에서 제외, 가중치 재조정',
+  scoreRule: '점수 = 100 × log(1 + 실측값) ÷ log(1 + 순위표 최댓값)',
+  peaks: '순위표 최댓값',
+  data: '측정 데이터',
+  latestReading: '{date} 측정',
+  readings: '측정 추이',
+  readFromHere: '{source} 측정 시작',
+  chartLabel: '{from}부터 {to}까지 {n}회 측정한 총점: {first}에서 {last}.',
+  chartCaption:
+    '측정 시점별 총점. 세로축 {lo}–{hi}는 모든 캐릭터에 공통이라 선끼리 정직하게 비교할 수 있습니다.',
+  readingDate: '측정일',
+  sinceLabel: '변동',
+
+  colophon: '판권',
+  weights: '가중치',
+  sourcesLabel: '출처',
+  scoring: '점수 산출',
+  roster: '대상 캐릭터',
+  movement: '주간 변동',
+  weightOf: '가중치 {w}',
+  countsUnit: '{unit} 집계',
+  notice: '알림',
+};
+
+const cn: Table = {
+  ...en,
+  strap: '实测，而非投票',
+  characters: '{n} 位角色',
+  sourceCount: '{n} 个数据源',
+  readingLive: '正在读取实时数据源',
+
+  search: '搜索',
+  searchHint: '角色名或作品名',
+  clearSearch: '清除搜索',
+  type: '类型',
+  typeALL: '全部',
+  typeANIME: '动画',
+  typeMANGA: '漫画',
+  typeGAME: '游戏',
+  periodWEEK: '周',
+  periodMONTH: '月',
+  periodYEAR: '年',
+  periodWEEKLong: '最新读数',
+  periodMONTHLong: '{label} 平均',
+  periodYEARLong: '{label} 年平均',
+  scoreShort: '分数',
+  scoreLow: '最低分',
+  scoreHigh: '最高分',
+  shown: '显示 {n} 位',
+  more: '更多条件',
+  less: '收起',
+
+  top: '前三名',
+  topView: '当前视图前三',
+  band: '第四至第十名',
+  bandView: '其后七位',
+  rest: '榜单其余角色',
+  restView: '当前视图其余角色',
+  matches: '“{q}” 的结果：{n} 位',
+  boardRanks: '数字为总榜排名',
+
+  legendMeasured: '已测量',
+  legendNot: '未测量',
+  rankPrefix: '第{n}名',
+  rising: '上升：比上次读数高出 1.5 分以上',
+  falling: '下降：比上次读数低 1.5 分以上',
+  steady: '持平：与上次读数相差 1.5 分以内',
+  measuredByOf: '测量来源 {list} — 4 个中 {n} 个',
+  measuredByNone: '没有数据源测量到',
+
+  keyTitle: '阅读说明',
+  keyRank: '总榜排名',
+  keyMarks: '依次为 AniList、MAL、AO3、Danbooru。实心表示该数据源有读数。',
+  keyTrend: '与上次读数相比变动超过 1.5 分。',
+
+  lastWeek: '上周 第{n}名',
+  returning: '重回榜单',
+  newEntry: '本周新上榜',
+  changeSince: '较{date} {delta}',
+  source: '数据源',
+  share: '占比',
+  adds: '贡献',
+  sumLine: '{n} 个已测数据源的加权平均',
+  notMeasuredRow: '未测量 — 不计入总分，权重重新分配',
+  scoreRule: '分数 = 100 × log(1 + 实测值) ÷ log(1 + 榜单最高值)',
+  peaks: '榜单最高值',
+  data: '测量数据',
+  latestReading: '{date} 读取',
+  readings: '读数走势',
+  readFromHere: '{source} 自此开始读取',
+  chartLabel: '{from}至{to}共 {n} 次读数的总分：从 {first} 到 {last}。',
+  chartCaption: '每次读数时的总分。纵轴 {lo}–{hi} 对榜上所有角色通用，因此各条线可以如实比较。',
+  readingDate: '读取日',
+  sinceLabel: '变动',
+
+  colophon: '版权页',
+  weights: '权重',
+  sourcesLabel: '数据源',
+  scoring: '计分方式',
+  roster: '收录范围',
+  movement: '每周变动',
+  weightOf: '权重 {w}',
+  countsUnit: '统计 {unit}',
+  notice: '通知',
+};
+
+const TABLES: Record<SupportedLanguage, Table> = { en, jp, kr, cn };
+
+export type MagStringKey = Key;
+export type MagStrings = (key: Key, vars?: Record<string, string | number>) => string;
+
+export const useMagStrings = (): MagStrings => {
+  const { language } = useTranslation();
+  return useCallback(
+    (key, vars) => {
+      let text = TABLES[language]?.[key] ?? en[key];
+      if (vars) {
+        Object.entries(vars).forEach(([name, value]) => {
+          text = text.split(`{${name}}`).join(String(value));
+        });
+      }
+      return text;
+    },
+    [language],
+  );
+};
