@@ -133,6 +133,13 @@ the whole board, never the filtered view:
   the published total; print the sum only when it is true.
 - **Late starts**: the first refresh each source returned anything. MyAnimeList
   started on 2026-08-25, so totals step there for reasons of method.
+- **Re-measurements**: the days a correction changed how particular characters
+  are measured. They cannot be derived — history keeps scores, not the tags
+  behind them — so they are recorded by hand in `src/lib/remeasured.ts`, with
+  the correction that caused them. A character re-measured since their previous
+  reading is "remeasured": no rank or change is compared across it, and the
+  chart marks the day. Changing how existing characters are measured means
+  adding an entry there.
 
 ### The roster
 
@@ -208,7 +215,9 @@ Light only: it is print.
 - **Colour means something.** Ink does almost everything. Vermilion (`mag-red`)
   is the one spot colour, used only for the 計 seal, the active control, the
   No. 1 numeral and the top rule of the error notice. Trend marks are ink ▲ / ▼:
-  the shape carries the meaning. Portraits are the only other colour.
+  the shape carries the meaning. A character re-measured since their previous
+  reading gets 再 instead, explained in the legend: there is no movement to
+  mark. Portraits are the only other colour.
 - **Provenance is always visible.** Every entry carries four squares, filled where
   a source returned a reading, in fixed order AniList · MAL · AO3 · Danbooru. A
   total averaged over two sources must never look as authoritative as one
@@ -216,8 +225,8 @@ Light only: it is print.
 - **No chart that flatters.** Scores cluster between roughly 60 and 96, so a bar
   drawn from zero reads as agreement where there is none; the figure is the
   comparison. The history chart uses one vertical scale for the whole board and
-  marks the day a source started being read, so a change of method never reads
-  as a change in popularity.
+  marks the day a source started being read, or the character was re-measured,
+  so a change of method never reads as a change in popularity.
 - **Show the arithmetic.** The profile prints each source's raw figure, score,
   share and contribution, and the sum beneath them.
 - **No movers spotlight.** Week-over-week movement is partly measurement (see
@@ -269,7 +278,7 @@ husbandometrics/
 │   │   ├── parts.tsx     # source marks, trend marks, panels, numerals, seal
 │   │   ├── format.ts, strings.ts, useDialog.ts, useFallbackGlyphs.ts
 │   │   └── magazine.css
-│   ├── lib/          # board-context, board, methodology, i18n, search,
+│   ├── lib/          # board-context, board, remeasured, methodology, i18n, search,
 │   │                 # history, images
 │   └── types/        # Character, ScoreBreakdown, METRIC_SOURCES
 ├── scripts/build-snapshot.ts   # writes public/rankings.json
@@ -304,7 +313,8 @@ husbandometrics/
   lifts everyone else's score on that source. Week-over-week movement is not
   purely popularity.
 - History before 2026-10-09 was read under the old tags (see Tag cache). The 37
-  characters whose tags were corrected step on that day for reasons of method:
-  Luffy reads "last week No. 93" against his first correct reading at No. 1.
-  The rows only store scores, not the counts behind them, so they cannot be
-  recomputed; they are left as read.
+  characters whose tags were corrected, and Gon and Kyou Souma, read on AO3 for
+  the first time, step on that day for reasons of method. The rows only store
+  scores, not the counts behind them, so they cannot be recomputed; they are
+  left as read, and the step is marked as a re-measurement (see Derived on the
+  page).

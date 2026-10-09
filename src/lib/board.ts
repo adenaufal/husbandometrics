@@ -5,12 +5,14 @@ import {
   SourceType,
   TimePeriod,
 } from '../types';
+import { REMEASURED } from './remeasured';
 
 /**
  * Figures derived from the published board itself. Every function here
  * recombines numbers that are already in rankings.json - none of them estimates
  * anything - so the board can show them without weakening the measurement
- * claim.
+ * claim. The one outside input is lib/remeasured, the record of days the
+ * measuring itself changed.
  */
 
 export type Weights = Record<MetricSourceId, number>;
@@ -168,14 +170,30 @@ export const readingSeries = (character: Character): SeriesPoint[] =>
     }))
     .sort((a, b) => a.date.getTime() - b.date.getTime());
 
-export type MovementStatus = 'ranked' | 'returning' | 'new';
+export type MovementStatus = 'ranked' | 'returning' | 'new' | 'remeasured';
+
+export interface Remeasured {
+  label: string;
+  sources: MetricSourceId[];
+}
+
+/** The days this character was re-measured (lib/remeasured), oldest first. */
+export const remeasurementsFor = (id: string): Remeasured[] =>
+  REMEASURED.flatMap(({ label, characters }) =>
+    characters[id] ? [{ label, sources: [...characters[id]] }] : [],
+  ).sort((a, b) => a.label.localeCompare(b.label));
 
 export interface Movement {
   /** Rank on the previous refresh's board, or null if they were not on it. */
   previousRank: number | null;
   status: MovementStatus;
-  /** Change in total since this character's previous reading. */
+  /**
+   * Change in total since this character's previous reading. Null when there
+   * is none, or when it was taken another way.
+   */
   delta: number | null;
+  /** Set when the character was re-measured since their previous reading. */
+  remeasured: Remeasured | null;
 }
 
 export interface BoardMovement {
@@ -183,6 +201,8 @@ export interface BoardMovement {
   previousLabel: string | null;
   currentLabel: string | null;
   byId: Map<string, Movement>;
+  /** Someone on the board was re-measured since their previous reading. */
+  anyRemeasured: boolean;
 }
 
 /**
@@ -191,7 +211,9 @@ export interface BoardMovement {
  * Checked against the board actually published on 2026-09-28: all 91 ranks
  * matched. A character absent from that board is "returning" if they have an
  * earlier reading and "new" if they have none - not "unranked", which would
- * read as a judgement rather than a gap.
+ * read as a judgement rather than a gap. One re-measured since their previous
+ * reading is "remeasured", and their change is not given: Luffy went from 93rd
+ * to 1st on 2026-10-09 because his tags were corrected, not because he surged.
  */
 export const boardMovement = (characters: Character[]): BoardMovement => {
   const labels = new Set<string>();
@@ -218,15 +240,32 @@ export const boardMovement = (characters: Character[]): BoardMovement => {
   characters.forEach((character) => {
     const series = readingSeries(character);
     const previousReading = series[series.length - 2];
+    const latestReading = series[series.length - 1];
     const previousRank = previousRanks.get(character.id) ?? null;
+    const remeasured =
+      (previousReading &&
+        remeasurementsFor(character.id).find(
+          ({ label }) => label > previousReading.label && label <= latestReading.label,
+        )) ||
+      null;
+
     byId.set(character.id, {
       previousRank,
-      status: previousRank !== null ? 'ranked' : series.length > 1 ? 'returning' : 'new',
-      delta: previousReading ? character.weighted_total - previousReading.total : null,
+      status: remeasured
+        ? 'remeasured'
+        : previousRank !== null
+          ? 'ranked'
+          : series.length > 1
+            ? 'returning'
+            : 'new',
+      delta:
+        previousReading && !remeasured ? character.weighted_total - previousReading.total : null,
+      remeasured,
     });
   });
 
-  return { previousLabel, currentLabel, byId };
+  const anyRemeasured = [...byId.values()].some((movement) => movement.remeasured !== null);
+  return { previousLabel, currentLabel, byId, anyRemeasured };
 };
 
 /**

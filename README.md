@@ -130,7 +130,7 @@ src/
   App.tsx
   components/   Board, Masthead, Controls, Spread, Band, Listing,
                 DetailPanel, HistoryChart, Methodology, Colophon
-  lib/          board-context, board, methodology, i18n, search, history, images
+  lib/          board-context, board, remeasured, methodology, i18n, search, history, images
   types/        Character, ScoreBreakdown, METRIC_SOURCES
 server/
   index.ts
@@ -174,7 +174,9 @@ reader can check it. Conventions are in `CLAUDE.md`.
   The tag cache was trusted outright until then, and 51 remembered tags named
   someone else: Luffy was counted under a two-post tag and sat 93rd. Their
   history steps on that day for reasons of method. The rows store scores, not
-  the counts behind them, so they can't be recomputed.
+  the counts behind them, so they can't be recomputed; instead the day is
+  recorded in `src/lib/remeasured.ts`, the chart marks it, and those characters
+  carry 再 in place of a trend arrow until their next reading.
 
 ## Not built
 

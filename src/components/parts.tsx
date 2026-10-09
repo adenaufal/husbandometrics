@@ -7,9 +7,10 @@ import {
   type MetricSourceId,
 } from '../types';
 import { characterImage, handleImageError } from '../lib/images';
+import { useTranslation } from '../lib/i18n';
 import { useBoard } from '../lib/board-context';
 import { useMagStrings } from './strings';
-import { numeralScale } from './format';
+import { fromLabel, numeralScale, shortDate } from './format';
 
 export type OpenEntry = (character: Character, trigger: HTMLElement) => void;
 
@@ -54,13 +55,37 @@ export const SourceMarks: React.FC<{
   );
 };
 
-/** Ink only: the shape carries the meaning, colour is reserved. */
-export const TrendMark: React.FC<{ trend: Trend; size?: number; className?: string }> = ({
-  trend,
+/** The re-measured mark: 再, "again", as a Japanese weekly would set it. */
+const RemeasuredGlyph: React.FC<{ size: number }> = ({ size }) => (
+  <span aria-hidden lang="ja" className="font-mag-jp font-bold leading-none" style={{ fontSize: Math.max(10, size + 2) }}>
+    再
+  </span>
+);
+
+/**
+ * Ink only: the shape carries the meaning, colour is reserved. A character
+ * re-measured since their previous reading gets 再 instead of a triangle:
+ * their change is method, and there is nothing to mark.
+ */
+export const TrendMark: React.FC<{ character: Character; size?: number; className?: string }> = ({
+  character,
   size = 8,
   className = '',
 }) => {
   const s = useMagStrings();
+  const { language } = useTranslation();
+  const board = useBoard();
+  const trend = character.trend;
+  const remeasured = board.movement.byId.get(character.id)?.remeasured;
+
+  if (remeasured) {
+    const label = s('remeasuredMark', { date: shortDate(fromLabel(remeasured.label), language) });
+    return (
+      <span role="img" aria-label={label} title={label} className={`inline-flex items-center text-mag-ink ${className}`}>
+        <RemeasuredGlyph size={size} />
+      </span>
+    );
+  }
 
   if (trend === Trend.STABLE) {
     const label = s('steady');
@@ -90,6 +115,7 @@ export const TrendMark: React.FC<{ trend: Trend; size?: number; className?: stri
 /** The key that explains the marks, set where the marks first appear. */
 export const Legend: React.FC<{ className?: string }> = ({ className = '' }) => {
   const s = useMagStrings();
+  const board = useBoard();
   return (
     <p className={`mag-label flex flex-wrap items-center gap-x-3 gap-y-1 text-mag-muted ${className}`}>
       <span className="inline-flex items-center gap-1.5">
@@ -101,6 +127,14 @@ export const Legend: React.FC<{ className?: string }> = ({ className = '' }) => 
         {s('legendNot')}
       </span>
       <span className="text-mag-ink-2">AniList · MAL · AO3 · Danbooru</span>
+      {board.movement.anyRemeasured && (
+        <span className="inline-flex items-center gap-1.5">
+          <span className="text-mag-ink">
+            <RemeasuredGlyph size={9} />
+          </span>
+          {s('legendRemeasured')}
+        </span>
+      )}
     </p>
   );
 };
@@ -192,7 +226,8 @@ export const EntryButton: React.FC<{
 
 /**
  * Last week's rank, rebuilt from history by lib/board. A character missing from
- * last week's board is "back" or "new", never "unranked".
+ * last week's board is "back" or "new", never "unranked"; one re-measured since
+ * is "re-measured", with no rank to compare against.
  */
 export const MovementNote: React.FC<{ character: Character; className?: string }> = ({
   character,
@@ -200,11 +235,13 @@ export const MovementNote: React.FC<{ character: Character; className?: string }
 }) => {
   const board = useBoard();
   const s = useMagStrings();
+  const { language } = useTranslation();
   const movement = board.movement.byId.get(character.id);
   if (!movement || !board.movement.previousLabel) return null;
 
-  const text =
-    movement.status === 'ranked' && movement.previousRank !== null
+  const text = movement.remeasured
+    ? s('remeasured', { date: shortDate(fromLabel(movement.remeasured.label), language) })
+    : movement.status === 'ranked' && movement.previousRank !== null
       ? s('lastWeek', { n: movement.previousRank })
       : movement.status === 'returning'
         ? s('returning')

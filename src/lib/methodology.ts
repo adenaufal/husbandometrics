@@ -22,4 +22,6 @@ export const METHODOLOGY = {
     'Anime and manga characters are pulled automatically from AniList’s favourites ranking, filtered to male characters — no hand-picking. Game characters come from a short curated list in the repository, because AniList and MyAnimeList do not catalogue games and would otherwise erase every gacha character. That list decides who is covered; it never supplies their numbers.',
   movement:
     'Scores are relative, so a source failing for the character who holds its peak lifts everyone else’s score on that source. Week-over-week movement is not purely popularity.',
+  remeasured:
+    'Those characters’ totals step on that day for reasons of method. Their charts mark the day, and until their next reading they carry 再 in place of a trend arrow, with no movement given.',
 };

@@ -12,7 +12,7 @@ import {
 import type { Character } from '../types';
 import { useTranslation } from '../lib/i18n';
 import { useBoard } from '../lib/board-context';
-import { readingSeries } from '../lib/board';
+import { readingSeries, remeasurementsFor } from '../lib/board';
 import { useMagStrings } from './strings';
 import { SOURCE_SHORT, fromLabel, longDate, score, shortDate } from './format';
 
@@ -47,8 +47,8 @@ const SquareDot = ({ cx, cy, size = 5 }: { cx?: number; cy?: number; size?: numb
 /**
  * Every reading of the total, as an ink line on the board's shared vertical
  * scale. The x axis is time, so irregular gaps between refreshes stay visible,
- * and the day a source started being read is marked: the total jumps there for
- * reasons of method, not popularity.
+ * and the day a source started being read, or the character was re-measured,
+ * is marked: the total jumps there for reasons of method, not popularity.
  */
 const HistoryChart: React.FC<{ character: Character }> = ({ character }) => {
   const { t, language } = useTranslation();
@@ -89,6 +89,31 @@ const HistoryChart: React.FC<{ character: Character }> = ({ character }) => {
     const at = fromLabel(label).getTime();
     return at > min && at <= max && series.some((point) => point.scores[source] !== null);
   });
+  // Days this character was measured differently: the line steps there for
+  // reasons of method too.
+  const remeasures = remeasurementsFor(character.id).filter(({ label }) => {
+    const at = fromLabel(label).getTime();
+    return at > min && at <= max;
+  });
+
+  /** A marker's caption, set to the left of the line once it nears the right edge. */
+  const caption = (at: number, text: string) =>
+    function Caption(props: { viewBox?: { x?: number; y?: number } }) {
+      if (props.viewBox?.x === undefined) return <g />;
+      const flip = (at - min) / (max - min) > 0.6;
+      return (
+        <text
+          x={props.viewBox.x + (flip ? -5 : 5)}
+          y={(props.viewBox.y ?? 0) - 8}
+          textAnchor={flip ? 'end' : 'start'}
+          fill="currentColor"
+          fontSize={11}
+          fontWeight={700}
+        >
+          {text}
+        </text>
+      );
+    };
 
   const first = series[0];
   const last = series[series.length - 1];
@@ -131,29 +156,30 @@ const HistoryChart: React.FC<{ character: Character }> = ({ character }) => {
               tickSize={4}
               allowDataOverflow
             />
-            {markers.map((marker) => (
-              <ReferenceLine
-                key={marker.source}
-                x={fromLabel(marker.label).getTime()}
-                stroke="currentColor"
-                strokeDasharray="3 3"
-                label={(props: { viewBox?: { x?: number; y?: number } }) =>
-                  props.viewBox?.x === undefined ? (
-                    <g />
-                  ) : (
-                    <text
-                      x={props.viewBox.x + 5}
-                      y={(props.viewBox.y ?? 0) - 8}
-                      fill="currentColor"
-                      fontSize={11}
-                      fontWeight={700}
-                    >
-                      {s('readFromHere', { source: SOURCE_SHORT[marker.source] })}
-                    </text>
-                  )
-                }
-              />
-            ))}
+            {markers.map((marker) => {
+              const at = fromLabel(marker.label).getTime();
+              return (
+                <ReferenceLine
+                  key={marker.source}
+                  x={at}
+                  stroke="currentColor"
+                  strokeDasharray="3 3"
+                  label={caption(at, s('readFromHere', { source: SOURCE_SHORT[marker.source] }))}
+                />
+              );
+            })}
+            {remeasures.map((remeasure) => {
+              const at = fromLabel(remeasure.label).getTime();
+              return (
+                <ReferenceLine
+                  key={`remeasured-${remeasure.label}`}
+                  x={at}
+                  stroke="currentColor"
+                  strokeDasharray="3 3"
+                  label={caption(at, s('remeasuredHere'))}
+                />
+              );
+            })}
             <Tooltip
               isAnimationActive={false}
               cursor={{ stroke: 'currentColor', strokeOpacity: 0.35 }}

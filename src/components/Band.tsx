@@ -55,7 +55,7 @@ const BandEntry: React.FC<{ character: Character; onOpen: OpenEntry }> = ({ char
             {score(board.scoreFor(character))}
           </span>
           <span className="flex items-center gap-1.5">
-            <TrendMark trend={character.trend} />
+            <TrendMark character={character} />
             <SourceMarks measured={character.measured_sources} size="sm" />
           </span>
         </div>
@@ -74,6 +74,7 @@ const ReadingKey: React.FC<{ fullBand: boolean; sampleRank: number }> = ({
   sampleRank,
 }) => {
   const s = useMagStrings();
+  const board = useBoard();
   // The samples are pictures of the marks, not readings, so they are hidden
   // from assistive tech and the definitions carry the meaning.
   return (
@@ -118,6 +119,14 @@ const ReadingKey: React.FC<{ fullBand: boolean; sampleRank: number }> = ({
           </dt>
           <dd>{s('keyTrend')}</dd>
         </div>
+        {board.movement.anyRemeasured && (
+          <div className="flex items-start gap-3">
+            <dt aria-hidden lang="ja" className="w-10 shrink-0 font-mag-jp text-[12px] font-bold leading-none text-mag-ink">
+              再
+            </dt>
+            <dd>{s('keyRemeasured')}</dd>
+          </div>
+        )}
       </dl>
     </aside>
   );
