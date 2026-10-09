@@ -111,7 +111,9 @@ list decides who is covered; it never supplies their numbers.
 - **Tag cache** — `data/tags.json`, committed. Half of an AO3 read is spent
   asking which tag a character is filed under, and that answer changes about
   never. Remembering it takes a refresh from ~22 minutes to ~5. A stale tag
-  returns nothing and is re-resolved on the spot.
+  returns nothing and is re-resolved on the spot, and every refresh re-checks
+  each remembered tag against the character's names, dropping one that names
+  someone else.
 - **History** — `data/snapshots.json`, committed. One row per character per
   refresh, capped at two years, deduplicated per day so a hand-triggered refresh
   cannot weight that day twice. This is what trend and the history chart read.
@@ -135,7 +137,7 @@ server/
   config/env.ts
   data/gameRoster.ts
   db/           client, repository, fileStore, schema/{sqlite,mysql}
-  services/     aggregator, fetchers/{anilist,mal,ao3,danbooru,http}
+  services/     aggregator, fetchers/{anilist,mal,ao3,danbooru,http,tagMatch}
   tasks/scheduler.ts
   utils/metrics.ts
 scripts/
@@ -168,6 +170,11 @@ reader can check it. Conventions are in `CLAUDE.md`.
   holding the peak on a source fails to read that week, the peak drops and every
   other score on that source rises. Week-over-week movement is not purely
   popularity — check the provenance dots before trusting an arrow.
+- **History before 2026-10-09 was read under wrong tags for 37 characters.**
+  The tag cache was trusted outright until then, and 51 remembered tags named
+  someone else: Luffy was counted under a two-post tag and sat 93rd. Their
+  history steps on that day for reasons of method. The rows store scores, not
+  the counts behind them, so they can't be recomputed.
 
 ## Not built
 

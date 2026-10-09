@@ -26,16 +26,33 @@ export const readTags = async (): Promise<Record<string, KnownTags>> => {
 /**
  * Merged rather than replaced: a character whose source failed this run keeps
  * the tag we already knew, instead of paying to resolve it again next week.
+ *
+ * `forget` is the exception - tags found to name someone else. Those go even
+ * when nothing replaced them: no tag is a null reading, a wrong one a wrong
+ * number.
  */
-export const writeTags = async (resolved: Record<string, KnownTags>) => {
+export const writeTags = async (
+  resolved: Record<string, KnownTags>,
+  forget: Record<string, MetricSourceId[]> = {},
+) => {
   const existing = await readTags();
   const merged: Record<string, KnownTags> = { ...existing };
+
+  Object.entries(forget).forEach(([id, sources]) => {
+    const kept = { ...merged[id] };
+    sources.forEach((source) => delete kept[source]);
+    merged[id] = kept;
+  });
 
   Object.entries(resolved).forEach(([id, tags]) => {
     merged[id] = { ...merged[id], ...tags };
   });
 
-  const sorted = Object.fromEntries(Object.entries(merged).sort(([a], [b]) => a.localeCompare(b)));
+  const sorted = Object.fromEntries(
+    Object.entries(merged)
+      .filter(([, tags]) => Object.keys(tags).length > 0)
+      .sort(([a], [b]) => a.localeCompare(b)),
+  );
 
   const target = tagFile();
   await fs.mkdir(path.dirname(target), { recursive: true });

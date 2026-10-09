@@ -1,7 +1,15 @@
 import { createPacer, http } from "./http";
 import * as cheerio from "cheerio";
 import { env } from "../../config/env";
-import { CharacterQuery, MetricResult, tokenize } from "./types";
+import { CharacterQuery, MetricResult } from "./types";
+import {
+  aliasNames,
+  compareFits,
+  fitTag,
+  sharedElsewhere,
+  spellings,
+  type TagFit,
+} from "./tagMatch";
 
 /**
  * AO3 answers `Accept: application/json` with a 302 to a page that then 404s.
@@ -61,22 +69,38 @@ const parseResultCount = (html: string) => {
 };
 
 /**
+ * Autocomplete requests a resolve may spend. Each is a paced call against the
+ * slowest source, and past the name and its first few aliases the rest are
+ * nicknames that only ever surface someone else's tag.
+ */
+const MAX_TERMS = 8;
+
+/**
  * AO3's canonical character tag, e.g. `Zhongli (Genshin Impact)`.
  *
  * Free-text search is not usable as a metric: `work_search[query]=Xiao` returns
  * 103,000 works, because it matches the substring anywhere in any field. The
  * character tag returns the works actually about them.
+ *
+ * The autocomplete answers with every tag that shares a word with the term -
+ * "Thorfinn Karlsefni" brings back an 11th-century explorer, Harry Potter's
+ * Thorfinn Rowle and a sitcom ghost before Vinland Saga's Thorfinn - so which
+ * suggestion is the character is `fitTag`'s call, not the order's.
  */
-const resolveCharacterTag = async (
+export const resolveAo3Tag = async (
   query: CharacterQuery,
 ): Promise<string | null> => {
-  const franchiseTokens = query.franchiseHints.flatMap(tokenize);
-  const scored: Array<{ tag: string; score: number }> = [];
+  const candidates: Array<{ tag: string; fit: TagFit }> = [];
+  const seen = new Set<string>();
+  const terms = [
+    ...new Set([...spellings(query.name), ...aliasNames(query.aliases)]),
+  ];
+  const ours = () =>
+    candidates.filter(
+      ({ tag }) => !sharedElsewhere(query, tag, [...seen]),
+    );
 
-  for (const term of [query.name, ...query.aliases]) {
-    const nameTokens = tokenize(term);
-    if (!nameTokens.length) continue;
-
+  for (const term of terms.slice(0, MAX_TERMS)) {
     // The /character endpoint returns character tags only. The generic /tag one
     // also returns freeform tags, where "Levi Ackerman is Mikasa Ackerman's
     // Uncle" (62 works) outranked the real character tag.
@@ -96,31 +120,22 @@ const resolveCharacterTag = async (
       // `/` is a romantic pairing and `&` a platonic one; both count works for
       // two characters, so neither measures this character alone.
       .filter((tag) => !tag.includes("/") && !tag.includes("&"))
+      .filter((tag) => !seen.has(tag))
       .forEach((tag) => {
-        const tagTokens = tokenize(tag);
-        // The name is a hard requirement; the rest only ranks.
-        if (!nameTokens.every((token) => tagTokens.includes(token))) return;
-
-        const hasFranchise = franchiseTokens.some((token) =>
-          tagTokens.includes(token),
-        );
-        // Every word that is neither the name nor the fandom narrows the tag to
-        // something other than the character: "Bakugou Katsuki's Dragon (My Hero
-        // Academia: Fantasy Setting)" carries the name and the fandom, yet has
-        // 23 works against the real tag's 200,000.
-        const extraTokens = tagTokens.filter(
-          (token) =>
-            !nameTokens.includes(token) && !franchiseTokens.includes(token),
-        ).length;
-
-        scored.push({ tag, score: (hasFranchise ? 3 : 0) - extraTokens });
+        // Every suggestion is kept, fitting or not: the others are what
+        // shows a bare name to be shared (`sharedElsewhere`).
+        seen.add(tag);
+        const fit = fitTag(query, tag);
+        if (fit) candidates.push({ tag, fit });
       });
 
-    if (scored.some((entry) => entry.score >= 3)) break;
+    // The name, or part of it under the franchise, settles it: an alias can
+    // only add a weaker match.
+    if (ours().some(({ fit }) => fit.rank >= 2)) break;
   }
 
-  if (!scored.length) return null;
-  return scored.sort((a, b) => b.score - a.score)[0].tag;
+  // The sort is stable, so between equal fits AO3's own order stands.
+  return ours().sort((a, b) => compareFits(a.fit, b.fit))[0]?.tag ?? null;
 };
 
 const countWorks = async (tag: string) => {
@@ -150,7 +165,7 @@ export const fetchAo3Metric = async (
         return { source: "ao3", value: cached, raw: query.knownTag };
     }
 
-    const tag = await resolveCharacterTag(query);
+    const tag = await resolveAo3Tag(query);
     if (!tag) return { source: "ao3", value: null };
 
     const count = await countWorks(tag);

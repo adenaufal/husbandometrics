@@ -18,6 +18,7 @@ import {
   fetchAo3Metric,
   fetchDanbooruMetric,
   fetchMalMetric,
+  fitTag,
   lookupProfiles,
 } from "./fetchers";
 import {
@@ -35,6 +36,10 @@ import {
 } from "../db/repository";
 import { cacheClient, defaultTtlSeconds } from "../lib/cache";
 import { readTags, writeTags, type KnownTags } from "../db/tagStore";
+
+/** The sources read through a remembered tag. */
+const TAG_SOURCES = ["ao3", "danbooru"] as const;
+type TagSource = (typeof TAG_SOURCES)[number];
 
 /** Keeps AO3 and Danbooru from rate-limiting a full roster refresh. */
 const FETCH_CONCURRENCY = 4;
@@ -162,16 +167,30 @@ const sourceApplies = (source: MetricSourceId, sourceType: SourceType) =>
 const readCounts = async (
   character: RosterCharacter,
   known: KnownTags = {},
-): Promise<{ counts: MetricCounts; tags: KnownTags }> => {
+): Promise<{ counts: MetricCounts; tags: KnownTags; forget: TagSource[] }> => {
   const query: CharacterQuery = {
     name: character.name,
     aliases: character.aliases,
     franchiseHints: [character.franchise, ...character.franchiseHints],
   };
 
+  // A remembered tag is reused only while it still names this character. They
+  // used to be trusted outright, and dozens that named someone else - Lelouch
+  // counted under `rem_(re:zero)` - were counted again every week.
+  const forget = TAG_SOURCES.filter((source) => {
+    const tag = known[source];
+    if (!tag || fitTag(query, tag)) return false;
+    console.warn(
+      `[tags] ${character.name}: dropping ${source} tag "${tag}", which names someone else`,
+    );
+    return true;
+  });
+  const remembered = (source: TagSource) =>
+    forget.includes(source) ? undefined : known[source];
+
   const [ao3, danbooru, mal] = await Promise.all([
-    fetchAo3Metric({ ...query, knownTag: known.ao3 }),
-    fetchDanbooruMetric({ ...query, knownTag: known.danbooru }),
+    fetchAo3Metric({ ...query, knownTag: remembered("ao3") }),
+    fetchDanbooruMetric({ ...query, knownTag: remembered("danbooru") }),
     sourceApplies("mal", character.sourceType)
       ? fetchMalMetric(query)
       : { value: null, raw: undefined },
@@ -192,7 +211,7 @@ const readCounts = async (
   if (typeof ao3.raw === "string") tags.ao3 = ao3.raw;
   if (typeof danbooru.raw === "string") tags.danbooru = danbooru.raw;
 
-  return { counts, tags };
+  return { counts, tags, forget };
 };
 
 const computeTrend = (current: number, previous?: number | null) => {
@@ -276,22 +295,24 @@ const fetchRankingsFromSource = async (): Promise<RankingsResponse> => {
   const readings: Array<{ character: RosterCharacter; counts: MetricCounts }> =
     [];
   const resolvedTags: Record<string, KnownTags> = {};
+  const forgottenTags: Record<string, TagSource[]> = {};
 
   for (let i = 0; i < roster.length; i += FETCH_CONCURRENCY) {
     const batch = await Promise.all(
       roster.slice(i, i + FETCH_CONCURRENCY).map(async (character) => {
-        const { counts, tags } = await readCounts(
+        const { counts, tags, forget } = await readCounts(
           character,
           knownTags[character.id],
         );
         if (Object.keys(tags).length) resolvedTags[character.id] = tags;
+        if (forget.length) forgottenTags[character.id] = forget;
         return { character, counts };
       }),
     );
     readings.push(...batch);
   }
 
-  await writeTags(resolvedTags);
+  await writeTags(resolvedTags, forgottenTags);
 
   // Scores are relative, so every peak has to be known before any character can
   // be scored.

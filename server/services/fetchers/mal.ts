@@ -1,5 +1,5 @@
 import { createPacer, http } from './http';
-import { CharacterQuery, MetricResult, tokenize } from './types';
+import { CharacterQuery, MetricResult, franchiseTokens, tokenize } from './types';
 
 /**
  * MyAnimeList favourites, read from MAL's own top-characters board.
@@ -93,27 +93,6 @@ const loadBoard = async (): Promise<BoardEntry[]> => {
 
 const subset = (needle: string[], haystack: string[]) =>
   needle.length > 0 && needle.every((token) => haystack.includes(token));
-
-/**
- * Grammatical particles and release-shape words carry no franchise identity.
- *
- * `tokenize` keeps anything longer than one character, so the particles in a
- * romanised title survive it - and AniList's hints are full media titles
- * ("Gintama: Nanigoto mo Saisho ga Kanjin nanode..."). Left in, `no` alone
- * corroborates half the board: Kimetsu *no* Yaiba, Boku *no* Hero Academia,
- * Ore dake Level Up *na* Ken. That turns the franchise check - the thing that
- * is supposed to separate a real match from a confident wrong one - into a
- * formality.
- */
-const NOISE = new Set([
-  'no', 'na', 'ni', 'wa', 'ga', 'wo', 'mo', 'de', 'to', 'wu',
-  'the', 'of', 'and', 'in', 'is', 'it', 'my', 'me',
-  'season', 'movie', 'ova', 'ona', 'special', 'specials', 'tv', 'part', 'final',
-  'nd', 'rd', 'th', 'st',
-]);
-
-const franchiseTokens = (hints: string[]) =>
-  [...new Set(hints.flatMap(tokenize))].filter((token) => !NOISE.has(token));
 
 /**
  * Match by name, then make the franchise agree.

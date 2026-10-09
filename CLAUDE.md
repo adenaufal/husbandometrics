@@ -96,6 +96,15 @@ slowest source and turns each Danbooru search into a single count, taking a
 refresh from roughly 22 minutes to 5. A stale tag returns nothing, and the
 fetcher re-resolves it in place.
 
+Every remembered tag is checked against the character's names on each refresh
+(`fitTag`, under Matching); one that names someone else is dropped and
+resolved again. The cache used to be trusted outright, and by 2026-10-09 it
+held 51 tags, for 37 of the 103 characters, that named someone else — Lelouch
+counted under `rem_(re:zero)`, Luffy under a two-post
+`red_xiii_(rubber_harness)` — every week. Changing the matching rules means
+re-resolving the cache, not just validating it: a tag can fit the rules and
+still lose to a better one.
+
 ### History
 
 `data/snapshots.json`, committed to the repo. One row per character per refresh,
@@ -138,11 +147,33 @@ Names do not line up across catalogues, and a confident wrong match is worse
 than no match:
 
 - Danbooru writes `surname_given` and its own romanisation (`todoroki_shoto`
-  against AniList's "Shouto Todoroki"), so matching is by token with long vowels
-  collapsed, and the franchise is the tie-breaker.
+  against AniList's "Shouto Todoroki"), so names are compared as sets of words
+  with long vowels and doubled letters collapsed, and searched a word at a time.
 - AO3 needs the canonical character tag via `/autocomplete/character`. Free-text
   search returns 103,000 works for "Xiao" because it matches the substring
   anywhere. Pairing tags (`/`, `&`) count two characters and are excluded.
+- Which candidate is the character is `fitTag`'s call
+  (`server/services/fetchers/tagMatch.ts`), never post count's. It is generous
+  about spelling and strict about identity:
+  - A tag's name has to *be* one of the character's names, not contain one:
+    `rem_(re:zero)` contains Lelouch's alias "Zero". Spelling may differ —
+    "Gon Freecs", "Korosensei", and one long word a letter off ("Chrollo
+    Lucifer" for "Lucilfer") — but the words may not.
+  - A qualifier has to name the franchise, every word of it.
+    `miyamoto_musashi_(fate)` is not Vagabond's Musashi,
+    `zhongli_(archon)_(genshin_impact)` is a costume, and "no" alone is not
+    Shingeki *no* Kyojin. AO3's part-of-a-series qualifiers count ("JoJo:
+    Battle Tendency"), below a bare tag.
+  - The real name outranks an alias, and a one-word alias counts only under the
+    franchise's qualifier. AniList lists nicknames — "Zero", "Kira", "Sukea" —
+    that are tags of their own, or other characters'.
+- AO3 leaves a shared name bare for its best-known bearer and qualifies the
+  rest. A bare tag whose name also appears under other franchises' qualifiers,
+  and not under this one's, is someone else's: "Miyamoto Musashi | Saber" is
+  Fate's, so Vagabond's Musashi reads "Not measured" on AO3.
+- Danbooru keeps some names only as aliases: `lelouch_lamperouge` has no posts
+  and points at `lelouch_vi_britannia`, a name AniList does not list. The alias
+  is what gets remembered, and counting it counts its target.
 - AniList search hits are only accepted when the franchise corroborates them.
   Searching "Xiao" otherwise returns a character with 22,000 favourites who is
   not the Genshin Xiao.
@@ -272,3 +303,8 @@ husbandometrics/
 - Scores are relative, so a source failing for the character who holds its peak
   lifts everyone else's score on that source. Week-over-week movement is not
   purely popularity.
+- History before 2026-10-09 was read under the old tags (see Tag cache). The 37
+  characters whose tags were corrected step on that day for reasons of method:
+  Luffy reads "last week No. 93" against his first correct reading at No. 1.
+  The rows only store scores, not the counts behind them, so they cannot be
+  recomputed; they are left as read.
